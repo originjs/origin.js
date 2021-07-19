@@ -1,0 +1,14 @@
+{
+  "name": "@originjs/core",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "@originjs",
+  "license": "MulanPSL2",
+  "dependencies": {
+    "vue": "3.1.5",
+    "vuex": "4.0.2",
+    "vue-i18n": "9.1.7",
+    "vue-router": "4.0.10"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@originjs/cli",
+  "version": "0.1.0",
+  "author": "@originjs",
+  "license": "MulanPSL2",
+  "main": "dist/cli.js",
+  "bin": {
+    "ori-cli": "bin/ori-cli.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ]
+}
