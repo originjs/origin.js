@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "origin.js",
+  "version": "0.1.0",
+  "description": "",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "lint": "eslint --ignore-path .gitignore --ext .ts..js,.vue .",
+    "test": "jest"
+  },
+  "author": "@originjs",
+  "license": "MulanPSL2",
+  "devDependencies": {
+    "@jest/types": "^27.0.6",
+    "jest": "^27.0.6",
+    "lerna": "^3.19.0"
+  }
+}
