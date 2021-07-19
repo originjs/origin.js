@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "author": "@originjs",
   "license": "MulanPSL2",
-  "main": "dist/cli.js",
+  "main": "dist/index.js",
   "bin": {
     "ori-cli": "bin/ori-cli.js"
   },
   "files": [
     "bin",
     "dist"
-  ]
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "commander": "^8.0.0"
+  }
 }
