@@ -5,4 +5,6 @@ coverage
 temp
 explorations
 TODOs.md
+.vscode
+.idea
 *.log
