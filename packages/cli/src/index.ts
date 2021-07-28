@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import { build } from './commands/build';
-const init =require ('./commands/init');
+import { init } from './commands/init';
 const program = new Command();
 program.version(`@ori/cli ${require('../package.json').version}`)
     .usage('<command> [options]');

@@ -1,12 +1,9 @@
 import fs from 'fs-extra';
 const download = require('download-git-repo')
 const ora =require('ora')
-export default function init(name: any, options:any) {
-  // name 根文件名
-  // console.log('name', name)
-  // options 其他配置参数
-  // console.log('options', options)
-       // 1.检查当前文件夹下有没有和项目名同名的文件夹 以及 项目名是否合法
+export function init(name: any, options:any) {
+       // 1.Check whether there is a folder with the same name as the project name in the current folder
+       // and whether the project name is legal
         const createDirIfNotExists = (dir:any) => {
            if(!fs.existsSync(dir) ){
               const reg = /[< > / \ | : " * ?]/g;
@@ -20,7 +17,7 @@ export default function init(name: any, options:any) {
             }
         };
         createDirIfNotExists(name);
-        // 2. 从github拉取模板到新建项目
+        // 2. Pull template from github to new project
         const combineFiles= async (name:any) => {
           const spinner = ora('Downloading...')
           spinner.start()
