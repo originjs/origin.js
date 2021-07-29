@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const { run } = require('@originjs/cli-service')
 
 program.name('Ori').usage('<commend> [options]')
 
@@ -12,17 +13,19 @@ program
   })
 
 program
-  .command('dve')
+  .command('dev')
   .description('alias of "npm run dev" in the current project')
   .allowUnknownOption()
-  .action((name) => {
-    require('../dist/commands/dev').default(name, options)
+  .action(() => {
+    run('dev')
   })
 
 program
   .command('build')
   .description('alias of "npm run build" in the current project')
-  .action()
+  .action(() => {
+    run('build')
+  })
 
 program
   .command('webpackToVite')
