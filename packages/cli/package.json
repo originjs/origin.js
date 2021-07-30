@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@originjs/cli-service": "^0.1.0",
+    "@originjs/vue-codemod": "^1.0.2",
     "commander": "^8.0.0"
   }
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const { run } = require('@originjs/cli-service')
+const { dev, build } = require('@originjs/cli-service')
+const { codemod } = require('../dist/commands/codmod')
 
 program.name('Ori').usage('<commend> [options]')
-
 program
   .command('create <app-name>')
   .description('create a new project powered by ori-cli-service')
@@ -17,24 +17,36 @@ program
   .description('alias of "npm run dev" in the current project')
   .allowUnknownOption()
   .action(() => {
-    run('dev')
+    dev()
   })
 
 program
   .command('build')
   .description('alias of "npm run build" in the current project')
   .action(() => {
-    run('build')
+    build()
   })
 
 program
   .command('webpackToVite')
-  .description('Use vite in the current project')
+  .description('use vite in the current project')
   .action()
 
 program
-  .command('codemod')
-  .description('Use vue-next in the current project')
-  .action()
+  .command('codemod <file-pattern>')
+  .description('use vue-next in the current project')
+  .option(
+    '-t, --transformation <rules>',
+    'Name or path of the transformation module',
+  )
+  .option('-a, --runAllTransformation', 'run all transformation module')
+  .option('-p, --params', 'Custom params to the transformation')
+  .option(
+    '-f, --reportFormatter <type>',
+    'Specify an output report formatter  choices: [table, detail, log]',
+  )
+  .action((name, options) => {
+    codemod(name, options)
+  })
 
 program.parse(process.argv)
