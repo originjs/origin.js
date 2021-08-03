@@ -4,7 +4,7 @@ const program = require('commander')
 const { dev, build } = require('@originjs/cli-service')
 const { codemod, codemodHelp } = require('../dist/commands/codmod')
 
-program.name('Ori').usage('<commend> [options]')
+program.name('Ori').usage('<command> [options]')
 program
   .command('create <app-name>')
   .description('create a new project powered by ori-cli-service')
