@@ -4,7 +4,7 @@ const program = require('commander')
 const { dev, build } = require('@originjs/cli-service')
 const { codemod, codemodHelp } = require('../dist/commands/codmod')
 
-program.name('Ori').usage('<command> [options]')
+program.name('ori').usage('<command> [options]')
 program
   .command('create <app-name>')
   .description('create a new project powered by ori-cli-service')
@@ -14,7 +14,7 @@ program
 
 program
   .command('dev')
-  .description('alias of "npm run dev" in the current project')
+  .description('alias of "ori dev" in the current project')
   .allowUnknownOption()
   .action(() => {
     dev()
@@ -22,7 +22,7 @@ program
 
 program
   .command('build')
-  .description('alias of "npm run build" in the current project')
+  .description('alias of "ori build" in the current project')
   .action(() => {
     build()
   })
