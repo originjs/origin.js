@@ -1,35 +1,17 @@
-import type { PluginConfig } from '../Plugins'
 import { PluginOri } from '../Plugins'
-export function codemod(name: string, options?: any) {
-  const _option: PluginConfig = {
-    name: 'vue-codemod',
-    options: [],
-    args: getArgs(name, options),
-  }
-
-  const plugin = new PluginOri(_option)
-  plugin.exec()
+const plugin = new PluginOri('vue-codemod')
+export function codemod(args: string[]) {
+  plugin.exec(getArgs(args))
 }
 
-export function getArgs(name: string, options: any = {}): string[] {
-  const args = [name]
-  const { transformation, runAllTransformation, params, reportFormatter } =
-    options
+export function codemodHelp() {
+  plugin.exec(getHelp())
+}
 
-  if (transformation) {
-    args.push('-t')
-    args.push(transformation)
-  }
-  if (runAllTransformation) {
-    args.push('-a')
-  }
-  if (params) {
-    args.push('-p')
-    args.push(params)
-  }
-  if (reportFormatter) {
-    args.push('-f')
-    args.push(reportFormatter)
-  }
-  return args
+function getArgs(args: string[]): string[] {
+  return args.slice(3)
+}
+
+function getHelp(): string[] {
+  return ['-h']
 }

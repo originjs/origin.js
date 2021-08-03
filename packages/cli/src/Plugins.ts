@@ -1,28 +1,18 @@
-const { spawn } = require('child_process')
-const Path = require('path')
-
-export interface PluginConfig {
-  name: string
-  options: string[]
-  args: string[]
-}
-
+import { spawn } from 'child_process'
+import type { SpawnOptionsWithoutStdio } from 'child_process'
+import Path from 'path'
 export class PluginOri {
-  args: string[]
   command: string
-  constructor(options: PluginConfig) {
-    this.args = options.args
-    this.command = Path.resolve(
-      __dirname,
-      `../node_modules/.bin/${options.name}`,
-    )
+  constructor(name: string) {
+    this.command = Path.resolve(__dirname, `../node_modules/.bin/${name}`)
   }
 
-  exec() {
-    spawn(this.command, this.args, {
+  exec(args: string[], options?: SpawnOptionsWithoutStdio) {
+    const _options = Object.assign({
       cwd: __dirname,
       stdio: 'inherit',
       shell: true,
-    })
+    }, options)
+    return spawn(this.command, args, _options)
   }
 }

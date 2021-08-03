@@ -2,7 +2,7 @@
 
 const program = require('commander')
 const { dev, build } = require('@originjs/cli-service')
-const { codemod } = require('../dist/commands/codmod')
+const { codemod, codemodHelp } = require('../dist/commands/codmod')
 
 program.name('Ori').usage('<commend> [options]')
 program
@@ -28,25 +28,18 @@ program
   })
 
 program
-  .command('webpackToVite')
+  .command('tovite')
   .description('use vite in the current project')
   .action()
 
 program
-  .command('codemod <file-pattern>')
+  .command('tovue3')
   .description('use vue-next in the current project')
-  .option(
-    '-t, --transformation <rules>',
-    'Name or path of the transformation module',
-  )
-  .option('-a, --runAllTransformation', 'run all transformation module')
-  .option('-p, --params', 'Custom params to the transformation')
-  .option(
-    '-f, --reportFormatter <type>',
-    'Specify an output report formatter  choices: [table, detail, log]',
-  )
-  .action((name, options) => {
-    codemod(name, options)
+  .allowUnknownOption()
+  .option('-h, --help', 'show vue-codemod helps')
+  .action((options) => {
+    if (options.help) codemodHelp()
+    else codemod(process.argv)
   })
 
 program.parse(process.argv)
