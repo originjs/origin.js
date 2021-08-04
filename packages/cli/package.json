@@ -16,10 +16,6 @@
   },
   "dependencies": {
     "@originjs/cli-service": "^0.1.0",
-    "@types/commander": "^2.12.2",
-    "@types/ejs": "^3.0.7",
-    "@types/fs-extra": "^9.0.12",
-    "@types/inquirer": "^7.3.3",
     "chalk": "^4.1.1",
     "commander": "^8.0.0",
     "download-git-repo": "^3.0.2",
@@ -29,5 +25,9 @@
     "inquirer": "^8.1.2",
     "ora": "^5.4.1",
     "terminal-kit": "^2.1.6"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.0.7",
+    "@types/inquirer": "^7.3.3"
   }
 }

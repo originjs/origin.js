@@ -4,9 +4,7 @@ import inquirer from 'inquirer'
 const download = require('download-git-repo')
 import createPackageTemplate from '../template/createPackageTemplate'
 import chalk from 'chalk'
-// import path from 'path'
-// import {exec} from 'child_process'
-// import ejs from 'ejs'
+
 const defaultOptions: any = {
   name: 'webProject',
   version: '1.0.0',
@@ -16,19 +14,18 @@ const defaultOptions: any = {
 const ifDirExists = (name: any) => {
   // Check whether there is a folder with the same name as the project name in the current folder
   // and whether the project name is legal
-  if (!fs.existsSync(name)) {
-    const reg = /[< > / \ | : " * ?]/g
-    if (reg.test(name)) {
-      console.error('ProjectName is illegal')
-      return false
-    }
+  const reg = /[< > / \ | : " * ?]/g
+  if (!fs.existsSync(name) && !reg.test(name)) {
+    return true
   } else {
-    console.error('Dir already exists')
+    console.error(
+      chalk.red('The file name is invalid or the file name already exists'),
+    )
     return false
   }
 }
 export default async function init(name: any) {
-  ifDirExists(name)
+  if (!ifDirExists(name)) return false
   defaultOptions.name = name
   //Pull template from github to new project
   const spinner = ora('Downloading...')
@@ -36,7 +33,7 @@ export default async function init(name: any) {
   try {
     await new Promise<void>((resolve, reject) => {
       download(
-        'Janson1012/myTemplate01',
+        'pohunchn/vite-ts-quick#main',
         name,
         { clone: false },
         (error: any) => {
