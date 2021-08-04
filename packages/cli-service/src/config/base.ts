@@ -1,10 +1,10 @@
-import path from 'path/posix'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import type { InlineConfig } from 'vite'
 const serverConfig: InlineConfig = {
   server: {
     host: '0.0.0.0',
-    port: 8080,
+    port: 3000,
     open: true,
     cors: true,
   },

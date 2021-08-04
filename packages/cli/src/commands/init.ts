@@ -67,12 +67,6 @@ export default async function init(name: any) {
           return val
         },
       },
-      {
-        type: 'input',
-        message: 'Please set the project author:',
-        name: 'author',
-        default: '',
-      },
     ]
     await inquirer
       .prompt(promptList)
