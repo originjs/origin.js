@@ -24,7 +24,8 @@
     "fs-extra": "^10.0.0",
     "inquirer": "^8.1.2",
     "ora": "^5.4.1",
-    "terminal-kit": "^2.1.6"
+    "terminal-kit": "^2.1.6",
+    "@originjs/vue-codemod": "^1.0.2"
   },
   "devDependencies": {
     "@types/ejs": "^3.0.7",
