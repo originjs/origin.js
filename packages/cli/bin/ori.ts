@@ -2,6 +2,7 @@
 
 import { Command } from 'commander'
 import { codemod, codemodHelp } from '../src/commands/codmod'
+import { toVite, toViteHelp } from '../src/commands/webpackToVite'
 const { dev, build } = require('@originjs/cli-service')
 const program = new Command()
 
@@ -31,6 +32,12 @@ program
 program
   .command('tovite')
   .description('use vite in the current project')
+  .allowUnknownOption()
+  .option('-h, --help', 'show webpack-to-vite helps')
+  .action((options) => {
+    if (options.help) toViteHelp()
+    else toVite(process.argv)
+  })
 
 program
   .command('tovue3')
