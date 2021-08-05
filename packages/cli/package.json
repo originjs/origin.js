@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "author": "@originjs",
   "license": "MulanPSL2",
-  "main": "bin/ori.js",
   "bin": {
-    "ori": "bin/ori.js"
+    "ori": "dist/bin/ori.js"
   },
   "files": [
     "bin",

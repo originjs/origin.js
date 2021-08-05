@@ -4,9 +4,9 @@
   "author": "@originjs",
   "license": "MulanPSL2",
   "bin": {
-    "ori-service": "bin/service.js"
+    "ori-service": "dist/bin/cli-service.js"
   },
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "files": [
     "bin",
     "dist"

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const program = require('commander')
+import { Command } from 'commander'
+import { codemod, codemodHelp } from '../src/commands/codmod'
 const { dev, build } = require('@originjs/cli-service')
-const { codemod, codemodHelp } = require('../dist/commands/codmod')
+const program = new Command()
 
 program.name('ori').usage('<command> [options]')
 program
@@ -30,7 +31,6 @@ program
 program
   .command('tovite')
   .description('use vite in the current project')
-  .action()
 
 program
   .command('tovue3')
