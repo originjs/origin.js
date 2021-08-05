@@ -8,10 +8,10 @@ const program = new Command()
 
 program.name('ori').usage('<command> [options]')
 program
-  .command('create <app-name>')
-  .description('create a new project powered by ori-cli-service')
+  .command('init <app-name>')
+  .description('init a new project')
   .action((name, options) => {
-    require('../dist/commands/init').default(name, options)
+    require('../src/commands/init').default(name, options)
   })
 
 program
