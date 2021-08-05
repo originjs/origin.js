@@ -2,6 +2,7 @@ import ejs from 'ejs'
 import fs from 'fs'
 import { exec } from 'child_process'
 import chalk from 'chalk'
+import ora from 'ora'
 
 export default function creatPackageTemplate(config: any) {
   ejs.renderFile(
@@ -10,13 +11,16 @@ export default function creatPackageTemplate(config: any) {
     (err: any, str: string) => {
       fs.writeFile(`${config.name}/package.json`, str, () => {
         console.log(chalk.green('package.json is completed'))
+        console.log('        ')
       })
     },
   )
-
+  const spinner = ora('Install project dependency.......')
+  spinner.start()
   exec(`cd ${config.name} && npm install && git init`, (err: any) => {
     if (err) {
       // When there is an error, print out the error
+      spinner.fail()
       console.log(
         chalk.red(
           'Failed to download dependencies and initialize git repository',
@@ -24,8 +28,7 @@ export default function creatPackageTemplate(config: any) {
       )
       console.log(err)
     } else {
-      console.log(chalk.green('The dependency package is downloaded'))
-      console.log(chalk.green('Finished'))
+      spinner.succeed()
     }
     // exit the operation
     process.exit()
