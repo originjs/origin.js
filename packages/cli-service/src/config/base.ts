@@ -1,5 +1,4 @@
 import path from 'path'
-import vue from '@vitejs/plugin-vue'
 import type { InlineConfig } from 'vite'
 const serverConfig: InlineConfig = {
   server: {
@@ -11,7 +10,6 @@ const serverConfig: InlineConfig = {
 }
 const baseConfig: InlineConfig = {
   publicDir: 'public',
-  plugins: [vue()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

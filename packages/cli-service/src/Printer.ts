@@ -1,6 +1,7 @@
 import fse from 'fs-extra'
 import type { InlineConfig } from 'vite'
 import { baseConfig, buildConfig, serverConfig } from './config/base'
+const requireEsm = require('esm')(module)
 class Printer {
   name: string
   vueVersion: number
@@ -16,12 +17,16 @@ class Printer {
     this.rootDir = dir
     this.name = pkg.name
     this.vueVersion = 3
-    if (fse.pathExistsSync(`${this.rootDir}/vite.config.js`))
-      this.localConfig = require(`${this.rootDir}/vite.config.js`)
+    this.loadConfig(this.rootDir)
   }
   getBaseSchema(): InlineConfig {
     baseConfig.root = this.rootDir
     return baseConfig
+  }
+
+  loadConfig(rootDir: string) {
+    if (fse.pathExistsSync(`${rootDir}/vite.config.js`))
+      this.localConfig = requireEsm(`${rootDir}/vite.config.js`)
   }
 }
 
