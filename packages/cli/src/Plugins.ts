@@ -9,7 +9,6 @@ export class PluginOri {
 
   exec(args: string[], options?: SpawnOptionsWithoutStdio) {
     const _options = Object.assign({
-      cwd: __dirname,
       stdio: 'inherit',
       shell: true,
     }, options)
