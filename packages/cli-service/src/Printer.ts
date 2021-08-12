@@ -25,8 +25,11 @@ class Printer {
   }
 
   loadConfig(rootDir: string) {
-    if (fse.pathExistsSync(`${rootDir}/vite.config.js`))
-      this.localConfig = requireEsm(`${rootDir}/vite.config.js`)
+    if (fse.pathExistsSync(`${rootDir}/vite.config.js`)) {
+      this.localConfig = requireEsm(`${rootDir}/vite.config.js`).default
+    } else if (fse.pathExistsSync(`${rootDir}/vite.config.ts`)) {
+      this.localConfig = requireEsm(`${rootDir}/vite.config.ts`).default
+    }
   }
 }
 

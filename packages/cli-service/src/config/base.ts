@@ -1,4 +1,3 @@
-import path from 'path'
 import type { InlineConfig } from 'vite'
 const serverConfig: InlineConfig = {
   server: {
@@ -9,11 +8,10 @@ const serverConfig: InlineConfig = {
   },
 }
 const baseConfig: InlineConfig = {
+  configFile: false,
+  root: process.cwd(),
   publicDir: 'public',
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
     extensions: [
       '.js',
       '.mjs',
