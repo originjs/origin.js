@@ -12,7 +12,7 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "eslint ./packages --ext .vue,.js,.ts",
-    "test": "jest"
+    "test": "yarn build && jest"
   },
   "author": "@originjs",
   "license": "MulanPSL2",

@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/ejs": "^3.0.7",
-    "@types/inquirer": "^7.3.3"
+    "@types/inquirer": "^7.3.3",
+    "execa": "5"
   }
 }
