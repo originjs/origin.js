@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ori --help: A2 1`] = `
+"Usage: ori <command> [options]
+
+Options:
+  -h, --help        display help for command
+
+Commands:
+  init <app-name>   init a new project
+  dev               alias of \\"ori dev\\" in the current project
+  build             alias of \\"ori build\\" in the current project
+  tovite [options]  use vite in the current project
+  tovue3 [options]  use vue-next in the current project
+  help [command]    display help for command"
+`;
+
+exports[`ori -h: A1 1`] = `
+"Usage: ori <command> [options]
+
+Options:
+  -h, --help        display help for command
+
+Commands:
+  init <app-name>   init a new project
+  dev               alias of \\"ori dev\\" in the current project
+  build             alias of \\"ori build\\" in the current project
+  tovite [options]  use vite in the current project
+  tovue3 [options]  use vue-next in the current project
+  help [command]    display help for command"
+`;
+
+exports[`ori init --help: A4 1`] = `
+"Usage: ori init [options] <app-name>
+
+init a new project
+
+Options:
+  -h, --help  display help for command"
+`;
