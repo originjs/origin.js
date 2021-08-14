@@ -25,7 +25,7 @@ const baseConfig: InlineConfig = {
   },
   css: {
     postcss: {
-      plugins: [require('autoprefixer')],
+      plugins: [],
     },
   },
 }
