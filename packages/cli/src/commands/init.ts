@@ -13,21 +13,17 @@ const defaultOptions: any = {
   author: '',
 }
 const copy=function(src:string,dst:string){
-  console.log('copy')
-    const paths = fs.readdirSync(src); //同步读取当前目录
-    console.log(paths)
+    const paths = fs.readdirSync(src);
     paths.forEach(function(path){
         const _src=src+'/'+path;
         const _dst=dst+'/'+path;
-        console.log('_src'+_src)
-        console.log('_dst'+_dst)
-        fs.stat(_src,function(err,stats){ //stats  该对象 包含文件属性
+        fs.stat(_src,function(err,stats){
             if(err)throw err;
-            if(stats.isFile()){ //如果是个文件则拷贝
-                const readable=fs.createReadStream(_src);//创建读取流
-                const writable=fs.createWriteStream(_dst);//创建写入流
+            if(stats.isFile()){
+                const readable=fs.createReadStream(_src);
+                const writable=fs.createWriteStream(_dst);
                 readable.pipe(writable);
-            }else if(stats.isDirectory()){ //是目录则 递归
+            }else if(stats.isDirectory()){
                 checkDirectory(_src,_dst,copy,'');
             }
         });
@@ -49,7 +45,7 @@ const checkDirectory=function(src:string,dst:string,callback:any,projectName:str
     }
 };
 
-const SOURCES_DIRECTORY = path.resolve(__dirname, '../oriTemplate'); //源目录
+const SOURCES_DIRECTORY = path.resolve(__dirname, '../../../../oriTemplate');
 
 const ifDirExists = (name: any) => {
   // Check whether there is a folder with the same name as the project name in the current folder

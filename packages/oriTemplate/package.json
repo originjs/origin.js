@@ -1,6 +1,7 @@
 {
-  "name": "vite-vue-typescript-starter",
-  "version": "0.0.0",
+  "name": "<%= name %>",
+  "version":"<%= version %>",
+  "license": "<%= license %>",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
