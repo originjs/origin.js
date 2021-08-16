@@ -1,14 +1,14 @@
 import { commandSync, ExecaSyncReturnValue, SyncOptions } from 'execa'
 import { join } from 'path'
 
-const CLI_PATH = join(__dirname, '../dist/bin/ori')
+const CLI_PATH = join(__dirname, '../bin/ori')
 const DEMO_PATH = join(__dirname, '../demo')
 
 const run = (
   args: string[],
   options: SyncOptions<string> = {},
 ): ExecaSyncReturnValue<string> => {
-  return commandSync(`node ${CLI_PATH} ${args.join(' ')}`, options)
+  return commandSync(`npx ts-node ${CLI_PATH} ${args.join(' ')}`, options)
 }
 
 test('ori -h', () => {
