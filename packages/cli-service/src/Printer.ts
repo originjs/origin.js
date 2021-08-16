@@ -21,7 +21,8 @@ class Printer {
   }
   getBaseSchema(): InlineConfig {
     baseConfig.root = this.rootDir
-    return baseConfig
+    // For baseConfig, no distortion
+    return JSON.parse(JSON.stringify(baseConfig))
   }
 
   loadConfig(rootDir: string) {
