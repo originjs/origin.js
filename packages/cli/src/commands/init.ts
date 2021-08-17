@@ -1,9 +1,10 @@
 import fs from 'fs-extra'
 import ora from 'ora'
 import inquirer from 'inquirer'
-const download = require('download-git-repo')
+// const download = require('download-git-repo')
 import createPackageTemplate from '../template/createPackageTemplate'
 import chalk from 'chalk'
+import path from 'path'
 
 const defaultOptions: any = {
   name: 'webProject',
@@ -11,6 +12,41 @@ const defaultOptions: any = {
   license: 'ISC',
   author: '',
 }
+const copy=function(src:string,dst:string){
+    const paths = fs.readdirSync(src);
+    paths.forEach(function(path){
+        const _src=src+'/'+path;
+        const _dst=dst+'/'+path;
+        fs.stat(_src,function(err,stats){
+            if(err)throw err;
+            if(stats.isFile()){
+                const readable=fs.createReadStream(_src);
+                const writable=fs.createWriteStream(_dst);
+                readable.pipe(writable);
+            }else if(stats.isDirectory()){
+                checkDirectory(_src,_dst,copy,'');
+            }
+        });
+    });
+}
+const checkDirectory=function(src:string,dst:string,callback:any,projectName:string){
+    if(projectName!==''){
+      fs.mkdirSync(projectName);
+      checkDirectory(src,dst,callback,'')
+    }else {
+      fs.access(dst, fs.constants.F_OK, (err) => {
+        if(err){
+            fs.mkdirSync(dst);
+            callback(src,dst);
+        }else{
+            callback(src,dst);
+        }
+      });
+    }
+};
+
+const SOURCES_DIRECTORY = path.resolve(__dirname, '../../../../oriTemplate');
+
 const ifDirExists = (name: any) => {
   // Check whether there is a folder with the same name as the project name in the current folder
   // and whether the project name is legal
@@ -31,25 +67,13 @@ export default async function init(name: any) {
   const spinner = ora('Downloading...')
   spinner.start()
   try {
-    await new Promise<void>((resolve, reject) => {
-      download(
-        'pohunchn/vite-ts-quick#main',
-        name,
-        { clone: false },
-        (error: any) => {
-          if (error) {
-            spinner.fail()
-            return reject(error)
-          }
-          spinner.succeed()
-          resolve()
-        },
-      )
-    })
+    checkDirectory(SOURCES_DIRECTORY, path.resolve(path.join(process.cwd(),name)), copy,name);
   } catch (error) {
+    spinner.fail()
     console.log(error)
     return false
   }
+  spinner.succeed()
   try {
     const promptList = [
       {
