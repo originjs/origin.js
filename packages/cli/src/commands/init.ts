@@ -50,7 +50,7 @@ const checkDirectory = function (
   }
 }
 
-const SOURCES_DIRECTORY = path.resolve(__dirname, '../../oriTemplate')
+const SOURCES_DIRECTORY = path.resolve(__dirname, '../../../oriTemplate')
 
 const ifDirExists = (name: any) => {
   // Check whether there is a folder with the same name as the project name in the current folder
