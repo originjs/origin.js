@@ -36,7 +36,12 @@ export type PluginOptions = {
     enabled?: boolean,
     include?: FilterPattern,
     exclude?: FilterPattern
-  }
+  },
+  plist?: {
+    enabled?: boolean,
+    include?: FilterPattern,
+    exclude?: FilterPattern
+  },
   markdown?: {
     enabled?: boolean,
     include?: FilterPattern,
@@ -64,6 +69,9 @@ const DEFAULT_OPTIONS: PluginOptions = {
   toml: {
     enabled: true,
   },
+  plist: {
+    enabled: true,
+  },
   markdown: {
     enabled: true,
   },
@@ -75,6 +83,7 @@ const CSV_EXTENSION = /\.csv$/;
 const INI_EXTENSION = /\.ini$/;
 const PROPERTIES_EXTENSION = /\.properties$/;
 const TOML_EXTENSION = /\.toml$/;
+const PLIST_EXTENSION = /\.plist$/;
 
 export default (options: PluginOptions = {}): Plugin => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options);
@@ -107,6 +116,9 @@ export default (options: PluginOptions = {}): Plugin => {
       case 'toml':
         transforms[key] = require('./tomlTransformation');
         break;
+      case 'plist':
+        transforms[key] = require('./plistTransformation');
+        break;
       default:
     }
 
@@ -138,6 +150,10 @@ export default (options: PluginOptions = {}): Plugin => {
 
       if (opts.toml!.enabled && TOML_EXTENSION.test(id)) {
         return loadTransform('toml')(opts, code, id)
+      }
+
+      if (opts.toml!.enabled && PLIST_EXTENSION.test(id)) {
+        return loadTransform('plist')(opts, code, id)
       }
       return null
     },
