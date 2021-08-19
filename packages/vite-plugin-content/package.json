@@ -1,0 +1,25 @@
+{
+  "name": "vite-plugin-content",
+  "version": "1.0.0",
+  "author": "",
+  "license": "MulanPSL2",
+  "description": "A vite plugin that convert xml, yaml, csv, markdown files to ES6 modules or vue SFC",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@rollup/pluginutils": "^4.1.1",
+    "@types/estree": "^0.0.50",
+    "@types/js-yaml": "^4.0.2",
+    "@types/xml2js": "^0.4.9",
+    "vite": "^2.5.0"
+  },
+  "dependencies": {
+    "csv-parse": "^4.16.0",
+    "js-yaml": "^4.1.0",
+    "tosource": "^2.0.0-alpha.3",
+    "xml2js": "^0.4.23"
+  }
+}
