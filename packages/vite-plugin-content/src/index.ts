@@ -127,11 +127,6 @@ export default (options: PluginOptions = {}): Plugin => {
 
   return {
     name: 'vite:content',
-    enforce: 'pre',
-    async load(id: string) {
-      console.log(id);
-      return null
-    },
     async transform(code: string, id: string) {
       if (opts.xml!.enabled && XML_EXTENSION.test(id)) {
         return loadTransform('xml')(opts, code, id)
