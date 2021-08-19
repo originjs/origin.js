@@ -10,8 +10,7 @@ export default function creatPackageTemplate(config: any) {
     config,
     (err: any, str: string) => {
       fs.writeFile(`${config.name}/package.json`, str, () => {
-        console.log(chalk.green('package.json is completed'))
-        console.log('        ')
+        console.log()
       })
     },
   )
@@ -29,6 +28,10 @@ export default function creatPackageTemplate(config: any) {
       console.log(err)
     } else {
       spinner.succeed()
+      console.log('  ')
+      console.log(chalk.green('   cd  '+ config.name))
+      console.log(chalk.green('   ori dev'))
+      console.log('  ')
     }
     // exit the operation
     process.exit()
