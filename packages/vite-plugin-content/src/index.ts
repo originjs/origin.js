@@ -1,10 +1,7 @@
 import { Plugin } from 'vite'
-import yamlTransform from './yamlTransformation'
 import { FilterPattern } from '@rollup/pluginutils'
-import xmlTransform from './xmlTransformation'
 import { ParserOptions } from 'xml2js'
 import { Options as CSVOptions } from 'csv-parse'
-import csvTransform from './csvTransformation'
 
 export type PluginOptions = {
   xml?: {
@@ -25,6 +22,21 @@ export type PluginOptions = {
     exclude?: FilterPattern,
     csvOptions?: CSVOptions
   },
+  ini?: {
+    enabled?: boolean,
+    include?: FilterPattern,
+    exclude?: FilterPattern
+  },
+  properties?: {
+    enabled?: boolean,
+    include?: FilterPattern,
+    exclude?: FilterPattern
+  },
+  toml?: {
+    enabled?: boolean,
+    include?: FilterPattern,
+    exclude?: FilterPattern
+  }
   markdown?: {
     enabled?: boolean,
     include?: FilterPattern,
@@ -43,6 +55,15 @@ const DEFAULT_OPTIONS: PluginOptions = {
   csv: {
     enabled: true,
   },
+  ini: {
+    enabled: true,
+  },
+  properties: {
+    enabled: true,
+  },
+  toml: {
+    enabled: true,
+  },
   markdown: {
     enabled: true,
   },
@@ -51,23 +72,72 @@ const DEFAULT_OPTIONS: PluginOptions = {
 const XML_EXTENSION = /\.xml$/;
 const YAML_EXTENSION = /\.ya?ml$/;
 const CSV_EXTENSION = /\.csv$/;
+const INI_EXTENSION = /\.ini$/;
+const PROPERTIES_EXTENSION = /\.properties$/;
+const TOML_EXTENSION = /\.toml$/;
 
 export default (options: PluginOptions = {}): Plugin => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+
+  const transforms: {
+    [key: string]: any;
+  } = {};
+
+  const loadTransform = function(key: string) {
+    if (!!transforms[key]) {
+      return transforms[key].default;
+    }
+
+    switch(key) {
+      case 'xml':
+        transforms[key] = require('./xmlTransformation');
+        break;
+      case 'yaml':
+        transforms[key] = require('./yamlTransformation');
+        break;
+      case 'csv':
+        transforms[key] = require('./csvTransformation');
+        break;
+      case 'ini':
+        transforms[key] = require('./iniTransformation');
+        break;
+      case 'properties':
+        transforms[key] = require('./propertiesTransformation');
+        break;
+      case 'toml':
+        transforms[key] = require('./tomlTransformation');
+        break;
+      default:
+    }
+
+    return transforms[key].default;
+  }
 
   return {
     name: 'vite:content',
     async transform(code: string, id: string) {
       if (opts.xml!.enabled && XML_EXTENSION.test(id)) {
-        return xmlTransform(opts, code, id)
+        return loadTransform('xml')(opts, code, id)
       }
 
       if (opts.yaml!.enabled && YAML_EXTENSION.test(id)) {
-        return yamlTransform(opts, code, id)
+        return loadTransform('yaml')(opts, code, id)
       }
 
       if (opts.csv!.enabled && CSV_EXTENSION.test(id)) {
-        return csvTransform(opts, code, id)
+        return loadTransform('csv')(opts, code, id)
+      }
+
+      if (opts.ini!.enabled && INI_EXTENSION.test(id)) {
+        return loadTransform('ini')(opts, code, id)
+      }
+
+      if (opts.properties!.enabled && PROPERTIES_EXTENSION.test(id)) {
+        return loadTransform('properties')(opts, code, id)
+      }
+
+      if (opts.toml!.enabled && TOML_EXTENSION.test(id)) {
+        return loadTransform('toml')(opts, code, id)
       }
       return null
     },
