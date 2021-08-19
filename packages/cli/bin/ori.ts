@@ -10,6 +10,7 @@ program.name('ori').usage('<command> [options]')
 program
   .command('init <app-name>')
   .description('init a new project')
+  .option('-d,--default', 'skip init project options')
   .action((name, options) => {
     require('../src/commands/init').default(name, options)
   })
