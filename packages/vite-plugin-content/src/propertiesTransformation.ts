@@ -1,5 +1,6 @@
 import { PluginOptions } from './index'
 import { createFilter } from '@rollup/pluginutils'
+// @ts-ignore
 import propertiesParser from 'properties-parser'
 import toSource from 'tosource'
 
