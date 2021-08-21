@@ -5,48 +5,48 @@ import { Options as CSVOptions } from 'csv-parse'
 
 export type PluginOptions = {
   xml?: {
-    enabled?: boolean,
-    include?: FilterPattern,
-    exclude?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
+    exclude?: FilterPattern
     xml2jsOptions?: ParserOptions
-  },
+  }
   yaml?: {
-    enabled?: boolean,
-    include?: FilterPattern,
-    exclude?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
+    exclude?: FilterPattern
     loadMultiDocument?: boolean
-  },
+  }
   csv?: {
-    enabled?: boolean,
-    include?: FilterPattern,
-    exclude?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
+    exclude?: FilterPattern
     csvOptions?: CSVOptions
-  },
+  }
   ini?: {
-    enabled?: boolean,
-    include?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
     exclude?: FilterPattern
-  },
+  }
   properties?: {
-    enabled?: boolean,
-    include?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
     exclude?: FilterPattern
-  },
+  }
   toml?: {
-    enabled?: boolean,
-    include?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
     exclude?: FilterPattern
-  },
+  }
   plist?: {
-    enabled?: boolean,
-    include?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
     exclude?: FilterPattern
-  },
+  }
   markdown?: {
-    enabled?: boolean,
-    include?: FilterPattern,
+    enabled?: boolean
+    include?: FilterPattern
     exclude?: FilterPattern
-  },
+  }
 }
 
 const DEFAULT_OPTIONS: PluginOptions = {
@@ -77,52 +77,52 @@ const DEFAULT_OPTIONS: PluginOptions = {
   },
 }
 
-const XML_EXTENSION = /\.xml$/;
-const YAML_EXTENSION = /\.ya?ml$/;
-const CSV_EXTENSION = /\.csv$/;
-const INI_EXTENSION = /\.ini$/;
-const PROPERTIES_EXTENSION = /\.properties$/;
-const TOML_EXTENSION = /\.toml$/;
-const PLIST_EXTENSION = /\.plist$/;
+const XML_EXTENSION = /\.xml$/
+const YAML_EXTENSION = /\.ya?ml$/
+const CSV_EXTENSION = /\.csv$/
+const INI_EXTENSION = /\.ini$/
+const PROPERTIES_EXTENSION = /\.properties$/
+const TOML_EXTENSION = /\.toml$/
+const PLIST_EXTENSION = /\.plist$/
 
 export default (options: PluginOptions = {}): Plugin => {
-  const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+  const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
 
   const transforms: {
-    [key: string]: any;
-  } = {};
+    [key: string]: any
+  } = {}
 
-  const loadTransform = function(key: string) {
+  const loadTransform = function (key: string) {
     if (!!transforms[key]) {
-      return transforms[key].default;
+      return transforms[key].default
     }
 
-    switch(key) {
+    switch (key) {
       case 'xml':
-        transforms[key] = require('./xmlTransformation');
-        break;
+        transforms[key] = require('./xmlTransformation')
+        break
       case 'yaml':
-        transforms[key] = require('./yamlTransformation');
-        break;
+        transforms[key] = require('./yamlTransformation')
+        break
       case 'csv':
-        transforms[key] = require('./csvTransformation');
-        break;
+        transforms[key] = require('./csvTransformation')
+        break
       case 'ini':
-        transforms[key] = require('./iniTransformation');
-        break;
+        transforms[key] = require('./iniTransformation')
+        break
       case 'properties':
-        transforms[key] = require('./propertiesTransformation');
-        break;
+        transforms[key] = require('./propertiesTransformation')
+        break
       case 'toml':
-        transforms[key] = require('./tomlTransformation');
-        break;
+        transforms[key] = require('./tomlTransformation')
+        break
       case 'plist':
-        transforms[key] = require('./plistTransformation');
-        break;
+        transforms[key] = require('./plistTransformation')
+        break
       default:
     }
 
-    return transforms[key].default;
+    return transforms[key].default
   }
 
   return {

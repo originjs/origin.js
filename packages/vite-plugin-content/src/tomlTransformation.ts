@@ -3,14 +3,20 @@ import { createFilter } from '@rollup/pluginutils'
 import toml from '@iarna/toml'
 import toSource from 'tosource'
 
-export default async function tomlTransform(options: PluginOptions = {}, code: string, id: string) {
+export default async function tomlTransform(
+  options: PluginOptions = {},
+  code: string,
+  id: string,
+) {
   const filter = createFilter(options.toml!.include, options.toml!.exclude)
   if (!filter(id)) {
-    return null;
+    return null
   }
 
   const tomlData = toml.parse(code)
-  const generatedCode = `var data = ${toSource(tomlData)};\nexport default data;`
+  const generatedCode = `var data = ${toSource(
+    tomlData,
+  )};\nexport default data;`
 
   return generatedCode
 }

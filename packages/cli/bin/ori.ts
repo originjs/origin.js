@@ -35,7 +35,7 @@ program
   .description('use vite in the current project')
   .allowUnknownOption()
   .option('-h, --help', 'show webpack-to-vite helps')
-  .action((options) => {
+  .action(options => {
     if (options.help) toViteHelp()
     else toVite(process.argv)
   })
@@ -45,7 +45,7 @@ program
   .description('use vue-next in the current project')
   .allowUnknownOption()
   .option('-h, --help', 'show vue-codemod helps')
-  .action((options) => {
+  .action(options => {
     if (options.help) codemodHelp()
     else codemod(process.argv)
   })

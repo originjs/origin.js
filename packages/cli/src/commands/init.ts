@@ -11,29 +11,27 @@ const defaultOptions: any = {
   version: '1.0.0',
   license: 'ISC',
 }
-function cpdir(dirOld:string,dirNew:string,name:string){
-  const p=new Promise(function(resolve, reject) {
-    fs.mkdir(path.join(dirNew,name),function(err){
-      resolve('Successfully created the folder!');
-      dirNew=path.join(dirNew,name);
-      walkDir(dirOld,dirNew);
-    });
-    function walkDir(dirOld:string,dirNew:string){
-      const oldList=fs.readdirSync(dirOld);
-      oldList.forEach(function(item){
-        if(fs.statSync(path.join(dirOld,item)).isDirectory()){
-          fs.mkdirSync(path.join(dirNew,item));
-          walkDir(path.join(dirOld,item),path.join(dirNew,item));
-        }else{
-          fs.copyFile(path.join(dirOld,item),path.join(dirNew,item));
+function cpdir(dirOld: string, dirNew: string, name: string) {
+  const p = new Promise(function (resolve, reject) {
+    fs.mkdir(path.join(dirNew, name), function (err) {
+      resolve('Successfully created the folder!')
+      dirNew = path.join(dirNew, name)
+      walkDir(dirOld, dirNew)
+    })
+    function walkDir(dirOld: string, dirNew: string) {
+      const oldList = fs.readdirSync(dirOld)
+      oldList.forEach(function (item) {
+        if (fs.statSync(path.join(dirOld, item)).isDirectory()) {
+          fs.mkdirSync(path.join(dirNew, item))
+          walkDir(path.join(dirOld, item), path.join(dirNew, item))
+        } else {
+          fs.copyFile(path.join(dirOld, item), path.join(dirNew, item))
         }
-      });
+      })
     }
-  });
-  return p;
+  })
+  return p
 }
-
-
 
 const SOURCES_DIRECTORY = path.resolve(__dirname, '../../../oriTemplate')
 
@@ -50,11 +48,14 @@ const ifDirExists = (name: any) => {
     return false
   }
 }
-export default async function init(name: any='webProject',options:any={ default:false }) {
+export default async function init(
+  name: any = 'webProject',
+  options: any = { default: false },
+) {
   if (!ifDirExists(name)) return false
   defaultOptions.name = name
 
-  if(!options.default){
+  if (!options.default) {
     try {
       const promptList = [
         {
@@ -82,7 +83,9 @@ export default async function init(name: any='webProject',options:any={ default:
           if (error.isTtyError) {
             // Prompt couldn't be rendered in the current environment
             console.error(
-              chalk.red("Prompt couldn't be rendered in the current environment"),
+              chalk.red(
+                "Prompt couldn't be rendered in the current environment",
+              ),
             )
             console.log(error)
           } else {
@@ -98,21 +101,21 @@ export default async function init(name: any='webProject',options:any={ default:
   }
 
   try {
-    const spinnerCopy = ora('Downloading...')
+    const spinnerCopy = ora('Downloading...')
     spinnerCopy.start()
-    cpdir(SOURCES_DIRECTORY,process.cwd(),name)
-    .then((rs)=>{
-      spinnerCopy.succeed()
-      try {
-        createPackageTemplate(defaultOptions)
-      } catch (error) {
-        console.error(chalk.red('Failed to complete package.json'))
-        console.log(error)
-      }
-    })
-    .catch((rj)=>{
-      spinnerCopy.fail()
-    });
+    cpdir(SOURCES_DIRECTORY, process.cwd(), name)
+      .then(rs => {
+        spinnerCopy.succeed()
+        try {
+          createPackageTemplate(defaultOptions)
+        } catch (error) {
+          console.error(chalk.red('Failed to complete package.json'))
+          console.log(error)
+        }
+      })
+      .catch(rj => {
+        spinnerCopy.fail()
+      })
   } catch (error) {
     console.log(error)
     return false
