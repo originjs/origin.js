@@ -8,10 +8,13 @@ export class PluginOri {
   }
 
   exec(args: string[], options?: SpawnOptionsWithoutStdio) {
-    const _options = Object.assign({
-      stdio: 'inherit',
-      shell: true,
-    }, options)
+    const _options = Object.assign(
+      {
+        stdio: 'inherit',
+        shell: true,
+      },
+      options,
+    )
     return spawn(this.command, args, _options)
   }
 }

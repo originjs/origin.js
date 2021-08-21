@@ -8,9 +8,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  plugins: [
-    '@typescript-eslint',
-  ],
+  plugins: ['@typescript-eslint'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
@@ -22,7 +20,11 @@ module.exports = {
     'comma-style': ['error', 'last'],
     'comma-dangle': ['error', 'always-multiline'],
     'no-multi-spaces': 'error',
-    quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+    quotes: [
+      'error',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
     camelcase: ['error', { properties: 'never' }],
     'object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',

@@ -1,6 +1,6 @@
 {
   "name": "<%= name %>",
-  "version":"<%= version %>",
+  "version": "<%= version %>",
   "license": "<%= license %>",
   "scripts": {
     "dev": "vite",

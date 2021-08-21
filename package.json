@@ -12,7 +12,9 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "eslint ./packages --ext .vue,.js,.ts",
-    "test": "yarn build && jest"
+    "test": "yarn build && jest",
+    "fix": "yarn format --write",
+    "format": "prettier --config .prettierrc --ignore-path .prettierignore '**/*.{ts,js,json,html}'"
   },
   "author": "@originjs",
   "license": "MulanPSL2",
@@ -26,6 +28,7 @@
     "jest": "^27.0.6",
     "lerna": "^3.19.0",
     "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5",

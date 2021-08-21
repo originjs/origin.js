@@ -2,7 +2,7 @@ import ejs from 'ejs'
 import fs from 'fs'
 import { exec } from 'child_process'
 import chalk from 'chalk'
-import ora from 'ora'
+import ora from 'ora'
 
 export default function creatPackageTemplate(config: any) {
   ejs.renderFile(
@@ -14,7 +14,7 @@ export default function creatPackageTemplate(config: any) {
       })
     },
   )
-  const spinner = ora('Install project dependency.......')
+  const spinner = ora('Install project dependency.......')
   spinner.start()
   exec(`cd ${config.name} && npm install && git init`, (err: any) => {
     if (err) {
@@ -29,7 +29,7 @@ export default function creatPackageTemplate(config: any) {
     } else {
       spinner.succeed()
       console.log('  ')
-      console.log(chalk.green('   cd  '+ config.name))
+      console.log(chalk.green('   cd  ' + config.name))
       console.log(chalk.green('   ori dev'))
       console.log('  ')
     }

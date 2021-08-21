@@ -5,7 +5,7 @@ import { argv } from 'process'
 
 const mode: string = argv[2]
 if (mode === 'dev' || mode === 'build') {
-  run(mode).catch((err) => {
+  run(mode).catch(err => {
     console.error(err)
     process.exit(1)
   })
