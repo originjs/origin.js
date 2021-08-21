@@ -12,7 +12,16 @@ const baseConfig: InlineConfig = {
   root: process.cwd(),
   publicDir: 'public',
   resolve: {
-    extensions: ['.js', '.mjs', '.ts', '.jsx', '.tsx', '.json', '.yaml', '.yml'],
+    extensions: [
+      '.js',
+      '.mjs',
+      '.ts',
+      '.jsx',
+      '.tsx',
+      '.json',
+      '.yaml',
+      '.yml',
+    ],
   },
   css: {
     postcss: {
