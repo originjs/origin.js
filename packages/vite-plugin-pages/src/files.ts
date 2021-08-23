@@ -1,13 +1,13 @@
-import { globbySync } from 'globby'
+import * as globby from 'globby'
 
 export function getFiles(
   directory: string,
   extension: string,
   excludes?: string[],
 ): string[] {
-  return globbySync(`**/*${extension}`, {
+  return globby.sync(`.`, {
     gitignore: true,
-    ignore: excludes,
+    ignore: excludes || [],
     cwd: directory,
     onlyFiles: true,
   })
