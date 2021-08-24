@@ -3,13 +3,13 @@ export type PluginOptions = {
    * current workspace directory
    * @default process.cwd()
    */
-  root: string
+  root?: string
 
   /**
    * directory for pages components
    * @default 'src/pages'
    */
-  pagesDir: string
+  pagesDir?: string
 
   /**
    * Valid file extensions for pages components
@@ -21,6 +21,18 @@ export type PluginOptions = {
    * List of components to exclude
    */
   excludes?: string[]
+}
+
+export type Page = {
+  /**
+   * file path from pages directory
+   */
+  pathFromPagesDir: string
+
+  /**
+   * file path from root directory
+   */
+  pathFromRootDir: string
 }
 
 export type Route = {

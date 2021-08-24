@@ -16,7 +16,7 @@ export default (userOptions: PluginOptions = {}): Plugin => {
     configResolved(config) {
       options.root = config.root
     },
-    resolvedId(id) {
+    resolveId(id) {
       if (id === MODULE_NAME) {
         return id
       }

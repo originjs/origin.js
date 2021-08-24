@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generates generateRoutes 1`] = `
+Array [
+  Object {
+    "component": "/index.vue",
+    "name": "index",
+    "path": "/index",
+  },
+  Object {
+    "component": "/user/foo.vue",
+    "name": "user-foo",
+    "path": "/user/foo",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "component": "/user/_id/profile.vue",
+        "name": "user-_id-profile",
+        "path": "profile",
+      },
+    ],
+    "component": "/user/_id.vue",
+    "name": "user-_id",
+    "path": "/user/:id",
+  },
+  Object {
+    "component": "/user/nest_user/foo.vue",
+    "name": "user-nest_user-foo",
+    "path": "/user/nest_user/foo",
+  },
+  Object {
+    "component": "/_.vue",
+    "name": "_",
+    "path": "/:pathMatch(.*)*",
+  },
+]
+`;
