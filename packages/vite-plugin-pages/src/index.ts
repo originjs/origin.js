@@ -1,6 +1,8 @@
-import { PluginOptions } from './types'
+import { Page, PluginOptions } from './types'
 import { Plugin } from 'vite'
 import { MODULE_NAME } from './constants'
+import { generateRoutes } from './generates'
+import { getPages } from './pages'
 
 export default (userOptions: PluginOptions = {}): Plugin => {
   const DEFAULT_OPTIONS: PluginOptions = {
@@ -9,12 +11,15 @@ export default (userOptions: PluginOptions = {}): Plugin => {
     extension: ['vue'],
   }
   const options: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, userOptions)
+  let pages: Page[]
 
   return {
     name: 'vite:pages',
     enforce: 'pre',
     configResolved(config) {
       options.root = config.root
+      const pagesDir = 'src/pages'
+      pages = getPages(pagesDir)
     },
     resolveId(id) {
       if (id === MODULE_NAME) {
@@ -26,7 +31,8 @@ export default (userOptions: PluginOptions = {}): Plugin => {
       if (id !== MODULE_NAME) {
         return
       }
-      return await generateRoutes(opitons)
+      const routes = generateRoutes(pages)
+      return { routes }
     },
   }
 }
