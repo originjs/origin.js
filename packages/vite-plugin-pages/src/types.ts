@@ -12,6 +12,12 @@ export type PluginOptions = {
   pagesDir?: string
 
   /**
+   * directory for layouts components
+   * @default 'src/layouts'
+   */
+  layoutsDir?: string
+
+  /**
    * Valid file extensions for pages components
    * @default ['vue']
    */
@@ -43,4 +49,6 @@ export type Route = {
   component: string
 
   children?: Route[]
+
+  meta?: Record<string, unknown>
 }

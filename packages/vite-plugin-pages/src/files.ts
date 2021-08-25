@@ -22,3 +22,15 @@ export function getFiles(
 export function getVueFiles(directory: string, excludes?: string[]) {
   return getFiles(directory, '.vue', excludes)
 }
+
+export function getLayoutFiles(
+  directory: string,
+  extensions: string[],
+  excludes?: string[],
+) {
+  let files: string[] = []
+  extensions.forEach(extension => {
+    files = files.concat(getFiles(directory, extension, excludes))
+  })
+  return files
+}

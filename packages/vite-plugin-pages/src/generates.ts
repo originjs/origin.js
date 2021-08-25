@@ -1,3 +1,4 @@
+import { getLayoutProperties, setLayout } from './parser'
 import { PluginOptions, Route, Page } from './types'
 
 /**
@@ -43,6 +44,7 @@ export function generateRoutes(
       name: '',
       path: '',
       component: `${page.pathFromRootDir}`,
+      meta: { layout: getLayoutProperties(pathFromPagesDir) },
     }
 
     let parentRoutes = routes
@@ -81,6 +83,9 @@ export function generateRoutes(
     routes = routes.filter(route => route.path !== '/:pathMatch(.*)*')
     routes.push(catchAllRoute)
   }
+
+  // set layouts to routes
+  setLayout(routes, options)
 
   return routes
 }
