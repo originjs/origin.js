@@ -14,7 +14,7 @@
     "lint": "eslint ./packages --ext .vue,.js,.ts",
     "test": "yarn build && jest",
     "fix": "yarn format --write",
-    "format": "prettier --config .prettierrc --ignore-path .prettierignore '**/*.{ts,js,json,html}'"
+    "format": "prettier --config .prettierrc --ignore-path .prettierignore \"**/*.{ts,js,json,html}\""
   },
   "author": "@originjs",
   "license": "MulanPSL2",
