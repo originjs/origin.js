@@ -22,17 +22,17 @@ export function generateRoutes(
   options: PluginOptions = {},
 ): Route[] {
   let routes: Route[] = []
-
   pages.forEach(page => {
-    const { pathFromPagesDir } = page
+    const { pathFromPagesDir,pathFromRootDir } = page
     // remove file extension, split with '/' to get route nodes
     const routeNodeNames = pathFromPagesDir.split('.')[0].split('/')
 
     const route: Route = {
       name: '',
       path: '',
-      component: `${page.pathFromRootDir}`,
-      meta: { layout: getLayoutProperties(pathFromPagesDir) },
+      // @ts-ignore
+      component: `() => import('${page.pathFromRootDir}')`,
+      meta: { layout: getLayoutProperties(pathFromRootDir) },
     }
 
     let parentRoutes = routes
@@ -80,7 +80,7 @@ export function generateRoutes(
   }
 
   // set layouts to routes
-  setLayout(routes, options)
+  routes=setLayout(routes, options)
 
   return routes
 }

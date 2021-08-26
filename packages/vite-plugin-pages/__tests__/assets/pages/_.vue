@@ -1,11 +1,12 @@
 <template>
-  $END$
+  <div>
+    <p>404</p>
+  </div>
 </template>
 
 <script>
-const __layout='default'
 export default {
-  name: 'Index',
+  name: '_',
 }
 </script>
 

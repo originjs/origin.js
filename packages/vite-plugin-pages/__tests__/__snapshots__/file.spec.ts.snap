@@ -3,17 +3,23 @@
 exports[`files get vue files 1`] = `
 Array [
   "index.vue",
+  "_.vue",
   "user/index.vue",
+  "user/_id.vue",
   "user/foo.vue",
   "user/nest_user/foo.vue",
+  "user/zoom.vue",
 ]
 `;
 
 exports[`files get vue files 2`] = `
 Array [
   "index.vue",
+  "_.vue",
   "user/index.vue",
+  "user/_id.vue",
   "user/foo.vue",
   "user/nest_user/foo.vue",
+  "user/zoom.vue",
 ]
 `;

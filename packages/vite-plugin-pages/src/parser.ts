@@ -18,13 +18,47 @@ export function getLayoutProperties(path: string) {
       name: '__layout',
     },
   })
-  let layout
+  let layout = ''
+  // @ts-ignore
   layoutDeclare.forEach(({ node }) => {
-    // @ts-ignore
     layout = node?.init?.value
   })
 
   return layout
+}
+
+function setLayoutChildren(
+  route: Route,
+  options: PluginOptions = {},
+  layouts: any,
+) {
+  const hasDefault = hasDefaultLayout(<string>options.layoutsDir)
+  const outRoute = route
+  if (route.children && route.children.length > 0) {
+    const childrenRoutes = setLayout(route.children, options)
+    outRoute.children = childrenRoutes
+  }
+
+  // 当没有 __layout 属性，也没有 default 的时候，不要转换
+  if (
+    (!route.meta?.layout && !hasDefault) ||
+    route.path === '/:pathMatch(.*)*'
+  ) {
+    return outRoute
+  }
+  if (outRoute.meta?.layout && layouts.get(outRoute.meta?.layout)) {
+    return {
+      path: outRoute.path,
+      component: layouts.get(outRoute.meta?.layout),
+      children: [outRoute],
+    }
+  } else {
+    return {
+      path: outRoute.path,
+      component: layouts.get('default'),
+      children: [outRoute],
+    }
+  }
 }
 
 export function setLayout(routes: Route[], options: PluginOptions = {}) {
@@ -33,18 +67,10 @@ export function setLayout(routes: Route[], options: PluginOptions = {}) {
     options.extension,
     options.excludes,
   )
-
-  routes.map(route => {
-    // 当没有 __layout 属性，也没有 default 的时候，不要转换
-    if (!route.meta?.layout && !hasDefaultLayout(options.layoutsDir)) {
-      return route
-    }
-    return {
-      path: route.path,
-      component: layouts.get(route.meta?.layout) || 'default',
-      children: [route],
-    }
-  })
+  const outRoutes = routes.map(route =>
+    setLayoutChildren(route, options, layouts),
+  )
+  return outRoutes
 }
 
 function hasDefaultLayout(layoutDir: string): boolean {
@@ -58,16 +84,20 @@ function hasDefaultLayout(layoutDir: string): boolean {
 }
 
 function getLayoutMap(
-  directory: string,
-  extensions: string[],
+  directory: string | undefined,
+  extensions: string[] | undefined,
   excludes?: string[],
 ) {
-  const layoutFiles = getLayoutFiles(directory, extensions, excludes)
   const layoutMap = new Map()
+  if (!directory || !extensions) {
+    return layoutMap
+  }
+  const layoutFiles = getLayoutFiles(directory, extensions, excludes)
 
   for (const file of layoutFiles) {
     const parsedFile = parse(file)
-    const layoutPath = join(directory, file)
+    let layoutPath = join(directory, file)
+    layoutPath = layoutPath.replace(/\\/g, '/')
     layoutMap.set(parsedFile.name, `() => import('${layoutPath}')`)
   }
 
