@@ -9,6 +9,12 @@ export default async function () {
   }
 
   const print = new DevPrinter(rootDir)
+  if (!print.localConfig) {
+    console.log(`file not found: '${rootDir}\\vite.config.js'`)
+    console.log('server start failed')
+    console.log()
+    return
+  }
   const server = await createServer(print.getSchema())
   await server.listen()
 }
