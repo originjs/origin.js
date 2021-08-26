@@ -70,7 +70,11 @@ export function generateRoutes(
           route.path += `/:${routeNodeName.slice(1)}`
         }
       } else {
-        route.path += `/${routeNodeName}`
+        if (routeNodeName !== 'index') {
+          route.path += `/${routeNodeName}`
+        } else if (route.path === '') {
+          route.path += `/`
+        }
       }
     }
     parentRoutes.push(route)

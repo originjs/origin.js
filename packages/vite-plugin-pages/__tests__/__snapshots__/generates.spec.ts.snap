@@ -5,7 +5,12 @@ Array [
   Object {
     "component": "/index.vue",
     "name": "index",
-    "path": "/index",
+    "path": "/",
+  },
+  Object {
+    "component": "/user/index.vue",
+    "name": "user-index",
+    "path": "/user",
   },
   Object {
     "component": "/user/foo.vue",
