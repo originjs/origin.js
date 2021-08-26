@@ -8,7 +8,10 @@ describe('generates', () => {
       { pathFromPagesDir: 'index.vue', pathFromRootDir: '/index.vue' },
       { pathFromPagesDir: 'user/index.vue', pathFromRootDir: '/user/index.vue' },
       { pathFromPagesDir: 'user/foo.vue', pathFromRootDir: '/user/foo.vue' },
-      { pathFromPagesDir: 'user/_id.vue', pathFromRootDir: '/user/_id.vue' },
+      {
+        pathFromPagesDir: 'user/_id/index.vue',
+        pathFromRootDir: '/user/_id/index.vue',
+      },
       {
         pathFromPagesDir: 'user/_id/profile.vue',
         pathFromRootDir: '/user/_id/profile.vue',

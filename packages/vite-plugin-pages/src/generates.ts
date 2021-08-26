@@ -1,4 +1,4 @@
-import { getLayoutProperties, setLayout } from './parser'
+// import { getLayoutProperties, setLayout } from './parser'
 import { PluginOptions, Route, Page } from './types'
 
 /**
@@ -44,7 +44,7 @@ export function generateRoutes(
       name: '',
       path: '',
       component: `${page.pathFromRootDir}`,
-      meta: { layout: getLayoutProperties(pathFromPagesDir) },
+      // meta: { layout: getLayoutProperties(pathFromPagesDir) },
     }
 
     let parentRoutes = routes
@@ -52,7 +52,13 @@ export function generateRoutes(
       const isDynamic = isDynamicNodeName(routeNodeName)
       const isCatchAll = isCatchAllNodeName(routeNodeName)
 
-      route.name += route.name ? `-${routeNodeName}` : routeNodeName
+      if (route.name) {
+        if (routeNodeName !== 'index') {
+          route.name += `-${routeNodeName}`
+        }
+      } else {
+        route.name = routeNodeName
+      }
       const parentRoute = parentRoutes.find(pRoute => pRoute.name == route.name)
 
       if (parentRoute) {
@@ -89,7 +95,7 @@ export function generateRoutes(
   }
 
   // set layouts to routes
-  setLayout(routes, options)
+  // setLayout(routes, options)
 
   return routes
 }

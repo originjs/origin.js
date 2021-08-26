@@ -8,31 +8,33 @@ Array [
     "path": "/",
   },
   Object {
-    "component": "/user/index.vue",
-    "name": "user-index",
-    "path": "/user",
-  },
-  Object {
-    "component": "/user/foo.vue",
-    "name": "user-foo",
-    "path": "/user/foo",
-  },
-  Object {
     "children": Array [
       Object {
-        "component": "/user/_id/profile.vue",
-        "name": "user-_id-profile",
-        "path": "profile",
+        "component": "/user/foo.vue",
+        "name": "user-foo",
+        "path": "foo",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "component": "/user/_id/profile.vue",
+            "name": "user-_id-profile",
+            "path": "profile",
+          },
+        ],
+        "component": "/user/_id/index.vue",
+        "name": "user-_id",
+        "path": ":id",
+      },
+      Object {
+        "component": "/user/nest_user/foo.vue",
+        "name": "user-nest_user-foo",
+        "path": "nest_user/foo",
       },
     ],
-    "component": "/user/_id.vue",
-    "name": "user-_id",
-    "path": "/user/:id",
-  },
-  Object {
-    "component": "/user/nest_user/foo.vue",
-    "name": "user-nest_user-foo",
-    "path": "/user/nest_user/foo",
+    "component": "/user/index.vue",
+    "name": "user",
+    "path": "/user",
   },
   Object {
     "component": "/_.vue",
