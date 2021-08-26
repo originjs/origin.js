@@ -1,7 +1,6 @@
 import fs from 'fs-extra'
 import ora from 'ora'
 import inquirer from 'inquirer'
-// const download = require('download-git-repo')
 import createPackageTemplate from '../template/createPackageTemplate'
 import chalk from 'chalk'
 import path from 'path'
@@ -10,6 +9,7 @@ const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
+  plugins:[],
 }
 function cpdir(dirOld: string, dirNew: string, name: string) {
   const p = new Promise(function (resolve, reject) {
@@ -70,6 +70,24 @@ export default async function init(
           name: 'license',
           choices: ['ISC', 'GPL', 'LGPL', 'MPL', 'BSD', 'MIT', 'Apache'],
           filter: (val: any) => {
+            return val
+          },
+        },
+        {
+          type: 'checkbox',
+          message: 'Please select the plugin you need(Use enter to skip):',
+          name: 'plugins',
+          choices:  [
+            { value: 'assets',name: 'Assets:Processing pictures, public styles, fonts, etc.' },
+            { value: 'components',name: 'Components:Reusable vue components' },
+            { value: 'content',name: 'Content:Reusable vue components' },
+            { value: 'layouts',name: 'Layouts:Page Layout' },
+            { value: 'pages',name: 'Pages' },
+            { value: 'static',name: 'Static' },
+            { value: 'monitor',name: 'Monitor:Performance/error monitoring' },
+            { value: 'micro',name: 'Micro:Micro front end configuration' },
+        ],
+        filter: (val: any) => {
             return val
           },
         },
