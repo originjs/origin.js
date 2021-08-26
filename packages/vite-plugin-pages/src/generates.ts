@@ -17,18 +17,6 @@ function isCatchAllNodeName(routeNodeName: string): boolean {
   return routeNodeName === '_'
 }
 
-function prepareRoutes(routes: Route[], parentRoute?: Route): Route[] {
-  for (const route of routes) {
-    if (parentRoute && route.path.startsWith('/')) {
-      route.path = route.path.slice(1)
-    }
-    if (route.children && route.children.length > 0) {
-      route.children = prepareRoutes(route.children, route)
-    }
-  }
-  return routes
-}
-
 export function generateRoutes(
   pages: Page[],
   options: PluginOptions = {},
@@ -62,11 +50,9 @@ export function generateRoutes(
       const parentRoute = parentRoutes.find(pRoute => pRoute.name == route.name)
 
       if (parentRoute) {
-        // init parentRoute.children, update parentRoutes, continue to next loop
+        // init parentRoute.children, update parentRoutes
         parentRoute.children = parentRoute.children || []
         parentRoutes = parentRoute.children
-        route.path = ''
-        continue
       }
 
       if (isDynamic) {
@@ -86,7 +72,6 @@ export function generateRoutes(
     parentRoutes.push(route)
   })
 
-  routes = prepareRoutes(routes)
   // find and only keep first catch all route, move it to last
   const catchAllRoute = routes.find(route => route.path === '/:pathMatch(.*)*')
   if (catchAllRoute) {

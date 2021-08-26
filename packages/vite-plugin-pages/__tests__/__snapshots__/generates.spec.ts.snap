@@ -12,24 +12,24 @@ Array [
       Object {
         "component": "/user/foo.vue",
         "name": "user-foo",
-        "path": "foo",
+        "path": "/user/foo",
       },
       Object {
         "children": Array [
           Object {
             "component": "/user/_id/profile.vue",
             "name": "user-_id-profile",
-            "path": "profile",
+            "path": "/user/:id/profile",
           },
         ],
         "component": "/user/_id/index.vue",
         "name": "user-_id",
-        "path": ":id",
+        "path": "/user/:id",
       },
       Object {
         "component": "/user/nest_user/foo.vue",
         "name": "user-nest_user-foo",
-        "path": "nest_user/foo",
+        "path": "/user/nest_user/foo",
       },
     ],
     "component": "/user/index.vue",
