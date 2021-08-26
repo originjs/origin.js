@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`files get vue files 1`] = `
+Array [
+  "index.vue",
+  "user/index.vue",
+  "user/foo.vue",
+  "user/nest_user/foo.vue",
+]
+`;
+
+exports[`files get vue files 2`] = `
+Array [
+  "index.vue",
+  "user/index.vue",
+  "user/foo.vue",
+  "user/nest_user/foo.vue",
+]
+`;

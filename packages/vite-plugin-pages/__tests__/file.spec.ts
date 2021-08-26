@@ -5,12 +5,7 @@ describe('files', () => {
   const windowsPagesDir = pagesDir.replace(/\//g, '\\')
 
   test('get vue files', () => {
-    const expected = [
-      'index.vue',
-      'user/foo.vue',
-      'user/nest_user/foo.vue',
-    ]
-    expect(getVueFiles(pagesDir)).toEqual(expected)
-    expect(getVueFiles(windowsPagesDir)).toEqual(expected)
+    expect(getVueFiles(pagesDir)).toMatchSnapshot()
+    expect(getVueFiles(windowsPagesDir)).toMatchSnapshot()
   })
 })
