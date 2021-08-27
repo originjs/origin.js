@@ -3,7 +3,7 @@ import { createFilter } from '@rollup/pluginutils'
 import xml2js from 'xml2js'
 import toSource from 'tosource'
 
-export default async function xmlTransform(
+export default function xmlTransform(
   options: PluginOptions = {},
   code: string,
   id: string,
@@ -26,5 +26,7 @@ export default async function xmlTransform(
     },
   )
 
-  return generatedCode
+  return {
+    code: generatedCode,
+  }
 }

@@ -3,7 +3,7 @@ import { createFilter } from '@rollup/pluginutils'
 import plist from 'plist'
 import toSource from 'tosource'
 
-export default async function plistTransform(
+export default function plistTransform(
   options: PluginOptions = {},
   code: string,
   id: string,
@@ -16,5 +16,7 @@ export default async function plistTransform(
   const iniData = plist.parse(code)
   const generatedCode = `var data = ${toSource(iniData)};\nexport default data;`
 
-  return generatedCode
+  return {
+    code: generatedCode,
+  }
 }
