@@ -1,27 +1,31 @@
 <template>
-  <div :class="isDark ? 'dark' : 'light'">
-    <img
-      alt="Origin.js logo"
-      src="./assets/originjs.png"
-    >
-    <HelloWorld msg="Origin.js" />
+  <main :class="isDark ? 'dark' : 'light'">
+    <div>
+      <img
+        alt="Origin.js logo"
+        src="./assets/originjs.png"
+        id="logo"
+      >
+    </div>
+    <Home />
     <button
       type="button"
       @click="isDark = !isDark"
+      class="normal-btn theme-ctrl"
     >
-      click to change theme. current: {{ isDark ? 'dark' : 'light' }}
+      {{ isDark ? 'light' : 'dark' }} mode
     </button>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './layouts/Home.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    Home
   },
   setup: () => {
     const isDark = ref(false)
@@ -29,9 +33,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-#app {
-  margin-top: 60px;
-}
-</style>
