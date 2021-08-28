@@ -1,30 +1,35 @@
 <template>
-  <img
-    alt="Vue logo"
-    src="./assets/logo.png"
-  >
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <main :class="isDark ? 'dark' : 'light'">
+    <div>
+      <img
+        alt="Origin.js logo"
+        src="./assets/originjs.png"
+        id="logo"
+      >
+    </div>
+    <Home />
+    <button
+      type="button"
+      @click="isDark = !isDark"
+      class="normal-btn theme-ctrl"
+    >
+      {{ isDark ? 'light' : 'dark' }} mode
+    </button>
+  </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, defineComponent } from 'vue'
+import Home from './layouts/Home.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
+    Home
   },
+  setup: () => {
+    const isDark = ref(false)
+    return { isDark }
+  }
 })
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
