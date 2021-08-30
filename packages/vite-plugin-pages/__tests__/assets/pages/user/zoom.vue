@@ -5,7 +5,6 @@
 </template>
 
 <script>
-const __layout='content'
 export default {
   name: 'Zoom',
 }
@@ -14,3 +13,7 @@ export default {
 <style scoped>
 
 </style>
+
+<layout>
+  layout: content
+</layout>

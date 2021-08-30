@@ -1,29 +1,31 @@
-import { vueSfcAstParser } from '@originjs/vue-sfc-ast-parser'
+import { parse as parseSFC, SFCBlock } from '@vue/compiler-sfc'
 import fs from 'fs'
 import { join, parse } from 'path'
 import { getLayoutFiles } from './files'
 import { PluginOptions, Route } from './types'
 
 /**
- * get the __layout property from pages
+ * get the layout property from pages
  *
  * @param path file path in pages directory
  */
 export function getLayoutProperties(path: string) {
-  const source = fs.readFileSync(path, 'utf8')
-  const { scriptAST, jscodeshiftParser } = vueSfcAstParser({ path, source })
-
-  const layoutDeclare = scriptAST.find(jscodeshiftParser.VariableDeclarator, {
-    id: {
-      name: '__layout',
-    },
-  })
   let layout = ''
-  // @ts-ignore
-  layoutDeclare.forEach(({ node }) => {
-    layout = node?.init?.value
-  })
-
+  const source = fs.readFileSync(path, 'utf8')
+  const customBlocks: SFCBlock[] = parseSFC(source).descriptor.customBlocks
+  const layoutBlock = customBlocks.find(
+    (node: SFCBlock) => node.type === 'layout',
+  )
+  if (!layoutBlock) {
+    return layout
+  }
+  const content: string = layoutBlock.content
+  const pairs = content.split(':')
+  if (pairs.length == 2 && pairs[0] === 'layout') {
+    layout = pairs[1]
+  } else {
+    console.error('layout property was set in wrong way!')
+  }
   return layout
 }
 
@@ -39,7 +41,7 @@ function setLayoutChildren(
     outRoute.children = childrenRoutes
   }
 
-  // 当没有 __layout 属性，也没有 default 的时候，不要转换
+  // When there is no layout property and no default layout, don't transform route
   if (
     (!route.meta?.layout && !hasDefault) ||
     route.path === '/:pathMatch(.*)*'

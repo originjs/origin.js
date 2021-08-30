@@ -10,7 +10,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "globby": "^11.0.4",
-    "@originjs/vue-sfc-ast-parser": "^1.0.1"
+    "@vue/compiler-sfc": "^3.2.6",
+    "globby": "^11.0.4"
   }
 }

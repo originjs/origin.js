@@ -3,7 +3,6 @@
 </template>
 
 <script>
-const __layout='default'
 export default {
   name: 'Index',
 }

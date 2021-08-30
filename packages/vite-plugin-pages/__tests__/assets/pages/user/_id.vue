@@ -14,3 +14,7 @@ export default {
 <style scoped>
 
 </style>
+
+<layout>
+  layout: bar
+</layout>
