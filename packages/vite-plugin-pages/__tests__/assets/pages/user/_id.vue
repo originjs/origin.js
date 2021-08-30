@@ -5,7 +5,6 @@
 </template>
 
 <script>
-const __layout='bar'
 export default {
   name: 'Id',
 }

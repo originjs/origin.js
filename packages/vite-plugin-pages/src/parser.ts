@@ -19,10 +19,10 @@ export function getLayoutProperties(path: string) {
   if (!layoutBlock) {
     return layout
   }
-  const content: string = layoutBlock.content
+  const content: string = layoutBlock.content.trim()
   const pairs = content.split(':')
-  if (pairs.length == 2 && pairs[0] === 'layout') {
-    layout = pairs[1]
+  if (pairs.length == 2 && pairs[0].trim() === 'layout') {
+    layout = pairs[1].trim()
   } else {
     console.error('layout property was set in wrong way!')
   }

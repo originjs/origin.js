@@ -13,3 +13,7 @@ export default {
 <style scoped>
 
 </style>
+
+<layout>
+  layout: default
+</layout>
