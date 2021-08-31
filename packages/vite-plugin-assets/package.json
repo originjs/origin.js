@@ -1,0 +1,12 @@
+{
+  "name": "vite-plugin-assets",
+  "version": "1.0.0",
+  "description": "A vite plugin that automatically adds CSS/SASS/LESS files named at the beginning of global- to the global style",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MulanPSL2"
+}
