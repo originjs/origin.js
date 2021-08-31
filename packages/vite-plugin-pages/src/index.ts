@@ -29,7 +29,7 @@ export default (
       }
       const pages = getPages(options.pagesDir, options.extensions)
       const routes = generateRoutes(pages, options)
-      return { routes }
+      return JSON.stringify(routes)
     },
   }
 }
