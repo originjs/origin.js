@@ -13,7 +13,11 @@ describe('propertiesTest', () => {
       },
     }
 
-    let transformResult = propertiesTransform(options, '', 'testExclude.properties')
+    let transformResult = propertiesTransform(
+      options,
+      '',
+      'testExclude.properties',
+    )
     expect(transformResult).toBeNull()
 
     transformResult = propertiesTransform(options, '', 'testFile.properties')
@@ -28,7 +32,8 @@ describe('propertiesTest', () => {
     const propertiesContent: string = fs.readFileSync(path).toString()
     const options: PluginOptions = { properties: { enabled: true } }
     const transformResult = propertiesTransform(options, propertiesContent, '')
-    expect(transformResult!.code).toEqual(`var data = { languages:"be,ca,da,de,eo,et,el,en,es,fi,fr,fa,gl,hu,is,it,lt,nl,no,pl,pt,ro,ru,sk,sl,sv,th,uk",
+    expect(transformResult!.code)
+      .toEqual(`var data = { languages:"be,ca,da,de,eo,et,el,en,es,fi,fr,fa,gl,hu,is,it,lt,nl,no,pl,pt,ro,ru,sk,sl,sv,th,uk",
   "name.be":"Belarusian",
   "name.ca":"Catalan",
   "name.da":"Danish",

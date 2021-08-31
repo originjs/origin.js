@@ -28,7 +28,8 @@ describe('csvTest', () => {
     const csvContent: string = fs.readFileSync(path).toString()
     const options: PluginOptions = { csv: { enabled: true } }
     const transformResult = csvTransform(options, csvContent, '')
-    expect(transformResult.code).toEqual(`var data = [ [ "Sample CSV File - Numbers and their Squares",
+    expect(transformResult.code)
+      .toEqual(`var data = [ [ "Sample CSV File - Numbers and their Squares",
     "",
     "" ],
   [ "",

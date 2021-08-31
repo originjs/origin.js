@@ -25,7 +25,8 @@ describe('plistTest', () => {
     const plistContent: string = fs.readFileSync(path).toString()
     const options: PluginOptions = { plist: { enabled: true } }
     const transformResult = plistTransform(options, plistContent, '')
-    expect(transformResult!.code).toEqual(`var data = { BuildMachineOSBuild:"16E195",
+    expect(transformResult!.code)
+      .toEqual(`var data = { BuildMachineOSBuild:"16E195",
   CFBundleDevelopmentRegion:"en",
   CFBundleExecutable:"terminal-notifier",
   CFBundleIconFile:"Terminal",

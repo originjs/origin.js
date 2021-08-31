@@ -28,7 +28,8 @@ describe('xmlTest', () => {
     const xmlContent: string = fs.readFileSync(path).toString()
     const options: PluginOptions = { xml: { enabled: true } }
     const transformResult = xmlTransform(options, xmlContent, '')
-    expect(transformResult!.code).toEqual(`var data = { project:{ $:{ name:"Commons Compress" },
+    expect(transformResult!.code)
+      .toEqual(`var data = { project:{ $:{ name:"Commons Compress" },
     bannerRight:[ { name:[ "Commons Compress" ],
         src:[ "/images/compress-logo-white.png" ],
         href:[ "/index.html" ] } ],

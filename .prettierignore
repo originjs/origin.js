@@ -1,4 +1,4 @@
-__tests__
+__snapshots__
 coverage
 tsconfig.json
 dist
