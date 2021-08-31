@@ -9,6 +9,14 @@
     "src",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/originjs/origin.js"
+  },
+  "bugs": {
+    "url": "https://github.com/originjs/origin.js/issues"
+  },
+  "homepage": "https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content",
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
