@@ -28,7 +28,6 @@ export function generateRoutes(pages: Page[], options: PluginOptions): Route[] {
     const route: Route = {
       name: '',
       path: '',
-      // @ts-ignore
       component: `() => import('${page.pathFromRootDir}')`,
       meta: { layout: getLayoutProperties(pathFromRootDir) },
     }
