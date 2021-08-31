@@ -26,7 +26,7 @@
     "eslint": "^7.31.0",
     "eslint-plugin-vue": "^7.14.0",
     "jest": "^27.0.6",
-    "lerna": "^3.19.0",
+    "lerna": "^4.0.0",
     "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.3",
