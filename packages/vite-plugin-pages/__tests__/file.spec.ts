@@ -1,11 +1,12 @@
-import { getVueFiles } from '../src/files'
+import { getFiles, sortFilePaths } from '../src/files'
 
 describe('files', () => {
+  const extensions = ['vue']
   const pagesDir = 'packages/vite-plugin-pages/__tests__/assets/pages'
-  const windowsPagesDir = pagesDir.replace(/\//g, '\\')
+  const winPagesDir = pagesDir.replace(/\//g, '\\')
 
   test('get vue files', () => {
-    expect(getVueFiles(pagesDir)).toMatchSnapshot()
-    expect(getVueFiles(windowsPagesDir)).toMatchSnapshot()
+    expect(sortFilePaths(getFiles(pagesDir, extensions))).toMatchSnapshot()
+    expect(sortFilePaths(getFiles(winPagesDir, extensions))).toMatchSnapshot()
   })
 })

@@ -1,8 +1,10 @@
 import { parse as parseSFC, SFCBlock } from '@vue/compiler-sfc'
 import fs from 'fs'
 import { join, parse } from 'path'
-import { getLayoutFiles } from './files'
+import { getFiles } from './files'
 import { PluginOptions, Route } from './types'
+import { replaceWithSlash } from './utils'
+import { CATCH_ALL_ROUTE_PATH } from './constants'
 
 /**
  * get the layout property from pages
@@ -29,22 +31,17 @@ export function getLayoutProperties(path: string) {
   return layout
 }
 
-function setLayoutChildren(
-  route: Route,
-  options: PluginOptions = {},
-  layouts: any,
-) {
+function setLayoutChildren(route: Route, options: PluginOptions, layouts: any) {
   const hasDefault = hasDefaultLayout(<string>options.layoutsDir)
   const outRoute = route
   if (route.children && route.children.length > 0) {
-    const childrenRoutes = setLayout(route.children, options)
-    outRoute.children = childrenRoutes
+    outRoute.children = setLayout(route.children, options)
   }
 
   // When there is no layout property and no default layout, don't transform route
   if (
     (!route.meta?.layout && !hasDefault) ||
-    route.path === '/:pathMatch(.*)*'
+    route.path === CATCH_ALL_ROUTE_PATH
   ) {
     return outRoute
   }
@@ -63,20 +60,17 @@ function setLayoutChildren(
   }
 }
 
-export function setLayout(routes: Route[], options: PluginOptions = {}) {
+export function setLayout(routes: Route[], options: PluginOptions) {
   const layouts = getLayoutMap(
     options.layoutsDir,
-    options.extension,
+    options.extensions,
     options.excludes,
   )
-  const outRoutes = routes.map(route =>
-    setLayoutChildren(route, options, layouts),
-  )
-  return outRoutes
+  return routes.map(route => setLayoutChildren(route, options, layouts))
 }
 
 function hasDefaultLayout(layoutDir: string): boolean {
-  const layoutFiles = getLayoutFiles(layoutDir, ['vue'])
+  const layoutFiles = getFiles(layoutDir, ['vue'])
   for (const file of layoutFiles) {
     if (file === 'default.vue') {
       return true
@@ -94,12 +88,11 @@ function getLayoutMap(
   if (!directory || !extensions) {
     return layoutMap
   }
-  const layoutFiles = getLayoutFiles(directory, extensions, excludes)
+  const layoutFiles = getFiles(directory, extensions, excludes)
 
   for (const file of layoutFiles) {
     const parsedFile = parse(file)
-    let layoutPath = join(directory, file)
-    layoutPath = layoutPath.replace(/\\/g, '/')
+    const layoutPath = replaceWithSlash(join(directory, file))
     layoutMap.set(parsedFile.name, `() => import('${layoutPath}')`)
   }
 

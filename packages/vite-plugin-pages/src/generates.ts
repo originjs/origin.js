@@ -1,5 +1,6 @@
 import { getLayoutProperties, setLayout } from './parser'
 import { PluginOptions, Route, Page } from './types'
+import { CATCH_ALL_ROUTE_PATH } from './constants'
 
 /**
  * Return whether the current route node name represents a dynamic route
@@ -17,13 +18,10 @@ function isCatchAllNodeName(routeNodeName: string): boolean {
   return routeNodeName === '_'
 }
 
-export function generateRoutes(
-  pages: Page[],
-  options: PluginOptions = {},
-): Route[] {
+export function generateRoutes(pages: Page[], options: PluginOptions): Route[] {
   let routes: Route[] = []
   pages.forEach(page => {
-    const { pathFromPagesDir,pathFromRootDir } = page
+    const { pathFromPagesDir, pathFromRootDir } = page
     // remove file extension, split with '/' to get route nodes
     const routeNodeNames = pathFromPagesDir.split('.')[0].split('/')
 
@@ -57,7 +55,7 @@ export function generateRoutes(
 
       if (isDynamic) {
         if (isCatchAll) {
-          route.path = '/:pathMatch(.*)*'
+          route.path = CATCH_ALL_ROUTE_PATH
         } else {
           route.path += `/:${routeNodeName.slice(1)}`
         }
@@ -73,14 +71,16 @@ export function generateRoutes(
   })
 
   // find and only keep first catch all route, move it to last
-  const catchAllRoute = routes.find(route => route.path === '/:pathMatch(.*)*')
+  const catchAllRoute = routes.find(
+    route => route.path === CATCH_ALL_ROUTE_PATH,
+  )
   if (catchAllRoute) {
-    routes = routes.filter(route => route.path !== '/:pathMatch(.*)*')
+    routes = routes.filter(route => route.path !== CATCH_ALL_ROUTE_PATH)
     routes.push(catchAllRoute)
   }
 
   // set layouts to routes
-  routes=setLayout(routes, options)
+  routes = setLayout(routes, options)
 
   return routes
 }

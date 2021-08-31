@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generates generateRoutes 1`] = `
+exports[`auto pages auto pages router 1`] = `
 Array [
   Object {
     "children": Array [
@@ -23,20 +23,6 @@ Array [
           Object {
             "children": Array [
               Object {
-                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue')",
-                "meta": Object {
-                  "layout": "",
-                },
-                "name": "user-foo",
-                "path": "/user/foo",
-              },
-            ],
-            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
-            "path": "/user/foo",
-          },
-          Object {
-            "children": Array [
-              Object {
                 "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue')",
                 "meta": Object {
                   "layout": "bar",
@@ -51,6 +37,20 @@ Array [
           Object {
             "children": Array [
               Object {
+                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue')",
+                "meta": Object {
+                  "layout": "",
+                },
+                "name": "user-foo",
+                "path": "/user/foo",
+              },
+            ],
+            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
+            "path": "/user/foo",
+          },
+          Object {
+            "children": Array [
+              Object {
                 "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/nest_user/foo.vue')",
                 "meta": Object {
                   "layout": "",
@@ -61,6 +61,20 @@ Array [
             ],
             "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
             "path": "/user/nest_user/foo",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue')",
+                "meta": Object {
+                  "layout": "content",
+                },
+                "name": "user-zoom",
+                "path": "/user/zoom",
+              },
+            ],
+            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/content.vue')",
+            "path": "/user/zoom",
           },
         ],
         "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue')",

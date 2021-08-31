@@ -3,25 +3,25 @@ export type PluginOptions = {
    * current workspace directory
    * @default process.cwd()
    */
-  root?: string
+  root: string
 
   /**
    * directory for pages components
    * @default 'src/pages'
    */
-  pagesDir?: string
+  pagesDir: string
 
   /**
    * directory for layouts components
    * @default 'src/layouts'
    */
-  layoutsDir?: string
+  layoutsDir: string
 
   /**
    * Valid file extensions for pages components
    * @default ['vue']
    */
-  extension?: string[]
+  extensions: string[]
 
   /**
    * List of components to exclude

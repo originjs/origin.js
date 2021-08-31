@@ -1,6 +1,6 @@
 import { join } from 'path'
 import { Page } from './types'
-import { getVueFiles } from './files'
+import { getFiles, sortFilePaths } from './files'
 import { replaceWithSlash } from './utils'
 
 function getPage(pathFromPagesDir: string, pathFromRootDir: string): Page {
@@ -10,8 +10,8 @@ function getPage(pathFromPagesDir: string, pathFromRootDir: string): Page {
   }
 }
 
-export function getPages(pagesDir: string): Page[] {
-  const files = getVueFiles(pagesDir)
+export function getPages(pagesDir: string, extensions: string[]): Page[] {
+  const files = sortFilePaths(getFiles(pagesDir, extensions))
   return files.map(file =>
     getPage(file, replaceWithSlash(join(pagesDir, file))),
   )

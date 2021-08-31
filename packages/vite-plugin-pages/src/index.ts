@@ -1,27 +1,22 @@
-import { Page, PluginOptions } from './types'
+import { PluginOptions } from './types'
 import { Plugin } from 'vite'
 import { MODULE_NAME } from './constants'
 import { generateRoutes } from './generates'
 import { getPages } from './pages'
 
-export default (userOptions: PluginOptions = {}): Plugin => {
-  const DEFAULT_OPTIONS: PluginOptions = {
+export default (
+  userOptions: PluginOptions = {
     root: process.cwd(),
     pagesDir: 'src/pages',
     layoutsDir: 'src/layouts',
-    extension: ['vue'],
-  }
-  const options: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, userOptions)
-  let pages: Page[]
+    extensions: ['vue'],
+  },
+): Plugin => {
+  const options: PluginOptions = Object.assign({}, userOptions)
 
   return {
     name: 'vite:pages',
     enforce: 'pre',
-    configResolved(config) {
-      options.root = config.root
-      const pagesDir = 'src/pages'
-      pages = getPages(pagesDir)
-    },
     resolveId(id) {
       if (id === MODULE_NAME) {
         return id
@@ -32,8 +27,8 @@ export default (userOptions: PluginOptions = {}): Plugin => {
       if (id !== MODULE_NAME) {
         return
       }
-      const pages = getPages(options.pagesDir)
-      const routes = generateRoutes(pages)
+      const pages = getPages(options.pagesDir, options.extensions)
+      const routes = generateRoutes(pages, options)
       return { routes }
     },
   }

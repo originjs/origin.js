@@ -7,23 +7,31 @@ function getExcludes(excludes: string[]) {
 
 export function getFiles(
   directory: string,
-  extension: string,
+  extensions: string[],
   excludes?: string[],
 ): string[] {
-  excludes = excludes ? excludes.map(exclude => replaceWithSlash(exclude)) : []
-  return globby.sync(`**/*${extension}`, {
+  // setup excludes
+  excludes = getExcludes((excludes || []).map(ex => replaceWithSlash(ex)))
+
+  // return read files by extensions
+  const pattern =
+    extensions.length > 1
+      ? `**/*.{${extensions.join(',')}}`
+      : `**/*.${extensions[0]}`
+  return globby.sync(pattern, {
     gitignore: true,
-    ignore: getExcludes(excludes),
+    ignore: excludes,
     cwd: replaceWithSlash(directory),
     onlyFiles: true,
   })
 }
 
-export function getVueFiles(directory: string, excludes?: string[]) {
-  const files = getFiles(directory, '.vue', excludes)
-
-  // sort files, make sure that index.vue is the first element of each directory
-  files.sort((a, b) => {
+/**
+ * sort files, make sure that index.vue is the first element of each directory
+ * @param filePaths
+ */
+export function sortFilePaths(filePaths: string[]): string[] {
+  filePaths.sort((a, b) => {
     a = a.endsWith('index.vue') ? a.slice(0, a.length - 9) : a
     b = b.endsWith('index.vue') ? b.slice(0, b.length - 9) : b
     if (a < b) {
@@ -34,18 +42,5 @@ export function getVueFiles(directory: string, excludes?: string[]) {
     }
     return 0
   })
-
-  return files
-}
-
-export function getLayoutFiles(
-  directory: string,
-  extensions: string[],
-  excludes?: string[],
-) {
-  let files: string[] = []
-  extensions.forEach(extension => {
-    files = files.concat(getFiles(directory, extension, excludes))
-  })
-  return files
+  return filePaths
 }
