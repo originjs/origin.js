@@ -28,7 +28,8 @@ describe('iniTest', () => {
     const iniContent: string = fs.readFileSync(path).toString()
     const options: PluginOptions = { ini: { enabled: true } }
     const transformResult = iniTransform(options, iniContent, '')
-    expect(transformResult!.code).toEqual(`var data = { alembic:{ script_location:"migrations",
+    expect(transformResult!.code)
+      .toEqual(`var data = { alembic:{ script_location:"migrations",
     "sqlalchemy.url":"scheme://localhost/airflow" },
   loggers:{ keys:"root,sqlalchemy,alembic" },
   handlers:{ keys:"console" },

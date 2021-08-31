@@ -28,7 +28,8 @@ describe('tomlTest', () => {
     const tomlContent: string = fs.readFileSync(path).toString()
     const options: PluginOptions = { toml: { enabled: true } }
     const transformResult = tomlTransform(options, tomlContent, '')
-    expect(transformResult!.code).toEqual(`var data = { "package":{ name:"thrift-test",
+    expect(transformResult!.code)
+      .toEqual(`var data = { "package":{ name:"thrift-test",
     version:"0.1.0",
     license:"Apache-2.0",
     authors:[ "Apache Thrift Developers <dev@thrift.apache.org>" ],

@@ -5,20 +5,20 @@ import chalk from 'chalk'
 import ora from 'ora'
 import path from 'path'
 
-function changeFileName(filePath:string) {
+function changeFileName(filePath: string) {
   const p = new Promise(function (resolve, reject) {
-  fs.readdir(filePath, function(err, files) {
-   files.forEach(function(filename) {
-     if(/^_/.test(filename)){
-       const oldPath = path.join(filePath , filename)
-       const newPath = path.join(filePath , filename.slice(1))
-       fs.rename(oldPath, newPath, function(err) {
-           if (!err) {
-            resolve('Successfully change file name!')
-           }
-       })
-     }
-     })
+    fs.readdir(filePath, function (err, files) {
+      files.forEach(function (filename) {
+        if (/^_/.test(filename)) {
+          const oldPath = path.join(filePath, filename)
+          const newPath = path.join(filePath, filename.slice(1))
+          fs.rename(oldPath, newPath, function (err) {
+            if (!err) {
+              resolve('Successfully change file name!')
+            }
+          })
+        }
+      })
     })
   })
   return p
@@ -26,7 +26,7 @@ function changeFileName(filePath:string) {
 
 export default function creatPackageTemplate(config: any) {
   try {
-    changeFileName(path.join(process.cwd(), config.name)).then(rs =>{
+    changeFileName(path.join(process.cwd(), config.name)).then(rs => {
       ejs.renderFile(
         `${config.name}/package.json`,
         config,

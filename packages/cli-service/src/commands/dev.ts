@@ -5,7 +5,9 @@ import { createServer, ViteDevServer } from 'vite'
 import { DevPrinter } from '../Printer'
 
 export default async function (execPath?: string) {
-  const rootDir: string | undefined = execPath ? execPath : await pkgDir(process.cwd())
+  const rootDir: string | undefined = execPath
+    ? execPath
+    : await pkgDir(process.cwd())
   if (!rootDir) {
     return
   }
@@ -18,7 +20,7 @@ export default async function (execPath?: string) {
       const server: ViteDevServer = await createServer(print.getSchema())
       await server.listen()
     } else {
-      console.log('Cannot find module \'vite\', try running: npm install vite')
+      console.log("Cannot find module 'vite', try running: npm install vite")
       console.log(chalk.red('Server start failed'))
       console.log()
     }
@@ -26,7 +28,6 @@ export default async function (execPath?: string) {
     console.log(chalk.red('Server start failed'))
     console.log()
   }
-
 }
 
 function loadPackageJson(rootDir: string) {
