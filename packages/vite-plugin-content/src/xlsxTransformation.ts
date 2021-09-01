@@ -8,7 +8,7 @@ export default function xlsxTransform(
   code: string,
   id: string,
 ) {
-  const filter = createFilter(options.toml!.include, options.toml!.exclude)
+  const filter = createFilter(options.xlsx!.include, options.xlsx!.exclude)
   if (!filter(id)) {
     return null
   }
