@@ -5,7 +5,7 @@ describe('assetsTest', () => {
   test('global css transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     // @ts-ignore
-    const transformResult = assets.transformIndexHtml.transform('', {
+    const transformResult = assets().transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
 
