@@ -44,11 +44,18 @@ export default {
   - Type: `boolean`
   - Default: `true`
 
-  Whether to automatically load the CSS global style.
+  Whether to automatically load the SASS global style.
 
 - `lessEnabled`
 
   - Type: `boolean`
   - Default: `true`
 
-  Whether to automatically load the CSS global style.
+  Whether to automatically load the LESS global style.
+
+  `recursive`
+
+  - Type: `boolean`
+  - Default: `true`
+
+  Whether to recursively search the global styles in the directory

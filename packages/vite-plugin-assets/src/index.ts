@@ -7,6 +7,7 @@ export type PluginOptions = {
   cssEnabled?: boolean
   sassEnabled?: boolean
   lessEnabled?: boolean
+  recursive?: boolean
 }
 
 const DEFAULT_OPTIONS: PluginOptions = {
@@ -14,6 +15,7 @@ const DEFAULT_OPTIONS: PluginOptions = {
   cssEnabled: true,
   sassEnabled: true,
   lessEnabled: true,
+  recursive: true,
 }
 
 const GLOBALCSS = /^global-.*\.css$/
@@ -25,11 +27,11 @@ function searchGlobalCss(
   rootDir: string,
   options: PluginOptions,
 ): Array<string> {
-  const globalCssPaths: Array<string> = []
+  let globalCssPaths: Array<string> = []
   fs.readdirSync(rootDir).forEach(item => {
     const targetPath = path.resolve(rootDir, item)
-    if (fs.statSync(targetPath).isDirectory()) {
-      globalCssPaths.concat(searchGlobalCss(targetPath, options))
+    if (fs.statSync(targetPath).isDirectory() && options.recursive) {
+      globalCssPaths = globalCssPaths.concat(searchGlobalCss(targetPath, options))
     } else {
       if (options.cssEnabled && GLOBALCSS.test(item)) {
         globalCssPaths.push(targetPath)
