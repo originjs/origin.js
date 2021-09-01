@@ -58,7 +58,11 @@ export default (options: PluginOptions = {}): Plugin => {
         { filename }: { filename: string },
       ): Array<HtmlTagDescriptor> {
         const HtmlTagDescriptors: Array<HtmlTagDescriptor> = []
-        const assetsPath: string = path.resolve(filename, '..', opts.sourcePath!)
+        const assetsPath: string = path.resolve(
+          filename,
+          '..',
+          opts.sourcePath!,
+        )
         const filePaths: Array<string> = searchGlobalCss(assetsPath, opts)
 
         filePaths.forEach(filePath => {
