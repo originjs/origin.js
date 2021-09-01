@@ -1,0 +1,16 @@
+{
+  "name": "vite-plugin-pages",
+  "version": "0.1.0",
+  "description": "vite-plugin-vue-pages",
+  "main": "dist/index.js",
+  "repository": "https://github.com/originjs/origin.js.git",
+  "author": "PeterAlfredLee",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.2.6",
+    "globby": "^11.0.4"
+  }
+}

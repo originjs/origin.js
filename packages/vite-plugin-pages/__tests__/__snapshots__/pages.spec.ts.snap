@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages getPages 1`] = `
+Array [
+  Object {
+    "pathFromPagesDir": "index.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
+  },
+  Object {
+    "pathFromPagesDir": "_.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/index.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/_id.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/foo.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/nest_user/foo.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/nest_user/foo.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/zoom.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue",
+  },
+]
+`;
+
+exports[`pages getPages 2`] = `
+Array [
+  Object {
+    "pathFromPagesDir": "index.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
+  },
+  Object {
+    "pathFromPagesDir": "_.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/index.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/_id.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/foo.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/nest_user/foo.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/nest_user/foo.vue",
+  },
+  Object {
+    "pathFromPagesDir": "user/zoom.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue",
+  },
+]
+`;
