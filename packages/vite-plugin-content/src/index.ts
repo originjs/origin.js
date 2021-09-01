@@ -2,6 +2,7 @@ import { Plugin } from 'vite'
 import { FilterPattern } from '@rollup/pluginutils'
 import { ParserOptions } from 'xml2js'
 import { Options as CSVOptions } from 'csv-parse'
+import { ParsingOptions } from 'xlsx'
 
 export type PluginOptions = {
   xml?: {
@@ -42,10 +43,11 @@ export type PluginOptions = {
     include?: FilterPattern
     exclude?: FilterPattern
   }
-  markdown?: {
+  xlsx?: {
     enabled?: boolean
     include?: FilterPattern
     exclude?: FilterPattern
+    xlsxOptions?: ParsingOptions
   }
 }
 
@@ -72,7 +74,7 @@ const DEFAULT_OPTIONS: PluginOptions = {
   plist: {
     enabled: true,
   },
-  markdown: {
+  xlsx: {
     enabled: true,
   },
 }
@@ -84,6 +86,7 @@ const INI_EXTENSION = /\.ini$/
 const PROPERTIES_EXTENSION = /\.properties$/
 const TOML_EXTENSION = /\.toml$/
 const PLIST_EXTENSION = /\.plist$/
+const XLSX_EXTENSION = /\.xlsx?$/
 
 export default (options: PluginOptions = {}): Plugin => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
@@ -118,6 +121,9 @@ export default (options: PluginOptions = {}): Plugin => {
         break
       case 'plist':
         transforms[key] = require('./plistTransformation')
+        break
+      case 'xlsx':
+        transforms[key] = require('./xlsxTransformation')
         break
       default:
     }
@@ -154,6 +160,10 @@ export default (options: PluginOptions = {}): Plugin => {
 
       if (opts.toml!.enabled && PLIST_EXTENSION.test(id)) {
         return loadTransform('plist')(opts, code, id)
+      }
+
+      if (opts.xlsx!.enabled && XLSX_EXTENSION.test(id)) {
+        return loadTransform('xlsx')(opts, code, id)
       }
       return null
     },

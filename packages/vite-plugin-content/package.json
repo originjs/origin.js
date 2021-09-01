@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "@originjs",
   "license": "MulanPSL2",
-  "description": "A vite plugin that convert xml, yaml, csv, toml, ini, properties, plist files to ES6 modules",
+  "description": "A vite plugin that convert xml, yaml, xlsx, csv, toml, ini, properties, plist files to ES6 modules",
   "main": "dist/index.js",
   "files": [
     "src",
@@ -36,6 +36,7 @@
     "plist": "^3.0.4",
     "properties-parser": "^0.3.1",
     "tosource": "^2.0.0-alpha.3",
+    "xlsx": "^0.17.1",
     "xml2js": "^0.4.23"
   }
 }

@@ -1,5 +1,5 @@
 # vite-plugin-content
-Convert `yaml`, `xml`, `ini`, `toml`, `csv`, `plist` and `properties` files to ES6 modules.
+Convert `yaml`, `xml`, `xlsx`, `ini`, `toml`, `csv`, `plist` and `properties` files to ES6 modules.
 
 ## Features
 - The files are read using `UTF-8` encoding.
@@ -10,6 +10,7 @@ Convert `yaml`, `xml`, `ini`, `toml`, `csv`, `plist` and `properties` files to E
 - `csv` files transformed by `csv-parse`.
 - `plist` files transformed by `plist`.
 - `properties` files transformed by `plist`.
+- 'xlsx' files transformed by `sheetjs`
 
 ## Install
 ```shell
@@ -34,7 +35,7 @@ export default {
     ]
 }
 ```
-Then you can import `yaml`, `xml`, `ini`, `toml`, `csv`, `plist` and `properties` as ES module files
+Then you can import `yaml`, `xml`, `xlsx`, `ini`, `toml`, `csv`, `plist` and `properties` as ES module files
 ```js
 import yaml from 'assets/test.yaml'
 import xml from 'assets/test.xml'
@@ -91,3 +92,6 @@ console.log(properties)
 
 - `csv.csvOptions`
   Options of `csv-parse`. See [here](https://csv.js.org/parse/options/) for more details.
+
+- `xlsx.xlsxOptions`
+  Options of `sheetjs`. See [here](https://github.com/SheetJS/sheetjs#parsing-options) for more details.
