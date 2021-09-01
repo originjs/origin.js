@@ -1,5 +1,6 @@
 import { run } from '../src'
 import { build, createServer } from 'vite'
+import { join } from 'path'
 
 jest.mock('vite', () => {
   const server = {
@@ -17,7 +18,8 @@ describe('cli', () => {
   })
 
   test('call dev', async () => {
-    await run('dev')
+    const path = join(__dirname, './file/devdemo')
+    await run('dev', path)
     expect(createServer).toHaveBeenCalledTimes(1)
   })
 

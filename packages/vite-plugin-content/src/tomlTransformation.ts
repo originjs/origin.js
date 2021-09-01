@@ -3,7 +3,7 @@ import { createFilter } from '@rollup/pluginutils'
 import toml from '@iarna/toml'
 import toSource from 'tosource'
 
-export default async function tomlTransform(
+export default function tomlTransform(
   options: PluginOptions = {},
   code: string,
   id: string,
@@ -18,5 +18,7 @@ export default async function tomlTransform(
     tomlData,
   )};\nexport default data;`
 
-  return generatedCode
+  return {
+    code: generatedCode,
+  }
 }

@@ -4,12 +4,15 @@ import { createFilter } from '@rollup/pluginutils'
 import propertiesParser from 'properties-parser'
 import toSource from 'tosource'
 
-export default async function propertiesTransform(
+export default function propertiesTransform(
   options: PluginOptions = {},
   code: string,
   id: string,
 ) {
-  const filter = createFilter(options.ini!.include, options.ini!.exclude)
+  const filter = createFilter(
+    options.properties!.include,
+    options.properties!.exclude,
+  )
   if (!filter(id)) {
     return null
   }
@@ -19,5 +22,7 @@ export default async function propertiesTransform(
     propertiesData,
   )};\nexport default data;`
 
-  return generatedCode
+  return {
+    code: generatedCode,
+  }
 }

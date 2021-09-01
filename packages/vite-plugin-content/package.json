@@ -1,13 +1,24 @@
 {
-  "name": "vite-plugin-content",
+  "name": "@originjs/vite-plugin-content",
   "version": "1.0.0",
-  "author": "",
+  "author": "@originjs",
   "license": "MulanPSL2",
-  "description": "A vite plugin that convert xml, yaml, csv, markdown files to ES6 modules or vue SFC",
-  "main": "index.js",
+  "description": "A vite plugin that convert xml, yaml, csv, toml, ini, properties, plist files to ES6 modules",
+  "main": "dist/index.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/originjs/origin.js"
+  },
+  "bugs": {
+    "url": "https://github.com/originjs/origin.js/issues"
+  },
+  "homepage": "https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@rollup/pluginutils": "^4.1.1",
@@ -22,7 +33,7 @@
     "csv-parse": "^4.16.0",
     "ini": "^2.0.0",
     "js-yaml": "^4.1.0",
-    "plist": "^3.0.3",
+    "plist": "^3.0.4",
     "properties-parser": "^0.3.1",
     "tosource": "^2.0.0-alpha.3",
     "xml2js": "^0.4.23"

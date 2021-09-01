@@ -1,8 +1,6 @@
 # vite-plugin-content
 Convert `yaml`, `xml`, `ini`, `toml`, `csv`, `plist` and `properties` files to ES6 modules.
 
-Convert `md` to Vue SFC.
-
 ## Features
 - The files are read using `UTF-8` encoding.
 - `yaml` files transformed by `js-yaml`.
@@ -23,7 +21,9 @@ yarn add @originjs/vite-plugin-content --dev
 ```
 
 ## Usage
+First, add `@originjs/vite-plugin-content` in `vite.config.js`.
 ```js
+// vite.config.js
 import content from '@originjs/vite-plugin-content'
 
 export default {
@@ -33,6 +33,24 @@ export default {
         )
     ]
 }
+```
+Then you can import `yaml`, `xml`, `ini`, `toml`, `csv`, `plist` and `properties` as ES module files
+```js
+import yaml from 'assets/test.yaml'
+import xml from 'assets/test.xml'
+import ini from 'assets/test.ini'
+import toml from 'assets/test.toml'
+import csv from 'assets/test.csv'
+import plist from 'assets/test.plist'
+import properties from 'assets/test.properties'
+
+console.log(yaml)
+console.log(xml)
+console.log(ini)
+console.log(toml)
+console.log(csv)
+console.log(plist)
+console.log(properties)
 ```
 
 ### Options

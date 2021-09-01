@@ -1,0 +1,80 @@
+#logo {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+#app main {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    padding: 60px;
+    height: 100vh;
+}
+
+.light {
+    background-color: #fff;
+    color: #333366;
+    transition: all .5s;
+}
+
+.dark {
+    background-color: #212121;
+    color: #E5E5E5;
+    transition: all .5s;
+}
+
+.footer-link {
+    color: #BDBDBD;
+    font-size: 0.8rem;
+}
+
+.footer-link:hover {
+    font-size: 0.8rem;
+    color: #00ccff;
+}
+
+.footer-link:visited {
+    color: #BDBDBD;
+    font-size: 0.8rem;
+}
+
+.text-t4 {
+    font-size: 1.8rem;
+    margin: 1rem;
+}
+
+.text-p {
+    font-size: 0.8rem;
+}
+
+.text-code {
+    background-color: #EBEBEB;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #304455;
+    font-size: 0.8rem;
+}
+
+.text-component-desc {
+    font-size: 0.8rem;
+    color: #0099ff;
+    margin: 0.4rem;
+}
+
+.normal-btn {
+    margin: 0.5rem 0;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 0.6rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.theme-ctrl {
+    margin-top: 1rem;
+    border-color: #ff3399;
+    color: #ff3399;
+}
+
