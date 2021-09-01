@@ -10,7 +10,7 @@ export type PluginOptions = {
 }
 
 const DEFAULT_OPTIONS: PluginOptions = {
-  sourcePath: '/src/assets',
+  sourcePath: 'src/assets',
   cssEnabled: true,
   sassEnabled: true,
   lessEnabled: true,
