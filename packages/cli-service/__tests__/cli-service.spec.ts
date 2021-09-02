@@ -18,13 +18,14 @@ describe('cli', () => {
   })
 
   test('call dev', async () => {
-    const path = join(__dirname, './file/devdemo')
+    const path = join(__dirname, './file/servicedemo')
     await run('dev', path)
     expect(createServer).toHaveBeenCalledTimes(1)
   })
 
   test('call build', async () => {
-    await run('build')
+    const path = join(__dirname, './file/servicedemo')
+    await run('build', path)
     expect(build).toHaveBeenCalledTimes(1)
   })
 })
