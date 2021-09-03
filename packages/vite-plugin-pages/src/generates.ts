@@ -83,3 +83,15 @@ export function generateRoutes(pages: Page[], options: PluginOptions): Route[] {
 
   return routes
 }
+
+export function generateCode(routes: Route[]): string {
+  // to string, and make sure component is a function
+  const str = JSON.stringify(routes).replace(
+    /"component":("(.*?)")/g,
+    (str, replaceFrom, replaceTo) => {
+      return str.replace(replaceFrom, replaceTo)
+    },
+  )
+  // return generated code
+  return `const routes = ${str};\n export default routes;`
+}
