@@ -5,7 +5,7 @@ Array [
   Object {
     "children": Array [
       Object {
-        "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/index.vue')",
+        "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/index.vue')",
         "meta": Object {
           "layout": "",
         },
@@ -13,7 +13,7 @@ Array [
         "path": "/",
       },
     ],
-    "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
+    "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/",
   },
   Object {
@@ -23,7 +23,7 @@ Array [
           Object {
             "children": Array [
               Object {
-                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue')",
+                "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue')",
                 "meta": Object {
                   "layout": "bar",
                 },
@@ -31,13 +31,13 @@ Array [
                 "path": "/user/:id",
               },
             ],
-            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/bar.vue')",
+            "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/bar.vue')",
             "path": "/user/:id",
           },
           Object {
             "children": Array [
               Object {
-                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue')",
+                "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue')",
                 "meta": Object {
                   "layout": "",
                 },
@@ -45,13 +45,13 @@ Array [
                 "path": "/user/foo",
               },
             ],
-            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
+            "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
             "path": "/user/foo",
           },
           Object {
             "children": Array [
               Object {
-                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/nest_user/foo.vue')",
+                "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/nest_user/foo.vue')",
                 "meta": Object {
                   "layout": "",
                 },
@@ -59,13 +59,13 @@ Array [
                 "path": "/user/nest_user/foo",
               },
             ],
-            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
+            "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
             "path": "/user/nest_user/foo",
           },
           Object {
             "children": Array [
               Object {
-                "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue')",
+                "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue')",
                 "meta": Object {
                   "layout": "content",
                 },
@@ -73,11 +73,11 @@ Array [
                 "path": "/user/zoom",
               },
             ],
-            "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/content.vue')",
+            "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/content.vue')",
             "path": "/user/zoom",
           },
         ],
-        "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue')",
+        "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue')",
         "meta": Object {
           "layout": "",
         },
@@ -85,11 +85,11 @@ Array [
         "path": "/user",
       },
     ],
-    "component": "() => import('packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
+    "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user",
   },
   Object {
-    "component": "() => import('packages/vite-plugin-pages/__tests__/assets/pages/_.vue')",
+    "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/_.vue')",
     "meta": Object {
       "layout": "default",
     },

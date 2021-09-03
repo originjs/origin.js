@@ -93,7 +93,7 @@ function getLayoutMap(
   for (const file of layoutFiles) {
     const parsedFile = parse(file)
     const layoutPath = replaceWithSlash(join(directory, file))
-    layoutMap.set(parsedFile.name, `() => import('${layoutPath}')`)
+    layoutMap.set(parsedFile.name, `() => import('/${layoutPath}')`)
   }
 
   return layoutMap

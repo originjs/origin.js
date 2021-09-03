@@ -29,7 +29,13 @@ export default (
       }
       const pages = getPages(options.pagesDir, options.extensions)
       const routes = generateRoutes(pages, options)
-      return JSON.stringify(routes)
+      const generatedCode = JSON.stringify(routes).replace(
+        /"component":("(.*?)")/g,
+        (str, replaceFrom, replaceTo) => {
+          return str.replace(replaceFrom, replaceTo)
+        },
+      )
+      return `const routes = ${generatedCode};\n export default routes;`
     },
   }
 }
