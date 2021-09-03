@@ -1,7 +1,7 @@
 import { PluginOptions } from './types'
 import { Plugin } from 'vite'
 import { MODULE_NAME } from './constants'
-import { generateRoutes } from './generates'
+import { generateCode, generateRoutes } from './generates'
 import { getPages } from './pages'
 
 export default (
@@ -29,13 +29,7 @@ export default (
       }
       const pages = getPages(options.pagesDir, options.extensions)
       const routes = generateRoutes(pages, options)
-      const generatedCode = JSON.stringify(routes).replace(
-        /"component":("(.*?)")/g,
-        (str, replaceFrom, replaceTo) => {
-          return str.replace(replaceFrom, replaceTo)
-        },
-      )
-      return `const routes = ${generatedCode};\n export default routes;`
+      return generateCode(routes)
     },
   }
 }
