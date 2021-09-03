@@ -19,8 +19,9 @@ program
   .command('dev')
   .description('alias of "ori dev" in the current project')
   .allowUnknownOption()
-  .action(() => {
-    dev()
+  .action(async () => {
+    const server = await dev()
+    await server.listen()
   })
 
 program

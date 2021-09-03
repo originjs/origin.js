@@ -5,7 +5,7 @@ export async function run(name: 'dev' | 'build', execPath?: string) {
   if (name === 'dev') {
     await dev(execPath)
   } else if (name === 'build') {
-    await build()
+    await build(execPath)
   }
 }
 

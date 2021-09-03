@@ -1,6 +1,6 @@
 #logo {
-    width: 180px;
-    height: 180px;
+    width: 210px;
+    height: 210px;
     object-fit: cover;
 }
 
@@ -27,26 +27,26 @@
 
 .footer-link {
     color: #BDBDBD;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .footer-link:hover {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #00ccff;
 }
 
 .footer-link:visited {
     color: #BDBDBD;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .text-t4 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin: 1rem;
 }
 
 .text-p {
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .text-code {
@@ -54,13 +54,14 @@
     padding: 2px 4px;
     border-radius: 4px;
     color: #304455;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .text-component-desc {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #0099ff;
     margin: 0.4rem;
+    line-height: 1.2rem;
 }
 
 .normal-btn {
@@ -77,4 +78,3 @@
     border-color: #ff3399;
     color: #ff3399;
 }
-
