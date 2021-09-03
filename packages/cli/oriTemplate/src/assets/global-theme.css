@@ -2,6 +2,7 @@
     width: 210px;
     height: 210px;
     object-fit: cover;
+    padding: 80px 0 15px 0;
 }
 
 #app main {
@@ -9,8 +10,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    padding: 60px;
     height: 100vh;
+    min-width: 480px;
 }
 
 .light {
@@ -25,27 +26,29 @@
     transition: all .5s;
 }
 
-.footer-link {
+.source-link {
     color: #BDBDBD;
     font-size: 0.9rem;
 }
 
-.footer-link:hover {
+.source-link:hover {
     font-size: 0.9rem;
     color: #00ccff;
 }
 
-.footer-link:visited {
+.source-link:visited {
     color: #BDBDBD;
     font-size: 0.9rem;
 }
 
 .text-t4 {
     font-size: 2rem;
-    margin: 1rem;
+    line-height: 3.5rem;
+    margin: 0;
 }
 
-.text-p {
+.text-p{
+    line-height: 0.8rem;
     font-size: 1rem;
 }
 
@@ -53,15 +56,21 @@
     background-color: #EBEBEB;
     padding: 2px 4px;
     border-radius: 4px;
-    color: #304455;
     font-size: 1rem;
 }
 
 .text-component-desc {
-    font-size: 1rem;
-    color: #0099ff;
+    font-size: 0.9rem;
     margin: 0.4rem;
     line-height: 1.2rem;
+}
+
+.text-route {
+    color: rgba(0, 153, 255, 0.9)
+}
+
+.text-layout {
+    color: rgba(0, 153, 255, 0.5)
 }
 
 .normal-btn {
@@ -73,7 +82,7 @@
     cursor: pointer;
 }
 
-.theme-ctrl {
+.theme-ctrl-btn {
     margin-top: 1rem;
     border-color: #ff3399;
     color: #ff3399;

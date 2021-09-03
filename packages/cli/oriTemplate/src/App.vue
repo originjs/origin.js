@@ -1,5 +1,12 @@
 <template>
-  <main :class="isDark ? 'dark' : 'light'">
+  <main :class="isLight ? 'light' : 'dark'">
+    <button
+      type="button"
+      @click="changeMode"
+      class="normal-btn theme-ctrl-btn"
+    >
+      {{ !isLight ? 'light' : 'dark' }} mode
+    </button>
     <div>
       <img
         alt="Origin.js logo"
@@ -7,29 +14,21 @@
         id="logo"
       >
     </div>
-    <Home />
-    <button
-      type="button"
-      @click="isDark = !isDark"
-      class="normal-btn theme-ctrl"
-    >
-      {{ isDark ? 'light' : 'dark' }} mode
-    </button>
+    <router-view />
   </main>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
-import Home from './layouts/Home.vue'
+import { ref } from 'vue'
 
-export default defineComponent({
+export default {
   name: 'App',
-  components: {
-    Home
-  },
   setup: () => {
-    const isDark = ref(false)
-    return { isDark }
+    const isLight = ref(true)
+    const changeMode = () => {
+      isLight.value = !isLight.value
+    }
+    return { isLight, changeMode }
   }
-})
+}
 </script>
