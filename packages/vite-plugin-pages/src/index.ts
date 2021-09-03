@@ -31,6 +31,15 @@ export default (
       const routes = generateRoutes(pages, options)
       return generateCode(routes)
     },
+    async transform(_code, id) {
+      if (!/vue&type=layout/.test(id)) {
+        return
+      }
+      return {
+        code: 'export default {}',
+        map: null,
+      }
+    },
   }
 }
 
