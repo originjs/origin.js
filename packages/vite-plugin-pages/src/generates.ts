@@ -28,7 +28,7 @@ export function generateRoutes(pages: Page[], options: PluginOptions): Route[] {
     const route: Route = {
       name: '',
       path: '',
-      component: `() => import('${page.pathFromRootDir}')`,
+      component: `() => import('/${page.pathFromRootDir}')`,
       meta: { layout: getLayoutProperties(pathFromRootDir) },
     }
 

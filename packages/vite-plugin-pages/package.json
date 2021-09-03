@@ -2,7 +2,7 @@
   "name": "vite-plugin-pages",
   "version": "0.1.0",
   "description": "vite-plugin-vue-pages",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "repository": "https://github.com/originjs/origin.js.git",
   "author": "PeterAlfredLee",
   "license": "MIT",
