@@ -1,17 +1,10 @@
-#logo {
-    width: 210px;
-    height: 210px;
-    object-fit: cover;
-    padding: 80px 0 15px 0;
-}
-
 #app main {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    height: 100vh;
-    min-width: 480px;
+    height: calc(100vh - 3.2rem);
+    padding: 1rem;
 }
 
 .light {
@@ -24,6 +17,13 @@
     background-color: #212121;
     color: #E5E5E5;
     transition: all .5s;
+}
+
+#logo {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    margin: 4rem 0 1rem 0;
 }
 
 .source-link {
@@ -48,15 +48,15 @@
 }
 
 .text-p{
-    line-height: 0.8rem;
+    line-height: 1.4rem;
     font-size: 1rem;
 }
 
 .text-code {
     background-color: #EBEBEB;
+    color: #212121;
     padding: 2px 4px;
     border-radius: 4px;
-    font-size: 1rem;
 }
 
 .text-component-desc {
@@ -83,7 +83,21 @@
 }
 
 .theme-ctrl-btn {
-    margin-top: 1rem;
     border-color: #ff3399;
     color: #ff3399;
+}
+
+/* mobile device */
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    #app main {
+        height: device-height;
+    }
+
+    .text-t4 {
+        font-size: 1.5rem;
+        line-height: 2.4rem;
+    }
 }
