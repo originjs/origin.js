@@ -1,17 +1,11 @@
 <template>
-  <!-- TODO: add plugin configurations -->
-  <Description title='Origin.js' />
-  <p class="text-component-desc">current route: /index</p>
+  <h4 class="text-t4">Origin.js</h4>
+  <p class="text-p">a simple and powerful Vue.js web application framework.</p>
+  <p class="text-p">See <code class="text-code">README.md</code> for more information.</p>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import Description from '../components/Description.vue'
-
-export default defineComponent({
-  name: 'Index',
-  components: {
-    Description
-  }
-})
+<script>
+export default {
+  name: 'Index'
+}
 </script>
