@@ -28,7 +28,7 @@ export default {
 - `sourcePath` 
 
   - Type: `string`
-  - Default: `/src/assets`
+  - Default: `src/assets`
 
   The relative path of the assets directory to the project.
 
