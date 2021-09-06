@@ -1,5 +1,6 @@
 <template>
   <router-view />
+    <p class="text-component-desc text-route">current route: '{{ currentRoute.fullPath }}'</p>
   <p class="text-component-desc text-layout">
     layout hello
   </p>
@@ -9,7 +10,14 @@
 </template>
 
 <script lang="ts">
+import { useRouter } from 'vue-router'
+
 export default {
-  name: 'Hello'
+  name: 'Hello',
+  setup() {
+    const router = useRouter()
+    const { currentRoute } = router
+    return { currentRoute }
+  }
 }
 </script>

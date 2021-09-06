@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  <p class="text-component-desc text-route">current route: '{{ currentRoute.fullPath }}'</p>
   <p class="text-component-desc text-layout">
     layout default
   </p>
@@ -9,6 +10,7 @@
 <script lang="ts">
 import { ref } from 'vue'
 import Sources from '../components/Sources.vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'Default',
@@ -22,7 +24,9 @@ export default {
         link: 'https://github.com/originjs/origin.js'
       }
     ])
-    return { sourceOpitons }
+    const router = useRouter()
+    const { currentRoute } = router
+    return { currentRoute, sourceOpitons }
   }
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <!-- TODO: add plugin configurations -->
   <h4 class="text-t4">Origin.js</h4>
-  <p class="text-p">You are thinking about: {{ msg }}</p>
-  <p class="text-component-desc text-route">current route: '/helloWorld/:message'</p>
+  <p class="text-p">message in route: {{ message }}</p>
 </template>
 
 <script lang="ts">
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -14,9 +14,11 @@ export default {
           required: false
       }
   },
-  setup(props) {
-      const msg = props.message
-      return { msg }
+  setup() {
+      const router = useRouter()
+      const { currentRoute } = router
+      const { message = '' } = currentRoute.value.params
+      return { message }
   }
 }
 </script>
