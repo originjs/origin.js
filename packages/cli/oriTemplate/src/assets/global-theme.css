@@ -94,19 +94,19 @@
 }
 
 .light input::-webkit-input-placeholder{
-    color:#bdbdbd;
+    color:rgba(0, 0, 0, .3);
     font-size: .85rem;
 }
 .light input::-moz-placeholder{   /* Mozilla Firefox 19+ */
-    color:#bdbdbd;
+    color:rgba(0, 0, 0, .3);
     font-size: .85rem;
 }
 .light input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
-    color:#bdbdbd;
+    color:rgba(0, 0, 0, .3);
     font-size: .85rem;
 }
 .light input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
-    color:#bdbdbd;
+    color:rgba(0, 0, 0, .3);
     font-size: .85rem;
 }
 
@@ -115,19 +115,19 @@
 }
 
 .dark input::-webkit-input-placeholder{
-    color:#e5e5e5;
+    color:rgba(255, 255, 255, .3);
     font-size: .85rem;
 }
 .dark input::-moz-placeholder{   /* Mozilla Firefox 19+ */
-    color:#e5e5e5;
+    color:rgba(255, 255, 255, .3);
     font-size: .85rem;
 }
 .dark input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
-    color:#e5e5e5;
+    color:rgba(255, 255, 255, .3);
     font-size: .85rem;
 }
 .dark input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
-    color:#e5e5e5;
+    color:rgba(255, 255, 255, .3);
     font-size: .85rem;
 }
 
@@ -153,6 +153,7 @@
     border-radius: .4rem;
     background-color: transparent;
     cursor: pointer;
+    transition: all .5s;
 }
 
 .theme-ctrl-btn {
@@ -165,6 +166,10 @@
      background-color: #9999ff;
      color: #fff;
      border: 0;
+}
+
+.router-btn-disabled {
+    opacity: 0.4;
 }
 
 /* mobile device */

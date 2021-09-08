@@ -7,11 +7,7 @@
         id="logo"
       >
     </div>
-    <router-view v-slot="{ Component }">
-      <transition>
-        <component :is="Component" />
-      </transition>
-    </router-view> 
+    <router-view />
     <button
       type="button"
       @click="changeMode"

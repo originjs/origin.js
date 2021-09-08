@@ -17,7 +17,6 @@ export default {
   setup() {
     const router = useRouter()
     const { currentRoute } = router
-  
     const { message = '' } = currentRoute.value.params
   
     return { message }

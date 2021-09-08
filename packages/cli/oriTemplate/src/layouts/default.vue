@@ -3,13 +3,13 @@
     <router-view />
     <p class="text-component-desc text-route">current route: '{{ currentRoute.fullPath }}'</p>
     <input class="normal-input message-input" v-model="message" placeholder="try to type something" />
-    <button class="normal-btn router-btn" @click="toHelloWorld">go</button>
+    <button class="normal-btn router-btn" :class="btnIsDisabled ? 'router-btn-disabled' : ''" @click="toHelloWorld">go</button>
     <Sources :list="sourceOpitons" />
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import Sources from '../components/Sources.vue'
 import { useRouter } from 'vue-router'
 
@@ -34,12 +34,20 @@ export default {
     const { currentRoute } = router
   
     const message = ref('')
+
+    const btnIsDisabled = ref(true)
   
     const toHelloWorld = () => {
-      router.push(`/helloWorld/${message.value}`)
+      if (!btnIsDisabled.value) {
+        router.push(`/helloWorld/${message.value}`)
+      }
     }
+
+    watchEffect(() => {
+      btnIsDisabled.value = !Boolean(message.value)
+    })
   
-    return { currentRoute, sourceOpitons, message, toHelloWorld }
+    return { currentRoute, sourceOpitons, message, btnIsDisabled, toHelloWorld }
   }
 }
 </script>
