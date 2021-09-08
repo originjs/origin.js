@@ -1,12 +1,5 @@
 <template>
   <main :class="isLight ? 'light' : 'dark'">
-    <button
-      type="button"
-      @click="changeMode"
-      class="normal-btn theme-ctrl-btn"
-    >
-      {{ !isLight ? 'light' : 'dark' }} mode
-    </button>
     <div>
       <img
         alt="Origin.js logo"
@@ -15,6 +8,13 @@
       >
     </div>
     <router-view />
+    <button
+      type="button"
+      @click="changeMode"
+      class="normal-btn theme-ctrl-btn"
+    >
+      {{ !isLight ? 'light' : 'dark' }} mode
+    </button>
   </main>
 </template>
 
@@ -25,9 +25,11 @@ export default {
   name: 'App',
   setup: () => {
     const isLight = ref(true)
+
     const changeMode = () => {
       isLight.value = !isLight.value
     }
+
     return { isLight, changeMode }
   }
 }

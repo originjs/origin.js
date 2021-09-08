@@ -75,29 +75,33 @@ export default async function init(
         },
         {
           type: 'checkbox',
-          message: 'Please select the plugin you need(Use enter to skip):',
+          message: 'Please select the plugin you need (Use enter to skip):',
           name: 'plugins',
           choices: [
             {
-              value: 'assets',
+              value: '{"name":"assets","package":"@originjs/vite-plugin-assets"}',
               name: 'Assets:Processing pictures, public styles, fonts, etc.',
+              package: '',
             },
-            { value: 'components', name: 'Components:Reusable vue components' },
-            { value: 'content', name: 'Content:Reusable vue components' },
-            { value: 'layouts', name: 'Layouts:Page Layout' },
-            { value: 'pages', name: 'Pages' },
-            { value: 'static', name: 'Static' },
-            { value: 'monitor', name: 'Monitor:Performance/error monitoring' },
-            { value: 'micro', name: 'Micro:Micro front end configuration' },
+            { value: '', name: 'Components:Reusable vue components' },
+            { value: '{"name":"content","package":"@originjs/vite-plugin-content"}', name: 'Content:Reusable vue components' },
+            { value: '', name: 'Layouts:Page Layout' },
+            { value: '{"name":"pages","package":"@originjs/vite-plugin-pages"}', name: 'Pages' },
+            { value: '', name: 'Static' },
+            { value: '', name: 'Monitor:Performance/error monitoring' },
+            { value: '', name: 'Micro:Micro front end configuration' },
           ],
           filter: (val: any) => {
-            return val
+            if (val) {
+              return val
+            }
           },
         },
       ]
       await inquirer
         .prompt(promptList)
         .then((answers: any) => {
+          answers.plugins = answers.plugins.map((value: string) => JSON.parse(value))
           Object.assign(defaultOptions, answers)
         })
         .catch((error: any) => {

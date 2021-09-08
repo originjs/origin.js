@@ -1,12 +1,12 @@
 <template>
-  <router-view />
+  <div>
+    <router-view />
     <p class="text-component-desc text-route">current route: '{{ currentRoute.fullPath }}'</p>
-  <p class="text-component-desc text-layout">
-    layout hello
-  </p>
-  <p class="text-p">
-    Now edit files to create your project! &#128515;
-  </p>
+    <button class="normal-btn router-btn" @click="goBack">back</button>
+    <p class="text-p">
+      Now you can edit files to create your own project. &#128515;
+    </p>
+  </div>
 </template>
 
 <script lang="ts">
@@ -17,7 +17,12 @@ export default {
   setup() {
     const router = useRouter()
     const { currentRoute } = router
-    return { currentRoute }
+  
+    const goBack = () => {
+      router.go(-1)
+    }
+  
+    return { currentRoute, goBack }
   }
 }
 </script>
