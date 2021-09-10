@@ -69,7 +69,7 @@ export default (options: PluginOptions = {}): Plugin => {
 
         filePaths.forEach(filePath => {
           filePath = filePath
-            .replace(assetsPath, './' + opts.sourcePath!)
+            .replace(assetsPath, '/' + opts.sourcePath!)
             .replace(/\\/g, '/')
           HtmlTagDescriptors.push({
             tag: 'link',
