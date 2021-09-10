@@ -90,6 +90,7 @@ describe('get config', () => {
 
     expect(print.getSchema()).toEqual(buildConfig)
   })
+
   test('get dev config with local config', async () => {
     const path = join(__dirname, './file/withconfig')
     const print = new DevPrinter(path)

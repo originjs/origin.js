@@ -4,13 +4,28 @@ import inquirer from 'inquirer'
 import createPackageTemplate from '../template/createPackageTemplate'
 import chalk from 'chalk'
 import path from 'path'
+import { promptList } from '../config/prompt'
+import { PluginChoiceOption, assetsOption, componentsOption, contentOption, pagesOption } from '../config/plugins'
 
-const defaultOptions: any = {
+type initCliOptions = {
+  default?: boolean
+  allPlugins?: boolean
+}
+
+type initProjectOptions = {
+  name: string
+  version: string
+  license: string
+  plugins: PluginChoiceOption[]
+}
+
+const defaultOptions: initProjectOptions = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
   plugins: [],
 }
+
 function cpdir(dirOld: string, dirNew: string, name: string) {
   const p = new Promise(function (resolve, reject) {
     fs.mkdir(path.join(dirNew, name), function (err) {
@@ -33,7 +48,7 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
   return p
 }
 
-const SOURCES_DIRECTORY = path.resolve(__dirname, '../../../oriTemplate')
+const SOURCES_DIRECTORY = path.resolve(__dirname, '../../oriTemplate')
 
 const ifDirExists = (name: any) => {
   // Check whether there is a folder with the same name as the project name in the current folder
@@ -48,99 +63,80 @@ const ifDirExists = (name: any) => {
     return false
   }
 }
+
+const checkOptions = async () => {
+  inquirer
+    .prompt(promptList)
+    .then((answers: any) => {
+      Object.assign(defaultOptions, answers)
+    })
+    .catch((error: any) => {
+      if (error.isTtyError) {
+        // Prompt couldn't be rendered in the current environment
+        console.error(
+          chalk.red("Prompt couldn't be rendered in the current environment"),
+        )
+        console.log(error)
+      } else {
+        // Something else went wrong
+        console.log(error)
+      }
+    })
+}
+
+const initializeModules = (name: any) => {
+  const spinnerCopy = ora('Downloading...')
+  spinnerCopy.start()
+  cpdir(SOURCES_DIRECTORY, process.cwd(), name)
+    .then(rs => {
+      spinnerCopy.succeed()
+      try {
+        createPackageTemplate(defaultOptions)
+      } catch (error) {
+        console.error(chalk.red('Failed to complete package.json'))
+        console.log(error)
+      }
+    })
+    .catch(rj => {
+      spinnerCopy.fail()
+    })
+}
+
 export default async function init(
-  name: any = 'webProject',
-  options: any = { default: false },
+  name: string | null = 'webProject',
+  options: initCliOptions = { default: false, allPlugins: false },
 ) {
-  if (!ifDirExists(name)) return false
+  if (!options.default && options.allPlugins) {
+    console.error(chalk.red('Failed to initialize the template'))
+    console.log(`Would you like to use \`ori init -d -a\`?`)
+    return false
+  }
+
+  if (!name || !ifDirExists(name)) {
+    console.error(chalk.red('Failed to initialize the template'))
+    return false
+  }
   defaultOptions.name = name
 
   if (!options.default) {
     try {
-      const promptList = [
-        {
-          type: 'input',
-          message: 'Please set the initial version number of the project:',
-          name: 'version',
-          default: '1.0.0',
-        },
-        {
-          type: 'list',
-          message: 'Please set the project code license:',
-          name: 'license',
-          choices: ['ISC', 'GPL', 'LGPL', 'MPL', 'BSD', 'MIT', 'Apache'],
-          filter: (val: any) => {
-            return val
-          },
-        },
-        {
-          type: 'checkbox',
-          message: 'Please select the plugin you need (Use enter to skip):',
-          name: 'plugins',
-          choices: [
-            {
-              value: '{"name":"assets","package":"@originjs/vite-plugin-assets"}',
-              name: 'Assets:Processing pictures, public styles, fonts, etc.',
-              package: '',
-            },
-            { value: '', name: 'Components:Reusable vue components' },
-            { value: '{"name":"content","package":"@originjs/vite-plugin-content"}', name: 'Content:Reusable vue components' },
-            { value: '', name: 'Layouts:Page Layout' },
-            { value: '{"name":"pages","package":"@originjs/vite-plugin-pages"}', name: 'Pages' },
-            { value: '', name: 'Static' },
-            { value: '', name: 'Monitor:Performance/error monitoring' },
-            { value: '', name: 'Micro:Micro front end configuration' },
-          ],
-          filter: (val: any) => {
-            if (val) {
-              return val
-            }
-          },
-        },
-      ]
-      await inquirer
-        .prompt(promptList)
-        .then((answers: any) => {
-          answers.plugins = answers.plugins.map((value: string) => JSON.parse(value))
-          Object.assign(defaultOptions, answers)
-        })
-        .catch((error: any) => {
-          if (error.isTtyError) {
-            // Prompt couldn't be rendered in the current environment
-            console.error(
-              chalk.red(
-                "Prompt couldn't be rendered in the current environment",
-              ),
-            )
-            console.log(error)
-          } else {
-            // Something else went wrong
-            console.log(error)
-          }
-        })
+      await checkOptions()
     } catch (error) {
       console.error(chalk.red('Failed to initialize the template'))
       console.log(error)
       return false
     }
+  } else if (options.allPlugins) {
+    defaultOptions.plugins = [
+      assetsOption,
+      componentsOption,
+      contentOption,
+      pagesOption,
+    ]
   }
 
   try {
-    const spinnerCopy = ora('Downloading...')
-    spinnerCopy.start()
-    cpdir(SOURCES_DIRECTORY, process.cwd(), name)
-      .then(rs => {
-        spinnerCopy.succeed()
-        try {
-          createPackageTemplate(defaultOptions)
-        } catch (error) {
-          console.error(chalk.red('Failed to complete package.json'))
-          console.log(error)
-        }
-      })
-      .catch(rj => {
-        spinnerCopy.fail()
-      })
+    initializeModules(name)
   } catch (error) {
     console.log(error)
     return false
