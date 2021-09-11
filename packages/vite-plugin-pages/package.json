@@ -6,6 +6,10 @@
   "repository": "https://github.com/originjs/origin.js.git",
   "author": "PeterAlfredLee",
   "license": "MIT",
+  "files": [
+    "dist",
+    "pluginPages.d.ts"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
