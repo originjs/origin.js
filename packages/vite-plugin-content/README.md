@@ -39,6 +39,7 @@ Then you can import `yaml`, `xml`, `xlsx`, `ini`, `toml`, `csv`, `plist` and `pr
 ```js
 import yaml from 'assets/test.yaml'
 import xml from 'assets/test.xml'
+import xlsx from 'assets/test.xlsx'
 import ini from 'assets/test.ini'
 import toml from 'assets/test.toml'
 import csv from 'assets/test.csv'
@@ -47,6 +48,7 @@ import properties from 'assets/test.properties'
 
 console.log(yaml)
 console.log(xml)
+console.log(xlsx)
 console.log(ini)
 console.log(toml)
 console.log(csv)
@@ -55,26 +57,26 @@ console.log(properties)
 ```
 
 ### Options
-- `[yaml/xml/ini/toml/csv/plist/properties/markdown].enabled` 
+- `[yaml/xml/xlsx/ini/toml/csv/plist/properties].enabled` 
 
   - Type: `boolean`
   - Default: `true`
 
-  Whether or not to enable `yaml/xml/ini/toml/csv/plist/properties/markdown` transformation.
+  Whether or not to enable `yaml/xml/xlsx/ini/toml/csv/plist/properties` transformation.
 
-- `[yaml/xml/ini/toml/csv/plist/properties/markdown].include`
-
-  - Type: `String` | `Array[...String]`
-  - Default: `null`
-
-  A [minimatch pattern](https://github.com/isaacs/minimatch), or array of patterns, which specifies the files in the build the plugin should operate on. By default all files are targeted.
-
-- `[yaml/xml/ini/toml/csv/plist/properties/markdown].exclude`
+- `[yaml/xml/xlsx/ini/toml/csv/plist/properties].include`
 
   - Type: `String` | `Array[...String]`
   - Default: `null`
 
-  A [minimatch pattern](https://github.com/isaacs/minimatch), or array of patterns, which specifies the files in the build the plugin should *ignore*. By default no files are ignored.
+  A [minimatch pattern](https://github.com/isaacs/minimatch), or array of patterns, which specifies the files in the build the plugin should operate on. All files are targeted y default.
+
+- `[yaml/xml/xlsx/ini/toml/csv/plist/properties].exclude`
+
+  - Type: `String` | `Array[...String]`
+  - Default: `null`
+
+  A [minimatch pattern](https://github.com/isaacs/minimatch), or array of patterns, which specifies the files in the build the plugin should *ignore*. No files are ignored by default.
 
 - `yaml.loadMultiDocument`
 
