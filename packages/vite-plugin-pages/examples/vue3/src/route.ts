@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// @ts-ignore ignore TS2307: Cannot find module....
 import routes from 'plugin-pages'
 
 console.log(routes)

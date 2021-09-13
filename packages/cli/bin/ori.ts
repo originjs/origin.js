@@ -2,6 +2,7 @@
 
 import { Command } from 'commander'
 import { codemod, codemodHelp } from '../src/commands/codmod'
+import { ViteDevServer } from 'vite'
 import { toVite, toViteHelp } from '../src/commands/webpackToVite'
 const { dev, build } = require('@originjs/cli-service')
 const program = new Command()
@@ -11,6 +12,8 @@ program
   .command('init <app-name>')
   .description('init a new project')
   .option('-d,--default', 'skip init project options')
+  .option('-a,--all-plugins', 'create project with all plugins')
+  .option('-u,--uninstalled', 'skip install denpendencies')
   .action((name, options) => {
     require('../src/commands/init').default(name, options)
   })
@@ -20,7 +23,7 @@ program
   .description('alias of "ori dev" in the current project')
   .allowUnknownOption()
   .action(async () => {
-    const server = await dev()
+    const server: ViteDevServer = await dev()
     await server.listen()
   })
 

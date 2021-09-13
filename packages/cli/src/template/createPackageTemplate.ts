@@ -24,13 +24,13 @@ function changeFileName(filePath: string) {
   return p
 }
 
-export default function creatPackageTemplate(config: any) {
+export default function creatPackageTemplate(config: any, uninstalled?: boolean) {
   try {
     changeFileName(path.join(process.cwd(), config.name)).then(rs => {
       ejs.renderFile(
         `${config.name}/package.json`,
         config,
-        (err: any, str: string) => {
+        (err: any, str = '') => {
           fs.writeFile(`${config.name}/package.json`, str, () => {
             console.log()
           })
@@ -39,12 +39,15 @@ export default function creatPackageTemplate(config: any) {
       ejs.renderFile(
         `${config.name}/vite.config.ts`,
         config,
-        (err: any, str: string) => {
+        (err: any, str = '') => {
           fs.writeFile(`${config.name}/vite.config.ts`, str, () => {
             console.log()
           })
         },
       )
+      if (uninstalled) {
+        return
+      }
       const spinner = ora('Install project dependency.......')
       spinner.start()
       exec(`cd ${config.name} && npm install && git init`, (err: any) => {
