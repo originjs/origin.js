@@ -24,7 +24,7 @@ function changeFileName(filePath: string) {
   return p
 }
 
-export default function creatPackageTemplate(config: any) {
+export default function creatPackageTemplate(config: any, uninstalled?: boolean) {
   try {
     changeFileName(path.join(process.cwd(), config.name)).then(rs => {
       ejs.renderFile(
@@ -45,6 +45,9 @@ export default function creatPackageTemplate(config: any) {
           })
         },
       )
+      if (uninstalled) {
+        return
+      }
       const spinner = ora('Install project dependency.......')
       spinner.start()
       exec(`cd ${config.name} && npm install && git init`, (err: any) => {
