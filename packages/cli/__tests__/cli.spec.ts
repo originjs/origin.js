@@ -8,13 +8,13 @@ test('ori -h', async () => {
   const { stdout, exitCode } = await run(['-h'])
   expect(stdout).toMatchSnapshot('A1')
   expect(exitCode).toBe(0)
-})
+}, 10000)
 
 test('ori --help', async () => {
   const { stdout, exitCode } = await run(['--help'])
   expect(stdout).toMatchSnapshot('A2')
   expect(exitCode).toBe(0)
-})
+}, 10000)
 
 test('ori init without app-name', async () => {
   try {
@@ -22,7 +22,7 @@ test('ori init without app-name', async () => {
   } catch (e) {
     expect(e.stderr).toContain("error: missing required argument 'app-name'")
   }
-})
+}, 10000)
 
 test('ori init with failed arguments', async () => {
   try {
@@ -31,7 +31,7 @@ test('ori init with failed arguments', async () => {
   } catch (e) {
     console.log(e)
   }
-})
+}, 10000)
 
 test('ori init with all plugins', async () => {
   const project = await create('testAllPlugins', ['-d', '-a', '-u'])
@@ -95,7 +95,7 @@ test('ori init --help', async () => {
   const { stdout, exitCode } = await run(['init', '--help'])
   expect(stdout).toMatchSnapshot('A5')
   expect(exitCode).toBe(0)
-})
+}, 10000)
 
 test.skip('ori dev', async () => {
   const project = await create('testServer')

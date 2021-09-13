@@ -30,7 +30,7 @@ export default function creatPackageTemplate(config: any, uninstalled?: boolean)
       ejs.renderFile(
         `${config.name}/package.json`,
         config,
-        (err: any, str: string) => {
+        (err: any, str = '') => {
           fs.writeFile(`${config.name}/package.json`, str, () => {
             console.log()
           })
@@ -39,7 +39,7 @@ export default function creatPackageTemplate(config: any, uninstalled?: boolean)
       ejs.renderFile(
         `${config.name}/vite.config.ts`,
         config,
-        (err: any, str: string) => {
+        (err: any, str = '') => {
           fs.writeFile(`${config.name}/vite.config.ts`, str, () => {
             console.log()
           })
