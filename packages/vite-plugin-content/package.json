@@ -1,6 +1,6 @@
 {
   "name": "@originjs/vite-plugin-content",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "@originjs",
   "license": "MulanPSL2",
   "description": "A vite plugin that convert xml, yaml, xlsx, csv, toml, ini, properties, plist files to ES6 modules",
@@ -21,7 +21,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@rollup/pluginutils": "^4.1.1",
     "@types/estree": "^0.0.50",
     "@types/ini": "^1.3.30",
     "@types/js-yaml": "^4.0.2",
@@ -29,6 +28,7 @@
     "@types/xml2js": "^0.4.9"
   },
   "dependencies": {
+    "@rollup/pluginutils": "^4.1.1",
     "@iarna/toml": "^2.2.5",
     "csv-parse": "^4.16.0",
     "ini": "^2.0.0",
