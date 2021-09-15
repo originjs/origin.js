@@ -27,13 +27,26 @@ export function getFiles(
 }
 
 /**
- * sort files, make sure that index.vue is the first element of each directory
+ * sort files:
+ * 1. treat xx, _xx, _$xx as same name
+ * 2. in each directory: index.vue is the first, _.vue is the last
  * @param filePaths
  */
 export function sortFilePaths(filePaths: string[]): string[] {
+  function normalStr(str: string): string {
+    if (!str.startsWith('/')) {
+      str = `/${str}`
+    }
+    return str
+      .replace('index.vue', '') // remove 'index.vue'
+      .replace('_.vue', '~.vue') // '_.vue' => '~.vue'
+      .replace(/\/_/g, '/') // '/_' => '/'
+      .replace(/\/\$/g, '/') // '/$' => '/'
+  }
+
   filePaths.sort((a, b) => {
-    a = a.endsWith('index.vue') ? a.slice(0, a.length - 9) : a
-    b = b.endsWith('index.vue') ? b.slice(0, b.length - 9) : b
+    a = normalStr(a)
+    b = normalStr(b)
     if (a < b) {
       return -1
     }
