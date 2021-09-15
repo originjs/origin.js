@@ -11,63 +11,104 @@ function isDynamicNodeName(routeNodeName: string): boolean {
 }
 
 /**
- * Return whether the current route node name represents a catch all route
+ * Return whether the current route node name represents a nested route
  * @param routeNodeName: route node name
  */
-function isCatchAllNodeName(routeNodeName: string): boolean {
-  return routeNodeName === '_'
+function isNestedNodeName(routeNodeName: string): boolean {
+  return routeNodeName.startsWith('$')
+}
+
+/**
+ * Return whether the current route node name represents a dynamic and nested route
+ * @param routeNodeName: route node name
+ */
+function isDynamicNestedNodeName(routeNodeName: string): boolean {
+  return routeNodeName.startsWith('_$')
+}
+
+function findParentRoute(
+  parentPath: string,
+  routes: Route[] | undefined,
+): Route | undefined {
+  if (!routes || routes.length < 1) {
+    return
+  }
+  for (const route of routes) {
+    if (route.path === parentPath) {
+      return route
+    }
+    const child = findParentRoute(parentPath, route.children)
+    if (child) {
+      return child
+    }
+  }
 }
 
 export function generateRoutes(pages: Page[], options: PluginOptions): Route[] {
   let routes: Route[] = []
-  pages.forEach(page => {
+  for (const page of pages) {
     const { pathFromPagesDir, pathFromRootDir } = page
-    // remove file extension, split with '/' to get route nodes
-    const routeNodeNames = pathFromPagesDir.split('.')[0].split('/')
 
     const route: Route = {
-      name: '',
       path: '',
       component: `() => import('/${page.pathFromRootDir}')`,
       meta: { layout: getLayoutProperties(pathFromRootDir) },
     }
 
-    let parentRoutes = routes
-    for (const routeNodeName of routeNodeNames) {
-      const isDynamic = isDynamicNodeName(routeNodeName)
-      const isCatchAll = isCatchAllNodeName(routeNodeName)
+    const routeNodeNames = pathFromPagesDir.split('.')[0].split('/')
+    let lastNodeName = routeNodeNames.pop()
+    if (lastNodeName === 'index') {
+      // treat xx/index as xx/, update lastNodeName
+      lastNodeName = routeNodeNames.pop()
+    } else if (lastNodeName === '_') {
+      // treat /_ as catch all route
+      lastNodeName = CATCH_ALL_ROUTE_PATH.slice(1)
+    }
 
-      if (route.name) {
-        if (routeNodeName !== 'index') {
-          route.name += `-${routeNodeName}`
-        }
+    // special case for 'index.vue' => '/'
+    if (!lastNodeName) {
+      route.path = '/'
+      routes.push(route)
+      continue
+    }
+
+    // setup parent route path
+    for (const nodeName of routeNodeNames) {
+      if (isDynamicNodeName(nodeName)) {
+        route.path += `/:${nodeName.slice(1)}`
+      } else if (isNestedNodeName(nodeName)) {
+        route.path += `/${nodeName.slice(1)}`
+      } else if (isDynamicNestedNodeName(nodeName)) {
+        route.path += `/:${nodeName.slice(2)}`
       } else {
-        route.name = routeNodeName
-      }
-      const parentRoute = parentRoutes.find(pRoute => pRoute.name == route.name)
-
-      if (parentRoute) {
-        // init parentRoute.children, update parentRoutes
-        parentRoute.children = parentRoute.children || []
-        parentRoutes = parentRoute.children
-      }
-
-      if (isDynamic) {
-        if (isCatchAll) {
-          route.path = CATCH_ALL_ROUTE_PATH
-        } else {
-          route.path += `/:${routeNodeName.slice(1)}`
-        }
-      } else {
-        if (routeNodeName !== 'index') {
-          route.path += `/${routeNodeName}`
-        } else if (route.path === '') {
-          route.path += `/`
-        }
+        route.path += `/${nodeName}`
       }
     }
-    parentRoutes.push(route)
-  })
+
+    const isDynamic = isDynamicNodeName(lastNodeName)
+    const isNested = isNestedNodeName(lastNodeName)
+    const isDynamicNested = isDynamicNestedNodeName(lastNodeName)
+    if (isNested || isDynamicNested) {
+      const parentRoute = findParentRoute(route.path || '/', routes)
+      if (parentRoute) {
+        if (isNested) {
+          route.path += `/${lastNodeName.slice(1)}`
+        } else if (isDynamicNested) {
+          route.path += `/:${lastNodeName.slice(2)}`
+        }
+        parentRoute.children = parentRoute.children || []
+        parentRoute.children.push(route)
+      } else {
+        console.log('vite-plugin-pages error: can not find parent route')
+      }
+    } else if (isDynamic) {
+      route.path += `/:${lastNodeName.slice(1)}`
+      routes.push(route)
+    } else {
+      route.path += `/${lastNodeName}`
+      routes.push(route)
+    }
+  }
 
   // find and only keep first catch all route, move it to last
   const catchAllRoute = routes.find(
