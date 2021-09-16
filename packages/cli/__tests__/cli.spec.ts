@@ -19,7 +19,7 @@ test('ori --help', async () => {
 test('ori init without app-name', async () => {
   try {
     await run(['init'])
-  } catch (e) {
+  } catch (e: any) {
     expect(e.stderr).toContain("error: missing required argument 'app-name'")
   }
 }, 10000)
