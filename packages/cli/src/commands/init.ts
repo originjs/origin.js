@@ -41,7 +41,7 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
           fs.mkdirSync(path.join(dirNew, item))
           walkDir(path.join(dirOld, item), path.join(dirNew, item))
         } else {
-          fs.copyFile(path.join(dirOld, item), path.join(dirNew, item))
+          fs.copyFileSync(path.join(dirOld, item), path.join(dirNew, item))
         }
       })
     }

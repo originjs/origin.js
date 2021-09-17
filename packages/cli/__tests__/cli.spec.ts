@@ -28,7 +28,7 @@ test('ori init with failed arguments', async () => {
   try {
     const { stdout } = await run(['init', 'testInitFailedArguments', '-a'])
     expect(stdout).toMatch(`Would you like to use \`ori init -d -a\`?`)
-  } catch (e) {
+  } catch (e: any) {
     console.log(e)
   }
 }, 10000)
@@ -38,7 +38,7 @@ test('ori init with all plugins', async () => {
 
   try {
     expect(project.has('index.html')).toBe(true)
-    const indexContent = await project.read('index.html')
+    const indexContent = project.read('index.html')
     expect(indexContent).toMatch(
       `<script type="module" src="/src/main.ts"></script>`,
     )
@@ -51,11 +51,11 @@ test('ori init with all plugins', async () => {
     expect(project.has('./src/assets')).toBe(true)
 
     expect(project.has('package.json')).toBe(true)
-    const packageConfig = await project.read('package.json')
+    const packageConfig = project.read('package.json')
     expect(packageConfig).toMatchSnapshot('A3')
 
     expect(project.has('vite.config.ts')).toBe(true)
-    const viteConfig = await project.read('vite.config.ts')
+    const viteConfig = project.read('vite.config.ts')
     expect(viteConfig).toMatchSnapshot('A3')
   } finally {
     if (project) {
@@ -69,7 +69,7 @@ test('ori init without plugins', async () => {
 
   try {
     expect(project.has('index.html')).toBe(true)
-    const indexContent = await project.read('index.html')
+    const indexContent = project.read('index.html')
     expect(indexContent).toMatch(
       `<script type="module" src="/src/main.ts"></script>`,
     )
@@ -78,11 +78,11 @@ test('ori init without plugins', async () => {
     expect(project.has('./src/App.vue')).toBe(true)
 
     expect(project.has('package.json')).toBe(true)
-    const packageConfig = await project.read('package.json')
+    const packageConfig = project.read('package.json')
     expect(packageConfig).toMatchSnapshot('A4')
 
     expect(project.has('vite.config.ts')).toBe(true)
-    const viteConfig = await project.read('vite.config.ts')
+    const viteConfig = project.read('vite.config.ts')
     expect(viteConfig).toMatchSnapshot('A4')
   } finally {
     if (project) {
