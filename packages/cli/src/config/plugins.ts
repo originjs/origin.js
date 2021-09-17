@@ -5,14 +5,18 @@ export type PluginChoiceOption = {
     options?: string
 }
 
+const indentLength = 6
+const indent: string = ' '.repeat(indentLength)
+const indentEnd: string = ' '.repeat(indentLength - 2)
+
 const componentsPluginOptions = `{
-      // allow auto load markdown components under \`./src/components/\`
-      extensions: ['vue', 'md'],
-      // allow typescript
-      dts: true,
-      // allow auto import and register components used in markdown
-      include: [/\\.vue$/, /\\.vue\\?vue/, /\\.md$/],
-    }`
+${indent}// allow auto load markdown components under \`./src/components/\`
+${indent}extensions: ['vue', 'md'],
+${indent}// allow typescript
+${indent}dts: true,
+${indent}// allow auto import and register components used in markdown
+${indent}include: [/\\.vue$/, /\\.vue\\?vue/, /\\.md$/],
+${indentEnd}}`
 
 export const assetsOption: PluginChoiceOption = {
     name: 'assets',
