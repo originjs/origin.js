@@ -9,27 +9,17 @@ describe('assetsTest', () => {
       filename: indexHtmlPath,
     })
 
-    expect(transformResult.length).toBe(4)
+    expect(transformResult.length).toBe(2)
 
     expect(transformResult[0].tag).toBe('link')
     expect(transformResult[0].injectTo).toBe('head')
     expect(transformResult[0].attrs.rel).toBe('stylesheet')
-    expect(transformResult[0].attrs.href).toBe('/src/assets/abc/global-d.css')
+    expect(transformResult[0].attrs.href).toBe('/src/assets/deep/global-test.css')
 
     expect(transformResult[1].tag).toBe('link')
     expect(transformResult[1].injectTo).toBe('head')
     expect(transformResult[1].attrs.rel).toBe('stylesheet')
-    expect(transformResult[1].attrs.href).toBe('/src/assets/global-a.css')
-
-    expect(transformResult[2].tag).toBe('link')
-    expect(transformResult[2].injectTo).toBe('head')
-    expect(transformResult[2].attrs.rel).toBe('stylesheet')
-    expect(transformResult[2].attrs.href).toBe('/src/assets/global-b.scss')
-
-    expect(transformResult[3].tag).toBe('link')
-    expect(transformResult[3].injectTo).toBe('head')
-    expect(transformResult[3].attrs.rel).toBe('stylesheet')
-    expect(transformResult[3].attrs.href).toBe('/src/assets/global-c.less')
+    expect(transformResult[1].attrs.href).toBe('/src/assets/global-test.css')
   })
 
   test('global css shallow transform test', () => {
@@ -39,22 +29,12 @@ describe('assetsTest', () => {
       filename: indexHtmlPath,
     })
 
-    expect(transformResult.length).toBe(3)
+    expect(transformResult.length).toBe(1)
 
     expect(transformResult[0].tag).toBe('link')
     expect(transformResult[0].injectTo).toBe('head')
     expect(transformResult[0].attrs.rel).toBe('stylesheet')
-    expect(transformResult[0].attrs.href).toBe('/src/assets/global-a.css')
-
-    expect(transformResult[1].tag).toBe('link')
-    expect(transformResult[1].injectTo).toBe('head')
-    expect(transformResult[1].attrs.rel).toBe('stylesheet')
-    expect(transformResult[1].attrs.href).toBe('/src/assets/global-b.scss')
-
-    expect(transformResult[2].tag).toBe('link')
-    expect(transformResult[2].injectTo).toBe('head')
-    expect(transformResult[2].attrs.rel).toBe('stylesheet')
-    expect(transformResult[2].attrs.href).toBe('/src/assets/global-c.less')
+    expect(transformResult[0].attrs.href).toBe('/src/assets/global-test.css')
   })
 
   test('global css Config directory transform test', () => {
@@ -64,21 +44,39 @@ describe('assetsTest', () => {
       filename: indexHtmlPath,
     })
 
-    expect(transformResult.length).toBe(3)
+    expect(transformResult.length).toBe(1)
 
     expect(transformResult[0].tag).toBe('link')
     expect(transformResult[0].injectTo).toBe('head')
     expect(transformResult[0].attrs.rel).toBe('stylesheet')
-    expect(transformResult[0].attrs.href).toBe('/src/stylesheets/global-e.css')
+    expect(transformResult[0].attrs.href).toBe('/src/stylesheets/global-test.css')
+  })
 
-    expect(transformResult[1].tag).toBe('link')
-    expect(transformResult[1].injectTo).toBe('head')
-    expect(transformResult[1].attrs.rel).toBe('stylesheet')
-    expect(transformResult[1].attrs.href).toBe('/src/stylesheets/global-f.scss')
+  test('global sass transform test', () => {
+    const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const plugin = assets()
+    // @ts-ignore
+    plugin.transformIndexHtml.transform('', {
+      filename: indexHtmlPath,
+    })
+    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.scss')
+    // @ts-ignore
+    const transformResult = plugin.transform('', id).code.trim()
 
-    expect(transformResult[2].tag).toBe('link')
-    expect(transformResult[2].injectTo).toBe('head')
-    expect(transformResult[2].attrs.rel).toBe('stylesheet')
-    expect(transformResult[2].attrs.href).toBe('/src/stylesheets/global-g.less')
+    expect(transformResult).toBe(`@import "global-test1.scss"; @import "global-test2.scss";`)
+  })
+
+  test('global less transform test', () => {
+    const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const plugin = assets()
+    // @ts-ignore
+    plugin.transformIndexHtml.transform('', {
+      filename: indexHtmlPath,
+    })
+    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.less')
+    // @ts-ignore
+    const transformResult = plugin.transform('', id).code.trim()
+
+    expect(transformResult).toBe(`@import "global-test1.less"; @import "global-test2.less";`)
   })
 })
