@@ -1,7 +1,7 @@
 {
-  "name": "@originjs/vite-plugin-assets",
+  "name": "@originjs/vite-plugin-global-style",
   "version": "1.0.0",
-  "description": "A vite plugin that automatically adds CSS/SASS/LESS files named at the beginning of global- to the global style",
+  "description": "A vite plugin that automatically adds CSS/SASS/LESS files named at the beginning of global to the global style",
   "main": "dist/index.js",
   "files": [
     "src",

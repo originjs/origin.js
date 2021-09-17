@@ -18,41 +18,47 @@ const DEFAULT_OPTIONS: PluginOptions = {
   recursive: true,
 }
 
-const GLOBALCSS = /^global-.*\.css$/
-const GLOBALSASS = /^global-.*\.scss$/
-const GLOBALLESS = /^global-.*\.less$/
+const GLOBALCSS = /^global.*\.css$/
+const GLOBALSASS = /^global.*\.scss$/
+const GLOBALLESS = /^global.*\.less$/
 
-//Get the path of the desired style sheet whose name starts with 'global-'
-function searchGlobalCss(
+//Get the path of the desired style sheet whose name starts with 'global'
+function searchGlobalStyle(
   rootDir: string,
   options: PluginOptions,
+  extension: string,
 ): Array<string> {
-  let globalCssPaths: Array<string> = []
+  let globalStylePaths: Array<string> = []
   fs.readdirSync(rootDir).forEach(item => {
     const targetPath = path.resolve(rootDir, item)
     if (fs.statSync(targetPath).isDirectory() && options.recursive) {
-      globalCssPaths = globalCssPaths.concat(searchGlobalCss(targetPath, options))
+      globalStylePaths = globalStylePaths.concat(
+        searchGlobalStyle(targetPath, options, extension),
+      )
     } else {
-      if (options.cssEnabled && GLOBALCSS.test(item)) {
-        globalCssPaths.push(targetPath)
+      if (extension === '.css' && GLOBALCSS.test(item)) {
+        globalStylePaths.push(targetPath)
       }
-      if (options.sassEnabled && GLOBALSASS.test(item)) {
-        globalCssPaths.push(targetPath)
+      if (extension === '.scss' && GLOBALSASS.test(item)) {
+        globalStylePaths.push(targetPath)
       }
-      if (options.lessEnabled && GLOBALLESS.test(item)) {
-        globalCssPaths.push(targetPath)
+      if (extension === '.less' && GLOBALLESS.test(item)) {
+        globalStylePaths.push(targetPath)
       }
     }
   })
 
-  return globalCssPaths
+  return globalStylePaths
 }
 
 export default (options: PluginOptions = {}): Plugin => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
+  let SASSFilePaths: Array<string>
+  let LESSFilePaths: Array<string>
 
   return {
-    name: 'vite:assets',
+    name: 'vite:global-style',
+    enforce: 'pre',
     transformIndexHtml: {
       enforce: 'pre',
       transform(
@@ -65,24 +71,62 @@ export default (options: PluginOptions = {}): Plugin => {
           '..',
           opts.sourcePath!,
         )
-        const filePaths: Array<string> = searchGlobalCss(assetsPath, opts)
+        const CSSFilePaths: Array<string> = searchGlobalStyle(
+          assetsPath,
+          opts,
+          '.css',
+        )
+        SASSFilePaths = searchGlobalStyle(assetsPath, opts, '.scss')
+        LESSFilePaths = searchGlobalStyle(assetsPath, opts, '.less')
 
-        filePaths.forEach(filePath => {
-          filePath = filePath
-            .replace(assetsPath, '/' + opts.sourcePath!)
-            .replace(/\\/g, '/')
-          HtmlTagDescriptors.push({
-            tag: 'link',
-            attrs: {
-              rel: 'stylesheet',
-              href: filePath,
-            },
-            injectTo: 'head',
+        if (opts.cssEnabled) {
+          CSSFilePaths.forEach(filePath => {
+            filePath = filePath
+              .replace(assetsPath, '/' + opts.sourcePath!)
+              .replace(/\\/g, '/')
+            HtmlTagDescriptors.push({
+              tag: 'link',
+              attrs: {
+                rel: 'stylesheet',
+                href: filePath,
+              },
+              injectTo: 'head',
+            })
           })
-        })
 
-        return HtmlTagDescriptors
+          return HtmlTagDescriptors
+        }
+        return []
       },
+    },
+    transform(code: string, id: string) {
+      if (/\.scss/g.test(id) && opts.sassEnabled && SASSFilePaths.length > 0) {
+        const globalSASSImport = SASSFilePaths.map(filePath => {
+          filePath = path
+            .relative(path.join(id, '..'), filePath)
+            .replace(/\\/g, '/')
+          return `@import "${filePath}";`
+        }).join(' ')
+        return {
+          code: `${globalSASSImport}\n${code}`,
+          map: null,
+        }
+      }
+
+      if (/\.less/g.test(id) && opts.lessEnabled && LESSFilePaths.length > 0) {
+        const globalLESSImport = LESSFilePaths.map(filePath => {
+          filePath = path
+            .relative(path.join(id, '..'), filePath)
+            .replace(/\\/g, '/')
+          return `@import "${filePath}";`
+        }).join(' ')
+        return {
+          code: `${globalLESSImport}\n${code}`,
+          map: null,
+        }
+      }
+
+      return null
     },
   }
 }
