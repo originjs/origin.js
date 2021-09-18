@@ -23,7 +23,7 @@ type StyleData = {
   regex: RegExp,
   extension: string,
   globalStylePaths: Array<string>,
-  isEnabled: Function
+  isEnabled: (opt: PluginOptions) => boolean | undefined
 }
 
 const GLOBAL_STYLES_DATA: StyleData[] = [
@@ -34,7 +34,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.cssEnabled
-    }
+    },
   },
   {
     name: 'sass',
@@ -43,7 +43,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.sassEnabled
-    }
+    },
   },
   {
     name: 'less',
@@ -52,7 +52,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.lessEnabled
-    }
+    },
   },
 ]
 
@@ -109,7 +109,7 @@ export default (options: PluginOptions = {}): Plugin => {
           const cssStylesData = GLOBAL_STYLES_DATA.filter(value => {
             return value.name === 'css'
           })[0]
-          let CSSFilePaths = cssStylesData.globalStylePaths
+          const CSSFilePaths = cssStylesData.globalStylePaths
 
           CSSFilePaths.forEach(filePath => {
             filePath = filePath
@@ -127,7 +127,7 @@ export default (options: PluginOptions = {}): Plugin => {
 
           return HtmlTagDescriptors
         }
-        
+
         return []
       },
     },
@@ -136,7 +136,7 @@ export default (options: PluginOptions = {}): Plugin => {
       GLOBAL_STYLES_DATA.forEach(data => {
         if (data.name === 'css') return
 
-        let regex = new RegExp(data.extension + '$', 'g')
+        const regex = new RegExp(data.extension + '$', 'g')
         if (regex.test(id)
           && data.globalStylePaths.length > 0
           && data.isEnabled(opts)
