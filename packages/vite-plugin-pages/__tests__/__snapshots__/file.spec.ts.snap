@@ -2,36 +2,36 @@
 
 exports[`files get vue files 1`] = `
 Array [
-  "index.vue",
-  "user/index.vue",
-  "user/foo.vue",
-  "user/_id.vue",
-  "user/$nest_user/index.vue",
-  "user/$nest_user/foo.vue",
-  "user/$nest_user/$zoom.vue",
-  "user/$nest_user/_.vue",
-  "user/not_nest_user/foo.vue",
-  "user/not_nest_user/_.vue",
-  "user/zoom.vue",
   "$zoom.vue",
   "_.vue",
+  "index.vue",
+  "user/$nest_user/$zoom.vue",
+  "user/$nest_user/_.vue",
+  "user/$nest_user/foo.vue",
+  "user/$nest_user/index.vue",
+  "user/_id.vue",
+  "user/foo.vue",
+  "user/index.vue",
+  "user/not_nest_user/_.vue",
+  "user/not_nest_user/foo.vue",
+  "user/zoom.vue",
 ]
 `;
 
 exports[`files get vue files 2`] = `
 Array [
-  "index.vue",
-  "user/index.vue",
-  "user/foo.vue",
-  "user/_id.vue",
-  "user/$nest_user/index.vue",
-  "user/$nest_user/foo.vue",
-  "user/$nest_user/$zoom.vue",
-  "user/$nest_user/_.vue",
-  "user/not_nest_user/foo.vue",
-  "user/not_nest_user/_.vue",
-  "user/zoom.vue",
   "$zoom.vue",
   "_.vue",
+  "index.vue",
+  "user/$nest_user/$zoom.vue",
+  "user/$nest_user/_.vue",
+  "user/$nest_user/foo.vue",
+  "user/$nest_user/index.vue",
+  "user/_id.vue",
+  "user/foo.vue",
+  "user/index.vue",
+  "user/not_nest_user/_.vue",
+  "user/not_nest_user/foo.vue",
+  "user/zoom.vue",
 ]
 `;
