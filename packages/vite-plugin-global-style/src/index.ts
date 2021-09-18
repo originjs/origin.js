@@ -20,8 +20,8 @@ const DEFAULT_OPTIONS: PluginOptions = {
 
 type StyleData = {
   name: string,
-  regex: RegExp,
-  extension: string,
+  globalRegex: RegExp,
+  extensionRegex: RegExp,
   globalStylePaths: Array<string>,
   isEnabled: (opt: PluginOptions) => boolean | undefined
 }
@@ -29,8 +29,8 @@ type StyleData = {
 const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'css',
-    regex: /^global.*\.css$/,
-    extension: '.css',
+    globalRegex: /^global.*\.css$/,
+    extensionRegex: /.css$/g,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.cssEnabled
@@ -38,8 +38,8 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   },
   {
     name: 'sass',
-    regex: /^global.*\.scss$/,
-    extension: '.scss',
+    globalRegex: /^global.*\.scss$/,
+    extensionRegex: /.scss$/g,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.sassEnabled
@@ -47,8 +47,17 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   },
   {
     name: 'less',
-    regex: /^global.*\.less$/,
-    extension: '.less',
+    globalRegex: /^global.*\.less$/,
+    extensionRegex: /.less$/g,
+    globalStylePaths: [],
+    isEnabled: (opt: PluginOptions) => {
+      return opt.lessEnabled
+    },
+  },
+  {
+    name: 'stylus',
+    globalRegex: /^global.*\.styl(us)?$/,
+    extensionRegex: /.styl(us)?$/g,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.lessEnabled
@@ -60,7 +69,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
 function searchGlobalStyle(
   rootDir: string,
   options: PluginOptions,
-  extension: string,
+  data: StyleData,
 ): Array<string> {
   let globalStylePaths: Array<string> = []
 
@@ -68,14 +77,12 @@ function searchGlobalStyle(
     const targetPath = path.resolve(rootDir, item)
     if (fs.statSync(targetPath).isDirectory() && options.recursive) {
       globalStylePaths = globalStylePaths.concat(
-        searchGlobalStyle(targetPath, options, extension),
+        searchGlobalStyle(targetPath, options, data),
       )
     } else {
-      GLOBAL_STYLES_DATA.forEach(data => {
-        if (data.extension === extension && data.regex.test(item)) {
-          globalStylePaths.push(targetPath)
-        }
-      })
+      if (data.globalRegex.test(item)) {
+        globalStylePaths.push(targetPath)
+      }
     }
   })
 
@@ -102,7 +109,7 @@ export default (options: PluginOptions = {}): Plugin => {
         )
 
         GLOBAL_STYLES_DATA.forEach(data => {
-          data.globalStylePaths = searchGlobalStyle(assetsPath, opts, data.extension)
+          data.globalStylePaths = searchGlobalStyle(assetsPath, opts, data)
         })
 
         if (opts.cssEnabled) {
@@ -136,8 +143,7 @@ export default (options: PluginOptions = {}): Plugin => {
       GLOBAL_STYLES_DATA.forEach(data => {
         if (data.name === 'css') return
 
-        const regex = new RegExp(data.extension + '$', 'g')
-        if (regex.test(id)
+        if (data.extensionRegex.test(id)
           && data.globalStylePaths.length > 0
           && data.isEnabled(opts)
         ) {
