@@ -1,15 +1,23 @@
 {
   "name": "@originjs/vite-plugin-global-style",
   "version": "1.0.0",
-  "description": "A vite plugin that automatically adds CSS/SASS/LESS files named at the beginning of global to the global style",
+  "author": "@originjs",
+  "license": "MulanPSL2",
+  "description": "A vite plugin that help you handle with global styles",
   "main": "dist/index.js",
   "files": [
     "src",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/originjs/origin.js"
+  },
+  "bugs": {
+    "url": "https://github.com/originjs/origin.js/issues"
+  },
+  "homepage": "https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-global-style",
   "scripts": {
     "build": "tsc -p tsconfig.json"
-  },
-  "author": "",
-  "license": "MulanPSL2"
+  }
 }
