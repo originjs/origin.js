@@ -7,6 +7,7 @@ export type PluginOptions = {
   cssEnabled?: boolean
   sassEnabled?: boolean
   lessEnabled?: boolean
+  stylusEnabled?: boolean
   recursive?: boolean
 }
 
@@ -15,6 +16,7 @@ const DEFAULT_OPTIONS: PluginOptions = {
   cssEnabled: true,
   sassEnabled: true,
   lessEnabled: true,
+  stylusEnabled: true,
   recursive: true,
 }
 
@@ -60,7 +62,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
     extensionRegex: /.styl(us)?$/g,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
-      return opt.lessEnabled
+      return opt.stylusEnabled
     },
   },
 ]
