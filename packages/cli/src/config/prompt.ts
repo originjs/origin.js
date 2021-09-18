@@ -1,4 +1,9 @@
-import { assetsOption, componentsOption, contentOption, pagesOption } from './plugins'
+import {
+  assetsOption,
+  componentsOption,
+  contentOption,
+  pagesOption,
+} from './plugins'
 
 export const promptList = [
   {

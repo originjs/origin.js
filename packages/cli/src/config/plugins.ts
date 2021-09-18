@@ -1,8 +1,8 @@
 export type PluginChoiceOption = {
-    name: string
-    package: string
-    path?: string
-    options?: string
+  name: string
+  package: string
+  path?: string
+  options?: string
 }
 
 const indentLength = 6
@@ -19,23 +19,23 @@ ${indent}include: [/\\.vue$/, /\\.vue\\?vue/, /\\.md$/],
 ${indentEnd}}`
 
 export const assetsOption: PluginChoiceOption = {
-    name: 'assets',
-    package: '@originjs/vite-plugin-assets',
+  name: 'assets',
+  package: '@originjs/vite-plugin-assets',
 }
 
 export const componentsOption: PluginChoiceOption = {
-    name: 'Components',
-    package: 'unplugin-vue-components',
-    path: '/vite.d.ts',
-    options: componentsPluginOptions,
+  name: 'Components',
+  package: 'unplugin-vue-components',
+  path: '/vite.d.ts',
+  options: componentsPluginOptions,
 }
 
 export const contentOption: PluginChoiceOption = {
-    name: 'content',
-    package: '@originjs/vite-plugin-content',
+  name: 'content',
+  package: '@originjs/vite-plugin-content',
 }
 
 export const pagesOption: PluginChoiceOption = {
-    name: 'pages',
-    package: '@originjs/vite-plugin-pages',
+  name: 'pages',
+  package: '@originjs/vite-plugin-pages',
 }

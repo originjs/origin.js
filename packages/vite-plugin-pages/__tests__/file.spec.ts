@@ -1,4 +1,4 @@
-import { getFiles, sortFilePaths } from '../src/files'
+import { getFiles } from '../src/files'
 
 describe('files', () => {
   const extensions = ['vue']
@@ -6,7 +6,7 @@ describe('files', () => {
   const winPagesDir = pagesDir.replace(/\//g, '\\')
 
   test('get vue files', () => {
-    expect(sortFilePaths(getFiles(pagesDir, extensions))).toMatchSnapshot()
-    expect(sortFilePaths(getFiles(winPagesDir, extensions))).toMatchSnapshot()
+    expect(getFiles(pagesDir, extensions).sort()).toMatchSnapshot()
+    expect(getFiles(winPagesDir, extensions).sort()).toMatchSnapshot()
   })
 })

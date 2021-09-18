@@ -5,7 +5,13 @@ import createPackageTemplate from '../template/createPackageTemplate'
 import chalk from 'chalk'
 import path from 'path'
 import { promptList } from '../config/prompt'
-import { PluginChoiceOption, assetsOption, componentsOption, contentOption, pagesOption } from '../config/plugins'
+import {
+  PluginChoiceOption,
+  assetsOption,
+  componentsOption,
+  contentOption,
+  pagesOption,
+} from '../config/plugins'
 
 type initCliOptions = {
   default?: boolean
