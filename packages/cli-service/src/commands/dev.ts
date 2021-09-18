@@ -4,7 +4,9 @@ import { createServer, ViteDevServer } from 'vite'
 import { DevPrinter } from '../Printer'
 import { loadPackageJson } from '../utils/file'
 
-export default async function (execPath?: string): Promise<ViteDevServer | null> {
+export default async function (
+  execPath?: string,
+): Promise<ViteDevServer | null> {
   const rootDir: string | undefined = execPath
     ? execPath
     : await pkgDir(process.cwd())

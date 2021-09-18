@@ -24,7 +24,10 @@ function changeFileName(filePath: string) {
   return p
 }
 
-export default function creatPackageTemplate(config: any, uninstalled?: boolean) {
+export default function creatPackageTemplate(
+  config: any,
+  uninstalled?: boolean,
+) {
   try {
     changeFileName(path.join(process.cwd(), config.name)).then(rs => {
       ejs.renderFile(

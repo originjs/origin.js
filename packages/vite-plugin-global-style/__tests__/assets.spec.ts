@@ -14,7 +14,9 @@ describe('assetsTest', () => {
     expect(transformResult[0].tag).toBe('link')
     expect(transformResult[0].injectTo).toBe('head')
     expect(transformResult[0].attrs.rel).toBe('stylesheet')
-    expect(transformResult[0].attrs.href).toBe('/src/assets/deep/global-test.css')
+    expect(transformResult[0].attrs.href).toBe(
+      '/src/assets/deep/global-test.css',
+    )
 
     expect(transformResult[1].tag).toBe('link')
     expect(transformResult[1].injectTo).toBe('head')
@@ -24,10 +26,9 @@ describe('assetsTest', () => {
 
   test('global css shallow transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const html = assets({ recursive: false }).transformIndexHtml
     // @ts-ignore
-    const transformResult = assets( { recursive: false } ).transformIndexHtml.transform('', {
-      filename: indexHtmlPath,
-    })
+    const transformResult = html.transform('', { filename: indexHtmlPath })
 
     expect(transformResult.length).toBe(1)
 
@@ -39,8 +40,9 @@ describe('assetsTest', () => {
 
   test('global css Config directory transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const html = assets({ sourcePath: 'src/stylesheets' }).transformIndexHtml
     // @ts-ignore
-    const transformResult = assets( { sourcePath: 'src/stylesheets' } ).transformIndexHtml.transform('', {
+    const transformResult = html.transform('', {
       filename: indexHtmlPath,
     })
 
@@ -49,7 +51,9 @@ describe('assetsTest', () => {
     expect(transformResult[0].tag).toBe('link')
     expect(transformResult[0].injectTo).toBe('head')
     expect(transformResult[0].attrs.rel).toBe('stylesheet')
-    expect(transformResult[0].attrs.href).toBe('/src/stylesheets/global-test.css')
+    expect(transformResult[0].attrs.href).toBe(
+      '/src/stylesheets/global-test.css',
+    )
   })
 
   test('global sass transform test', () => {
@@ -63,7 +67,9 @@ describe('assetsTest', () => {
     // @ts-ignore
     const transformResult = plugin.transform('', id).code.trim()
 
-    expect(transformResult).toBe(`@import "global-test1.scss"; @import "global-test2.scss";`)
+    expect(transformResult).toBe(
+      `@import "global-test1.scss"; @import "global-test2.scss";`,
+    )
   })
 
   test('global less transform test', () => {
@@ -77,6 +83,8 @@ describe('assetsTest', () => {
     // @ts-ignore
     const transformResult = plugin.transform('', id).code.trim()
 
-    expect(transformResult).toBe(`@import "global-test1.less"; @import "global-test2.less";`)
+    expect(transformResult).toBe(
+      `@import "global-test1.less"; @import "global-test2.less";`,
+    )
   })
 })
