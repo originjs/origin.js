@@ -1,7 +1,7 @@
 # vite-plugin-global-style
-`CSS`, `SASS`, `LESS` files named starting with `global` are automatically added to the vite global style.<br/>
+`CSS`, `SASS`, `LESS`, `Stylus` files named starting with `global` are automatically added to the vite global style.<br/>
 For global `CSS` styles, they will be added to the `index.html` and will affect all pages.<br/>
-For global `SASS`/`LESS` styles, they will be added to every `SASS`/`LESS` files using `@import XXXX`.
+For global `SASS`/`LESS`/`Stylus` styles, they will be added to every `SASS`/`LESS` files using `@import XXXX`.
 
 ## Install
 ```shell
@@ -39,25 +39,32 @@ export default {
   - Type: `boolean`
   - Default: `true`
 
-  Whether to automatically load the CSS global style.
+  Whether to automatically load the `CSS` global styles.
 
 - `sassEnabled`
 
   - Type: `boolean`
   - Default: `true`
 
-  Whether to automatically load the SASS global style.
+  Whether to automatically load the `SASS` global styles.
 
 - `lessEnabled`
 
   - Type: `boolean`
   - Default: `true`
 
-  Whether to automatically load the LESS global style.
+  Whether to automatically load the `LESS` global styles.
 
-  `recursive`
+- `stylusEnabled`
 
   - Type: `boolean`
   - Default: `true`
 
-  Whether to recursively search the global styles in the directory
+  Whether to automatically load the `Stylus` global styles.
+
+- `recursive`
+
+  - Type: `boolean`
+  - Default: `true`
+
+  Whether to recursively search the global styles in the `sourcePath` directory.
