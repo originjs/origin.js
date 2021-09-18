@@ -26,7 +26,6 @@ describe('globalStyleTest', () => {
 
   test('global css shallow transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
-    const html = assets({ recursive: false }).transformIndexHtml
     // @ts-ignore
     const transformResult = globalStylePlugin( { recursive: false } ).transformIndexHtml.transform('', {
       filename: indexHtmlPath,
@@ -42,7 +41,6 @@ describe('globalStyleTest', () => {
 
   test('global css Config directory transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
-    const html = assets({ sourcePath: 'src/stylesheets' }).transformIndexHtml
     // @ts-ignore
     const transformResult = globalStylePlugin( { sourcePath: 'src/stylesheets' } ).transformIndexHtml.transform('', {
       filename: indexHtmlPath,
