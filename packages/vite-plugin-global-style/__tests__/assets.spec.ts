@@ -1,11 +1,11 @@
 import path from 'path'
-import assets from '../src/index'
+import globalStylePlugin from '../src/index'
 
-describe('assetsTest', () => {
+describe('globalStyleTest', () => {
   test('global css depth transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     // @ts-ignore
-    const transformResult = assets().transformIndexHtml.transform('', {
+    const transformResult = globalStylePlugin().transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
 
@@ -25,7 +25,7 @@ describe('assetsTest', () => {
   test('global css shallow transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     // @ts-ignore
-    const transformResult = assets( { recursive: false } ).transformIndexHtml.transform('', {
+    const transformResult = globalStylePlugin( { recursive: false } ).transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
 
@@ -40,7 +40,7 @@ describe('assetsTest', () => {
   test('global css Config directory transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     // @ts-ignore
-    const transformResult = assets( { sourcePath: 'src/stylesheets' } ).transformIndexHtml.transform('', {
+    const transformResult = globalStylePlugin( { sourcePath: 'src/stylesheets' } ).transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
 
@@ -54,21 +54,21 @@ describe('assetsTest', () => {
 
   test('global sass transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
-    const plugin = assets()
+    const plugin = globalStylePlugin()
     // @ts-ignore
     plugin.transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
     const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.scss')
     // @ts-ignore
-    const transformResult = plugin.transform('', id).code.trim()
+    const transformResult = globalStylePlugin().transform('', id).code.trim()
 
     expect(transformResult).toBe(`@import "global-test1.scss"; @import "global-test2.scss";`)
   })
 
   test('global less transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
-    const plugin = assets()
+    const plugin = globalStylePlugin()
     // @ts-ignore
     plugin.transformIndexHtml.transform('', {
       filename: indexHtmlPath,
