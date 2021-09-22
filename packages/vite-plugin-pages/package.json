@@ -1,11 +1,11 @@
 {
   "name": "@originjs/vite-plugin-pages",
-  "version": "0.1.0",
-  "description": "vite-plugin-vue-pages",
+  "version": "1.0.0",
+  "author": "@originjs",
+  "license": "MulanPSL2",
+  "description": "a vite plugin that automatically generates route config for files in pages and layouts directory",
   "main": "dist/src/index.js",
   "repository": "https://github.com/originjs/origin.js.git",
-  "author": "PeterAlfredLee",
-  "license": "MIT",
   "files": [
     "dist",
     "pluginPages.d.ts"
