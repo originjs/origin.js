@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-pages",
+  "name": "@originjs/vite-plugin-pages",
   "version": "0.1.0",
   "description": "vite-plugin-vue-pages",
   "main": "dist/src/index.js",

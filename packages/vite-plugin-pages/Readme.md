@@ -44,7 +44,7 @@ Then import the `routes` generated from vite-plugin-pages, and create `router` i
 ```js
 
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from 'plugin-pages'
+import routes from 'virtual:plugin-pages'
 
 console.log(routes)
 
