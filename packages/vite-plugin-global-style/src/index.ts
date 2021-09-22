@@ -115,6 +115,7 @@ export default (options: PluginOptions = {}): Plugin => {
         })
 
         if (opts.cssEnabled) {
+          // inject the global css styles to the index.html
           const cssStylesData = GLOBAL_STYLES_DATA.filter(value => {
             return value.name === 'css'
           })[0]
@@ -143,12 +144,14 @@ export default (options: PluginOptions = {}): Plugin => {
     transform(code: string, id: string) {
       let result = null
       GLOBAL_STYLES_DATA.forEach(data => {
+        // the global css has already been handled in transformIndexHtml
         if (data.name === 'css') return
 
         if (data.extensionRegex.test(id)
           && data.globalStylePaths.length > 0
           && data.isEnabled(opts)
         ) {
+          // inject the global styles to corresponding files
           const globalImport = data.globalStylePaths.map(filePath => {
             filePath = path
               .relative(path.join(id, '..'), filePath)
