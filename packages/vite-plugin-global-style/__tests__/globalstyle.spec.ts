@@ -5,9 +5,12 @@ describe('globalStyleTest', () => {
   test('global css depth transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     // @ts-ignore
-    const transformResult = globalStylePlugin().transformIndexHtml.transform('', {
-      filename: indexHtmlPath,
-    })
+    const transformResult = globalStylePlugin().transformIndexHtml.transform(
+      '',
+      {
+        filename: indexHtmlPath,
+      },
+    )
 
     expect(transformResult.length).toBe(2)
 
@@ -26,8 +29,11 @@ describe('globalStyleTest', () => {
 
   test('global css shallow transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const html = globalStylePlugin({
+      recursive: false,
+    }).transformIndexHtml
     // @ts-ignore
-    const transformResult = globalStylePlugin( { recursive: false } ).transformIndexHtml.transform('', {
+    const transformResult = html.transform('', {
       filename: indexHtmlPath,
     })
 
@@ -41,8 +47,11 @@ describe('globalStyleTest', () => {
 
   test('global css Config directory transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const html = globalStylePlugin({
+      sourcePath: 'src/stylesheets',
+    })
     // @ts-ignore
-    const transformResult = globalStylePlugin( { sourcePath: 'src/stylesheets' } ).transformIndexHtml.transform('', {
+    const transformResult = html.transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
 

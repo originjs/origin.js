@@ -21,10 +21,10 @@ const DEFAULT_OPTIONS: PluginOptions = {
 }
 
 type StyleData = {
-  name: string,
-  globalRegex: RegExp,
-  extensionRegex: RegExp,
-  globalStylePaths: Array<string>,
+  name: string
+  globalRegex: RegExp
+  extensionRegex: RegExp
+  globalStylePaths: Array<string>
   isEnabled: (opt: PluginOptions) => boolean | undefined
 }
 
@@ -147,17 +147,20 @@ export default (options: PluginOptions = {}): Plugin => {
         // the global css has already been handled in transformIndexHtml
         if (data.name === 'css') return
 
-        if (data.extensionRegex.test(id)
-          && data.globalStylePaths.length > 0
-          && data.isEnabled(opts)
+        if (
+          data.extensionRegex.test(id) &&
+          data.globalStylePaths.length > 0 &&
+          data.isEnabled(opts)
         ) {
           // inject the global styles to corresponding files
-          const globalImport = data.globalStylePaths.map(filePath => {
-            filePath = path
-              .relative(path.join(id, '..'), filePath)
-              .replace(/\\/g, '/')
-            return `@import "${filePath}";`
-          }).join(' ')
+          const globalImport = data.globalStylePaths
+            .map(filePath => {
+              filePath = path
+                .relative(path.join(id, '..'), filePath)
+                .replace(/\\/g, '/')
+              return `@import "${filePath}";`
+            })
+            .join(' ')
           result = {
             code: `${globalImport}\n${code}`,
             map: null,
