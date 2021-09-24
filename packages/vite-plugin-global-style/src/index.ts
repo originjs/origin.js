@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import { Plugin, HtmlTagDescriptor } from 'vite'
+import { Plugin, HtmlTagDescriptor, HmrContext } from 'vite'
 
 export type PluginOptions = {
   sourcePath?: string
@@ -32,7 +32,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'css',
     globalRegex: /^global.*\.css$/,
-    extensionRegex: /.css$/g,
+    extensionRegex: /.css$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.cssEnabled
@@ -41,7 +41,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'sass',
     globalRegex: /^global.*\.scss$/,
-    extensionRegex: /.scss$/g,
+    extensionRegex: /.scss$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.sassEnabled
@@ -50,7 +50,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'less',
     globalRegex: /^global.*\.less$/,
-    extensionRegex: /.less$/g,
+    extensionRegex: /.less$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.lessEnabled
@@ -59,7 +59,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'stylus',
     globalRegex: /^global.*\.styl(us)?$/,
-    extensionRegex: /.styl(us)?$/g,
+    extensionRegex: /.styl(us)?$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.stylusEnabled
@@ -93,6 +93,7 @@ function searchGlobalStyle(
 
 export default (options: PluginOptions = {}): Plugin => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
+  let assetsPath: string
 
   return {
     name: 'vite:global-style',
@@ -104,11 +105,13 @@ export default (options: PluginOptions = {}): Plugin => {
         { filename }: { filename: string },
       ): Array<HtmlTagDescriptor> {
         const HtmlTagDescriptors: Array<HtmlTagDescriptor> = []
-        const assetsPath: string = path.resolve(
-          filename,
-          '..',
-          opts.sourcePath!,
-        )
+        if (!assetsPath) {
+          assetsPath = path.resolve(
+            filename,
+            '..',
+            opts.sourcePath!,
+          )
+        }
 
         GLOBAL_STYLES_DATA.forEach(data => {
           data.globalStylePaths = searchGlobalStyle(assetsPath, opts, data)
@@ -169,6 +172,18 @@ export default (options: PluginOptions = {}): Plugin => {
       })
 
       return result
+    },
+    handleHotUpdate(ctx: HmrContext) {
+      GLOBAL_STYLES_DATA.filter(data => {
+        const baseName = path.basename(ctx.file)
+        if (!data.globalRegex.test(baseName)) {
+          return false
+        }
+        return true
+      }).forEach(data => {
+        // search again to update global style paths
+        data.globalStylePaths = searchGlobalStyle(assetsPath, opts, data)
+      })
     },
   }
 }
