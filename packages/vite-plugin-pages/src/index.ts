@@ -1,8 +1,9 @@
-import { PluginOptions } from './types'
+import { PluginOptions, Route } from './types'
 import { Plugin } from 'vite'
 import { MODULE_NAME } from './constants'
 import { generateCode, generateRoutes } from './generates'
 import { getPages } from './pages'
+import { handleHmr } from './hmr'
 
 export default (
   userOptions: PluginOptions = {
@@ -13,6 +14,7 @@ export default (
   },
 ): Plugin => {
   const options: PluginOptions = Object.assign({}, userOptions)
+  let routes: Route[] | null = null
 
   return {
     name: 'vite:pages',
@@ -23,12 +25,20 @@ export default (
       }
       return null
     },
+    configureServer(server) {
+      handleHmr(server, () => {
+        routes = null
+      })
+    },
     async load(id) {
       if (id !== MODULE_NAME) {
         return
       }
-      const pages = getPages(options.pagesDir, options.extensions)
-      const routes = generateRoutes(pages, options)
+      if (!routes) {
+        const pages = getPages(options.pagesDir, options.extensions)
+        routes = generateRoutes(pages, options)
+      }
+
       return generateCode(routes)
     },
     async transform(_code, id) {
