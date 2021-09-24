@@ -37,7 +37,7 @@ describe('get config', () => {
 
     const serveConfig: InlineConfig = {
       configFile: false,
-      server: { host: '0.0.0.0', port: 3000, open: true, cors: true },
+      server: { port: 3000, open: true, cors: true },
       css: { postcss: { plugins: [] } },
       mode: 'development',
       publicDir: 'public',
@@ -99,7 +99,6 @@ describe('get config', () => {
     const serveConfig: any = {
       configFile: false,
       server: {
-        host: '0.0.0.0',
         port: 3000,
         open: true,
         cors: true,

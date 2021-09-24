@@ -58,6 +58,7 @@ test('ori init with all plugins', async () => {
     const viteConfig = project.read('vite.config.ts')
     expect(viteConfig).toMatchSnapshot('A3')
   } finally {
+    // convert cleaner to comments if you want to debug with project files
     if (project) {
       project.clear()
     }
