@@ -1,5 +1,5 @@
 ## Content
-Files other than vue in this dir will be auto-converted to ES6 modules.
+You can create necessary files other than vue and import them anywhere. They will be auto-converted to ES6 modules.
 
 ### Usage
 You can import `yaml`, `xml`, `xlsx`, `ini`, `toml`, `csv`, `plist` and `properties` as ES module files

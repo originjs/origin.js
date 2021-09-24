@@ -1,5 +1,5 @@
 ## Layouts
-You can create vue components in this dir to add page layouts. Layouts for all pages will be load automatically.
+Layouts for pages will be loaded automatically.
 
 ### Usage
 Add layout options to your page components.

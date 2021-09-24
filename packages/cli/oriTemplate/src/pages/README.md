@@ -1,5 +1,5 @@
-## File-based Routing
-Routes will be updated by tracking the file created in this dir.
+## Pages
+Routes will be configured automatically according to pages.
 
 ### Usage
 1. Normal file name: /user/foo.vue -> /user/foo

@@ -1,2 +1,2 @@
 ## Micro
-Origin.js supports Micro-Frontends integration like `Qiankun` and `federation`. Configurations can be created in this dir.
+Origin.js supports Micro-Frontends integration like `Qiankun` and `federation` and here the configurations should be.
