@@ -106,11 +106,7 @@ export default (options: PluginOptions = {}): Plugin => {
       ): Array<HtmlTagDescriptor> {
         const HtmlTagDescriptors: Array<HtmlTagDescriptor> = []
         if (!assetsPath) {
-          assetsPath = path.resolve(
-            filename,
-            '..',
-            opts.sourcePath!,
-          )
+          assetsPath = path.resolve(filename, '..', opts.sourcePath!)
         }
 
         GLOBAL_STYLES_DATA.forEach(data => {
