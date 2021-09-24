@@ -14,7 +14,7 @@ export default (
   },
 ): Plugin => {
   const options: PluginOptions = Object.assign({}, userOptions)
-  let routes:Route[]|null=null
+  let routes: Route[] | null = null
 
   return {
     name: 'vite:pages',
@@ -25,8 +25,8 @@ export default (
       }
       return null
     },
-    configureServer(server){
-      handleHmr(server,()=>{
+    configureServer(server) {
+      handleHmr(server, () => {
         routes = null
       })
     },
@@ -34,9 +34,9 @@ export default (
       if (id !== MODULE_NAME) {
         return
       }
-      if (!routes){
+      if (!routes) {
         const pages = getPages(options.pagesDir, options.extensions)
-         routes = generateRoutes(pages, options)
+        routes = generateRoutes(pages, options)
       }
 
       return generateCode(routes)
