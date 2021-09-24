@@ -1,6 +1,6 @@
 {
   "name": "@originjs/vite-plugin-global-style",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "@originjs",
   "license": "MulanPSL2",
   "description": "A vite plugin that help you handle with global styles",
