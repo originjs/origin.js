@@ -4,54 +4,67 @@ exports[`pages getPages 1`] = `
 Array [
   Object {
     "pathFromPagesDir": "index.vue",
+    "pathFromPagesDirNormalized": "/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
   },
   Object {
     "pathFromPagesDir": "user/index.vue",
+    "pathFromPagesDirNormalized": "/user/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
   },
   Object {
     "pathFromPagesDir": "user/foo.vue",
+    "pathFromPagesDirNormalized": "/user/foo.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue",
   },
   Object {
     "pathFromPagesDir": "user/_id.vue",
+    "pathFromPagesDirNormalized": "/user/id.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/index.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/index.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/foo.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/foo.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/foo.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/$zoom.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/$zoom.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/_.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/_.vue",
   },
   Object {
     "pathFromPagesDir": "user/not_nest_user/foo.vue",
+    "pathFromPagesDirNormalized": "/user/not_nest_user/foo.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/foo.vue",
   },
   Object {
     "pathFromPagesDir": "user/not_nest_user/_.vue",
+    "pathFromPagesDirNormalized": "/user/not_nest_user/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/_.vue",
   },
   Object {
     "pathFromPagesDir": "user/zoom.vue",
+    "pathFromPagesDirNormalized": "/user/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue",
   },
   Object {
     "pathFromPagesDir": "$zoom.vue",
+    "pathFromPagesDirNormalized": "/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue",
   },
   Object {
     "pathFromPagesDir": "_.vue",
+    "pathFromPagesDirNormalized": "/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_.vue",
   },
 ]
@@ -61,54 +74,67 @@ exports[`pages getPages 2`] = `
 Array [
   Object {
     "pathFromPagesDir": "index.vue",
+    "pathFromPagesDirNormalized": "/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
   },
   Object {
     "pathFromPagesDir": "user/index.vue",
+    "pathFromPagesDirNormalized": "/user/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
   },
   Object {
     "pathFromPagesDir": "user/foo.vue",
+    "pathFromPagesDirNormalized": "/user/foo.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue",
   },
   Object {
     "pathFromPagesDir": "user/_id.vue",
+    "pathFromPagesDirNormalized": "/user/id.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/index.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/index.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/foo.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/foo.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/foo.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/$zoom.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/$zoom.vue",
   },
   Object {
     "pathFromPagesDir": "user/$nest_user/_.vue",
+    "pathFromPagesDirNormalized": "/user/nest_user/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/_.vue",
   },
   Object {
     "pathFromPagesDir": "user/not_nest_user/foo.vue",
+    "pathFromPagesDirNormalized": "/user/not_nest_user/foo.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/foo.vue",
   },
   Object {
     "pathFromPagesDir": "user/not_nest_user/_.vue",
+    "pathFromPagesDirNormalized": "/user/not_nest_user/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/_.vue",
   },
   Object {
     "pathFromPagesDir": "user/zoom.vue",
+    "pathFromPagesDirNormalized": "/user/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue",
   },
   Object {
     "pathFromPagesDir": "$zoom.vue",
+    "pathFromPagesDirNormalized": "/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue",
   },
   Object {
     "pathFromPagesDir": "_.vue",
+    "pathFromPagesDirNormalized": "/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_.vue",
   },
 ]

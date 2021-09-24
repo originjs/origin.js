@@ -110,15 +110,6 @@ export function generateRoutes(pages: Page[], options: PluginOptions): Route[] {
     }
   }
 
-  // find and only keep first catch all route, move it to last
-  const catchAllRoute = routes.find(
-    route => route.path === CATCH_ALL_ROUTE_PATH,
-  )
-  if (catchAllRoute) {
-    routes = routes.filter(route => route.path !== CATCH_ALL_ROUTE_PATH)
-    routes.push(catchAllRoute)
-  }
-
   // set layouts to routes
   routes = setLayout(routes, options)
 

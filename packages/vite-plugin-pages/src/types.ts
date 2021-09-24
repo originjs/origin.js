@@ -39,6 +39,14 @@ export type Page = {
    * file path from root directory
    */
   pathFromRootDir: string
+
+  /**
+   * normalize pathFromRootDir, use to check file path and sort
+   * 1. make sure all path starts with /
+   * 2. convert path like /_xx, /_$xx to /xx
+   * 3. convert path like /_ to /~ (use for sort, because ASCII of ~ is 126)
+   */
+  pathFromPagesDirNormalized: string
 }
 
 export type Route = {
