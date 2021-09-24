@@ -1,7 +1,6 @@
 import type { InlineConfig } from 'vite'
 const serverConfig: InlineConfig = {
   server: {
-    host: '0.0.0.0',
     port: 3000,
     open: true,
     cors: true,
