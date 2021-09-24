@@ -19,8 +19,8 @@ ${indent}include: [/\\.vue$/, /\\.vue\\?vue/, /\\.md$/],
 ${indentEnd}}`
 
 export const assetsOption: PluginChoiceOption = {
-  name: 'assets',
-  package: '@originjs/vite-plugin-assets',
+  name: 'globalStyle',
+  package: '@originjs/vite-plugin-global-style',
 }
 
 export const componentsOption: PluginChoiceOption = {

@@ -59,7 +59,7 @@ exports[`ori init with all plugins: A3 1`] = `
   \\"devDependencies\\": {
     \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
-    \\"@originjs/vite-plugin-assets\\":\\"latest\\",
+    \\"@originjs/vite-plugin-global-style\\":\\"latest\\",
     \\"unplugin-vue-components\\":\\"latest\\",
     \\"@originjs/vite-plugin-content\\":\\"latest\\",
     \\"@originjs/vite-plugin-pages\\":\\"latest\\",
@@ -74,7 +74,7 @@ exports[`ori init with all plugins: A3 1`] = `
 exports[`ori init with all plugins: A3 2`] = `
 "import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import assets from '@originjs/vite-plugin-assets'
+import globalStyle from '@originjs/vite-plugin-global-style'
 import Components from 'unplugin-vue-components'
 import content from '@originjs/vite-plugin-content'
 import pages from '@originjs/vite-plugin-pages'
@@ -83,7 +83,7 @@ import pages from '@originjs/vite-plugin-pages'
 export default defineConfig({
   plugins:[
     vue(),
-    assets(),
+    globalStyle(),
     Components({
       // allow auto load markdown components under \`./src/components/\`
       extensions: ['vue', 'md'],
