@@ -1,13 +1,15 @@
 import { PluginOptions, Route } from './types'
 import { Plugin } from 'vite'
 import { MODULE_NAME } from './constants'
+import { join } from 'path'
 import { generateCode, generateRoutes } from './generates'
 import { getPages } from './pages'
 import { handleHmr } from './hmr'
+import { replaceWithSlash } from './utils'
 
 export default (
   userOptions: PluginOptions = {
-    root: process.cwd(),
+    root: replaceWithSlash(process.cwd()),
     pagesDir: 'src/pages',
     layoutsDir: 'src/layouts',
     extensions: ['vue'],
@@ -26,9 +28,14 @@ export default (
       return null
     },
     configureServer(server) {
-      handleHmr(server, () => {
-        routes = null
-      })
+      handleHmr(
+        server,
+        () => {
+          routes = null
+        },
+        join(options.root, options.pagesDir),
+        join(options.root, options.layoutsDir),
+      )
     },
     async load(id) {
       if (id !== MODULE_NAME) {
