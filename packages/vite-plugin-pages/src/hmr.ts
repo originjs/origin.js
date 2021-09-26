@@ -11,7 +11,12 @@ function getModule(server: ViteDevServer) {
   return
 }
 
-export function handleHmr(server: ViteDevServer, RouteClear: () => void) {
+export function handleHmr(
+  server: ViteDevServer,
+  RouteClear: () => void,
+  pagesDir: string,
+  layoutsDir: string,
+) {
   const { ws, watcher } = server
 
   function reloadRoutes() {
@@ -23,16 +28,17 @@ export function handleHmr(server: ViteDevServer, RouteClear: () => void) {
     return
   }
 
-  watcher.on('add', async file => {
-    console.log('add', file)
-    reloadRoutes()
-  })
+  function isPageOrLayoutFile(filePath: string): boolean {
+    return filePath.startsWith(pagesDir) || filePath.startsWith(layoutsDir)
+  }
 
-  watcher.on('unlink', async file => {
-    reloadRoutes()
-  })
-
-  watcher.on('change', async file => {
-    reloadRoutes()
+  const events = ['add', 'unlink', 'change']
+  events.forEach(event => {
+    watcher.on(event, async file => {
+      if (isPageOrLayoutFile(file)) {
+        console.log(event, file)
+        reloadRoutes()
+      }
+    })
   })
 }
