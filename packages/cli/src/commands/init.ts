@@ -72,7 +72,7 @@ const ifDirExists = (name: any) => {
 }
 
 const checkOptions = async () => {
-  inquirer
+  await inquirer
     .prompt(promptList)
     .then((answers: any) => {
       Object.assign(defaultOptions, answers)
@@ -91,10 +91,10 @@ const checkOptions = async () => {
     })
 }
 
-const initializeModules = (name: any, uninstalled?: boolean) => {
+const initializeModules = async (name: any, uninstalled?: boolean) => {
   const spinnerCopy = ora('Downloading...')
   spinnerCopy.start()
-  cpdir(SOURCES_DIRECTORY, process.cwd(), name)
+  await cpdir(SOURCES_DIRECTORY, process.cwd(), name)
     .then(rs => {
       spinnerCopy.succeed()
       try {
@@ -147,7 +147,7 @@ export default async function init(
   }
 
   try {
-    initializeModules(name, options.uninstalled)
+    await initializeModules(name, options.uninstalled)
   } catch (error) {
     console.log(error)
     return false
