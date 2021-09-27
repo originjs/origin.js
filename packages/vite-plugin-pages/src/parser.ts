@@ -60,15 +60,6 @@ function setLayoutChildren(route: Route, options: PluginOptions, layouts: any) {
   }
 }
 
-export function setLayout(routes: Route[], options: PluginOptions) {
-  const layouts = getLayoutMap(
-    options.layoutsDir,
-    options.extensions,
-    options.excludes,
-  )
-  return routes.map(route => setLayoutChildren(route, options, layouts))
-}
-
 function hasDefaultLayout(layoutDir: string): boolean {
   const layoutFiles = getFiles(layoutDir, ['vue'])
   for (const file of layoutFiles) {
@@ -79,22 +70,48 @@ function hasDefaultLayout(layoutDir: string): boolean {
   return false
 }
 
-function getLayoutMap(
+export const layouts = new Map()
+
+export function initLayouts(
   directory: string | undefined,
   extensions: string[] | undefined,
   excludes?: string[],
 ) {
-  const layoutMap = new Map()
   if (!directory || !extensions) {
-    return layoutMap
+    return layouts
   }
   const layoutFiles = getFiles(directory, extensions, excludes)
 
   for (const file of layoutFiles) {
     const parsedFile = parse(file)
     const layoutPath = replaceWithSlash(join(directory, file))
-    layoutMap.set(parsedFile.name, `() => import('/${layoutPath}')`)
+    layouts.set(parsedFile.name, `() => import('/${layoutPath}')`)
   }
 
-  return layoutMap
+  return layouts
+}
+
+export function setLayout(routes: Route[], options: PluginOptions) {
+  return routes.map(route => setLayoutChildren(route, options, layouts))
+}
+
+export function updateLayouts(
+  event: string,
+  layoutsDir: string,
+  pathFromLayoutsDir: string,
+) {
+  // don't need to update before we call initLayouts
+  if (layouts.size === 0) {
+    return
+  }
+
+  const parsedFile = parse(pathFromLayoutsDir)
+  if (event === 'add') {
+    const layoutPath = replaceWithSlash(join(layoutsDir, pathFromLayoutsDir))
+    layouts.set(parsedFile.name, `() => import('/${layoutPath}')`)
+  } else if (event === 'unlink') {
+    layouts.delete(parsedFile.name)
+  } else if (event === 'change') {
+    // do nothing
+  }
 }

@@ -1,6 +1,7 @@
 import { generateRoutes } from '../src/generates'
-import { Page, PluginOptions } from '../src/types'
-import { getPages } from '../src/pages'
+import { PluginOptions } from '../src/types'
+import { initPages } from '../src/pages'
+import { initLayouts } from '../src/parser'
 
 describe('generates', () => {
   test('generateRoutes', () => {
@@ -10,7 +11,8 @@ describe('generates', () => {
       layoutsDir: 'packages/vite-plugin-pages/__tests__/assets/layouts',
       extensions: ['vue'],
     }
-    const pages: Page[] = getPages(options.pagesDir, options.extensions)
-    expect(generateRoutes(pages, options)).toMatchSnapshot()
+    initPages(options.pagesDir, options.extensions)
+    initLayouts(options.layoutsDir, options.extensions)
+    expect(generateRoutes(options)).toMatchSnapshot()
   })
 })

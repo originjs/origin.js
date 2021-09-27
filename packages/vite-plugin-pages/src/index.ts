@@ -1,11 +1,11 @@
-import { PluginOptions, Route } from './types'
+import { PluginOptions } from './types'
 import { Plugin } from 'vite'
 import { MODULE_NAME } from './constants'
-import { join } from 'path'
 import { generateCode, generateRoutes } from './generates'
-import { getPages } from './pages'
+import { initPages, pages } from './pages'
 import { handleHmr } from './hmr'
 import { replaceWithSlash } from './utils'
+import { initLayouts, layouts } from './parser'
 
 export default (
   userOptions: PluginOptions = {
@@ -16,7 +16,6 @@ export default (
   },
 ): Plugin => {
   const options: PluginOptions = Object.assign({}, userOptions)
-  let routes: Route[] | null = null
 
   return {
     name: 'vite:pages',
@@ -28,24 +27,20 @@ export default (
       return null
     },
     configureServer(server) {
-      handleHmr(
-        server,
-        () => {
-          routes = null
-        },
-        join(options.root, options.pagesDir),
-        join(options.root, options.layoutsDir),
-      )
+      handleHmr(server, options)
     },
     async load(id) {
       if (id !== MODULE_NAME) {
         return
       }
-      if (!routes) {
-        const pages = getPages(options.pagesDir, options.extensions)
-        routes = generateRoutes(pages, options)
+      const { pagesDir, layoutsDir, extensions } = options
+      if (pages.sortedPages.length === 0) {
+        initPages(pagesDir, extensions)
       }
-
+      if (layouts.size === 0) {
+        initLayouts(layoutsDir, extensions)
+      }
+      const routes = generateRoutes(options)
       return generateCode(routes)
     },
     async transform(_code, id) {
