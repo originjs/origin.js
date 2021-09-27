@@ -29,7 +29,7 @@ export type PluginOptions = {
   excludes?: string[]
 }
 
-export type Page = {
+export type PageFile = {
   /**
    * file path from pages directory
    */
@@ -47,6 +47,33 @@ export type Page = {
    * 3. convert path like /_ to /~ (use for sort, because ASCII of ~ is 126)
    */
   pathFromPagesDirNormalized: string
+}
+
+export type PageRoutePath = {
+  parentRoutePath: string
+
+  routePath: string
+
+  // Whether this route is a dynamic, nested or DynamicNested route
+  nestedRoute: boolean
+}
+
+export type Layout = {
+  layout: string
+}
+
+export type Page = PageFile & PageRoutePath & Layout
+
+export type Pages = {
+  /**
+   * a set of pathFromPagesDirNormalized
+   */
+  pathSet: Set<string>
+
+  /**
+   * array of sored pages
+   */
+  sortedPages: Page[]
 }
 
 export type Route = {

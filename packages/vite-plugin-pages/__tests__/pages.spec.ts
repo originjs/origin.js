@@ -1,4 +1,4 @@
-import { getPages, sortPages } from '../src/pages'
+import { initPages } from '../src/pages'
 
 describe('pages', () => {
   const extensions = ['vue']
@@ -6,7 +6,7 @@ describe('pages', () => {
   const winPagesDir = pagesDir.replace(/\//g, '\\')
 
   test('getPages', () => {
-    expect(sortPages(getPages(pagesDir, extensions))).toMatchSnapshot()
-    expect(sortPages(getPages(winPagesDir, extensions))).toMatchSnapshot()
+    expect(initPages(pagesDir, extensions).sortedPages).toMatchSnapshot()
+    expect(initPages(winPagesDir, extensions).sortedPages).toMatchSnapshot()
   })
 })
