@@ -26,7 +26,7 @@ export const assetsOption: PluginChoiceOption = {
 export const componentsOption: PluginChoiceOption = {
   name: 'Components',
   package: 'unplugin-vue-components',
-  path: '/vite.d.ts',
+  path: '/vite',
   options: componentsPluginOptions,
 }
 

@@ -3,8 +3,9 @@ node_modules
 dist
 coverage
 packages/cli/oriTemplate/*
-packages\cli\oriTemplate\_package.json
-packages\cli\oriTemplate\_vite.config.ts
+packages/cli/oriTemplate/_package.json
+packages/cli/oriTemplate/_vite.config.ts
+packages/cli/oriTemplate/src/main.ts
 
 # Examples
 

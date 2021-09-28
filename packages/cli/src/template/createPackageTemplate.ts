@@ -24,30 +24,15 @@ function changeFileName(filePath: string) {
   return p
 }
 
-export default function creatPackageTemplate(
+export default async function creatPackageTemplate(
   config: any,
   uninstalled?: boolean,
 ) {
   try {
-    changeFileName(path.join(process.cwd(), config.name)).then(rs => {
-      ejs.renderFile(
-        `${config.name}/package.json`,
-        config,
-        (err: any, str = '') => {
-          fs.writeFile(`${config.name}/package.json`, str, () => {
-            console.log()
-          })
-        },
-      )
-      ejs.renderFile(
-        `${config.name}/vite.config.ts`,
-        config,
-        (err: any, str = '') => {
-          fs.writeFile(`${config.name}/vite.config.ts`, str, () => {
-            console.log()
-          })
-        },
-      )
+    await changeFileName(path.join(process.cwd(), config.name)).then(rs => {
+      renderFile('package.json', config)
+      renderFile('vite.config.ts', config)
+      renderFile('src/main.ts', config)
       if (uninstalled) {
         return
       }
@@ -78,4 +63,15 @@ export default function creatPackageTemplate(
     console.error(chalk.red('Failed to change file name'))
     console.log(error)
   }
+}
+
+function renderFile(filePath: string, config: any) {
+  const renderPath: string = path.join(config.name, filePath)
+  ejs.renderFile(
+    renderPath,
+    config,
+    (err: any, str = '') => {
+      fs.writeFileSync(renderPath, str)
+    },
+  )
 }

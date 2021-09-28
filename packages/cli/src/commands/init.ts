@@ -24,6 +24,7 @@ type initProjectOptions = {
   version: string
   license: string
   plugins: PluginChoiceOption[]
+  hasPagePlugin?: boolean
 }
 
 const defaultOptions: initProjectOptions = {
@@ -145,6 +146,9 @@ export default async function init(
       pagesOption,
     ]
   }
+
+  const hasPagePlugin: boolean = defaultOptions.plugins.some(plugin => plugin.name === 'pages')
+  defaultOptions.hasPagePlugin = hasPagePlugin
 
   try {
     await initializeModules(name, options.uninstalled)
