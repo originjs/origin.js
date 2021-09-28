@@ -172,6 +172,10 @@
     opacity: 0.4;
 }
 
+.router-link-span {
+    margin: 10px 10px 10px 10px;
+}
+
 /* mobile device */
 @media screen and (max-width: 480px) {
     html {
