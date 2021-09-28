@@ -147,7 +147,9 @@ export default async function init(
     ]
   }
 
-  const hasPagePlugin: boolean = defaultOptions.plugins.some(plugin => plugin.name === 'pages')
+  const hasPagePlugin: boolean = defaultOptions.plugins.some(
+    plugin => plugin.name === 'pages',
+  )
   defaultOptions.hasPagePlugin = hasPagePlugin
 
   try {
