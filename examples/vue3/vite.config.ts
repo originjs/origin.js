@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [vue(), pluginAssets(), pluginContent(), pluginPages()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '/src'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 })
