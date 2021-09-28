@@ -4,7 +4,7 @@ import { updatePages } from './pages'
 import { PluginOptions } from './types'
 import { join } from 'path'
 import { updateLayouts } from './parser'
-import { replaceWithSlash } from './utils'
+import { log, replaceWithSlash } from './utils'
 
 function getModule(server: ViteDevServer) {
   const { moduleGraph } = server
@@ -49,14 +49,20 @@ export function handleHmr(server: ViteDevServer, options: PluginOptions) {
   const events = ['add', 'unlink', 'change']
   events.forEach(event => {
     watcher.on(event, async file => {
+      // only handle page or layout file event
       file = replaceWithSlash(file)
-      if (isPageFile(file)) {
-        console.log('pages', event, file)
+      const isPage = isPageFile(file)
+      const isLayout = isLayoutFile(file)
+      if (!isPage && !isLayout) {
+        return
+      }
+
+      log(`hmr: ${event} ${file}`)
+      if (isPage) {
         const pathFromPagesDir = getPathFromPagesDir(file)
         updatePages(event, pagesDir, pathFromPagesDir)
         reloadRoutes()
-      } else if (isLayoutFile(file)) {
-        console.log('layouts', event, file)
+      } else if (isLayout) {
         const pathFromLayoutsDir = getPathFromLayoutsDir(file)
         updateLayouts(event, layoutsDir, pathFromLayoutsDir)
         reloadRoutes()
