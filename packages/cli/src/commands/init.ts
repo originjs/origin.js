@@ -19,19 +19,15 @@ type initCliOptions = {
   uninstalled?: boolean
 }
 
-type initProjectOptions = {
-  name: string
-  version: string
-  license: string
-  plugins: PluginChoiceOption[]
-  hasPagePlugin?: boolean
-}
-
-const defaultOptions: initProjectOptions = {
+const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
   plugins: [],
+  pagesPluginImported: false,
+  globalStylePluginImported: false,
+  ComponentsPluginImported: false,
+  contentPluginImported: false,
 }
 
 function cpdir(dirOld: string, dirNew: string, name: string) {
@@ -147,10 +143,10 @@ export default async function init(
     ]
   }
 
-  const hasPagePlugin: boolean = defaultOptions.plugins.some(
-    plugin => plugin.name === 'pages',
-  )
-  defaultOptions.hasPagePlugin = hasPagePlugin
+  defaultOptions.plugins.forEach((plugin: PluginChoiceOption) => {
+    const pluginState = `${plugin.name}PluginImported`
+    defaultOptions[pluginState] = true
+  })
 
   try {
     await initializeModules(name, options.uninstalled)

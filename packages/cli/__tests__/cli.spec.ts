@@ -50,6 +50,9 @@ test('ori init with all plugins', async () => {
     expect(project.has('src/components')).toBe(true)
     expect(project.has('src/assets')).toBe(true)
 
+    const appFile = project.read('src/App.vue')
+    expect(appFile).toMatchSnapshot('A3')
+
     const mainFile = project.read('src/main.ts')
     expect(mainFile).toMatchSnapshot('A3')
 
@@ -84,6 +87,9 @@ test('ori init without plugins', async () => {
     expect(project.has('src/layouts')).toBe(true)
     expect(project.has('src/components')).toBe(true)
     expect(project.has('src/assets')).toBe(true)
+
+    const appFile = project.read('src/App.vue')
+    expect(appFile).toMatchSnapshot('A4')
 
     const mainFile = project.read('src/main.ts')
     expect(mainFile).toMatchSnapshot('A4')
