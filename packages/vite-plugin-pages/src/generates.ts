@@ -1,6 +1,7 @@
 import { setLayout } from './parser'
 import { PluginOptions, Route } from './types'
 import { pages } from './pages'
+import { error } from './utils'
 
 function findParentRoute(
   parentPath: string,
@@ -44,7 +45,9 @@ export function generateRoutes(options: PluginOptions): Route[] {
       parentRoute.children = parentRoute.children || []
       parentRoute.children.push(route)
     } else {
-      console.log('vite-plugin-pages error: can not find parent route')
+      error(
+        'Can not find parent route. Please check whether the index.vue file exists in the corresponding directory',
+      )
     }
   }
 

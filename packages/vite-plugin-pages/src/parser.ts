@@ -3,7 +3,7 @@ import fs from 'fs'
 import { join, parse } from 'path'
 import { getFiles } from './files'
 import { PluginOptions, Route } from './types'
-import { replaceWithSlash } from './utils'
+import { error, replaceWithSlash } from './utils'
 import { CATCH_ALL_ROUTE_PATH } from './constants'
 
 /**
@@ -26,7 +26,7 @@ export function getLayoutProperties(path: string) {
   if (pairs.length == 2 && pairs[0].trim() === 'layout') {
     layout = pairs[1].trim()
   } else {
-    console.error('layout property was set in wrong way!')
+    error('layout property was set in wrong way!')
   }
   return layout
 }

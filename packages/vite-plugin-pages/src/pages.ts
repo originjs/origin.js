@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { Page, PageRoutePath, Pages } from './types'
 import { getFiles } from './files'
-import { replaceWithSlash } from './utils'
+import { replaceWithSlash, warn } from './utils'
 import { CATCH_ALL_ROUTE_PATH } from './constants'
 import { getLayoutProperties } from './parser'
 
@@ -155,9 +155,7 @@ export const pages: Pages = {
 
 export function isDuplicatedPage(page: Page): boolean {
   if (pages.pathSet.has(page.pathFromPagesDirNormalized)) {
-    console.log(
-      `vite-plugin-pages warn: path of ${page.pathFromPagesDir} is Duplicated`,
-    )
+    warn(`path of ${page.pathFromPagesDir} is Duplicated, skip`)
     return true
   }
   return false
