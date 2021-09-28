@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts">
-import { ref, watchEffect } from 'vue'
+import { ref, reactive, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
   name: 'Default',
   setup() {
-    const sourceOpitons = ref([
+    const sourceOpitons = reactive([
       {
         title: 'github',
         link: 'https://github.com/originjs/origin.js'

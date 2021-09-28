@@ -33,6 +33,7 @@ export default async function creatPackageTemplate(
       renderFile('package.json', config)
       renderFile('vite.config.ts', config)
       renderFile('src/main.ts', config)
+      renderFile('src/App.vue', config)
       if (uninstalled) {
         return
       }
@@ -67,7 +68,11 @@ export default async function creatPackageTemplate(
 
 function renderFile(filePath: string, config: any) {
   const renderPath: string = path.join(config.name, filePath)
-  ejs.renderFile(renderPath, config, (err: any, str = '') => {
-    fs.writeFileSync(renderPath, str)
-  })
+  ejs.renderFile(
+    renderPath,
+    config,
+    (err: any, str = '') => {
+      fs.writeFileSync(renderPath, str)
+    },
+  )
 }
