@@ -43,6 +43,21 @@ Options:
 `;
 
 exports[`ori init with all plugins: A3 1`] = `
+"import { createApp } from 'vue'
+import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import routes from 'virtual:plugin-pages'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+createApp(App).use(router).mount('#app')
+"
+`;
+
+exports[`ori init with all plugins: A3 2`] = `
 "{
   \\"name\\": \\"testAllPlugins\\",
   \\"version\\": \\"1.0.0\\",
@@ -71,11 +86,11 @@ exports[`ori init with all plugins: A3 1`] = `
 "
 `;
 
-exports[`ori init with all plugins: A3 2`] = `
+exports[`ori init with all plugins: A3 3`] = `
 "import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import globalStyle from '@originjs/vite-plugin-global-style'
-import Components from 'unplugin-vue-components/vite.d.ts'
+import Components from 'unplugin-vue-components/vite'
 import content from '@originjs/vite-plugin-content'
 import pages from '@originjs/vite-plugin-pages'
 
@@ -100,6 +115,14 @@ export default defineConfig({
 `;
 
 exports[`ori init without plugins: A4 1`] = `
+"import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+"
+`;
+
+exports[`ori init without plugins: A4 2`] = `
 "{
   \\"name\\": \\"testNoPlugins\\",
   \\"version\\": \\"1.0.0\\",
@@ -124,7 +147,7 @@ exports[`ori init without plugins: A4 1`] = `
 "
 `;
 
-exports[`ori init without plugins: A4 2`] = `
+exports[`ori init without plugins: A4 3`] = `
 "import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 

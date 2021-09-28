@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 <%_ plugins.forEach(function(plugin){ _%>
 import <%= plugin.name %> from '<%= plugin.package %><%_ if (plugin.path) { _%><%= plugin.path %><%_ } _%>'
-  <%_ }) _%>
+<%_ }) _%>
 
 // https://vitejs.dev/config/
 export default defineConfig({

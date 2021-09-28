@@ -43,12 +43,15 @@ test('ori init with all plugins', async () => {
       `<script type="module" src="/src/main.ts"></script>`,
     )
 
-    expect(project.has('./src/main.ts')).toBe(true)
-    expect(project.has('./src/App.vue')).toBe(true)
-    expect(project.has('./src/pages')).toBe(true)
-    expect(project.has('./src/layouts')).toBe(true)
-    expect(project.has('./src/components')).toBe(true)
-    expect(project.has('./src/assets')).toBe(true)
+    expect(project.has('src/main.ts')).toBe(true)
+    expect(project.has('src/App.vue')).toBe(true)
+    expect(project.has('src/pages')).toBe(true)
+    expect(project.has('src/layouts')).toBe(true)
+    expect(project.has('src/components')).toBe(true)
+    expect(project.has('src/assets')).toBe(true)
+
+    const mainFile = project.read('src/main.ts')
+    expect(mainFile).toMatchSnapshot('A3')
 
     expect(project.has('package.json')).toBe(true)
     const packageConfig = project.read('package.json')
@@ -75,8 +78,15 @@ test('ori init without plugins', async () => {
       `<script type="module" src="/src/main.ts"></script>`,
     )
 
-    expect(project.has('./src/main.ts')).toBe(true)
-    expect(project.has('./src/App.vue')).toBe(true)
+    expect(project.has('src/main.ts')).toBe(true)
+    expect(project.has('src/App.vue')).toBe(true)
+    expect(project.has('src/pages')).toBe(true)
+    expect(project.has('src/layouts')).toBe(true)
+    expect(project.has('src/components')).toBe(true)
+    expect(project.has('src/assets')).toBe(true)
+
+    const mainFile = project.read('src/main.ts')
+    expect(mainFile).toMatchSnapshot('A4')
 
     expect(project.has('package.json')).toBe(true)
     const packageConfig = project.read('package.json')
