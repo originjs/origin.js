@@ -15,6 +15,17 @@
         404 example
       </router-link>
     </h2>
+    <h2>
+      <router-link to="/login">
+        login example
+      </router-link>
+    </h2>
+    <h2>
+      <router-link to="/child">
+        nested routes
+      </router-link>
+    </h2>
+    <router-view />
   </div>
 </template>
 
@@ -27,3 +38,7 @@ export default {
 <style scoped>
 
 </style>
+
+<layout>
+layout: empty
+</layout>
