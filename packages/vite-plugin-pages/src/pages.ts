@@ -82,7 +82,7 @@ function getPageRoutePath(pathFromPagesDir: string): PageRoutePath {
   }
 
   return {
-    parentRoutePath,
+    parentRoutePath: parentRoutePath || '/', // if parentRoutePath is '', means parentRoutePath is /
     routePath,
     nestedRoute: isNested || isDynamicNested,
   }

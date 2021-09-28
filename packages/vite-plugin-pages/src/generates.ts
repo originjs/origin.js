@@ -39,7 +39,7 @@ export function generateRoutes(options: PluginOptions): Route[] {
     }
 
     // nested route
-    const parentRoute = findParentRoute(parentRoutePath || '/', routes)
+    const parentRoute = findParentRoute(parentRoutePath, routes)
     if (parentRoute) {
       parentRoute.children = parentRoute.children || []
       parentRoute.children.push(route)
