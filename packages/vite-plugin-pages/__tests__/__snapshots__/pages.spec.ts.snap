@@ -14,7 +14,7 @@ Array [
   Object {
     "layout": "",
     "nestedRoute": false,
-    "parentRoutePath": "",
+    "parentRoutePath": "/",
     "pathFromPagesDir": "user/index.vue",
     "pathFromPagesDirNormalized": "/user/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
@@ -104,7 +104,7 @@ Array [
   Object {
     "layout": "content",
     "nestedRoute": true,
-    "parentRoutePath": "",
+    "parentRoutePath": "/",
     "pathFromPagesDir": "$zoom.vue",
     "pathFromPagesDirNormalized": "/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue",
@@ -113,7 +113,7 @@ Array [
   Object {
     "layout": "default",
     "nestedRoute": false,
-    "parentRoutePath": "",
+    "parentRoutePath": "/",
     "pathFromPagesDir": "_.vue",
     "pathFromPagesDirNormalized": "/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_.vue",
@@ -136,7 +136,7 @@ Array [
   Object {
     "layout": "",
     "nestedRoute": false,
-    "parentRoutePath": "",
+    "parentRoutePath": "/",
     "pathFromPagesDir": "user/index.vue",
     "pathFromPagesDirNormalized": "/user/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
@@ -226,7 +226,7 @@ Array [
   Object {
     "layout": "content",
     "nestedRoute": true,
-    "parentRoutePath": "",
+    "parentRoutePath": "/",
     "pathFromPagesDir": "$zoom.vue",
     "pathFromPagesDirNormalized": "/zoom.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue",
@@ -235,7 +235,7 @@ Array [
   Object {
     "layout": "default",
     "nestedRoute": false,
-    "parentRoutePath": "",
+    "parentRoutePath": "/",
     "pathFromPagesDir": "_.vue",
     "pathFromPagesDirNormalized": "/~.vue",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_.vue",
