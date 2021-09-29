@@ -5,6 +5,7 @@
   "introduction": "一个简单实用的Vue.js web 应用框架.",
   "userLogin": "用户登录",
   "nestedRoutes": "嵌套路由",
+  "content": "文本",
   "currentRoute": "当前路由",
   "login": "登录",
   "home": "主页",

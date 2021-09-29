@@ -5,6 +5,7 @@
   "introduction": "A simple and powerful Vue.js web application framework.",
   "userLogin": "User login",
   "nestedRoutes": "Nested routes",
+  "content": "Content",
   "currentRoute": "current route",
   "login": "Login",
   "home": "Home",
