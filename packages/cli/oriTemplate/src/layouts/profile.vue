@@ -1,7 +1,7 @@
 <template>
   <div class="router-link">
-    <div><router-link class="text-router-link" to="/">Home</router-link></div>
-    <div><router-link class="text-router-link" to="/login">Sign out</router-link></div>
+    <div><router-link class="text-router-link" to="/">{{ $t("home") }}</router-link></div>
+    <div><router-link class="text-router-link" to="/login">{{ $t("signOut") }}</router-link></div>
   </div>
   <router-view />
 </template>

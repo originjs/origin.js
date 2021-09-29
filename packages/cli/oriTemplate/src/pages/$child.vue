@@ -1,5 +1,5 @@
 <template>
-  <p class="text-p">file starts with '$' is the nested route for the current level index page.</p>
+  <p class="text-p">{{ $t("nestedRouteIntroduction") }}</p>
 </template>
 
 <script>

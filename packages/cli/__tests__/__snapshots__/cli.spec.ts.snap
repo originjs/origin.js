@@ -53,7 +53,7 @@ exports[`ori init with all plugins: A3 1`] = `
       >
     </div>
     <h2 class=\\"text-t2\\">Origin.js</h2>
-    <p class=\\"text-p\\">A simple and powerful Vue.js web application framework.</p>
+    <p class=\\"text-p\\">{{ $t(\\"introduction\\") }}</p>
     <router-view />
     <button
       v-if=\\"globalStylePluginIsUsed\\"
@@ -61,18 +61,26 @@ exports[`ori init with all plugins: A3 1`] = `
       @click=\\"changeMode\\"
       class=\\"normal-btn theme-ctrl-btn\\"
     >
-      {{ !isLight ? 'light' : 'dark' }} mode
+      {{ !isLight ? $t('lightMode') : $t('darkMode') }}
+    </button>
+    <button
+      type=\\"button\\"
+      @click=\\"changeLocale\\"
+      class=\\"normal-btn theme-ctrl-btn\\"
+    >
+      {{ $t(\\"changeLanguage\\") }}
     </button>
   </main>
 </template>
 
 <script lang=\\"ts\\">
 import { ref } from 'vue'
+import {useI18n} from \\"vue-i18n\\";
 
 export default {
   name: 'App',
   setup: () => {
-    // if '@originjs/vite-plugin-global-style' has been imported, you can 
+    // if '@originjs/vite-plugin-global-style' has been imported, you can
     // set 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
     const globalStylePluginIsUsed = ref(true)
 
@@ -82,7 +90,16 @@ export default {
       isLight.value = !isLight.value
     }
 
-    return { globalStylePluginIsUsed, isLight, changeMode }
+    const { locale } = useI18n()
+    const changeLocale = () => {
+      if (locale.value === 'en') {
+        locale.value = 'zh'
+      } else if (locale.value === 'zh') {
+        locale.value = 'en'
+      }
+    }
+
+    return { globalStylePluginIsUsed, isLight, changeMode, changeLocale }
   }
 }
 </script>
@@ -109,6 +126,9 @@ export default {
 
 exports[`ori init with all plugins: A3 2`] = `
 "import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+import en from './locales/en.json'
+import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:plugin-pages'
@@ -118,7 +138,18 @@ const router = createRouter({
   routes,
 })
 
-createApp(App).use(router).mount('#app')
+const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: {
+    en,
+    zh
+  }
+})
+
+createApp(App).use(router).use(i18n).mount('#app')
 "
 `;
 
@@ -134,9 +165,11 @@ exports[`ori init with all plugins: A3 3`] = `
   },
   \\"dependencies\\": {
     \\"vue\\": \\"^3.0.5\\",
+    \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
     \\"vue-router\\": \\"^4.0.11\\"
   },
   \\"devDependencies\\": {
+    \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
     \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
     \\"@originjs/vite-plugin-global-style\\":\\"latest\\",
@@ -174,7 +207,11 @@ export default defineConfig({
     }),
     content(),
     pages()
-  ]
+  ],
+  define: {
+    __VUE_I18N_FULL_INSTALL__: true,
+    __VUE_I18N_LEGACY_API__: true,
+  }
 })
 "
 `;
@@ -190,7 +227,7 @@ exports[`ori init without plugins: A4 1`] = `
       >
     </div>
     <h2 class=\\"text-t2\\">Origin.js</h2>
-    <p class=\\"text-p\\">A simple and powerful Vue.js web application framework.</p>
+    <p class=\\"text-p\\">{{ $t(\\"introduction\\") }}</p>
     <router-view />
     <button
       v-if=\\"globalStylePluginIsUsed\\"
@@ -198,18 +235,26 @@ exports[`ori init without plugins: A4 1`] = `
       @click=\\"changeMode\\"
       class=\\"normal-btn theme-ctrl-btn\\"
     >
-      {{ !isLight ? 'light' : 'dark' }} mode
+      {{ !isLight ? $t('lightMode') : $t('darkMode') }}
+    </button>
+    <button
+      type=\\"button\\"
+      @click=\\"changeLocale\\"
+      class=\\"normal-btn theme-ctrl-btn\\"
+    >
+      {{ $t(\\"changeLanguage\\") }}
     </button>
   </main>
 </template>
 
 <script lang=\\"ts\\">
 import { ref } from 'vue'
+import {useI18n} from \\"vue-i18n\\";
 
 export default {
   name: 'App',
   setup: () => {
-    // if '@originjs/vite-plugin-global-style' has been imported, you can 
+    // if '@originjs/vite-plugin-global-style' has been imported, you can
     // set 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
     const globalStylePluginIsUsed = ref(false)
 
@@ -219,7 +264,16 @@ export default {
       isLight.value = !isLight.value
     }
 
-    return { globalStylePluginIsUsed, isLight, changeMode }
+    const { locale } = useI18n()
+    const changeLocale = () => {
+      if (locale.value === 'en') {
+        locale.value = 'zh'
+      } else if (locale.value === 'zh') {
+        locale.value = 'en'
+      }
+    }
+
+    return { globalStylePluginIsUsed, isLight, changeMode, changeLocale }
   }
 }
 </script>
@@ -246,6 +300,9 @@ export default {
 
 exports[`ori init without plugins: A4 2`] = `
 "import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+import en from './locales/en.json'
+import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Default from './layouts/default.vue'
@@ -259,7 +316,18 @@ const router = createRouter({
   routes,
 })
 
-createApp(App).use(router).mount('#app')
+const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: {
+    en,
+    zh
+  }
+})
+
+createApp(App).use(router).use(i18n).mount('#app')
 "
 `;
 
@@ -275,9 +343,11 @@ exports[`ori init without plugins: A4 3`] = `
   },
   \\"dependencies\\": {
     \\"vue\\": \\"^3.0.5\\",
+    \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
     \\"vue-router\\": \\"^4.0.11\\"
   },
   \\"devDependencies\\": {
+    \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
     \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
     \\"typescript\\": \\"^4.3.2\\",
@@ -296,7 +366,11 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins:[
     vue()
-  ]
+  ],
+  define: {
+    __VUE_I18N_FULL_INSTALL__: true,
+    __VUE_I18N_LEGACY_API__: true,
+  }
 })
 "
 `;

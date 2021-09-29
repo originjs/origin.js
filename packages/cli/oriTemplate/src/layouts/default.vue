@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view />
-    <p class="text-component-desc text-route">current route: '{{ currentRoute.fullPath }}'</p>
+    <p class="text-component-desc text-route">{{ $t("currentRoute") }}: '{{ currentRoute.fullPath }}'</p>
     <sources :list="sourceOpitons" />
   </div>
 </template>
@@ -23,10 +23,10 @@ export default {
         link: 'https://originjs.github.io/docs/'
       }
     ])
-  
+
     const router = useRouter()
     const { currentRoute } = router
-  
+
     return { currentRoute, sourceOpitons }
   }
 }

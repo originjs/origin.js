@@ -1,0 +1,17 @@
+{
+  "changeLanguage": "change language",
+  "darkMode": "dark mode",
+  "lightMode": "light mode",
+  "introduction": "A simple and powerful Vue.js web application framework.",
+  "userLogin": "User login",
+  "nestedRoutes": "Nested routes",
+  "currentRoute": "current route",
+  "login": "Login",
+  "home": "Home",
+  "signOut": "Sign out",
+  "userInformation": "User Information",
+  "username": "username",
+  "telephone": "telephone",
+  "address": "address",
+  "nestedRouteIntroduction": "file starts with '$' is the nested route for the current level index page."
+}
