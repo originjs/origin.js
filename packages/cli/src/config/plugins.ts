@@ -18,7 +18,7 @@ ${indent}// allow auto import and register components used in markdown
 ${indent}include: [/\\.vue$/, /\\.vue\\?vue/, /\\.md$/],
 ${indentEnd}}`
 
-export const assetsOption: PluginChoiceOption = {
+export const globalStyleOption: PluginChoiceOption = {
   name: 'globalStyle',
   package: '@originjs/vite-plugin-global-style',
 }

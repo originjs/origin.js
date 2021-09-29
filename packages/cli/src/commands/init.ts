@@ -7,7 +7,7 @@ import path from 'path'
 import { promptList } from '../config/prompt'
 import {
   PluginChoiceOption,
-  assetsOption,
+  globalStyleOption,
   componentsOption,
   contentOption,
   pagesOption,
@@ -136,7 +136,7 @@ export default async function init(
     }
   } else if (options.allPlugins) {
     defaultOptions.plugins = [
-      assetsOption,
+      globalStyleOption,
       componentsOption,
       contentOption,
       pagesOption,

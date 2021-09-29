@@ -1,5 +1,5 @@
 import {
-  assetsOption,
+  globalStyleOption,
   componentsOption,
   contentOption,
   pagesOption,
@@ -27,8 +27,8 @@ export const promptList = [
     name: 'plugins',
     choices: [
       {
-        value: assetsOption,
-        name: 'Assets: Processing pictures, public styles, fonts, etc.',
+        value: globalStyleOption,
+        name: 'GlobalStyle: Processing global styles.',
         package: '',
       },
       { value: componentsOption, name: 'Components: Reusable vue components' },
