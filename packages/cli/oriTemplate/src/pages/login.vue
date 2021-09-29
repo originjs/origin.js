@@ -1,21 +1,34 @@
 <template>
   <div class="login">
-    <label for="username">username</label>
-    <input class="normal-input message-input" type="text" v-model="user.username" />
-    <label for="password">password</label>
-    <input class="normal-input message-input" type="text" v-model="user.password" />
-    <router-link :to="'/users/' + user.username" class="normal-btn router-btn">Login</router-link>
+    <input class="normal-input userinfo-input" placeholder="username" type="text" v-model="user.username" />
+    <input class="normal-input userinfo-input" placeholder="password" type="password" v-model="user.password" />
+    <button @click="toUsers" class="normal-btn router-btn" :class="btnIsDisabled ? 'router-btn-disabled' : ''">Login</button>
   </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity'
+import { reactive, ref, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'login',
   setup() {
-    const user = reactive({ username: '', password: ''})
+    const router = useRouter()
 
-    return { user }
+    const btnIsDisabled = ref(true)
+
+    const user = reactive({ username: '', password: ''})
+    const toUsers = () => {
+      if (!btnIsDisabled.value) {
+        router.push(`/users/${user.username}`)
+      }
+    }
+
+    watchEffect(() => {
+      btnIsDisabled.value = !Boolean(user.username && user.password)
+    })
+
+    return { btnIsDisabled, user, toUsers }
   }
 }
 </script>

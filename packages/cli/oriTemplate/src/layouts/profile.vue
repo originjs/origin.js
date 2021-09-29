@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <span class="router-link"><router-link to="/">Home</router-link></span>
-    <span class="router-link"><router-link to="/login">Sign out</router-link></span>
+  <div class="router-link">
+    <div><router-link class="text-router-link" to="/">Home</router-link></div>
+    <div><router-link class="text-router-link" to="/login">Sign out</router-link></div>
   </div>
   <router-view />
 </template>

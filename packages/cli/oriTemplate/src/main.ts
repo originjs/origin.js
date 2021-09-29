@@ -4,10 +4,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 <%_ if (pagesPluginImported) { _%>
 import routes from 'virtual:plugin-pages'
 <%_ } else { _%>
-import Index from './pages/index.vue'
+import Default from './layouts/default.vue'
 
 const routes = [
-  { path: '/', component: Index }
+  { path: '/', component: Default }
 ]
 <%_ } _%>
 

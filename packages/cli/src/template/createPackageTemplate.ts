@@ -53,7 +53,7 @@ export default async function creatPackageTemplate(
           spinner.succeed()
           console.log('  ')
           console.log(chalk.green('   cd  ' + config.name))
-          console.log(chalk.green('   ori dev'))
+          console.log(chalk.green('   npm run dev'))
           console.log('  ')
         }
         // exit the operation

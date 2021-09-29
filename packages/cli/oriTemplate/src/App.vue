@@ -7,6 +7,8 @@
         id="logo"
       >
     </div>
+    <h2 class="text-t2">Origin.js</h2>
+    <p class="text-p">A simple and powerful Vue.js web application framework.</p>
     <router-view />
     <button
       v-if="globalStylePluginIsUsed"
