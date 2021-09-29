@@ -6,22 +6,27 @@ import ora from 'ora'
 import path from 'path'
 
 function changeFileName(filePath: string) {
-  const p = new Promise(function (resolve, reject) {
-    fs.readdir(filePath, function (err, files) {
-      files.forEach(function (filename) {
-        if (/^_/.test(filename)) {
-          const oldPath = path.join(filePath, filename)
-          const newPath = path.join(filePath, filename.slice(1))
-          fs.rename(oldPath, newPath, function (err) {
-            if (!err) {
-              resolve('Successfully change file name!')
-            }
-          })
-        }
+  function removeRedundantPrefix(filename: string, resolve: (value: unknown) => void) {
+    if (!/^_/.test(filename)) {
+      return
+    }
+
+    const oldPath = path.join(filePath, filename)
+    const newPath = path.join(filePath, filename.slice(1))
+    fs.rename(oldPath, newPath, function(err) {
+      if (!err) {
+        resolve('Successfully change file name!')
+      }
+    })
+  }
+
+  return new Promise(function(resolve, reject) {
+    fs.readdir(filePath, function(err, files) {
+      files.forEach(function(filename) {
+        removeRedundantPrefix(filename, resolve)
       })
     })
   })
-  return p
 }
 
 export default async function creatPackageTemplate(
