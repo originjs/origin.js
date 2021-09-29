@@ -1,0 +1,17 @@
+{
+  "changeLanguage": "切换语言",
+  "darkMode": "黑夜模式",
+  "lightMode": "白天模式",
+  "introduction": "一个简单实用的Vue.js web 应用框架.",
+  "userLogin": "用户登录",
+  "nestedRoutes": "嵌套路由",
+  "currentRoute": "当前路由",
+  "login": "登录",
+  "home": "主页",
+  "signOut": "登出",
+  "userInformation": "用户信息",
+  "username": "用户名",
+  "telephone": "电话",
+  "address": "地址",
+  "nestedRouteIntroduction": "文件名以'$'开头的路由是当前级别index.vue的嵌套路由"
+}

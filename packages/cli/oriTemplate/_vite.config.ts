@@ -9,5 +9,9 @@ export default defineConfig({
   plugins:[
     vue()<%_ plugins.forEach( function(plugin) { -%>,
     <%= plugin.name -%>(<%_ if (plugin.options) { _%><%- plugin.options %><%_ } _%>)<%_ }) %>
-  ]
+  ],
+  define: {
+    __VUE_I18N_FULL_INSTALL__: true,
+    __VUE_I18N_LEGACY_API__: true,
+  }
 })

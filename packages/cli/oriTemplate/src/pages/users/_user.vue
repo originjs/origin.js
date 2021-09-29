@@ -1,9 +1,9 @@
 <template>
   <div class="user-info">
-    <h3>User Information</h3>
-    <span class="text-span"><b>username:</b> {{ $route.params.user }}</span>
-    <span class="text-span"><b>telephone:</b> 188xxxx6666</span>
-    <span class="text-span"><b>address:</b> changan street</span>
+    <h3>{{ $t("userInformation") }}</h3>
+    <span class="text-span"><b>{{ $t("username") }}:</b> {{ $route.params.user }}</span>
+    <span class="text-span"><b>{{ $t("telephone") }}:</b> 188xxxx6666</span>
+    <span class="text-span"><b>{{ $t("address") }}:</b> changan street</span>
   </div>
 </template>
 

@@ -1,4 +1,7 @@
 import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+import en from './locales/en.json'
+import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 <%_ if (pagesPluginImported) { _%>
@@ -16,4 +19,15 @@ const router = createRouter({
   routes,
 })
 
-createApp(App).use(router).mount('#app')
+const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: {
+    en,
+    zh
+  }
+})
+
+createApp(App).use(router).use(i18n).mount('#app')
