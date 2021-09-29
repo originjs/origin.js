@@ -2,14 +2,12 @@
   <div>
     <router-view />
     <p class="text-component-desc text-route">current route: '{{ currentRoute.fullPath }}'</p>
-    <input class="normal-input message-input" v-model="message" placeholder="try to type something" />
-    <button class="normal-btn router-btn" :class="btnIsDisabled ? 'router-btn-disabled' : ''" @click="toHelloWorld">go</button>
     <sources :list="sourceOpitons" />
   </div>
 </template>
 
 <script lang="ts">
-import { ref, reactive, watchEffect } from 'vue'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -29,21 +27,7 @@ export default {
     const router = useRouter()
     const { currentRoute } = router
   
-    const message = ref('')
-
-    const btnIsDisabled = ref(true)
-  
-    const toHelloWorld = () => {
-      if (!btnIsDisabled.value) {
-        router.push(`/helloWorld/${message.value}`)
-      }
-    }
-
-    watchEffect(() => {
-      btnIsDisabled.value = !Boolean(message.value)
-    })
-  
-    return { currentRoute, sourceOpitons, message, btnIsDisabled, toHelloWorld }
+    return { currentRoute, sourceOpitons }
   }
 }
 </script>
