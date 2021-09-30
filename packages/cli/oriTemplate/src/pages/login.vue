@@ -38,5 +38,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 }
 </style>

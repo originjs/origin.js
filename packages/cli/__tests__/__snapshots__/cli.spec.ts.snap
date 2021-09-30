@@ -45,43 +45,36 @@ Options:
 exports[`ori init with all plugins: A3 1`] = `
 "<template>
   <main :class=\\"isLight ? 'light' : 'dark'\\">
-    <div>
-      <img
-        alt=\\"Origin.js logo\\"
-        src=\\"./assets/originjs.png\\"
-        id=\\"logo\\"
-      >
-    </div>
-    <h2 class=\\"text-t2\\">Origin.js</h2>
-    <p class=\\"text-p\\">{{ $t(\\"introduction\\") }}</p>
     <router-view />
-    <button
-      v-if=\\"globalStylePluginIsUsed\\"
-      type=\\"button\\"
-      @click=\\"changeMode\\"
-      class=\\"normal-btn theme-ctrl-btn\\"
-    >
-      {{ !isLight ? $t('lightMode') : $t('darkMode') }}
-    </button>
-    <button
-      type=\\"button\\"
-      @click=\\"changeLocale\\"
-      class=\\"normal-btn theme-ctrl-btn\\"
-    >
-      {{ $t(\\"changeLanguage\\") }}
-    </button>
+    <div>
+      <button
+        v-if=\\"globalStylePluginIsUsed\\"
+        type=\\"button\\"
+        @click=\\"changeMode\\"
+        class=\\"normal-btn theme-ctrl-btn\\"
+      >
+        {{ !isLight ? $t('lightMode') : $t('darkMode') }}
+      </button>
+      <button
+        type=\\"button\\"
+        @click=\\"changeLocale\\"
+        class=\\"normal-btn theme-ctrl-btn\\"
+      >
+        {{ $t(\\"changeLanguage\\") }}
+      </button>
+    </div>
   </main>
 </template>
 
-<script lang=\\"ts\\">
+<script>
 import { ref } from 'vue'
-import {useI18n} from \\"vue-i18n\\";
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'App',
   setup: () => {
-    // if '@originjs/vite-plugin-global-style' has been imported, you can
-    // set 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
+    // if '@originjs/vite-plugin-global-style' has been imported, you can set
+    // 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
     const globalStylePluginIsUsed = ref(true)
 
     const isLight = ref(true)
@@ -106,19 +99,16 @@ export default {
 
 <style scoped>
 #app main {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    height: calc(100vh - 3.2rem);
-    padding: 1rem;
-}
-
-#logo {
-    width: 12rem;
-    height: 12rem;
-    object-fit: cover;
-    margin: 4rem 0 1rem 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  height: calc(100vh - 3.2rem);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 "
@@ -164,18 +154,19 @@ exports[`ori init with all plugins: A3 3`] = `
     \\"serve\\": \\"vite preview\\"
   },
   \\"dependencies\\": {
+    \\"vite-plugin-md\\": \\"^0.11.1\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
     \\"vue-router\\": \\"^4.0.11\\"
   },
   \\"devDependencies\\": {
-    \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
-    \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
-    \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
     \\"@originjs/vite-plugin-global-style\\":\\"latest\\",
     \\"unplugin-vue-components\\":\\"latest\\",
     \\"@originjs/vite-plugin-content\\":\\"latest\\",
     \\"@originjs/vite-plugin-pages\\":\\"latest\\",
+    \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
+    \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
+    \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
     \\"typescript\\": \\"^4.3.2\\",
     \\"vite\\": \\"^2.4.4\\",
     \\"vue-tsc\\": \\"^0.2.2\\"
@@ -186,8 +177,9 @@ exports[`ori init with all plugins: A3 3`] = `
 
 exports[`ori init with all plugins: A3 4`] = `
 "import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import vue from '@vitejs/plugin-vue'
+import Markdown from 'vite-plugin-md'
 import globalStyle from '@originjs/vite-plugin-global-style'
 import Components from 'unplugin-vue-components/vite'
 import content from '@originjs/vite-plugin-content'
@@ -202,7 +194,10 @@ export default defineConfig({
     }],
   },
   plugins:[
-    vue(),
+    vue({
+      include: [/\\\\.vue$/, /\\\\.md$/],
+    }),
+    Markdown(),
     globalStyle(),
     Components({
       // allow auto load markdown components under \`./src/components/\`
@@ -226,43 +221,36 @@ export default defineConfig({
 exports[`ori init without plugins: A4 1`] = `
 "<template>
   <main :class=\\"isLight ? 'light' : 'dark'\\">
-    <div>
-      <img
-        alt=\\"Origin.js logo\\"
-        src=\\"./assets/originjs.png\\"
-        id=\\"logo\\"
-      >
-    </div>
-    <h2 class=\\"text-t2\\">Origin.js</h2>
-    <p class=\\"text-p\\">{{ $t(\\"introduction\\") }}</p>
     <router-view />
-    <button
-      v-if=\\"globalStylePluginIsUsed\\"
-      type=\\"button\\"
-      @click=\\"changeMode\\"
-      class=\\"normal-btn theme-ctrl-btn\\"
-    >
-      {{ !isLight ? $t('lightMode') : $t('darkMode') }}
-    </button>
-    <button
-      type=\\"button\\"
-      @click=\\"changeLocale\\"
-      class=\\"normal-btn theme-ctrl-btn\\"
-    >
-      {{ $t(\\"changeLanguage\\") }}
-    </button>
+    <div>
+      <button
+        v-if=\\"globalStylePluginIsUsed\\"
+        type=\\"button\\"
+        @click=\\"changeMode\\"
+        class=\\"normal-btn theme-ctrl-btn\\"
+      >
+        {{ !isLight ? $t('lightMode') : $t('darkMode') }}
+      </button>
+      <button
+        type=\\"button\\"
+        @click=\\"changeLocale\\"
+        class=\\"normal-btn theme-ctrl-btn\\"
+      >
+        {{ $t(\\"changeLanguage\\") }}
+      </button>
+    </div>
   </main>
 </template>
 
-<script lang=\\"ts\\">
+<script>
 import { ref } from 'vue'
-import {useI18n} from \\"vue-i18n\\";
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'App',
   setup: () => {
-    // if '@originjs/vite-plugin-global-style' has been imported, you can
-    // set 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
+    // if '@originjs/vite-plugin-global-style' has been imported, you can set
+    // 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
     const globalStylePluginIsUsed = ref(false)
 
     const isLight = ref(true)
@@ -285,21 +273,19 @@ export default {
 }
 </script>
 
+<style src=\\"./assets/global-theme.css\\"></style>
 <style scoped>
 #app main {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    height: calc(100vh - 3.2rem);
-    padding: 1rem;
-}
-
-#logo {
-    width: 12rem;
-    height: 12rem;
-    object-fit: cover;
-    margin: 4rem 0 1rem 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  height: calc(100vh - 3.2rem);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 "
@@ -313,10 +299,20 @@ import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Default from './layouts/default.vue'
-
+import Index from './pages/index.vue'
+import Markdown from './pages/markdown.vue'
+  
 const routes = [
-  { path: '/', component: Default }
+  {
+    path: '/',
+    component: Default,
+    children: [
+      { path: '/', component: Index },
+      { path: '/markdown', component: Markdown }
+    ]
+  }
 ]
+  
 
 const router = createRouter({
   history: createWebHistory(),
@@ -349,6 +345,7 @@ exports[`ori init without plugins: A4 3`] = `
     \\"serve\\": \\"vite preview\\"
   },
   \\"dependencies\\": {
+    \\"vite-plugin-md\\": \\"^0.11.1\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
     \\"vue-router\\": \\"^4.0.11\\"
@@ -367,8 +364,9 @@ exports[`ori init without plugins: A4 3`] = `
 
 exports[`ori init without plugins: A4 4`] = `
 "import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import vue from '@vitejs/plugin-vue'
+import Markdown from 'vite-plugin-md'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -379,7 +377,10 @@ export default defineConfig({
     }],
   },
   plugins:[
-    vue()
+    vue({
+      include: [/\\\\.vue$/, /\\\\.md$/],
+    }),
+    Markdown()
   ],
   define: {
     __VUE_I18N_FULL_INSTALL__: true,
