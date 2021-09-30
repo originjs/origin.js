@@ -1,5 +1,5 @@
 <template>
-  <p class="text-p">{{ $t("nestedRouteIntroduction") }}</p>
+  <p class="p-child">{{ $t("nestedRouteIntroduction") }}</p>
 </template>
 
 <script>
@@ -11,3 +11,9 @@ export default {
 <layout>
 layout: empty
 </layout>
+
+<style scoped>
+.p-child {
+  font-size: .9rem;
+}
+</style>

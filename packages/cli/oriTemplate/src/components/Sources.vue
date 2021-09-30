@@ -6,18 +6,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
-type SourceInfo = {
-  title: string
-  link: string 
-}
+<script>
 export default {
   name: 'Sources',
   props: {
     list: {
-      type: Array as PropType<SourceInfo[]>,
       required: true,
     },
   },

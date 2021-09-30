@@ -1,9 +1,21 @@
 <template>
-  <div class="user-info">
-    <h3>{{ $t("userInformation") }}</h3>
-    <span class="text-span"><b>{{ $t("username") }}:</b> {{ $route.params.user }}</span>
-    <span class="text-span"><b>{{ $t("telephone") }}:</b> 188xxxx6666</span>
-    <span class="text-span"><b>{{ $t("address") }}:</b> changan street</span>
+  <div>
+    <h3 class="text-h3">{{ $t("userInformation") }}</h3>
+    <p><b>{{ $t("username") }}:</b> {{ $route.params.user }}</p>
+    <p><b>{{ $t("telephone") }}:</b> 188xxxx6666</p>
+    <p><b>{{ $t("address") }}:</b> changan street</p>
+  </div>
+  <div class="router-link">
+    <div>
+      <router-link class="text-router-link" to="/">{{
+        $t("home")
+      }}</router-link>
+    </div>
+    <div>
+      <router-link class="text-router-link" to="/login">{{
+        $t("signOut")
+      }}</router-link>
+    </div>
   </div>
 </template>
 
@@ -11,14 +23,6 @@
 export default {
 }
 </script>
-
-<style>
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-</style>
 
 <layout>
 layout: profile

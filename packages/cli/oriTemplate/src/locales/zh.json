@@ -6,6 +6,7 @@
   "userLogin": "用户登录",
   "nestedRoutes": "嵌套路由",
   "content": "文本",
+  "markdown": "Markdown文档",
   "currentRoute": "当前路由",
   "login": "登录",
   "home": "主页",
@@ -14,5 +15,5 @@
   "username": "用户名",
   "telephone": "电话",
   "address": "地址",
-  "nestedRouteIntroduction": "文件名以'$'开头的路由是当前级别index.vue的嵌套路由"
+  "nestedRouteIntroduction": "文件名以'$'开头的路由是当前级别 index.vue 的嵌套路由"
 }

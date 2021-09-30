@@ -1,6 +1,6 @@
 <template>
-  <div class="login">
-    <h1>{{ song.singer }} - {{ song.name }}</h1>
+  <div>
+    <h3 class="text-h3">{{ song.singer }} - {{ song.name }}</h3>
     <p v-for="item in song.lyrics">{{ item }}</p>
   </div>
 </template>
@@ -16,14 +16,6 @@ export default {
 }
 </script>
 
-<style>
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-</style>
-
 <layout>
-layout: empty
+layout: profile
 </layout>

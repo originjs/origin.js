@@ -9,10 +9,20 @@ import store from './store'
 import routes from 'virtual:plugin-pages'
 <%_ } else { _%>
 import Default from './layouts/default.vue'
-
+import Index from './pages/index.vue'
+import Markdown from './pages/markdown.vue'
+  
 const routes = [
-  { path: '/', component: Default }
+  {
+    path: '/',
+    component: Default,
+    children: [
+      { path: '/', component: Index },
+      { path: '/markdown', component: Markdown }
+    ]
+  }
 ]
+  
 <%_ } _%>
 
 const router = createRouter({
