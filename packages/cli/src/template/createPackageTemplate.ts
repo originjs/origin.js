@@ -5,6 +5,8 @@ import chalk from 'chalk'
 import ora from 'ora'
 import path from 'path'
 
+const TO_BE_RENDERED_FILE_ARRAY: Array<string> = ['package.json', 'vite.config.ts', 'src/main.ts', 'src/App.vue']
+
 function changeFileName(filePath: string) {
   function removeRedundantPrefix(
     filename: string,
@@ -32,16 +34,15 @@ function changeFileName(filePath: string) {
   })
 }
 
-export default async function creatPackageTemplate(
+export default async function createPackageTemplate(
   config: any,
   uninstalled?: boolean,
 ) {
   try {
     await changeFileName(path.join(process.cwd(), config.name)).then(rs => {
-      renderFile('package.json', config)
-      renderFile('vite.config.ts', config)
-      renderFile('src/main.ts', config)
-      renderFile('src/App.vue', config)
+      for (const file of TO_BE_RENDERED_FILE_ARRAY) {
+        renderFile(file, config)
+      }
       if (uninstalled) {
         return
       }
