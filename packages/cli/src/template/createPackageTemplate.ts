@@ -48,7 +48,7 @@ export default async function createPackageTemplate(
       }
       const spinner = ora('Install project dependency.......')
       spinner.start()
-      exec(`cd ${config.name} && npm install && git init`, (err: any) => {
+      exec(`cd ${config.name} && git init && npm install`, (err: any) => {
         if (err) {
           // When there is an error, print out the error
           spinner.fail()
