@@ -42,6 +42,10 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
     // add files that need to be skipped here
     function getSkipFilesWithRelativePath(): Array<string> {
       const skipFiles = []
+      if (!defaultOptions.globalStylePluginImported) {
+        skipFiles.push('src/assets/global-theme.css')
+      }
+
       if (!defaultOptions.contentPluginImported) {
         skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml')
       }
