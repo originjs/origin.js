@@ -35,16 +35,35 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
     fs.mkdir(path.join(dirNew, name), function (err) {
       resolve('Successfully created the folder!')
       dirNew = path.join(dirNew, name)
-      walkDir(dirOld, dirNew)
+      const skipFiles: Array<string> = getSkipFilesWithRelativePath()
+      walkDir(dirOld, dirNew, skipFiles)
     })
-    function walkDir(dirOld: string, dirNew: string) {
-      const oldList = fs.readdirSync(dirOld)
-      oldList.forEach(function (item) {
-        if (fs.statSync(path.join(dirOld, item)).isDirectory()) {
-          fs.mkdirSync(path.join(dirNew, item))
-          walkDir(path.join(dirOld, item), path.join(dirNew, item))
+
+    // add files that need to be skipped here
+    function getSkipFilesWithRelativePath(): Array<string> {
+      const skipFiles = []
+      if (!defaultOptions.contentPluginImported) {
+        skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml')
+      }
+
+      return skipFiles
+    }
+
+    function walkDir(dirOldAbsolutePath: string, dirNewAbsolutePath: string, skipFiles: Array<string>) {
+      const oldList = fs.readdirSync(dirOldAbsolutePath)
+      oldList.forEach(function(item) {
+        const oldAbsolutePath: string = path.join(dirOldAbsolutePath, item)
+        const newAbsolutePath: string = path.join(dirNewAbsolutePath, item)
+        const relativePath: string = path.relative(dirOld, oldAbsolutePath)
+        if (skipFiles.indexOf(relativePath) >= 0) {
+          return
+        }
+
+        if (fs.statSync(oldAbsolutePath).isDirectory()) {
+          fs.mkdirSync(newAbsolutePath)
+          walkDir(oldAbsolutePath, newAbsolutePath, skipFiles)
         } else {
-          fs.copyFileSync(path.join(dirOld, item), path.join(dirNew, item))
+          fs.copyFileSync(oldAbsolutePath, newAbsolutePath)
         }
       })
     }
