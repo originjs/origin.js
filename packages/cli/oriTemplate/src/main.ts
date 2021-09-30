@@ -4,6 +4,7 @@ import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import store from './store'
 <%_ if (pagesPluginImported) { _%>
 import routes from 'virtual:plugin-pages'
 <%_ } else { _%>
@@ -40,4 +41,4 @@ const i18n = createI18n({
   }
 })
 
-createApp(App).use(router).use(i18n).mount('#app')
+createApp(App).use(router).use(store).use(i18n).mount('#app')

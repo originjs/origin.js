@@ -121,6 +121,7 @@ import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import store from './store'
 import routes from 'virtual:plugin-pages'
 
 const router = createRouter({
@@ -139,7 +140,7 @@ const i18n = createI18n({
   }
 })
 
-createApp(App).use(router).use(i18n).mount('#app')
+createApp(App).use(router).use(store).use(i18n).mount('#app')
 "
 `;
 
@@ -157,7 +158,8 @@ exports[`ori init with all plugins: A3 3`] = `
     \\"vite-plugin-md\\": \\"^0.11.1\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
-    \\"vue-router\\": \\"^4.0.11\\"
+    \\"vue-router\\": \\"^4.0.11\\",
+    \\"vuex\\": \\"^4.0.2\\"
   },
   \\"devDependencies\\": {
     \\"@originjs/vite-plugin-global-style\\":\\"latest\\",
@@ -298,6 +300,7 @@ import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import store from './store'
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'
 import Markdown from './pages/markdown.vue'
@@ -330,7 +333,7 @@ const i18n = createI18n({
   }
 })
 
-createApp(App).use(router).use(i18n).mount('#app')
+createApp(App).use(router).use(store).use(i18n).mount('#app')
 "
 `;
 
@@ -348,7 +351,8 @@ exports[`ori init without plugins: A4 3`] = `
     \\"vite-plugin-md\\": \\"^0.11.1\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
-    \\"vue-router\\": \\"^4.0.11\\"
+    \\"vue-router\\": \\"^4.0.11\\",
+    \\"vuex\\": \\"^4.0.2\\"
   },
   \\"devDependencies\\": {
     \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
