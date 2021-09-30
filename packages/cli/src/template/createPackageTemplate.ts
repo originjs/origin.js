@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import ora from 'ora'
 import path from 'path'
 
-const TO_BE_RENDERED_FILE_ARRAY: Array<string> = ['package.json', 'vite.config.ts', 'src/main.ts', 'src/App.vue']
+const TO_BE_RENDERED_FILE_ARRAY: Array<string> = ['package.json', 'vite.config.ts', 'src/main.ts', 'src/App.vue', 'src/pages/index.vue']
 
 function changeFileName(filePath: string) {
   function removeRedundantPrefix(
