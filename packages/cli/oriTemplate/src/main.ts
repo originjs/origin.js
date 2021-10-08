@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { createRouter, createWebHistory } from 'vue-router'
 import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
-import { createRouter, createWebHistory } from 'vue-router'
 import store from './store'
 <%_ if (pagesPluginImported) { _%>
 import routes from 'virtual:plugin-pages'
@@ -11,6 +11,10 @@ import routes from 'virtual:plugin-pages'
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'
 import Markdown from './pages/markdown.vue'
+<%_ if (contentPluginImported) { _%>
+import Profile from './layouts/profile.vue'
+import Content from './pages/content.vue'
+<%_ } _%>
   
 const routes = [
   {
@@ -20,7 +24,15 @@ const routes = [
       { path: '/', component: Index },
       { path: '/markdown', component: Markdown }
     ]
+  }<%_ if (contentPluginImported) { _%>,
+  {
+    path: '/',
+    component: Profile,
+    children: [
+      { path: '/content', component: Content }
+    ]
   }
+  <%_ } %>
 ]
   
 <%_ } _%>

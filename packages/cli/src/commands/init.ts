@@ -26,7 +26,7 @@ const defaultOptions: any = {
   plugins: [],
   pagesPluginImported: false,
   globalStylePluginImported: false,
-  ComponentsPluginImported: false,
+  componentsPluginImported: false,
   contentPluginImported: false,
 }
 
@@ -42,12 +42,18 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
     // add files that need to be skipped here
     function getSkipFilesWithRelativePath(): Array<string> {
       const skipFiles = []
-      if (!defaultOptions.globalStylePluginImported) {
-        skipFiles.push('src/assets/global-theme.css')
+      if (!defaultOptions.pagesPluginImported) {
+        skipFiles.push(
+          'src/pages/users',
+          'src/pages/_.vue',
+          'src/pages/$child.vue',
+          'src/pages/login.vue',
+          'src/layouts/empty.vue',
+        )
       }
 
       if (!defaultOptions.contentPluginImported) {
-        skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml')
+        skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml', 'src/layouts/profile.vue')
       }
 
       return skipFiles
@@ -58,7 +64,7 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
       oldList.forEach(function(item) {
         const oldAbsolutePath: string = path.join(dirOldAbsolutePath, item)
         const newAbsolutePath: string = path.join(dirNewAbsolutePath, item)
-        const relativePath: string = path.relative(dirOld, oldAbsolutePath)
+        const relativePath: string = path.relative(dirOld, oldAbsolutePath).replace(/\\/g, '/')
         if (skipFiles.indexOf(relativePath) >= 0) {
           return
         }
