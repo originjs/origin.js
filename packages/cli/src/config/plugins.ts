@@ -24,7 +24,7 @@ export const globalStyleOption: PluginChoiceOption = {
 }
 
 export const componentsOption: PluginChoiceOption = {
-  name: 'Components',
+  name: 'components',
   package: 'unplugin-vue-components',
   path: '/vite',
   options: componentsPluginOptions,

@@ -48,7 +48,6 @@ exports[`ori init with all plugins: A3 1`] = `
     <router-view />
     <div>
       <button
-        v-if=\\"globalStylePluginIsUsed\\"
         type=\\"button\\"
         @click=\\"changeMode\\"
         class=\\"normal-btn theme-ctrl-btn\\"
@@ -73,10 +72,6 @@ import { useI18n } from 'vue-i18n'
 export default {
   name: 'App',
   setup: () => {
-    // if '@originjs/vite-plugin-global-style' has been imported, you can set
-    // 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
-    const globalStylePluginIsUsed = ref(true)
-
     const isLight = ref(true)
 
     const changeMode = () => {
@@ -92,7 +87,7 @@ export default {
       }
     }
 
-    return { globalStylePluginIsUsed, isLight, changeMode, changeLocale }
+    return { isLight, changeMode, changeLocale }
   }
 }
 </script>
@@ -117,10 +112,10 @@ export default {
 exports[`ori init with all plugins: A3 2`] = `
 "import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { createRouter, createWebHistory } from 'vue-router'
 import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
-import { createRouter, createWebHistory } from 'vue-router'
 import store from './store'
 import routes from 'virtual:plugin-pages'
 
@@ -183,7 +178,7 @@ import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
 import globalStyle from '@originjs/vite-plugin-global-style'
-import Components from 'unplugin-vue-components/vite'
+import components from 'unplugin-vue-components/vite'
 import content from '@originjs/vite-plugin-content'
 import pages from '@originjs/vite-plugin-pages'
 
@@ -201,7 +196,7 @@ export default defineConfig({
     }),
     Markdown(),
     globalStyle(),
-    Components({
+    components({
       // allow auto load markdown components under \`./src/components/\`
       extensions: ['vue', 'md'],
       // allow typescript
@@ -226,7 +221,6 @@ exports[`ori init without plugins: A4 1`] = `
     <router-view />
     <div>
       <button
-        v-if=\\"globalStylePluginIsUsed\\"
         type=\\"button\\"
         @click=\\"changeMode\\"
         class=\\"normal-btn theme-ctrl-btn\\"
@@ -251,10 +245,6 @@ import { useI18n } from 'vue-i18n'
 export default {
   name: 'App',
   setup: () => {
-    // if '@originjs/vite-plugin-global-style' has been imported, you can set
-    // 'globalStylePluginIsUsed = ref(true)' and switch theme by clicking button
-    const globalStylePluginIsUsed = ref(false)
-
     const isLight = ref(true)
 
     const changeMode = () => {
@@ -270,7 +260,7 @@ export default {
       }
     }
 
-    return { globalStylePluginIsUsed, isLight, changeMode, changeLocale }
+    return { isLight, changeMode, changeLocale }
   }
 }
 </script>
@@ -296,10 +286,10 @@ export default {
 exports[`ori init without plugins: A4 2`] = `
 "import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { createRouter, createWebHistory } from 'vue-router'
 import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
-import { createRouter, createWebHistory } from 'vue-router'
 import store from './store'
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'

@@ -18,6 +18,9 @@
 <script>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+<%_ if (!componentsPluginImported) { _%>
+import Sources from '../components/Sources.vue'
+<%_ } _%>
 
 export default {
   name: 'Default',
@@ -37,6 +40,10 @@ export default {
     const { currentRoute } = router
 
     return { currentRoute, sourceOpitons }
+  }<%_ if (!componentsPluginImported) { _%>,
+  components: {
+    Sources
   }
+  <%_ } %>
 }
 </script>
