@@ -184,6 +184,10 @@ code {
   color: #dbdbdb;
 }
 
+.dark code {
+  background-color: #333366;
+}
+
 .userinfo-input {
   background-color: transparent;
   border: 1.5px solid #9999ff;
