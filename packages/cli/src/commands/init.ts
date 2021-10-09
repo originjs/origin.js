@@ -11,6 +11,7 @@ import {
   componentsOption,
   contentOption,
   pagesOption,
+  markdownOption,
 } from '../config/plugins'
 
 type initCliOptions = {
@@ -28,9 +29,10 @@ const defaultOptions: any = {
   globalStylePluginImported: false,
   componentsPluginImported: false,
   contentPluginImported: false,
+  markdownPluginImported: false,
 }
 
-function cpdir(dirOld: string, dirNew: string, name: string) {
+function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
   const p = new Promise(function (resolve, reject) {
     fs.mkdir(path.join(dirNew, name), function (err) {
       resolve('Successfully created the folder!')
@@ -42,7 +44,7 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
     // add files that need to be skipped here
     function getSkipFilesWithRelativePath(): Array<string> {
       const skipFiles = []
-      if (!defaultOptions.pagesPluginImported) {
+      if (!config.pagesPluginImported) {
         skipFiles.push(
           'src/pages/users',
           'src/pages/_.vue',
@@ -52,8 +54,12 @@ function cpdir(dirOld: string, dirNew: string, name: string) {
         )
       }
 
-      if (!defaultOptions.contentPluginImported) {
+      if (!config.contentPluginImported) {
         skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml', 'src/layouts/profile.vue')
+      }
+
+      if (!config.markdownPluginImported) {
+        skipFiles.push('src/pages/markdown.vue', 'src/assets/originjs_readme.md')
       }
 
       return skipFiles
@@ -117,14 +123,15 @@ const checkOptions = async () => {
     })
 }
 
-const initializeModules = async (name: any, uninstalled?: boolean) => {
+export const initializeModules = async (name: any, config: any, uninstalled?: boolean, projectDir?: string) => {
   const spinnerCopy = ora('Downloading...')
   spinnerCopy.start()
-  await cpdir(SOURCES_DIRECTORY, process.cwd(), name)
+  const targetPath = projectDir ? path.resolve(process.cwd(), projectDir) : process.cwd()
+  await cpdir(SOURCES_DIRECTORY, targetPath, name, config)
     .then(rs => {
       spinnerCopy.succeed()
       try {
-        createPackageTemplate(defaultOptions, uninstalled)
+        createPackageTemplate(config, uninstalled)
       } catch (error) {
         console.error(chalk.red('Failed to complete package.json'))
         console.log(error)
@@ -169,6 +176,7 @@ export default async function init(
       componentsOption,
       contentOption,
       pagesOption,
+      markdownOption,
     ]
   }
 
@@ -178,7 +186,7 @@ export default async function init(
   })
 
   try {
-    await initializeModules(name, options.uninstalled)
+    await initializeModules(name, defaultOptions, options.uninstalled)
   } catch (error) {
     console.log(error)
     return false

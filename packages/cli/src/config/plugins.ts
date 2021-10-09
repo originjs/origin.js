@@ -39,3 +39,8 @@ export const pagesOption: PluginChoiceOption = {
   name: 'pages',
   package: '@originjs/vite-plugin-pages',
 }
+
+export const markdownOption: PluginChoiceOption = {
+  name: 'markdown',
+  package: 'vite-plugin-md',
+}

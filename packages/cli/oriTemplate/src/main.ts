@@ -10,10 +10,12 @@ import routes from 'virtual:plugin-pages'
 <%_ } else { _%>
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'
-import Markdown from './pages/markdown.vue'
 <%_ if (contentPluginImported) { _%>
 import Profile from './layouts/profile.vue'
 import Content from './pages/content.vue'
+<%_ } _%>
+<%_ if (markdownPluginImported) { _%>
+import Markdown from './pages/markdown.vue'
 <%_ } _%>
   
 const routes = [
@@ -21,8 +23,9 @@ const routes = [
     path: '/',
     component: Default,
     children: [
-      { path: '/', component: Index },
+      { path: '/', component: Index }<%_ if (markdownPluginImported) { _%>,
       { path: '/markdown', component: Markdown }
+      <%_ } %>
     ]
   }<%_ if (contentPluginImported) { _%>,
   {
