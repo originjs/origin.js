@@ -12,6 +12,7 @@ const TO_BE_RENDERED_FILE_ARRAY: Array<string> = [
   'src/App.vue',
   'src/pages/index.vue',
   'src/layouts/default.vue',
+  'LICENSE',
 ]
 
 const CONTENT_PLUGIN_FILE_ARRAY: Array<string> = [

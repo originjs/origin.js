@@ -17,7 +17,7 @@ export const promptList = [
     type: 'list',
     message: 'Please set the project code license:',
     name: 'license',
-    choices: ['ISC', 'GPL', 'LGPL', 'MPL', 'BSD', 'MIT', 'Apache', 'MulanPSL2'],
+    choices: ['ISC', 'GPLv3', 'LGPLv3', 'MPL', 'BSD-3-Clause', 'MIT', 'Apache', 'MulanPSL2'],
     filter: (val: any) => {
       return val
     },
