@@ -6,10 +6,9 @@
   "bin": {
     "ori": "dist/bin/ori.js"
   },
+  "main": "dist/bin/ori.js",
   "files": [
-    "bin",
-    "dist",
-    "oriTemplate"
+    "dist"
   ],
   "scripts": {
     "prebuild": "del-cli dist/",
