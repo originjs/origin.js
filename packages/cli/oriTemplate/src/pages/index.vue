@@ -8,7 +8,9 @@
     <%_ if (contentPluginImported) { _%>
     <div><router-link class="text-router-link" to="/content">{{ $t("content") }}</router-link></div>
     <%_ } _%>
+    <%_ if (markdownPluginImported) { _%>
     <div><router-link class="text-router-link" to="/markdown">{{ $t("markdown") }}</router-link></div>
+    <%_ } _%>
   </div>
 </template>
 

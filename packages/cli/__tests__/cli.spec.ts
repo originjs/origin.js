@@ -1,8 +1,10 @@
 import { createServer } from 'vite'
+import { initializeModules } from '../src/commands/init'
 import run, { DEMO_PATH } from '../../cli-test-utils/execCommands'
 import create from '../../cli-test-utils/createTestProject'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
+import { getConfigs } from '../../cli-test-utils/getPluginConfig'
 
 test('ori -h', async () => {
   const { stdout, exitCode } = await run(['-h'])
@@ -106,6 +108,13 @@ test('ori init without plugins', async () => {
       project.clear()
     }
   }
+}, 20000)
+
+test.skip('ori init with variable plugin options', async () => {
+  const configs = getConfigs()
+  configs.forEach(config => {
+    initializeModules(config.name, config, true, '../../cli-test-utils/test_projects')
+  })
 }, 20000)
 
 test('ori init --help', async () => {

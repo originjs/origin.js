@@ -150,7 +150,6 @@ exports[`ori init with all plugins: A3 3`] = `
     \\"serve\\": \\"vite preview\\"
   },
   \\"dependencies\\": {
-    \\"vite-plugin-md\\": \\"^0.11.1\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
     \\"vue-router\\": \\"^4.0.11\\",
@@ -161,6 +160,7 @@ exports[`ori init with all plugins: A3 3`] = `
     \\"unplugin-vue-components\\":\\"latest\\",
     \\"@originjs/vite-plugin-content\\":\\"latest\\",
     \\"@originjs/vite-plugin-pages\\":\\"latest\\",
+    \\"vite-plugin-md\\":\\"latest\\",
     \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
     \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
@@ -176,11 +176,11 @@ exports[`ori init with all plugins: A3 4`] = `
 "import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
-import Markdown from 'vite-plugin-md'
 import globalStyle from '@originjs/vite-plugin-global-style'
 import components from 'unplugin-vue-components/vite'
 import content from '@originjs/vite-plugin-content'
 import pages from '@originjs/vite-plugin-pages'
+import markdown from 'vite-plugin-md'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -192,9 +192,8 @@ export default defineConfig({
   },
   plugins:[
     vue({
-      include: [/\\\\.vue$/, /\\\\.md$/],
+      include: [/\\\\.vue$/, /\\\\.md$/]
     }),
-    Markdown(),
     globalStyle(),
     components({
       // allow auto load markdown components under \`./src/components/\`
@@ -205,7 +204,8 @@ export default defineConfig({
       include: [/\\\\.vue$/, /\\\\.vue\\\\?vue/, /\\\\.md$/],
     }),
     content(),
-    pages()
+    pages(),
+    markdown()
   ],
   define: {
     __VUE_I18N_FULL_INSTALL__: true,
@@ -293,15 +293,13 @@ import App from './App.vue'
 import store from './store'
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'
-import Markdown from './pages/markdown.vue'
   
 const routes = [
   {
     path: '/',
     component: Default,
     children: [
-      { path: '/', component: Index },
-      { path: '/markdown', component: Markdown }
+      { path: '/', component: Index }
     ]
   }
 ]
@@ -338,7 +336,6 @@ exports[`ori init without plugins: A4 3`] = `
     \\"serve\\": \\"vite preview\\"
   },
   \\"dependencies\\": {
-    \\"vite-plugin-md\\": \\"^0.11.1\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.9\\",
     \\"vue-router\\": \\"^4.0.11\\",
@@ -360,7 +357,6 @@ exports[`ori init without plugins: A4 4`] = `
 "import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
-import Markdown from 'vite-plugin-md'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -371,10 +367,7 @@ export default defineConfig({
     }],
   },
   plugins:[
-    vue({
-      include: [/\\\\.vue$/, /\\\\.md$/],
-    }),
-    Markdown()
+    vue()
   ],
   define: {
     __VUE_I18N_FULL_INSTALL__: true,

@@ -3,6 +3,7 @@ import {
   componentsOption,
   contentOption,
   pagesOption,
+  markdownOption,
 } from './plugins'
 
 export const promptList = [
@@ -34,6 +35,7 @@ export const promptList = [
       { value: componentsOption, name: 'Components: Reusable vue components' },
       { value: contentOption, name: 'Content: Files as ES module' },
       { value: pagesOption, name: 'Layouts & Pages: Page Layout' },
+      { value: markdownOption, name: 'Markdown: text to HTML' },
     ],
     filter: (val: any) => {
       if (val) {
