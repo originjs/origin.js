@@ -36,10 +36,10 @@ exports[`ori init --help: A5 1`] = `
 init a new project
 
 Options:
-  -d,--default      skip init project options
-  -a,--all-plugins  create project with all plugins
-  -u,--uninstalled  skip install denpendencies
-  -h, --help        display help for command"
+  -d, --default      skip init project options
+  -a, --all-plugins  create project with all plugins
+  -u, --uninstalled  skip install denpendencies
+  -h, --help         display help for command"
 `;
 
 exports[`ori init with all plugins: A3 1`] = `
@@ -293,7 +293,7 @@ import App from './App.vue'
 import store from './store'
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'
-  
+
 const routes = [
   {
     path: '/',
@@ -303,7 +303,6 @@ const routes = [
     ]
   }
 ]
-  
 
 const router = createRouter({
   history: createWebHistory(),

@@ -11,9 +11,9 @@ program.name('ori').usage('<command> [options]')
 program
   .command('init <app-name>')
   .description('init a new project')
-  .option('-d,--default', 'skip init project options')
-  .option('-a,--all-plugins', 'create project with all plugins')
-  .option('-u,--uninstalled', 'skip install denpendencies')
+  .option('-d, --default', 'skip init project options')
+  .option('-a, --all-plugins', 'create project with all plugins')
+  .option('-u, --uninstalled', 'skip install denpendencies')
   .action((name, options) => {
     require('../src/commands/init').default(name, options)
   })

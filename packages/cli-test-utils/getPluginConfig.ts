@@ -35,17 +35,33 @@ function getPluginCompositions(): Array<PluginChoiceOption[]> {
   return compositions
 }
 
-export function getConfigs(): any[] {
-  const pluginCompositions: Array<PluginChoiceOption[]> = getPluginCompositions()
+const pluginCompositions: Array<PluginChoiceOption[]> = getPluginCompositions()
+
+export function getConfigs(includes?: string[], excludes?: string[]): any[] {
   const resultConfigs: any[] = []
   pluginCompositions.forEach((composition, index) => {
-    const config: any = defaultOptions
+    const config: any = Object.assign({}, defaultOptions)
     config.name = `testPlugins_${index + 1}`
     config.plugins = composition
     config.plugins.forEach((plugin: PluginChoiceOption) => {
-      const pluginState = `${plugin.name}PluginImported`
-      defaultOptions[pluginState] = true
+      config[`${plugin.name}PluginImported`] = true
     })
+    if (includes) {
+      for (const pluginName of includes) {
+        const value = config[`${pluginName}PluginImported`]
+        if (!value) {
+          return false
+        }
+      }
+    }
+    if (excludes) {
+      for (const pluginName of excludes) {
+        const value = config[`${pluginName}PluginImported`]
+        if (value) {
+          return false
+        }
+      }
+    }
     resultConfigs.push(config)
   })
   return resultConfigs

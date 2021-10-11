@@ -49,15 +49,17 @@ function changeFileName(filePath: string) {
 export default async function createPackageTemplate(
   config: any,
   uninstalled?: boolean,
+  projectDir?: string,
 ) {
   try {
-    await changeFileName(path.join(process.cwd(), config.name)).then(rs => {
+    const targetPath = projectDir || process.cwd()
+    await changeFileName(path.join(targetPath, config.name)).then(rs => {
       for (const file of TO_BE_RENDERED_FILE_ARRAY) {
-        renderFile(file, config)
+        renderFile(file, config, targetPath)
       }
       if (config.contentPluginImported) {
         for (const file of CONTENT_PLUGIN_FILE_ARRAY) {
-          renderFile(file, config)
+          renderFile(file, config, targetPath)
         }
       }
       if (uninstalled) {
@@ -92,8 +94,8 @@ export default async function createPackageTemplate(
   }
 }
 
-function renderFile(filePath: string, config: any) {
-  const renderPath: string = path.join(config.name, filePath)
+function renderFile(filePath: string, config: any, projectDir: string) {
+  const renderPath: string = path.join(projectDir, config.name, filePath)
   ejs.renderFile(renderPath, config, (err: any, str = '') => {
     fs.writeFileSync(renderPath, str)
   })
