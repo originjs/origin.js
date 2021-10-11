@@ -17,15 +17,14 @@ import Content from './pages/content.vue'
 <%_ if (markdownPluginImported) { _%>
 import Markdown from './pages/markdown.vue'
 <%_ } _%>
-  
+
 const routes = [
   {
     path: '/',
     component: Default,
     children: [
       { path: '/', component: Index }<%_ if (markdownPluginImported) { _%>,
-      { path: '/markdown', component: Markdown }
-      <%_ } %>
+      { path: '/markdown', component: Markdown }<% } %>
     ]
   }<%_ if (contentPluginImported) { _%>,
   {
@@ -34,10 +33,8 @@ const routes = [
     children: [
       { path: '/content', component: Content }
     ]
-  }
-  <%_ } %>
+  }<% } %>
 ]
-  
 <%_ } _%>
 
 const router = createRouter({

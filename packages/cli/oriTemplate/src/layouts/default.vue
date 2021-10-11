@@ -43,7 +43,6 @@ export default {
   }<%_ if (!componentsPluginImported) { _%>,
   components: {
     Sources
-  }
-  <%_ } %>
+  }<% } %>
 }
 </script>

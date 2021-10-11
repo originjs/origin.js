@@ -55,7 +55,11 @@ function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
       }
 
       if (!config.contentPluginImported) {
-        skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml', 'src/layouts/profile.vue')
+        skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml')
+      }
+
+      if (!config.pagesPluginImported && !config.contentPluginImported) {
+        skipFiles.push('src/layouts/profile.vue')
       }
 
       if (!config.markdownPluginImported) {
@@ -128,10 +132,10 @@ export const initializeModules = async (name: any, config: any, uninstalled?: bo
   spinnerCopy.start()
   const targetPath = projectDir ? path.resolve(process.cwd(), projectDir) : process.cwd()
   await cpdir(SOURCES_DIRECTORY, targetPath, name, config)
-    .then(rs => {
+    .then(async (rs) => {
       spinnerCopy.succeed()
       try {
-        createPackageTemplate(config, uninstalled)
+        await createPackageTemplate(config, uninstalled, targetPath)
       } catch (error) {
         console.error(chalk.red('Failed to complete package.json'))
         console.log(error)

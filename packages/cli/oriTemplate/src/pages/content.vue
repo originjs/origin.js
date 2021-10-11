@@ -15,8 +15,8 @@ export default {
   }
 }
 </script>
-
 <%_ if (pagesPluginImported) { _%>
+
 <layout>
 layout: profile
 </layout>
