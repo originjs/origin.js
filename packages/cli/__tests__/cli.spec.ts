@@ -86,7 +86,7 @@ test('ori init with all plugins', async () => {
       project.clear()
     }
   }
-}, 20000)
+}, 10000)
 
 test('ori init without plugins', async () => {
   const project = await create('testNoPlugins')
@@ -135,184 +135,92 @@ test('ori init without plugins', async () => {
       project.clear()
     }
   }
-}, 20000)
+}, 10000)
 
-test('ori init with markdown plugin and router', async () => {
-  const configs = getConfigs(['markdown'], ['content', 'pages', 'globalStyle', 'components'])
+test('ori init with variable plugins', async () => {
+  const configs = getConfigs()
   const ProjectPath = path.resolve(process.cwd(), './packages/cli-test-utils/test_projects')
   for (const config of configs) {
+    await initializeModules(config.name, config, true, ProjectPath)
     try {
-      await initializeModules(config.name, config, true, ProjectPath)
-
       const mainFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/main.ts'), 'utf-8')
-      expect(mainFile.replace(/\r\n/g, '\n')).toMatch(results.mainWithMarkdownPlugin)
-
       const indexFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/pages/index.vue'), 'utf-8')
-      expect(indexFile).toMatch(results.indexWithMarkdownPlugin)
-
       const viteConfigFile = fs.readFileSync(path.join(ProjectPath, config.name, 'vite.config.ts'), 'utf-8')
-      expect(viteConfigFile).toMatch(results.viteConfigImportMarkdownPlugin)
-      expect(viteConfigFile).toMatch(results.viteConfigWithMarkdownPlugin)
-      expect(viteConfigFile.replace(/\r\n/g, '\n')).toMatch(results.viteConfigWithMarkdownPluginVue)
-
       const PackageJsonFile = fs.readFileSync(path.join(ProjectPath, config.name, 'package.json'), 'utf-8')
-      expect(PackageJsonFile).toMatch(results.packageJsonWithMarkdownPlugin)
 
-      // skip files
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/users/_user.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/_.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/$child.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/login.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/empty.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/markdown.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/originjs_readme.md'))).toEqual(true)
+      if (config.pagesPluginImported) {
+        expect(mainFile).toMatch(results.mainWithPagesPlugin)
+        expect(indexFile).toMatch(results.indexWithPagesPluginLogin)
+        expect(indexFile).toMatch(results.indexWithPagesPluginChild)
+        expect(viteConfigFile).toMatch(results.viteConfigImportPagesPlugin)
+        expect(viteConfigFile).toMatch(results.viteConfigWithPagesPlugin)
+        expect(PackageJsonFile).toMatch(results.packageJsonWithPagesPlugin)
+      } else {
+        // skip files
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/users/_user.vue'))).toEqual(false)
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/_.vue'))).toEqual(false)
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/$child.vue'))).toEqual(false)
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/login.vue'))).toEqual(false)
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/empty.vue'))).toEqual(false)
+        if (config.markdownPluginImported) {
+          expect(mainFile).toMatch(results.mainImportMarkdownComponents)
+          expect(mainFile).toMatch(results.mainWithMarkdownPlugin)
+        }
+        if (config.contentPluginImported) {
+          expect(mainFile.replace(/\r\n/g, '\n')).toMatch(results.mainImportContentComponents)
+          expect(mainFile.replace(/\r\n/g, '\n')).toMatch(results.mainWithContentPlugin)
+        }
+      }
+
+      if (config.markdownPluginImported) {
+        expect(indexFile).toMatch(results.indexWithMarkdownPlugin)
+        expect(viteConfigFile).toMatch(results.viteConfigImportMarkdownPlugin)
+        expect(viteConfigFile).toMatch(results.viteConfigWithMarkdownPlugin)
+        expect(viteConfigFile.replace(/\r\n/g, '\n')).toMatch(results.viteConfigWithMarkdownPluginVue)
+        expect(PackageJsonFile).toMatch(results.packageJsonWithMarkdownPlugin)
+      } else {
+        // skip files
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/markdown.vue'))).toEqual(false)
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/originjs_readme.md'))).toEqual(false)
+      }
+
+      if (config.contentPluginImported) {
+        expect(indexFile).toMatch(results.indexWithContentPlugin)
+        expect(viteConfigFile).toMatch(results.viteConfigImportContentPlugin)
+        expect(viteConfigFile).toMatch(results.viteConfigWithContentPlugin)
+        expect(PackageJsonFile).toMatch(results.packageJsonWithContentPlugin)
+      } else {
+        // skip files
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(false)
+        expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(false)
+        if (!config.pagesPluginImported) {
+          expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(false)
+        }
+      }
+
+      if (config.globalStylePluginImported) {
+        expect(viteConfigFile).toMatch(results.viteConfigImportGlobalStylePlugin)
+        expect(viteConfigFile).toMatch(results.viteConfigWithGlobalStylePlugin)
+        expect(PackageJsonFile).toMatch(results.packageJsonWithGlobalStylePlugin)
+      } else {
+        const appFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/App.vue'), 'utf-8')
+        expect(appFile).toMatch(results.appFileWithoutGlobalStylePlugin)
+      }
+
+      if (config.componentsPluginImported) {
+        expect(viteConfigFile).toMatch(results.viteConfigImportComponentsPlugin)
+        expect(viteConfigFile.replace(/\r\n/g, '\n')).toMatch(results.viteConfigWithComponentsPlugin)
+        expect(PackageJsonFile).toMatch(results.packageJsonWithComponentsPlugin)
+      } else {
+        const defaultFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/layouts/default.vue'), 'utf-8')
+        expect(defaultFile).toMatch(results.defaultLayoutImportWithoutComponentsPlugin)
+        expect(defaultFile.replace(/\r\n/g, '\n')).toMatch(results.defaultLayoutScriptWithoutComponentsPlugin)
+      }
     } finally {
       fs.remove(path.join(ProjectPath, config.name))
     }
   }
-}, 20000)
-
-test('ori init with content plugin and router', async () => {
-  const configs = getConfigs(['content'], ['markdown', 'pages', 'globalStyle', 'components'])
-  const ProjectPath = path.resolve(process.cwd(), './packages/cli-test-utils/test_projects')
-  for (const config of configs) {
-    try {
-      await initializeModules(config.name, config, true, ProjectPath)
-
-      const mainFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/main.ts'), 'utf-8')
-      expect(mainFile.replace(/\r\n/g, '\n')).toMatch(results.mainWithContentPlugin)
-
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(true)
-
-      const indexFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/pages/index.vue'), 'utf-8')
-      expect(indexFile).toMatch(results.indexWithContentPlugin)
-
-      const viteConfigFile = fs.readFileSync(path.join(ProjectPath, config.name, 'vite.config.ts'), 'utf-8')
-      expect(viteConfigFile).toMatch(results.viteConfigImportContentPlugin)
-      expect(viteConfigFile).toMatch(results.viteConfigWithContentPlugin)
-
-      const PackageJsonFile = fs.readFileSync(path.join(ProjectPath, config.name, 'package.json'), 'utf-8')
-      expect(PackageJsonFile).toMatch(results.packageJsonWithContentPlugin)
-
-      // skip files
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/users/_user.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/_.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/$child.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/login.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/empty.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/markdown.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/originjs_readme.md'))).toEqual(false)
-    } finally {
-      fs.remove(path.join(ProjectPath, config.name))
-    }
-  }
-}, 20000)
-
-test('ori with pages plugin', async () => {
-  const configs = getConfigs(['pages'], ['markdown', 'content', 'globalStyle', 'components'])
-  const ProjectPath = path.resolve(process.cwd(), './packages/cli-test-utils/test_projects')
-  for (const config of configs) {
-    try {
-      await initializeModules(config.name, config, true, ProjectPath)
-
-      const mainFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/main.ts'), 'utf-8')
-      expect(mainFile.replace(/\r\n/g, '\n')).toMatch(results.mainWithPagesPlugin)
-
-      const indexFile = fs.readFileSync(path.join(ProjectPath, config.name, 'src/pages/index.vue'), 'utf-8')
-      expect(indexFile).toMatch(results.indexWithPagesPluginLogin)
-      expect(indexFile).toMatch(results.indexWithPagesPluginChild)
-
-      const viteConfigFile = fs.readFileSync(path.join(ProjectPath, config.name, 'vite.config.ts'), 'utf-8')
-      expect(viteConfigFile).toMatch(results.viteConfigImportPagesPlugin)
-      expect(viteConfigFile).toMatch(results.viteConfigWithPagesPlugin)
-
-      const PackageJsonFile = fs.readFileSync(path.join(ProjectPath, config.name, 'package.json'), 'utf-8')
-      expect(PackageJsonFile).toMatch(results.packageJsonWithPagesPlugin)
-
-      // skip files
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/users/_user.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/_.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/$child.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/login.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/empty.vue'))).toEqual(true)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/markdown.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/originjs_readme.md'))).toEqual(false)
-    } finally {
-      fs.remove(path.join(ProjectPath, config.name))
-    }
-  }
-}, 20000)
-
-test('ori with global style plugin', async () => {
-  const configs = getConfigs(['globalStyle'], ['markdown', 'pages', 'content', 'components'])
-  const ProjectPath = path.resolve(process.cwd(), './packages/cli-test-utils/test_projects')
-  for (const config of configs) {
-    try {
-      await initializeModules(config.name, config, true, ProjectPath)
-
-      const viteConfigFile = fs.readFileSync(path.join(ProjectPath, config.name, 'vite.config.ts'), 'utf-8')
-      expect(viteConfigFile).toMatch(results.viteConfigImportGlobalStylePlugin)
-      expect(viteConfigFile).toMatch(results.viteConfigWithGlobalStylePlugin)
-
-      const PackageJsonFile = fs.readFileSync(path.join(ProjectPath, config.name, 'package.json'), 'utf-8')
-      expect(PackageJsonFile).toMatch(results.packageJsonWithGlobalStylePlugin)
-
-      // skip files
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/users/_user.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/_.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/$child.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/login.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/empty.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/markdown.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/originjs_readme.md'))).toEqual(false)
-    } finally {
-      fs.remove(path.join(ProjectPath, config.name))
-    }
-  }
-}, 20000)
-
-test('ori with components plugin', async () => {
-  const configs = getConfigs(['components'], ['markdown', 'pages', 'content', 'globalStyle'])
-  const ProjectPath = path.resolve(process.cwd(), './packages/cli-test-utils/test_projects')
-  for (const config of configs) {
-    try {
-      await initializeModules(config.name, config, true, ProjectPath)
-
-      const viteConfigFile = fs.readFileSync(path.join(ProjectPath, config.name, 'vite.config.ts'), 'utf-8')
-      expect(viteConfigFile).toMatch(results.viteConfigImportComponentsPlugin)
-      expect(viteConfigFile.replace(/\r\n/g, '\n')).toMatch(results.viteConfigWithComponentsPlugin)
-
-      const PackageJsonFile = fs.readFileSync(path.join(ProjectPath, config.name, 'package.json'), 'utf-8')
-      expect(PackageJsonFile).toMatch(results.packageJsonWithComponentsPlugin)
-
-      // skip files
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/users/_user.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/_.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/$child.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/login.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/empty.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/markdown.vue'))).toEqual(false)
-      expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/originjs_readme.md'))).toEqual(false)
-    } finally {
-      fs.remove(path.join(ProjectPath, config.name))
-    }
-  }
-}, 20000)
+}, 15000)
 
 test('ori init --help', async () => {
   const { stdout, exitCode } = await run(['init', '--help'])
