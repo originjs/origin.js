@@ -146,7 +146,7 @@ exports[`ori init with all plugins: A3 3`] = `
   \\"license\\": \\"ISC\\",
   \\"scripts\\": {
     \\"dev\\": \\"vite\\",
-    \\"build\\": \\"vue-tsc --noEmit && vite build\\",
+    \\"build\\": \\"vite build\\",
     \\"serve\\": \\"vite preview\\"
   },
   \\"dependencies\\": {
@@ -331,7 +331,7 @@ exports[`ori init without plugins: A4 3`] = `
   \\"license\\": \\"ISC\\",
   \\"scripts\\": {
     \\"dev\\": \\"vite\\",
-    \\"build\\": \\"vue-tsc --noEmit && vite build\\",
+    \\"build\\": \\"vite build\\",
     \\"serve\\": \\"vite preview\\"
   },
   \\"dependencies\\": {
