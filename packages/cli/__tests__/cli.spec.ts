@@ -220,7 +220,7 @@ test('ori init with variable plugins', async () => {
       fs.remove(path.join(ProjectPath, config.name))
     }
   }
-}, 15000)
+}, 30000)
 
 test('ori init --help', async () => {
   const { stdout, exitCode } = await run(['init', '--help'])
