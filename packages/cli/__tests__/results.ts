@@ -1,40 +1,18 @@
 const mainWithPagesPlugin = `import routes from 'virtual:plugin-pages'`
 
-const mainWithContentPlugin = `import Profile from './layouts/profile.vue'
-import Content from './pages/content.vue'
-
-const routes = [
-  {
-    path: '/',
-    component: Default,
-    children: [
-      { path: '/', component: Index }
-    ]
-  },
-  {
+const mainImportContentComponents = `import Profile from './layouts/profile.vue'
+import Content from './pages/content.vue'`
+const mainWithContentPlugin = `{
     path: '/',
     component: Profile,
     children: [
       { path: '/content', component: Content }
     ]
   }
-]
 `
 
-const mainWithMarkdownPlugin = `import Index from './pages/index.vue'
-import Markdown from './pages/markdown.vue'
-
-const routes = [
-  {
-    path: '/',
-    component: Default,
-    children: [
-      { path: '/', component: Index },
-      { path: '/markdown', component: Markdown }
-    ]
-  }
-]
-`
+const mainImportMarkdownComponents = `import Markdown from './pages/markdown.vue`
+const mainWithMarkdownPlugin = `{ path: '/markdown', component: Markdown }`
 
 const indexWithPagesPluginLogin = `<div><router-link class="text-router-link" to="/login">{{ $t("userLogin") }}</router-link></div>`
 const indexWithPagesPluginChild = `<div><router-link class="text-router-link" to="/child">{{ $t("nestedRoutes") }}</router-link></div>`
@@ -74,10 +52,19 @@ const packageJsonWithMarkdownPlugin = `vite-plugin-md":"latest"`
 const packageJsonWithGlobalStylePlugin = `@originjs/vite-plugin-global-style":"latest"`
 const packageJsonWithComponentsPlugin = `unplugin-vue-components":"latest"`
 
+const appFileWithoutGlobalStylePlugin = `<style src="./assets/global-theme.css"></style>`
+
+const defaultLayoutImportWithoutComponentsPlugin = `import Sources from '../components/Sources.vue'`
+const defaultLayoutScriptWithoutComponentsPlugin = `components: {
+    Sources
+  }`
+
 
 export default {
   mainWithPagesPlugin,
+  mainImportMarkdownComponents,
   mainWithMarkdownPlugin,
+  mainImportContentComponents,
   mainWithContentPlugin,
   indexWithPagesPluginLogin,
   indexWithPagesPluginChild,
@@ -99,4 +86,7 @@ export default {
   packageJsonWithGlobalStylePlugin,
   packageJsonWithMarkdownPlugin,
   packageJsonWithPagesPlugin,
+  appFileWithoutGlobalStylePlugin,
+  defaultLayoutImportWithoutComponentsPlugin,
+  defaultLayoutScriptWithoutComponentsPlugin,
 }

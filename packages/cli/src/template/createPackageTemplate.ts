@@ -97,7 +97,7 @@ export default async function createPackageTemplate(
 
 function renderFile(filePath: string, config: any, projectDir: string) {
   const renderPath: string = path.join(projectDir, config.name, filePath)
-  ejs.renderFile(renderPath, config, (err: any, str = '') => {
-    fs.writeFileSync(renderPath, str)
-  })
+  const template: string = fs.readFileSync(renderPath, 'utf-8')
+  const outputCode: string = ejs.compile(template, {})(config)
+  fs.writeFileSync(renderPath, outputCode)
 }
