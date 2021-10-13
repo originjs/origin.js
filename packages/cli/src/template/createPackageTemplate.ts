@@ -31,11 +31,8 @@ function changeFileName(filePath: string) {
 
     const oldPath = path.join(filePath, filename)
     const newPath = path.join(filePath, filename.slice(1))
-    fs.rename(oldPath, newPath, function (err) {
-      if (!err) {
-        resolve('Successfully change file name!')
-      }
-    })
+    fs.renameSync(oldPath, newPath)
+    resolve('Successfully change file name!')
   }
 
   return new Promise(function (resolve, reject) {
