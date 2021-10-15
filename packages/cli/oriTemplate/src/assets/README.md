@@ -1,8 +1,7 @@
 ## Assets
-Store your project resources here. You can create files with name started with `global-` as global style sheets.
-
-### Usage
-For global `CSS` styles, they will be added to the `index.html` and will affect all pages.<br/>
+Store your project resources here. 
+`CSS`, `SASS`, `LESS`, `Stylus` files named starting with `global` are automatically added to the vite global style.
+For global `CSS` styles, they will be added to the `index.html` and will affect all pages.
 For global `SASS`/`LESS`/`Stylus` styles, they will be added to every `SASS`/`LESS` files using `@import XXXX`.
-
-<!-- TODO: npm source link -->
+`yaml`, `xml`, `xlsx`, `ini`, `toml`, `csv`, `plist`, `properties` and `markdown` files can be converted to ES6 modules.
+Powered by (@originjs/vite-plugin-global-style)[https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-global-style], (@originjs/vite-plugin-content)[https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content] and (vite-plugin-md)[https://github.com/antfu/vite-plugin-md]

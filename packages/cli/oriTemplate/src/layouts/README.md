@@ -1,5 +1,6 @@
 ## Layouts
 Layouts for pages will be loaded automatically.
+Powered by [@originjs/vite-plugin-pages](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-pages).
 
 ### Usage
 Add layout options to your page components.
@@ -8,5 +9,3 @@ Add layout options to your page components.
   layout: layoutName
 </layout>
 ```
-
-<!-- TODO: npm source link -->
