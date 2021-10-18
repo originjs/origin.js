@@ -1,4 +1,5 @@
-![logo](./oriTemplate/src/assets/originjs.png)
+<p align="center"><img align="center" style="width:320px" src="./oriTemplate/src/assets/originjs.png"/></p><br/>
+
 # Origin.js
 
 <p align="center">
