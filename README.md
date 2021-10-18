@@ -11,13 +11,12 @@
 > A simple and powerful Vue.js web application framework that provides a complete set of web project solutions based on Vue.js
 
 ## Features
-- Vue 3, Vite 2
-- Vuex, Vue I18n
+- [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
+- [Vue i18n](https://github.com/intlify/vue-i18n-next) & [Vuex](https://github.com/vuejs/vue-next) intergrated
 - Global styles with css, sass, less or stylus
-- Auto-registered components
-- Route config generated for Vue components
-- Layout system
-- Files conversion includes `*.yaml`, `*.xml`, `*.xlsx`, `*.ini`, `*.toml`, `*.csv`, `*.plist` and `*.properties`
+- Auto-imported Vue components
+- File based routing and layouts
+- Open `yaml/xml/xlsx/...` as a ES module
 - Markdown support
 - [Webpack to vite conversion tool](https://github.com/originjs/webpack-to-vite)
 - [A migration tool from Vue 2 to Vue 3](https://github.com/originjs/vue-codemod)
@@ -33,7 +32,11 @@ View [Documentation](https://originjs.github.io/docs/en/) for more information.
 
 ## Install
 ```shell
-npm install @originjs/cli -g
+npm install -g @originjs/cli
+```
+or
+```shell
+yarn global add @originjs/cli
 ```
 
 ## Getting started
