@@ -29,13 +29,13 @@ export const promptList = [
     choices: [
       {
         value: globalStyleOption,
-        name: 'GlobalStyle: Processing global styles.',
+        name: 'GlobalStyle: Global styles processing',
         package: '',
       },
-      { value: componentsOption, name: 'Components: Reusable vue components' },
-      { value: contentOption, name: 'Content: Files as ES module' },
-      { value: pagesOption, name: 'Layouts & Pages: Page Layout' },
-      { value: markdownOption, name: 'Markdown: text to HTML' },
+      { value: componentsOption, name: 'Components: On-demand components auto importing for Vue' },
+      { value: contentOption, name: 'Content: Use various types of file as ES modules' },
+      { value: pagesOption, name: 'Layouts & Pages: Files based pages & layouts' },
+      { value: markdownOption, name: 'Markdown: Use Markdown as Vue components' },
     ],
     filter: (val: any) => {
       if (val) {
