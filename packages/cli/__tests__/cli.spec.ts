@@ -5,6 +5,7 @@ import results from './results'
 import { initializeModules } from '../src/commands/init'
 import run, { DEMO_PATH } from '../../cli-test-utils/execCommands'
 import create from '../../cli-test-utils/createTestProject'
+import createVue2 from '../../cli-test-utils/createTestProjectVue2'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
 import { getConfigs } from '../../cli-test-utils/getPluginConfig'
@@ -39,7 +40,7 @@ test('ori init with failed arguments', async () => {
 }, 10000)
 
 test('ori init with all plugins', async () => {
-  const project = await create('testAllPlugins', ['-d', '-a', '-u'])
+  const project = await create('test_all_plugins', ['-d', '-a', '-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -89,7 +90,7 @@ test('ori init with all plugins', async () => {
 }, 10000)
 
 test('ori init without plugins', async () => {
-  const project = await create('testNoPlugins')
+  const project = await create('test_no_plugins')
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -139,7 +140,7 @@ test('ori init without plugins', async () => {
 
 test('ori init with variable plugins', async () => {
   const configs = getConfigs()
-  const ProjectPath = path.resolve(process.cwd(), './packages/cli-test-utils/test_projects')
+  const ProjectPath = path.resolve(process.cwd(), `./packages/cli-test-utils/${DEMO_PATH}`)
   for (const config of configs) {
     await initializeModules(config.name, config, true, ProjectPath)
     try {
@@ -229,7 +230,7 @@ test('ori init --help', async () => {
 }, 10000)
 
 test.skip('ori dev', async () => {
-  const project = await create('testServer')
+  const project = await create('test_server')
 
   await runServer('testServer')
   expect(createServer).toHaveBeenCalledTimes(1)
@@ -239,7 +240,7 @@ test.skip('ori dev', async () => {
 }, 10000)
 
 test.skip('ori build', async () => {
-  const project = await create('testBuild')
+  const project = await create('test_build')
 
   await runBuild('testBuild')
   expect(project.has('dist')).toEqual(true)
@@ -248,13 +249,21 @@ test.skip('ori build', async () => {
 }, 10000)
 
 test.skip('ori tovue3', async () => {
-  const { stdout, exitCode } = await run(['tovue3', 'src', '-a'])
-  expect(stdout).toMatchSnapshot('A7')
-  expect(exitCode).toEqual(0)
-})
+  const project = await createVue2('test_to_vue3')
+  try {
+    const { exitCode } = await run(['tovue3', '-a', path.join('./packages/cli-test-utils', DEMO_PATH, 'test_to_vue3')])
+    expect(exitCode).toEqual(0)
+  } finally {
+    await project.clear()
+  }
+}, 100000)
 
 test.skip('ori tovite', async () => {
-  const { stdout, exitCode } = await run(['tovite', '-d', DEMO_PATH])
-  expect(stdout).toContain('Conversion finished')
-  expect(exitCode).toEqual(0)
-})
+  const project = await createVue2('test_to_vite')
+  try {
+    const { exitCode } = await run(['tovite', '-d', path.join('./packages/cli-test-utils', DEMO_PATH, 'test_to_vite')])
+    expect(exitCode).toEqual(0)
+  } finally {
+    await project.clear()
+  }
+}, 100000)
