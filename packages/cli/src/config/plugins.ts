@@ -44,3 +44,8 @@ export const markdownOption: PluginChoiceOption = {
   name: 'markdown',
   package: 'vite-plugin-md',
 }
+
+export const federationOption: PluginChoiceOption = {
+  name: 'federation',
+  package: '@originjs/vite-plugin-federation',
+}

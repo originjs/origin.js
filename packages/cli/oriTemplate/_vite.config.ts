@@ -13,16 +13,44 @@ export default defineConfig({
       replacement: path.resolve(__dirname, 'src'),
     }],
   },
+<%_ if (federationType == 'Remote') { _%>
+  server: {
+    port: 3072
+  },
+  build:{
+    rollupOptions: {
+      external: 'semver/functions/satisfies',
+    },
+  },
+<%_ } _%>
   plugins:[
     <%_ if (markdownPluginImported) { _%>
     vue({
-      include: [/\.vue$/, /\.md$/]
+      include: [/\.vue$/, /\.md$/],
     })<%_ } else { _%>
     vue()<%_ } _%><%_ plugins.forEach( function(plugin) { -%>,
+<%_ if (plugin.name == 'federation') { _%>
+<%_ if (federationType == 'Host') { _%>
+    federation({
+      name: 'host',
+      filename: 'remoteEntry.js',
+      remotes: {
+        remote: 'http://localhost:3072/remoteEntry.js',
+      },
+      shared: ['vue'],
+    }),<%_ } else { _%>
+    federation({
+      name: 'remote',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './RemoteComponent': './src/components/HelloWorld.vue',
+      },
+      shared: ['vue'],
+    }),<%_ } _%><%_ return } _%>
     <%= plugin.name -%>(<%_ if (plugin.options) { _%><%- plugin.options %><%_ } _%>)<%_ }) %>
   ],
   define: {
     __VUE_I18N_FULL_INSTALL__: true,
     __VUE_I18N_LEGACY_API__: true,
-  }
+  },
 })

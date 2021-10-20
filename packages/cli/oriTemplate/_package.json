@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+<%_ if (federationType == 'Remote') { _%>
+    "serve": "vite preview --port 3072"
+<%_ } else { _%>
     "serve": "vite preview"
+<%_ } _%>
   },
   "dependencies": {
     "vue": "^3.0.5",

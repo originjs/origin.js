@@ -1,4 +1,8 @@
+<%_ if (federationType == 'Host') { _%>
+import {createApp, defineAsyncComponent} from 'vue'
+<%_ } else { _%>
 import { createApp } from 'vue'
+<%_ } _%>
 import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
 import en from './locales/en.json'
@@ -53,4 +57,9 @@ const i18n = createI18n({
   }
 })
 
-createApp(App).use(router).use(store).use(i18n).mount('#app')
+const app = createApp(App);
+<%_ if (federationType == 'Host') { _%>
+const remoteComponent = defineAsyncComponent(() => import('remote/RemoteComponent'));
+app.component("RemoteComponent", remoteComponent)
+<%_ } _%>
+app.use(router).use(store).use(i18n).mount('#app')

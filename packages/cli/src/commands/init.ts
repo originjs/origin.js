@@ -30,6 +30,7 @@ const defaultOptions: any = {
   componentsPluginImported: false,
   contentPluginImported: false,
   markdownPluginImported: false,
+  federationPluginImported: false,
 }
 
 function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
@@ -64,6 +65,10 @@ function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
 
       if (!config.markdownPluginImported) {
         skipFiles.push('src/pages/markdown.vue', 'src/assets/originjs_readme.md')
+      }
+
+      if (!config.federationPluginImported || config.federationType != 'Remote') {
+        skipFiles.push('src/components/HelloWorld.vue')
       }
 
       return skipFiles
