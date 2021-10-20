@@ -30,7 +30,7 @@ const viteConfigWithContentPlugin = `content()`
 const viteConfigImportMarkdownPlugin = `import markdown from 'vite-plugin-md'`
 const viteConfigWithMarkdownPlugin = `markdown()`
 const viteConfigWithMarkdownPluginVue = `vue({
-      include: [/\\.vue$/, /\\.md$/]
+      include: [/\\.vue$/, /\\.md$/],
     })`
 
 const viteConfigImportGlobalStylePlugin = `import globalStyle from '@originjs/vite-plugin-global-style'`

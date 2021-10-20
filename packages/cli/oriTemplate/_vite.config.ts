@@ -13,7 +13,7 @@ export default defineConfig({
       replacement: path.resolve(__dirname, 'src'),
     }],
   },
-<%_ if (federationType == 'Remote') { _%>
+<%_ if (federationPluginImported && federationType == 'Remote') { _%>
   server: {
     port: 3072
   },
@@ -30,7 +30,7 @@ export default defineConfig({
     })<%_ } else { _%>
     vue()<%_ } _%><%_ plugins.forEach( function(plugin) { -%>,
 <%_ if (plugin.name == 'federation') { _%>
-<%_ if (federationType == 'Host') { _%>
+<%_ if (federationPluginImported && federationType == 'Host') { _%>
     federation({
       name: 'host',
       filename: 'remoteEntry.js',

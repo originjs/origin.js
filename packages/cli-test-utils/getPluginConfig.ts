@@ -4,6 +4,7 @@ import {
   contentOption,
   pagesOption,
   markdownOption,
+  federationOption,
   PluginChoiceOption,
 } from '../cli/src/config/plugins'
 
@@ -12,11 +13,14 @@ const defaultOptions: any = {
   version: '1.0.0',
   license: 'ISC',
   plugins: [],
+  // NOTE: the default value of federationType is only used in test
+  federationType: 'Host',
   pagesPluginImported: false,
   globalStylePluginImported: false,
   componentsPluginImported: false,
   contentPluginImported: false,
   markdownPluginImported: false,
+  federationPluginImported: false,
 }
 
 const TO_BE_ADDED_PLUGINS: PluginChoiceOption[] = [
@@ -25,6 +29,7 @@ const TO_BE_ADDED_PLUGINS: PluginChoiceOption[] = [
   contentOption,
   pagesOption,
   markdownOption,
+  federationOption,
 ]
 
 function getPluginCompositions(): Array<PluginChoiceOption[]> {

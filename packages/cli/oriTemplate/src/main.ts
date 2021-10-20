@@ -1,5 +1,5 @@
-<%_ if (federationType == 'Host') { _%>
-import {createApp, defineAsyncComponent} from 'vue'
+<%_ if (federationPluginImported && federationType == 'Host') { _%>
+import { createApp, defineAsyncComponent } from 'vue'
 <%_ } else { _%>
 import { createApp } from 'vue'
 <%_ } _%>
@@ -58,7 +58,7 @@ const i18n = createI18n({
 })
 
 const app = createApp(App);
-<%_ if (federationType == 'Host') { _%>
+<%_ if (federationPluginImported && federationType == 'Host') { _%>
 const remoteComponent = defineAsyncComponent(() => import('remote/RemoteComponent'));
 app.component("RemoteComponent", remoteComponent)
 <%_ } _%>

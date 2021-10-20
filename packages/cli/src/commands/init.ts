@@ -12,6 +12,7 @@ import {
   contentOption,
   pagesOption,
   markdownOption,
+  federationOption,
 } from '../config/plugins'
 
 type initCliOptions = {
@@ -186,12 +187,17 @@ export default async function init(
       contentOption,
       pagesOption,
       markdownOption,
+      federationOption,
     ]
   }
 
   defaultOptions.plugins.forEach((plugin: PluginChoiceOption) => {
     const pluginState = `${plugin.name}PluginImported`
     defaultOptions[pluginState] = true
+
+    if (plugin.name == 'federation' && !defaultOptions.federationType) {
+      defaultOptions.federationType = 'Host'
+    }
   })
 
   try {

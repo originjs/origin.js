@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-<%_ if (federationType == 'Remote') { _%>
+<%_ if (federationPluginImported && federationType == 'Remote') { _%>
     "serve": "vite preview --port 3072"
 <%_ } else { _%>
     "serve": "vite preview"

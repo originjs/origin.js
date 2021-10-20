@@ -57,7 +57,7 @@ test('ori init with all plugins', async () => {
     expect(project.has('src/assets')).toEqual(true)
 
     const appFile = project.read('src/App.vue')
-    expect(appFile).toMatchSnapshot('A3')
+    expect(appFile.replace(/\r\n/g, '\n')).toMatchSnapshot('A3')
 
     const mainFile = project.read('src/main.ts')
     expect(mainFile).toMatchSnapshot('A3')
