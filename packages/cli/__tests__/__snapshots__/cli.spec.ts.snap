@@ -141,7 +141,7 @@ createApp(App).use(router).use(store).use(i18n).mount('#app')
 
 exports[`ori init with all plugins: A3 3`] = `
 "{
-  \\"name\\": \\"testAllPlugins\\",
+  \\"name\\": \\"test_all_plugins\\",
   \\"version\\": \\"1.0.0\\",
   \\"license\\": \\"ISC\\",
   \\"scripts\\": {
@@ -326,7 +326,7 @@ createApp(App).use(router).use(store).use(i18n).mount('#app')
 
 exports[`ori init without plugins: A4 3`] = `
 "{
-  \\"name\\": \\"testNoPlugins\\",
+  \\"name\\": \\"test_no_plugins\\",
   \\"version\\": \\"1.0.0\\",
   \\"license\\": \\"ISC\\",
   \\"scripts\\": {

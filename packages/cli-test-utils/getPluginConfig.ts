@@ -41,7 +41,7 @@ export function getConfigs(includes?: string[], excludes?: string[]): any[] {
   const resultConfigs: any[] = []
   pluginCompositions.forEach((composition, index) => {
     const config: any = Object.assign({}, defaultOptions)
-    config.name = `testPlugins_${index + 1}`
+    config.name = `test_plugins_${index + 1}`
     config.plugins = composition
     config.plugins.forEach((plugin: PluginChoiceOption) => {
       config[`${plugin.name}PluginImported`] = true

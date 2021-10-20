@@ -9,7 +9,8 @@ export function codemodHelp() {
 }
 
 function getArgs(args: string[]): string[] {
-  return args.slice(3)
+  const toVue3Args = args.slice(3)
+  return toVue3Args.length ? toVue3Args : ['-h']
 }
 
 function getHelp(): string[] {

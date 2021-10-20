@@ -9,7 +9,8 @@ export function toViteHelp() {
 }
 
 function getArgs(args: string[]): string[] {
-  return args.slice(3)
+  const toViteArgs = args.slice(3)
+  return toViteArgs.length ? toViteArgs : ['-h']
 }
 
 function getHelp(): string[] {
