@@ -4,8 +4,6 @@ defineProps<{ msg: string }>()
 
 <template>
   <div style="
-  border: solid 1px black;
-  border-radius: 30px;
   margin-left: 10%;
   margin-right: 10%;">
     <h1 style="color: cornflowerblue ">This is a remote component</h1>
