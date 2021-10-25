@@ -58,7 +58,6 @@ const defaultLayoutScriptWithoutComponentsPlugin = `components: {
     Sources
   }`
 
-
 export default {
   mainWithPagesPlugin,
   mainImportMarkdownComponents,

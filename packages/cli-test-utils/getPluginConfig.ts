@@ -35,7 +35,11 @@ const TO_BE_ADDED_PLUGINS: PluginChoiceOption[] = [
 function getPluginCompositions(): Array<PluginChoiceOption[]> {
   let compositions: Array<PluginChoiceOption[]> = []
   TO_BE_ADDED_PLUGINS.forEach(pluginOption => {
-    compositions = [...compositions, ...compositions.map(c => [...c, pluginOption]), [pluginOption]]
+    compositions = [
+      ...compositions,
+      ...compositions.map(c => [...c, pluginOption]),
+      [pluginOption],
+    ]
   })
   return compositions
 }

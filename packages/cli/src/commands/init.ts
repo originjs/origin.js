@@ -57,34 +57,56 @@ function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
       }
 
       if (!config.contentPluginImported) {
-        skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml')
+        skipFiles.push(
+          'src/pages/content.vue',
+          'src/assets/when_you_believe.yaml',
+        )
       }
 
-      if (!config.pagesPluginImported && !config.contentPluginImported && (!config.federationPluginImported || config.federationType == 'Remote')) {
+      if (
+        !config.pagesPluginImported &&
+        !config.contentPluginImported &&
+        (!config.federationPluginImported || config.federationType == 'Remote')
+      ) {
         skipFiles.push('src/layouts/profile.vue')
       }
 
       if (!config.markdownPluginImported) {
-        skipFiles.push('src/pages/markdown.vue', 'src/assets/originjs_readme.md')
+        skipFiles.push(
+          'src/pages/markdown.vue',
+          'src/assets/originjs_readme.md',
+        )
       }
 
-      if (!config.federationPluginImported || config.federationType != 'Remote') {
+      if (
+        !config.federationPluginImported ||
+        config.federationType != 'Remote'
+      ) {
         skipFiles.push('src/components/HelloWorld.vue')
       }
 
       if (!config.federationPluginImported || config.federationType != 'Host') {
-        skipFiles.push('src/components/FederationErrorComponent.vue', 'src/pages/federation.vue')
+        skipFiles.push(
+          'src/components/FederationErrorComponent.vue',
+          'src/pages/federation.vue',
+        )
       }
 
       return skipFiles
     }
 
-    function walkDir(dirOldAbsolutePath: string, dirNewAbsolutePath: string, skipFiles: Array<string>) {
+    function walkDir(
+      dirOldAbsolutePath: string,
+      dirNewAbsolutePath: string,
+      skipFiles: Array<string>,
+    ) {
       const oldList = fs.readdirSync(dirOldAbsolutePath)
-      oldList.forEach(function(item) {
+      oldList.forEach(function (item) {
         const oldAbsolutePath: string = path.join(dirOldAbsolutePath, item)
         const newAbsolutePath: string = path.join(dirNewAbsolutePath, item)
-        const relativePath: string = path.relative(dirOld, oldAbsolutePath).replace(/\\/g, '/')
+        const relativePath: string = path
+          .relative(dirOld, oldAbsolutePath)
+          .replace(/\\/g, '/')
         if (skipFiles.indexOf(relativePath) >= 0) {
           return
         }
@@ -137,12 +159,19 @@ const checkOptions = async () => {
     })
 }
 
-export const initializeModules = async (name: any, config: any, uninstalled?: boolean, projectDir?: string) => {
+export const initializeModules = async (
+  name: any,
+  config: any,
+  uninstalled?: boolean,
+  projectDir?: string,
+) => {
   const spinnerCopy = ora('Downloading...')
   spinnerCopy.start()
-  const targetPath = projectDir ? path.resolve(process.cwd(), projectDir) : process.cwd()
+  const targetPath = projectDir
+    ? path.resolve(process.cwd(), projectDir)
+    : process.cwd()
   await cpdir(SOURCES_DIRECTORY, targetPath, name, config)
-    .then(async (rs) => {
+    .then(async rs => {
       spinnerCopy.succeed()
       try {
         await createPackageTemplate(config, uninstalled, targetPath)

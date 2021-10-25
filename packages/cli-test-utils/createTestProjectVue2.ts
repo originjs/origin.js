@@ -43,12 +43,14 @@ export default async function createTestProjectVue2(
 
   const options: Options<string> = { cwd: rootDir, stdio: 'inherit' }
 
-  return command(`vue create ${commandArgs.join(' ')} ${name}`, options).then(() => ({
-    dir: projectRoot,
-    has,
-    read,
-    write,
-    rm,
-    clear,
-  }))
+  return command(`vue create ${commandArgs.join(' ')} ${name}`, options).then(
+    () => ({
+      dir: projectRoot,
+      has,
+      read,
+      write,
+      rm,
+      clear,
+    }),
+  )
 }
