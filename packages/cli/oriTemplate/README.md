@@ -1,27 +1,31 @@
-# Vue 3 + Typescript + Vite
+# Origin.js
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+<p align="center"><img align="center" style="width:320px" src="src/assets/originjs.png"/></p><br/>
+<p align="center">
+  <a href="https://github.com/originjs/origin.js/actions/workflows/ci.yml"><img src="https://github.com/originjs/origin.js/actions/workflows/ci.yml/badge.svg?branch=main" alt="Build Status"></a>
+  <a href="https://www.npmjs.com/package/origin.js"><img src="https://badgen.net/npm/v/origin.js" alt="Version"></a>
+  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite.svg" alt="Node Compatibility"></a>
+  <a href="https://www.npmjs.com/package/origin.js"><img src="https://badgen.net/npm/license/origin.js" alt="License"></a>
+ </p>
 
-## Recommended IDE Setup
+> A simple and powerful Vue.js web application framework that provides a complete set of web project solutions based on Vue.js
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+## Features
+- [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
+- [Vue i18n](https://github.com/intlify/vue-i18n-next) & [Vuex](https://github.com/vuejs/vue-next) intergrated
+- Global styles with css, sass, less or stylus
+- Auto-imported Vue components
+- File based routing and layouts
+- Open `yaml/xml/xlsx/...` as a ES module
+- Markdown support
+- [Webpack to vite conversion tool](https://github.com/originjs/webpack-to-vite)
+- [A migration tool from Vue 2 to Vue 3](https://github.com/originjs/vue-codemod)
 
-### If Using `<script setup>`
+View [Documentation](https://originjs.github.io/docs/en/) for more information.
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
-
-## Type Support For `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
-
-### If Using Volar
-
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-### If Using Vetur
-
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+## Plugins
+- GlobalStyle - [`@originjs/vite-plugin-global-style`](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-global-style)
+- Layouts & Pages - [`@originjs/vite-plugin-pages`](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-pages)
+- Components - [`vite-plugin-components`](https://github.com/antfu/vite-plugin-components)
+- Markdown - [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md)
+- Content - [`@originjs/vite-plugin-content`](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content)
