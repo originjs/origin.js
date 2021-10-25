@@ -9,6 +9,19 @@ Array [
           Object {
             "children": Array [
               Object {
+                "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/_$dn.vue')",
+                "meta": Object {
+                  "layout": "content",
+                },
+                "path": "/:dn",
+              },
+            ],
+            "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/content.vue')",
+            "path": "/:dn",
+          },
+          Object {
+            "children": Array [
+              Object {
                 "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue')",
                 "meta": Object {
                   "layout": "content",

@@ -12,6 +12,15 @@ Array [
     "routePath": "/",
   },
   Object {
+    "layout": "content",
+    "nestedRoute": true,
+    "parentRoutePath": "/",
+    "pathFromPagesDir": "_$dn.vue",
+    "pathFromPagesDirNormalized": "/dn.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_$dn.vue",
+    "routePath": "/:dn",
+  },
+  Object {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/",
@@ -132,6 +141,15 @@ Array [
     "pathFromPagesDirNormalized": "/",
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
     "routePath": "/",
+  },
+  Object {
+    "layout": "content",
+    "nestedRoute": true,
+    "parentRoutePath": "/",
+    "pathFromPagesDir": "_$dn.vue",
+    "pathFromPagesDirNormalized": "/dn.vue",
+    "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_$dn.vue",
+    "routePath": "/:dn",
   },
   Object {
     "layout": "",
