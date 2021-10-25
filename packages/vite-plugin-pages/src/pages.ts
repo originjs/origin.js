@@ -71,12 +71,12 @@ function getPageRoutePath(pathFromPagesDir: string): PageRoutePath {
 
   // setup route path
   let routePath = parentRoutePath
-  if (isDynamic) {
+  if (isDynamicNested) {
+    routePath += `/:${lastNodeName.slice(2)}`
+  } else if (isDynamic) {
     routePath += `/:${lastNodeName.slice(1)}`
   } else if (isNested) {
     routePath += `/${lastNodeName.slice(1)}`
-  } else if (isDynamicNested) {
-    routePath += `/:${lastNodeName.slice(2)}`
   } else {
     routePath += `/${lastNodeName}`
   }
