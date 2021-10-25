@@ -17,8 +17,10 @@ import routes from 'virtual:plugin-pages'
 <%_ } else { _%>
 import Default from './layouts/default.vue'
 import Index from './pages/index.vue'
-<%_ if (contentPluginImported) { _%>
+<%_ if (contentPluginImported || (federationPluginImported && federationType == 'Host')) { _%>
 import Profile from './layouts/profile.vue'
+<%_ } _%>
+<%_ if (contentPluginImported) { _%>
 import Content from './pages/content.vue'
 <%_ } _%>
 <%_ if (markdownPluginImported) { _%>

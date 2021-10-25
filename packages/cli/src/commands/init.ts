@@ -60,7 +60,7 @@ function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
         skipFiles.push('src/pages/content.vue', 'src/assets/when_you_believe.yaml')
       }
 
-      if (!config.pagesPluginImported && !config.contentPluginImported) {
+      if (!config.pagesPluginImported && !config.contentPluginImported && (!config.federationPluginImported || config.federationType == 'Remote')) {
         skipFiles.push('src/layouts/profile.vue')
       }
 
