@@ -20,6 +20,10 @@ const CONTENT_PLUGIN_FILE_ARRAY: Array<string> = [
   'src/layouts/profile.vue',
 ]
 
+const FEDERATION_HOST_PLUGIN_FILE_ARRAY: Array<string> = [
+  'src/pages/federation.vue',
+]
+
 function changeFileName(filePath: string) {
   function removeRedundantPrefix(
     filename: string,
@@ -57,6 +61,11 @@ export default async function createPackageTemplate(
       }
       if (config.contentPluginImported) {
         for (const file of CONTENT_PLUGIN_FILE_ARRAY) {
+          renderFile(file, config, targetPath)
+        }
+      }
+      if (config.federationPluginImported && config.federationType == 'Host') {
+        for (const file of FEDERATION_HOST_PLUGIN_FILE_ARRAY) {
           renderFile(file, config, targetPath)
         }
       }

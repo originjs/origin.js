@@ -11,6 +11,9 @@
     <%_ if (markdownPluginImported) { _%>
     <div><router-link class="text-router-link" to="/markdown">{{ $t("markdown") }}</router-link></div>
     <%_ } _%>
+    <%_ if (federationPluginImported && federationType == 'Host') { _%>
+    <div><router-link class="text-router-link" to="/federation">federation</router-link></div>
+    <%_ } _%>
   </div>
 </template>
 

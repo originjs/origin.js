@@ -17,26 +17,15 @@
         {{ $t("changeLanguage") }}
       </button>
     </div>
-<%_ if (federationPluginImported) { _%>
-    <RemoteComponent msg="Hello Vue 3 + TypeScript + Vite + Vite-plugin-federation" />
-<%_ } _%>
   </main>
 </template>
 
 <script>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-<%_ if (federationPluginImported && federationType == 'Remote') { _%>
-import RemoteComponent from './components/HelloWorld.vue'
-<%_ } _%>
 
 export default {
   name: 'App',
-<%_ if (federationPluginImported && federationType == 'Remote') { _%>
-  components: {
-    RemoteComponent,
-  },
-<%_ } _%>
   setup: () => {
     const isLight = ref(true)
 

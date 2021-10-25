@@ -72,6 +72,10 @@ function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
         skipFiles.push('src/components/HelloWorld.vue')
       }
 
+      if (!config.federationPluginImported || config.federationType != 'Host') {
+        skipFiles.push('src/components/FederationErrorComponent.vue', 'src/pages/federation.vue')
+      }
+
       return skipFiles
     }
 

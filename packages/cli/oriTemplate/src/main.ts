@@ -9,6 +9,9 @@ import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
 import store from './store'
+<%_ if (federationPluginImported && federationType == 'Host') { _%>
+import FederationErrorComponent from './components/FederationErrorComponent.vue'
+<%_ } _%>
 <%_ if (pagesPluginImported) { _%>
 import routes from 'virtual:plugin-pages'
 <%_ } else { _%>
@@ -20,6 +23,9 @@ import Content from './pages/content.vue'
 <%_ } _%>
 <%_ if (markdownPluginImported) { _%>
 import Markdown from './pages/markdown.vue'
+<%_ } _%>
+<%_ if (federationPluginImported && federationType == 'Host') { _%>
+import Federation from './pages/federation.vue'
 <%_ } _%>
 
 const routes = [
@@ -36,6 +42,13 @@ const routes = [
     component: Profile,
     children: [
       { path: '/content', component: Content }
+    ]
+  }<% } %><%_ if (federationPluginImported && federationType == 'Host') { _%>,
+  {
+    path: '/',
+    component: Profile,
+    children: [
+      { path: '/federation', component: Federation }
     ]
   }<% } %>
 ]
@@ -59,7 +72,10 @@ const i18n = createI18n({
 
 const app = createApp(App);
 <%_ if (federationPluginImported && federationType == 'Host') { _%>
-const remoteComponent = defineAsyncComponent(() => import('remote/RemoteComponent'));
+const remoteComponent = defineAsyncComponent({
+  loader: () => import('remote/RemoteComponent'),
+  errorComponent: FederationErrorComponent,
+});
 app.component("RemoteComponent", remoteComponent)
 <%_ } _%>
 app.use(router).use(store).use(i18n).mount('#app')
