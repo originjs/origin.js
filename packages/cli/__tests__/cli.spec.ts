@@ -194,7 +194,7 @@ test('ori init with variable plugins', async () => {
         // skip files
         expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/pages/content.vue'))).toEqual(false)
         expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/assets/when_you_believe.yaml'))).toEqual(false)
-        if (!config.pagesPluginImported) {
+        if (!config.pagesPluginImported && !config.federationPluginImported) {
           expect(fs.pathExistsSync(path.join(ProjectPath, config.name, 'src/layouts/profile.vue'))).toEqual(false)
         }
       }

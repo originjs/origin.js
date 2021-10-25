@@ -8,7 +8,6 @@ const mainWithContentPlugin = `{
     children: [
       { path: '/content', component: Content }
     ]
-  }
 `
 
 const mainImportMarkdownComponents = `import Markdown from './pages/markdown.vue`

@@ -62,7 +62,6 @@ exports[`ori init with all plugins: A3 1`] = `
         {{ $t(\\"changeLanguage\\") }}
       </button>
     </div>
-    <RemoteComponent msg=\\"Hello Vue 3 + TypeScript + Vite + Vite-plugin-federation\\" />
   </main>
 </template>
 
@@ -119,6 +118,7 @@ import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
 import store from './store'
+import FederationErrorComponent from './components/FederationErrorComponent.vue'
 import routes from 'virtual:plugin-pages'
 
 const router = createRouter({
@@ -138,7 +138,10 @@ const i18n = createI18n({
 })
 
 const app = createApp(App);
-const remoteComponent = defineAsyncComponent(() => import('remote/RemoteComponent'));
+const remoteComponent = defineAsyncComponent({
+  loader: () => import('remote/RemoteComponent'),
+  errorComponent: FederationErrorComponent,
+});
 app.component(\\"RemoteComponent\\", remoteComponent)
 app.use(router).use(store).use(i18n).mount('#app')
 "
