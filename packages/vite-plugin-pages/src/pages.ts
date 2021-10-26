@@ -5,28 +5,37 @@ import { replaceWithSlash, warn } from './utils'
 import { CATCH_ALL_ROUTE_PATH } from './constants'
 import { getLayoutProperties } from './parser'
 
-/**
- * Return whether the current route node name represents a dynamic route
- * @param routeNodeName: route node name
- */
-function isDynamicNodeName(routeNodeName: string): boolean {
-  return routeNodeName.startsWith('_')
+enum NodeNameType {
+  Normal, // normal route node name, eg. /xx
+  Dynamic, // dynamic route node name, starts with _, eg. /_xx
+  Nested, // nested route node name, starts with $, eg. /$xx
+  DynamicNested, // dynamic and nested route node name, starts with _$. eg. /_$xx
 }
 
-/**
- * Return whether the current route node name represents a nested route
- * @param routeNodeName: route node name
- */
-function isNestedNodeName(routeNodeName: string): boolean {
-  return routeNodeName.startsWith('$')
+function getNodeNameType(routeNodeName: string): NodeNameType {
+  if (routeNodeName.startsWith('_$')) {
+    return NodeNameType.DynamicNested
+  }
+  if (routeNodeName.startsWith('_')) {
+    return NodeNameType.Dynamic
+  }
+  if (routeNodeName.startsWith('$')) {
+    return NodeNameType.Nested
+  }
+  return NodeNameType.Normal
 }
 
-/**
- * Return whether the current route node name represents a dynamic and nested route
- * @param routeNodeName: route node name
- */
-function isDynamicNestedNodeName(routeNodeName: string): boolean {
-  return routeNodeName.startsWith('_$')
+function getRoutePathByNodeName(nodeName: string, type: NodeNameType): string {
+  if (type === NodeNameType.DynamicNested) {
+    return `/:${nodeName.slice(2)}`
+  }
+  if (type === NodeNameType.Dynamic) {
+    return `/:${nodeName.slice(1)}`
+  }
+  if (type === NodeNameType.Nested) {
+    return `/${nodeName.slice(1)}`
+  }
+  return `/${nodeName}`
 }
 
 function getPageRoutePath(pathFromPagesDir: string): PageRoutePath {
@@ -52,39 +61,24 @@ function getPageRoutePath(pathFromPagesDir: string): PageRoutePath {
   }
 
   // setup parent route path
-  for (const nodeName of routeNodeNames) {
-    if (isDynamicNodeName(nodeName)) {
-      parentRoutePath += `/:${nodeName.slice(1)}`
-    } else if (isNestedNodeName(nodeName)) {
-      parentRoutePath += `/${nodeName.slice(1)}`
-    } else if (isDynamicNestedNodeName(nodeName)) {
-      parentRoutePath += `/:${nodeName.slice(2)}`
-    } else {
-      parentRoutePath += `/${nodeName}`
-    }
+  for (const name of routeNodeNames) {
+    parentRoutePath += getRoutePathByNodeName(name, getNodeNameType(name))
   }
 
-  // setup route type by last node name
-  const isDynamic = isDynamicNodeName(lastNodeName)
-  const isNested = isNestedNodeName(lastNodeName)
-  const isDynamicNested = isDynamicNestedNodeName(lastNodeName)
+  // get last route node name type, setup flag nestedRoute
+  const lastNodeNameType = getNodeNameType(lastNodeName)
+  const nestedRoute =
+    lastNodeNameType === NodeNameType.DynamicNested ||
+    lastNodeNameType === NodeNameType.Nested
 
   // setup route path
   let routePath = parentRoutePath
-  if (isDynamicNested) {
-    routePath += `/:${lastNodeName.slice(2)}`
-  } else if (isDynamic) {
-    routePath += `/:${lastNodeName.slice(1)}`
-  } else if (isNested) {
-    routePath += `/${lastNodeName.slice(1)}`
-  } else {
-    routePath += `/${lastNodeName}`
-  }
+  routePath += getRoutePathByNodeName(lastNodeName, lastNodeNameType)
 
   return {
     parentRoutePath: parentRoutePath || '/', // if parentRoutePath is '', means parentRoutePath is /
     routePath,
-    nestedRoute: isNested || isDynamicNested,
+    nestedRoute,
   }
 }
 
@@ -119,7 +113,7 @@ function getPage(pagesDir: string, pathFromPagesDir: string): Page {
   const layout = getLayoutProperties(pathFromRootDir)
 
   return {
-    pathFromPagesDir: pathFromPagesDir,
+    pathFromPagesDir,
     pathFromRootDir,
     pathFromPagesDirNormalized,
     parentRoutePath,
