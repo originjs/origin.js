@@ -41,7 +41,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'sass',
     globalRegex: /^global.*\.scss$/,
-    extensionRegex: /.scss$/,
+    extensionRegex: /.scss(\?[\w]*)?$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.sassEnabled
@@ -50,7 +50,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'less',
     globalRegex: /^global.*\.less$/,
-    extensionRegex: /.less$/,
+    extensionRegex: /.less(\?[\w]*)?$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.lessEnabled
@@ -59,7 +59,7 @@ const GLOBAL_STYLES_DATA: StyleData[] = [
   {
     name: 'stylus',
     globalRegex: /^global.*\.styl(us)?$/,
-    extensionRegex: /.styl(us)?$/,
+    extensionRegex: /.styl(us)?(\?[\w]*)?$/,
     globalStylePaths: [],
     isEnabled: (opt: PluginOptions) => {
       return opt.stylusEnabled

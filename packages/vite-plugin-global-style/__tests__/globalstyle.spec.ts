@@ -81,6 +81,22 @@ describe('globalStyleTest', () => {
     )
   })
 
+  test('global sass with special extension transform test', () => {
+    const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const plugin = globalStylePlugin()
+    // @ts-ignore
+    plugin.transformIndexHtml.transform('', {
+      filename: indexHtmlPath,
+    })
+    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.scss?used')
+    // @ts-ignore
+    const transformResult = globalStylePlugin().transform('', id).code.trim()
+
+    expect(transformResult).toBe(
+      `@import "global-test1.scss"; @import "global-test2.scss";`,
+    )
+  })
+
   test('global less transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     const plugin = globalStylePlugin()
@@ -97,6 +113,22 @@ describe('globalStyleTest', () => {
     )
   })
 
+  test('global less with special extension transform test', () => {
+    const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const plugin = globalStylePlugin()
+    // @ts-ignore
+    plugin.transformIndexHtml.transform('', {
+      filename: indexHtmlPath,
+    })
+    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.less?used')
+    // @ts-ignore
+    const transformResult = plugin.transform('', id).code.trim()
+
+    expect(transformResult).toBe(
+      `@import "global-test1.less"; @import "global-test2.less";`,
+    )
+  })
+
   test('global stylus transform test', () => {
     const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
     const plugin = globalStylePlugin()
@@ -105,6 +137,22 @@ describe('globalStyleTest', () => {
       filename: indexHtmlPath,
     })
     const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.styl')
+    // @ts-ignore
+    const transformResult = plugin.transform('', id).code.trim()
+
+    expect(transformResult).toBe(
+      `@import "global-test1.styl"; @import "global-test2.styl";`,
+    )
+  })
+
+  test('global stylus with special extension transform test', () => {
+    const indexHtmlPath = path.resolve(__dirname, 'global_test_repo/index.html')
+    const plugin = globalStylePlugin()
+    // @ts-ignore
+    plugin.transformIndexHtml.transform('', {
+      filename: indexHtmlPath,
+    })
+    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.styl?used')
     // @ts-ignore
     const transformResult = plugin.transform('', id).code.trim()
 
