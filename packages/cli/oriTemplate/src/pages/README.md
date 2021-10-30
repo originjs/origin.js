@@ -1,5 +1,5 @@
 ## Pages
-Routes will be configured automatically according to pages.
+Routes will be configured automatically according to pages.<br/>
 Powered by [@originjs/vite-plugin-pages](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-pages).
 
 ### Convert rules
