@@ -1,6 +1,7 @@
-# `cli-service`
+# cli-service
 
 CLI for creating server and provides commands to control it. 
+Using [Vite](https://github.com/vitejs/vite) export APIs.
 
 ## Usage
 
