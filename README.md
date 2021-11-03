@@ -8,7 +8,7 @@
   <a href="https://www.npmjs.com/package/origin.js"><img src="https://badgen.net/npm/license/origin.js" alt="License"></a>
  </p>
 
-> A simple and powerful Vue.js web application framework that provides a complete set of web project solutions based on Vue.js
+> A simple and powerful Vue.js web application framework that provides a complete set of web project solutions based on Vue.js.
 
 ## Features
 - [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
@@ -30,7 +30,7 @@ View [Documentation](https://originjs.github.io/docs/en/) for more information.
 - Markdown - [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md)
 - Content - [`@originjs/vite-plugin-content`](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content)
 
-## Install
+## Installation
 ```shell
 npm install -g @originjs/cli
 ```
@@ -40,43 +40,11 @@ yarn global add @originjs/cli
 ```
 
 ## Getting started
-To create a new application with originjs, just run:
+To create a new application with origin.js, just run:
 ```shell
 ori init <app-name>
 ```
 
-## Usage
-### init
-```shell
-ori init [options] <app-name>
-```
-#### Options
-```
--d, --default      skip init project options
--a, --all-plugins  create project with all plugins
--u, --uninstalled  skip install denpendencies
--h, --help         display help for command"
-```
-
-### development
-```shell
-npm run dev
-```
-or
-```shell
-ori dev
-```
-
-### build
-```shell
-npm run build
-```
-or
-```shell
-ori build
-```
-
-### help and more
-```
-ori help [command]
-```
+## Examples
+- [Vue 3 project using origin.js plugins](https://github.com/originjs/origin.js/tree/main/examples/vue3)
+- [Origin.js templates](https://github.com/konpeki622/origin-demo)

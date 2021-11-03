@@ -5,4 +5,4 @@
   <a href="https://www.npmjs.com/package/origin.js"><img src="https://badgen.net/npm/license/origin.js" alt="License"></a>
  </p>
 
-Visit our github site and check `README.md` for more information.
+View the github repository and check `README.md` for more information.

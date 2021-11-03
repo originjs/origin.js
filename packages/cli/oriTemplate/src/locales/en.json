@@ -15,5 +15,5 @@
   "username": "username",
   "telephone": "telephone",
   "address": "address",
-  "nestedRouteIntroduction": "file starts with '$' is the nested route for the current level index page."
+  "nestedRouteIntroduction": "file which starts with '$' is the nested route for the current level index page."
 }

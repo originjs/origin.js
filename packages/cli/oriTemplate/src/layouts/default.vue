@@ -5,8 +5,8 @@
       src="../assets/originjs.png"
       class="logo logo-large"
     >
-    <h2 class="text-h2">Origin.js</h2>
-    <p class="text-p">{{ $t("introduction") }}</p>
+    <h2>Origin.js</h2>
+    <p>{{ $t("introduction") }}</p>
     <router-view />
     <p class="text-component-desc text-route">
       {{ $t("currentRoute") }}: '{{ currentRoute.fullPath }}'

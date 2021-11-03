@@ -1,13 +1,32 @@
 p {
   margin: 0;
-  line-height: 1.2rem;
+  line-height: 1.5rem;
   margin: .8rem;
+  font-size: .9rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  margin: 1rem 0;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  line-height: 3.6rem;
+  margin: 0;
 }
 
 code {
     background-color: #f3f3f3;
-    padding: 0 .5rem;
+    padding: 0 .3rem;
     border-radius: 3px;
+    font-size: .8rem;
 }
 
 .logo {
@@ -67,28 +86,6 @@ code {
   color: #bdbdbd;
   font-size: 0.9rem;
   font-weight: 300;
-}
-
-.text-h2 {
-  font-size: 2.4rem;
-  line-height: 3.6rem;
-  margin: 1rem 0;
-}
-
-.text-h3 {
-  font-size: 2rem;
-  line-height: 2.4rem;
-}
-
-.text-h4 {
-  font-size: 1.2rem;
-  line-height: 3.6rem;
-  margin: 0;
-}
-
-.text-p {
-  line-height: 1.5rem;
-  font-size: 1rem;
 }
 
 .text-span {
@@ -240,7 +237,7 @@ code {
   justify-content: center;
   align-items: center;
   border-radius: 0.4rem;
-  margin: 1.5rem 0;
+  margin: 1.2rem 0;
 }
 
 .router-link div {
@@ -253,13 +250,14 @@ code {
   html {
     font-size: 14px;
   }
-  #app main {
-    height: device-height;
-  }
 
-  .text-h2 {
+  h2 {
     font-size: 1.8rem;
     line-height: 2.4rem;
+  }
+
+  #app main {
+    height: device-height;
   }
 
   .theme-ctrl-btn {
