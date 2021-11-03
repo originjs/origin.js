@@ -155,7 +155,8 @@ exports[`ori init with all plugins: A3 3`] = `
   \\"scripts\\": {
     \\"dev\\": \\"vite\\",
     \\"build\\": \\"vite build\\",
-    \\"serve\\": \\"vite preview\\"
+    \\"serve\\": \\"vite preview\\",
+    \\"test\\": \\"jest\\"
   },
   \\"dependencies\\": {
     \\"vue\\": \\"^3.0.5\\",
@@ -170,11 +171,19 @@ exports[`ori init with all plugins: A3 3`] = `
     \\"@originjs/vite-plugin-pages\\":\\"latest\\",
     \\"vite-plugin-md\\":\\"latest\\",
     \\"@originjs/vite-plugin-federation\\":\\"latest\\",
+    \\"@babel/core\\": \\"^7.15.8\\",
+    \\"@babel/preset-env\\": \\"^7.15.8\\",
     \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
+    \\"@types/jest\\": \\"^26.0.24\\",
     \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
+    \\"@vue/test-utils\\": \\"^2.0.0-rc.16\\",
+    \\"babel-jest\\": \\"^26.5.6\\",
+    \\"jest\\": \\"^26.5.6\\",
+    \\"ts-jest\\": \\"^26.5.6\\",
     \\"typescript\\": \\"^4.3.2\\",
     \\"vite\\": \\"^2.6.13\\",
+    \\"vue-jest\\": \\"^5.0.0-alpha.10\\",
     \\"vue-tsc\\": \\"^0.2.2\\"
   }
 }
@@ -352,7 +361,8 @@ exports[`ori init without plugins: A4 3`] = `
   \\"scripts\\": {
     \\"dev\\": \\"vite\\",
     \\"build\\": \\"vite build\\",
-    \\"serve\\": \\"vite preview\\"
+    \\"serve\\": \\"vite preview\\",
+    \\"test\\": \\"jest\\"
   },
   \\"dependencies\\": {
     \\"vue\\": \\"^3.0.5\\",
@@ -361,11 +371,19 @@ exports[`ori init without plugins: A4 3`] = `
     \\"vuex\\": \\"^4.0.2\\"
   },
   \\"devDependencies\\": {
+    \\"@babel/core\\": \\"^7.15.8\\",
+    \\"@babel/preset-env\\": \\"^7.15.8\\",
     \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
+    \\"@types/jest\\": \\"^26.0.24\\",
     \\"@vitejs/plugin-vue\\": \\"^1.3.0\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
+    \\"@vue/test-utils\\": \\"^2.0.0-rc.16\\",
+    \\"babel-jest\\": \\"^26.5.6\\",
+    \\"jest\\": \\"^26.5.6\\",
+    \\"ts-jest\\": \\"^26.5.6\\",
     \\"typescript\\": \\"^4.3.2\\",
     \\"vite\\": \\"^2.6.13\\",
+    \\"vue-jest\\": \\"^5.0.0-alpha.10\\",
     \\"vue-tsc\\": \\"^0.2.2\\"
   }
 }
