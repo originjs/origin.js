@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3 class="text-h3">{{ song.singer }} - {{ song.name }}</h3>
+    <h3>File Content</h3>
+    <p><b>{{ song.singer }} - {{ song.name }}</b></p>
     <p v-for="item in song.lyrics">{{ item }}</p>
   </div>
 </template>

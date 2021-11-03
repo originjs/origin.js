@@ -20,7 +20,7 @@ export default {
     const user = reactive({ username: '', password: ''})
     const toUsers = () => {
       if (!btnIsDisabled.value) {
-        router.push(`/users/${user.username}`)
+        router.replace(`/users/${user.username}`)
       }
     }
 
