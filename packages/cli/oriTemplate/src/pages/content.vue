@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h3>File Content</h3>
-    <p><b>{{ song.singer }} - {{ song.name }}</b></p>
-    <p v-for="item in song.lyrics">{{ item }}</p>
+    <h3>{{ $t("fileContent") }}</h3>
+    <div class="card-box">
+      <p><b>{{ song.singer }} - {{ song.name }}</b></p>
+      <p v-for="item in song.lyrics">{{ item }}</p>
+    </div>
   </div>
 </template>
 
