@@ -12,7 +12,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   line-height: 2.4rem;
 }
 
@@ -61,6 +61,13 @@ code {
   transition: all 0.5s;
 }
 
+.card-box {
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  border: 1px solid #d3d3d3;
+  border-radius: .5rem;
+}
+
 .source-link-box {
   display: flex;
   flex-wrap: wrap;
@@ -91,13 +98,6 @@ code {
 .text-span {
   line-height: 1.8rem;
   font-size: 1rem;
-}
-
-.text-code {
-  background-color: #ebebeb;
-  color: #212121;
-  padding: 2px 4px;
-  border-radius: 4px;
 }
 
 .text-component-desc {
