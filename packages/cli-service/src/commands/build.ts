@@ -17,7 +17,7 @@ export default async function (execPath?: string): Promise<void> {
   if (packageConfig) {
     const { devDependencies = {}, dependencies = {} } = packageConfig
     if (devDependencies.vite || dependencies.vite) {
-      await build(print.getSchema())
+      await build(await print.getSchema())
     } else {
       console.log("Cannot find module 'vite', try running: npm install vite")
       console.log(chalk.red('Build failed'))

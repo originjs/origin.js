@@ -3,7 +3,7 @@ import { BuildPrinter, DevPrinter } from '../src/Printer'
 import Path, { join } from 'path'
 
 describe('get config', () => {
-  test('get build config', () => {
+  test('get build config', async () => {
     const path = join(__dirname, './file/noneconfig')
     const print = new BuildPrinter(path)
 
@@ -28,10 +28,10 @@ describe('get config', () => {
       },
     }
 
-    expect(print.getSchema()).toEqual(buildConfig)
+    expect(await print.getSchema()).toEqual(buildConfig)
   })
 
-  test('get dev config', () => {
+  test('get dev config', async () => {
     const path = join(__dirname, './file/noneconfig')
     const print = new DevPrinter(path)
 
@@ -56,14 +56,14 @@ describe('get config', () => {
       },
     }
 
-    expect(print.getSchema()).toEqual(serveConfig)
+    expect(await print.getSchema()).toEqual(serveConfig)
   })
 
   test('get build config with local config', async () => {
     const path = join(__dirname, './file/withconfig')
     const print = new BuildPrinter(path)
     // The esm module cannot run correctly in jest, use import mock to read operations
-    print.localConfig = (await import(`${path}/vite.config.ts`)).default
+    print.configFile =`${path}/vite.config.ts`
     const buildConfig: any = {
       build: {},
       configFile: false,
@@ -88,14 +88,14 @@ describe('get config', () => {
       },
     }
 
-    expect(print.getSchema()).toEqual(buildConfig)
+    expect(await print.getSchema()).toEqual(buildConfig)
   })
 
   test('get dev config with local config', async () => {
     const path = join(__dirname, './file/withconfig')
     const print = new DevPrinter(path)
     // The esm module cannot run correctly in jest, use import mock to read operations
-    print.localConfig = (await import(`${path}/vite.config.ts`)).default
+    print.configFile =`${path}/vite.config.ts`
     const serveConfig: any = {
       configFile: false,
       server: {
@@ -124,6 +124,6 @@ describe('get config', () => {
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
       },
     }
-    expect(print.getSchema()).toEqual(serveConfig)
+    expect(await print.getSchema()).toEqual(serveConfig)
   })
 })
