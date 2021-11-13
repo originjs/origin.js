@@ -9,6 +9,7 @@ jest.mock('vite', () => {
   return {
     build: jest.fn(),
     createServer: jest.fn().mockReturnValue(server),
+    loadConfigFromFile: jest.fn(),
   }
 })
 

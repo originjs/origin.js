@@ -19,7 +19,7 @@ export default async function (
   if (packageConfig) {
     const { devDependencies = {}, dependencies = {} } = packageConfig
     if (devDependencies.vite || dependencies.vite) {
-      const server: ViteDevServer = await createServer(print.getSchema())
+      const server: ViteDevServer = await createServer(await print.getSchema())
       return server
     } else {
       console.log("Cannot find module 'vite', try running: npm install vite")

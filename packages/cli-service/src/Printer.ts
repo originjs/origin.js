@@ -1,7 +1,8 @@
 import fse from 'fs-extra'
-import type { InlineConfig } from 'vite'
+import type { ConfigEnv, InlineConfig } from 'vite'
+import { loadConfigFromFile } from 'vite'
 import { baseConfig, buildConfig, serverConfig } from './config/base'
-const requireEsm = require('esm')(module)
+
 class Printer {
   name: string
   vueVersion: number
@@ -10,7 +11,7 @@ class Printer {
   typeScprict?: boolean
   test?: string[]
   eslint?: boolean
-  localConfig?: InlineConfig
+  configFile?: string
 
   constructor(dir: string) {
     const pkg = fse.readJsonSync(`${dir}/package.json`)
@@ -27,9 +28,9 @@ class Printer {
 
   loadConfig(rootDir: string) {
     if (fse.pathExistsSync(`${rootDir}/vite.config.js`)) {
-      this.localConfig = requireEsm(`${rootDir}/vite.config.js`).default
+      this.configFile = `${rootDir}/vite.config.js`
     } else if (fse.pathExistsSync(`${rootDir}/vite.config.ts`)) {
-      this.localConfig = requireEsm(`${rootDir}/vite.config.ts`).default
+      this.configFile = `${rootDir}/vite.config.ts`
     }
   }
 }
@@ -38,14 +39,20 @@ class DevPrinter extends Printer {
   constructor(dir: string) {
     super(dir)
   }
-  getSchema() {
-    const base = this.getBaseSchema()
+  async getSchema() {
+    const base: InlineConfig = this.getBaseSchema()
+    const MODE = 'development'
+    const configEnv: ConfigEnv = {
+      mode: MODE,
+      command: 'serve',
+    }
+    const localConfig = await loadConfigFromFile(configEnv, this.configFile, this.rootDir)
     const _configs: InlineConfig = Object.assign(
       base,
       serverConfig,
-      this.localConfig,
+      localConfig?.config,
     )
-    _configs.mode = 'development'
+    _configs.mode = MODE
     return _configs
   }
 }
@@ -54,14 +61,20 @@ class BuildPrinter extends Printer {
   constructor(dir: string) {
     super(dir)
   }
-  getSchema() {
-    const base = this.getBaseSchema()
+  async getSchema() {
+    const base: InlineConfig = this.getBaseSchema()
+    const MODE = 'production'
+    const configEnv: ConfigEnv = {
+      mode: MODE,
+      command: 'build',
+    }
+    const localConfig = await loadConfigFromFile(configEnv, this.configFile, this.rootDir)
     const _configs: InlineConfig = Object.assign(
       base,
       buildConfig,
-      this.localConfig,
+      localConfig?.config,
     )
-    _configs.mode = 'production'
+    _configs.mode = MODE
     return _configs
   }
 }
