@@ -15,13 +15,13 @@ import {
   federationOption,
 } from '../config/plugins'
 
-type initCliOptions = {
+type InitCliOptions = {
   default?: boolean
   allPlugins?: boolean
   uninstalled?: boolean
 }
 
-const defaultOptions: any = {
+export const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
@@ -34,7 +34,7 @@ const defaultOptions: any = {
   federationPluginImported: false,
 }
 
-function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
+export function cpdir(dirOld: string, dirNew: string, name: string, config: any = defaultOptions) {
   const p = new Promise(function (resolve, reject) {
     fs.mkdir(path.join(dirNew, name), function (err) {
       resolve('Successfully created the folder!')
@@ -125,7 +125,7 @@ function cpdir(dirOld: string, dirNew: string, name: string, config: any) {
 
 const SOURCES_DIRECTORY = path.resolve(__dirname, '../../oriTemplate')
 
-const ifDirExists = (name: any) => {
+function ifDirExists(name: any) {
   // Check whether there is a folder with the same name as the project name in the current folder
   // and whether the project name is legal
   const reg = /[< > / \ | : " * ?]/g
@@ -139,7 +139,7 @@ const ifDirExists = (name: any) => {
   }
 }
 
-const checkOptions = async () => {
+async function checkOptions() {
   await inquirer
     .prompt(promptList)
     .then((answers: any) => {
@@ -159,18 +159,20 @@ const checkOptions = async () => {
     })
 }
 
-export const initializeModules = async (
+export async function initializeModules(
   name: any,
   config: any,
   uninstalled?: boolean,
   projectDir?: string,
-) => {
+  sourceDirectory?: string,
+) {
   const spinnerCopy = ora('Downloading...')
   spinnerCopy.start()
   const targetPath = projectDir
     ? path.resolve(process.cwd(), projectDir)
     : process.cwd()
-  await cpdir(SOURCES_DIRECTORY, targetPath, name, config)
+  const source = sourceDirectory || SOURCES_DIRECTORY
+  await cpdir(source, targetPath, name, config)
     .then(async rs => {
       spinnerCopy.succeed()
       try {
@@ -187,13 +189,9 @@ export const initializeModules = async (
 
 export default async function init(
   name: string | null = 'webProject',
-  options: initCliOptions = {
-    default: false,
-    allPlugins: false,
-    uninstalled: false,
-  },
+  options?: InitCliOptions,
 ) {
-  if (!options.default && options.allPlugins) {
+  if (!options?.default && options?.allPlugins) {
     console.error(chalk.red('Failed to initialize the template'))
     console.log(`Would you like to use \`ori init -d -a\`?`)
     return false
@@ -205,7 +203,7 @@ export default async function init(
   }
   defaultOptions.name = name
 
-  if (!options.default) {
+  if (!options?.default) {
     try {
       await checkOptions()
     } catch (error) {
@@ -234,7 +232,7 @@ export default async function init(
   })
 
   try {
-    await initializeModules(name, defaultOptions, options.uninstalled)
+    await initializeModules(name, defaultOptions, options?.uninstalled)
   } catch (error) {
     console.log(error)
     return false
