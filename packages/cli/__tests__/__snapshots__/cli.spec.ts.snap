@@ -8,7 +8,7 @@ Options:
 
 Commands:
   init [options] <app-name>  init a new project
-  dev                        alias of \\"ori dev\\" in the current project
+  dev [options]              alias of \\"ori dev\\" in the current project
   build                      alias of \\"ori build\\" in the current project
   tovite [options]           use vite in the current project
   tovue3 [options]           use vue-next in the current project
@@ -23,7 +23,7 @@ Options:
 
 Commands:
   init [options] <app-name>  init a new project
-  dev                        alias of \\"ori dev\\" in the current project
+  dev [options]              alias of \\"ori dev\\" in the current project
   build                      alias of \\"ori build\\" in the current project
   tovite [options]           use vite in the current project
   tovue3 [options]           use vue-next in the current project

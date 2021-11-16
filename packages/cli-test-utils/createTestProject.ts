@@ -2,6 +2,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import { Options } from 'execa'
 import run, { DEMO_PATH } from './execCommands'
+import { cpdir } from '../cli/src/commands/init'
 
 type TestProject = {
   dir: string
@@ -14,7 +15,8 @@ type TestProject = {
 
 export default async function createTestProject(
   name: string,
-  commandArgs: string[] = ['-d', '-u'],
+  forSetup = false,
+  commandArgs: string[] = [],
 ): Promise<TestProject> {
   const rootDir: string = path.join(__dirname, DEMO_PATH)
   const projectRoot: string = path.join(rootDir, name)
@@ -39,6 +41,18 @@ export default async function createTestProject(
 
   const clear = () => {
     return fs.remove(projectRoot)
+  }
+
+  if (forSetup) {
+    const sourceDir = path.join(__dirname, 'templates/test_setup')
+    return cpdir(sourceDir, rootDir, name).then(() => ({
+      dir: projectRoot,
+      has,
+      read,
+      write,
+      rm,
+      clear,
+    }))
   }
 
   const args: readonly string[] = ['init', name, ...commandArgs]

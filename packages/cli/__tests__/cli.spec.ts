@@ -1,4 +1,3 @@
-import { createServer } from 'vite'
 import fs from 'fs-extra'
 import path from 'path'
 import results from './results'
@@ -40,7 +39,7 @@ test('ori init with failed arguments', async () => {
 }, 10000)
 
 test('ori init with all plugins', async () => {
-  const project = await create('test_all_plugins', ['-d', '-a', '-u'])
+  const project = await create('test_all_plugins', false, ['-d','-a','-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -90,7 +89,7 @@ test('ori init with all plugins', async () => {
 }, 10000)
 
 test('ori init without plugins', async () => {
-  const project = await create('test_no_plugins')
+  const project = await create('test_no_plugins', false, ['-d','-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -314,24 +313,20 @@ test('ori init --help', async () => {
   expect(exitCode).toEqual(0)
 }, 10000)
 
-test.skip('ori dev', async () => {
-  const project = await create('test_server')
-
-  await runServer('testServer')
-  expect(createServer).toHaveBeenCalledTimes(1)
+test('ori dev', async () => {
+  const project = await create('test_server', true)
+  const { stdout } = await runServer('test_server')
+  expect(stdout).toMatch(results.serverRunning)
   // TODO: write files and update changes
-
   project.clear()
-}, 10000)
+}, 30000)
 
-test.skip('ori build', async () => {
-  const project = await create('test_build')
-
-  await runBuild('testBuild')
+test('ori build', async () => {
+  const project = await create('test_build', true)
+  await runBuild('test_build')
   expect(project.has('dist')).toEqual(true)
-
   project.clear()
-}, 10000)
+}, 30000)
 
 test.skip('ori tovue3', async () => {
   const project = await createVue2('test_to_vue3')

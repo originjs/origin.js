@@ -4,14 +4,20 @@ import { createServer, ViteDevServer } from 'vite'
 import { DevPrinter } from '../Printer'
 import { loadPackageJson } from '../utils/file'
 
-export default async function (
+type DevCliOptions = {
+  browser?: boolean
+  autoClose?: string
+}
+
+export default async function dev(
   execPath?: string,
-): Promise<ViteDevServer | null> {
+  options?: DevCliOptions,
+) {
   const rootDir: string | undefined = execPath
     ? execPath
     : await pkgDir(process.cwd())
   if (!rootDir) {
-    return null
+    return false
   }
 
   const print = new DevPrinter(rootDir)
@@ -19,17 +25,26 @@ export default async function (
   if (packageConfig) {
     const { devDependencies = {}, dependencies = {} } = packageConfig
     if (devDependencies.vite || dependencies.vite) {
-      const server: ViteDevServer = await createServer(await print.getSchema())
-      return server
+      const config = await print.getSchema()
+      if (!options?.browser && config.server) {
+        config.server.open = false
+      }
+      const server: ViteDevServer = await createServer(config)
+      server.listen()
+      if (options?.autoClose) {
+        setTimeout(() => {
+          server.close()
+        }, parseInt(options.autoClose))
+      }
     } else {
       console.log("Cannot find module 'vite', try running: npm install vite")
       console.log(chalk.red('Server start failed'))
       console.log()
-      return null
+      return false
     }
   } else {
     console.log(chalk.red('Server start failed'))
     console.log()
-    return null
+    return false
   }
 }

@@ -2,7 +2,6 @@
 
 import { Command } from 'commander'
 import { codemod, codemodHelp } from '../src/commands/codmod'
-import { ViteDevServer } from 'vite'
 import { toVite, toViteHelp } from '../src/commands/webpackToVite'
 const { dev, build } = require('@originjs/cli-service')
 const program = new Command()
@@ -21,10 +20,10 @@ program
 program
   .command('dev')
   .description('alias of "ori dev" in the current project')
-  .allowUnknownOption()
-  .action(async () => {
-    const server: ViteDevServer = await dev()
-    await server.listen()
+  .option('-n, --no-browser', 'not open the app in the browser automatically')
+  .option('-c, --auto-close [delay]', 'close server with time delay', '5000')
+  .action(async (options) => {
+    await dev(null, options)
   })
 
 program
