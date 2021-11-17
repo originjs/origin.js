@@ -43,7 +43,7 @@ function changeFileName(filePath: string, config: any) {
     try {
       changeNamefromDir(filePath, resolve)
     } catch (err) {
-      reject(err)
+      reject('Failed to change file name')
     }
   })
 }
@@ -53,40 +53,38 @@ export default async function createPackageTemplate(
   uninstalled?: boolean,
   projectDir?: string,
 ) {
-  try {
-    const targetPath = projectDir || process.cwd()
-    await changeFileName(path.join(targetPath, config.name), config).then(rs => {
-      if (uninstalled) {
-        return
-      }
+  const targetPath = projectDir || process.cwd()
+  await changeFileName(path.join(targetPath, config.name), config).then(rs => {
+    console.log(rs)
+    if (uninstalled) {
+      return
+    }
 
-      const spinner = ora('Install project dependency.......')
-      spinner.start()
-      exec(`cd ${config.name} && git init && npm install`, (err: any) => {
-        if (err) {
-          // When there is an error, print out the error
-          spinner.fail()
-          console.log(
-            chalk.red(
-              'Failed to download dependencies and initialize git repository',
-            ),
-          )
-          console.log(err)
-        } else {
-          spinner.succeed()
-          console.log('  ')
-          console.log(chalk.green('   cd  ' + config.name))
-          console.log(chalk.green('   npm run dev'))
-          console.log('  ')
-        }
-        // exit the operation
-        process.exit()
-      })
+    const spinner = ora('Install project dependency.......')
+    spinner.start()
+    exec(`cd ${config.name} && git init && npm install`, (err: any) => {
+      if (err) {
+        // When there is an error, print out the error
+        spinner.fail()
+        console.log(
+          chalk.red(
+            'Failed to download dependencies and initialize git repository',
+          ),
+        )
+        console.log(err)
+      } else {
+        spinner.succeed()
+        console.log('  ')
+        console.log(chalk.green('   cd  ' + config.name))
+        console.log(chalk.green('   npm run dev'))
+        console.log('  ')
+      }
+      // exit the operation
+      process.exit()
     })
-  } catch (error) {
-    console.error(chalk.red('Failed to change file name'))
-    console.log(error)
-  }
+  }).catch (rj => {
+    console.log(chalk.red(rj))
+  })
 }
 
 function renderFile(filePath: string, config: any) {

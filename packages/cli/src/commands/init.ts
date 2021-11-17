@@ -179,6 +179,7 @@ export async function initializeModules(
   await cpdir(source, targetPath, name, config)
     .then(async rs => {
       spinnerCopy.succeed()
+      console.log(rs)
       try {
         await createPackageTemplate(config, uninstalled, targetPath)
       } catch (error) {
@@ -188,6 +189,7 @@ export async function initializeModules(
     })
     .catch(rj => {
       spinnerCopy.fail()
+      console.log(chalk.red(rj))
     })
 }
 
