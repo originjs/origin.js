@@ -35,13 +35,17 @@ export const defaultOptions: any = {
 }
 
 export function cpdir(dirOld: string, dirNew: string, name: string, config: any = defaultOptions) {
-  const p = new Promise(function (resolve, reject) {
-    fs.mkdir(path.join(dirNew, name), function (err) {
+  const asyncCopy = new Promise((resolve, reject) => {
+    try {
+      fs.mkdirSync(path.join(dirNew, name))
       resolve('Successfully created the folder!')
       dirNew = path.join(dirNew, name)
       const skipFiles: Array<string> = getSkipFilesWithRelativePath()
       walkDir(dirOld, dirNew, skipFiles)
-    })
+    } catch (err) {
+      console.log(err)
+      reject('Failed to create the folder')
+    }
 
     // add files that need to be skipped here
     function getSkipFilesWithRelativePath(): Array<string> {
@@ -58,7 +62,7 @@ export function cpdir(dirOld: string, dirNew: string, name: string, config: any 
 
       if (!config.contentPluginImported) {
         skipFiles.push(
-          'src/pages/content.vue',
+          'src/pages/__content.vue',
           'src/assets/when_you_believe.yaml',
         )
       }
@@ -68,7 +72,7 @@ export function cpdir(dirOld: string, dirNew: string, name: string, config: any 
         !config.contentPluginImported &&
         (!config.federationPluginImported || config.federationType == 'Remote')
       ) {
-        skipFiles.push('src/layouts/profile.vue')
+        skipFiles.push('src/layouts/__profile.vue')
       }
 
       if (!config.markdownPluginImported) {
@@ -101,7 +105,7 @@ export function cpdir(dirOld: string, dirNew: string, name: string, config: any 
       skipFiles: Array<string>,
     ) {
       const oldList = fs.readdirSync(dirOldAbsolutePath)
-      oldList.forEach(function (item) {
+      oldList.forEach((item) => {
         const oldAbsolutePath: string = path.join(dirOldAbsolutePath, item)
         const newAbsolutePath: string = path.join(dirNewAbsolutePath, item)
         const relativePath: string = path
@@ -120,7 +124,7 @@ export function cpdir(dirOld: string, dirNew: string, name: string, config: any 
       })
     }
   })
-  return p
+  return asyncCopy
 }
 
 const SOURCES_DIRECTORY = path.resolve(__dirname, '../../oriTemplate')
@@ -175,6 +179,7 @@ export async function initializeModules(
   await cpdir(source, targetPath, name, config)
     .then(async rs => {
       spinnerCopy.succeed()
+      console.log(rs)
       try {
         await createPackageTemplate(config, uninstalled, targetPath)
       } catch (error) {
@@ -184,6 +189,7 @@ export async function initializeModules(
     })
     .catch(rj => {
       spinnerCopy.fail()
+      console.log(chalk.red(rj))
     })
 }
 
