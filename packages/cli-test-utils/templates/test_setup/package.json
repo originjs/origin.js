@@ -1,6 +1,6 @@
 {
   "name": "test_setup",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "ISC",
   "scripts": {
     "dev": "vite",

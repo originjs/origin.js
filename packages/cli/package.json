@@ -1,6 +1,6 @@
 {
   "name": "@originjs/cli",
-  "version": "1.0.0-beta4",
+  "version": "1.0.0",
   "author": "@originjs",
   "license": "MulanPSL2",
   "bin": {
