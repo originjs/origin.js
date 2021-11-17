@@ -18,8 +18,8 @@ cliService.run('build', 'yourProjectPath');
 async function run(name: 'dev' | 'build', execPath?: string)
 ```
 
-Execute the service commands. 
-It receives `name` and optional `execPath` as parameters with no returns. 
+Execute the service commands. <br/>
+It receives `name` and optional `execPath` as parameters with no returns. <br/>
 The name of command can be `dev` or `build`.
 
 ### dev
@@ -28,8 +28,8 @@ The name of command can be `dev` or `build`.
 async function (execPath?: string, options?: DevCliOptions): Promise<boolean>
 ```
 
-Read your local configuration to create a vite server and listen to that port for development.
-It receives optional `execPath` and command `options` as parameter.
+Read your local configuration to create a vite server and listen to that port for development.<br/>
+It receives optional `execPath` and command `options` as parameter.<br/>
 If it failed to create the vite server, this function returns `false` asynchronously. Instead it returns `true`.
 
 ### build
@@ -38,5 +38,5 @@ If it failed to create the vite server, this function returns `false` asynchrono
 async function (execPath?: string): Promise<void>
 ```
 
-Read your local configuration to build the project for production.
+Read your local configuration to build the project for production.<br/>
 It receives optional `execPath` as parameter with no returns.
