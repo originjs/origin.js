@@ -10,10 +10,7 @@
       v-model="user.password"
       type="text"
     >
-    <router-link
-      :to="'/users/' + user.username"
-      class="button"
-    >
+    <router-link :to="'/users/' + user.username">
       Login
     </router-link>
   </div>

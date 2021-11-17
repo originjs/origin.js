@@ -4,6 +4,11 @@ import { build } from 'vite'
 import { BuildPrinter } from '../Printer'
 import { loadPackageJson } from '../utils/file'
 
+/**
+ * Read your local configuration to build the project for production.
+ *
+ * @param execPath - Directory to build from. Default: `process.cwd()`.
+ */
 export default async function (execPath?: string): Promise<void> {
   const rootDir: string | undefined = execPath
     ? execPath

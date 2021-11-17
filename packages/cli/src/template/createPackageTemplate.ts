@@ -39,7 +39,7 @@ function changeFileName(filePath: string, config: any) {
     })
   }
 
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     try {
       changeNamefromDir(filePath, resolve)
     } catch (err) {
@@ -48,6 +48,13 @@ function changeFileName(filePath: string, config: any) {
   })
 }
 
+/**
+ * Render template files.
+ *
+ * @param config - Project configuration.
+ * @param uninstalled - Not install dependencies after initialization when its value is `true`.
+ * @param projectDir - Project path. Default: `process.cwd()`.
+ */
 export default async function createPackageTemplate(
   config: any,
   uninstalled?: boolean,

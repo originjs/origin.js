@@ -1,8 +1,8 @@
 # README.md
 
-<p align="center"><img align="center" style="width:320px" src="src/assets/originjs.png"/></p><br/>
+<p align="center"><img align="center" style="width:240px" src="src/assets/originjs.png"/></p><br/>
 
-> A new Origin.js project.
+> App created with Origin.js.
 
 ## Setup
 ```shell
