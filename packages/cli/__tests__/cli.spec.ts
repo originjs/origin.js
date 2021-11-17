@@ -319,14 +319,14 @@ test('ori dev', async () => {
   expect(stdout).toMatch(results.serverRunning)
   // TODO: write files and update changes
   project.clear()
-}, 30000)
+}, 50000)
 
 test('ori build', async () => {
   const project = await create('test_build', true)
   await runBuild('test_build')
   expect(project.has('dist')).toEqual(true)
   project.clear()
-}, 30000)
+}, 50000)
 
 test.skip('ori tovue3', async () => {
   const project = await createVue2('test_to_vue3')
