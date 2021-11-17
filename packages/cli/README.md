@@ -1,14 +1,16 @@
-<p align="center"><img align="center" style="width:320px" src="./oriTemplate/src/assets/originjs.png"/></p><br/>
-
 # Origin.js
+
+<p align="center"><img align="center" style="width:240px" src="./oriTemplate/src/assets/originjs.png"/></p><br/>
 
 <p align="center">
   <a href="https://github.com/originjs/origin.js/actions/workflows/ci.yml"><img src="https://github.com/originjs/origin.js/actions/workflows/ci.yml/badge.svg?branch=main" alt="Build Status"></a>
   <a href="https://www.npmjs.com/package/@originjs/cli"><img src="https://badgen.net/npm/v/@originjs/cli" alt="Version"></a>
   <a href="https://www.npmjs.com/package/@originjs/cli"><img src="https://badgen.net/npm/license/@originjs/cli" alt="License"></a>
- </p>
+</p>
 
-## Install
+> CLI for origin.js.
+
+## Installation
 
 ```shell
 npm install -g @originjs/cli
@@ -16,18 +18,6 @@ npm install -g @originjs/cli
 or
 ```shell
 yarn global add @originjs/cli
-```
-
-## Usage
-
-```shell
-ori --help  # show help
-init [options] <app-name> # init a new project
-dev # alias of "ori dev" in the current project
-build # alias of "ori build" in the current project
-tovite [options] # use vite in the current project
-tovue3 [options] # use vue-next in the current project
-help [command] # display help for command
 ```
 
 ## Features
@@ -46,10 +36,28 @@ Create a `Vue3 & Vite` project that support :
 
 ### tovite
 
-Convert a webpack/vue-cli project to a vite project.
-Supported by [Webpack to Vite](https://github.com/originjs/webpack-to-vite)
+Convert a webpack/vue-cli project to a vite project.<br/>
+> Supported by [webpack-to-vite](https://github.com/originjs/webpack-to-vite).
 
 ### tovue3
 
-Upgrade a Vue 2 project to Vue 3.
-Supported by [vue-codemod](https://github.com/originjs/vue-codemod)
+Upgrade a Vue 2 project to Vue 3.<br/>
+> Supported by [vue-codemod](https://github.com/originjs/vue-codemod).
+
+## Usage
+
+```shell
+ori --help  # show help
+
+init [options] <app-name> # init a new project
+
+dev [options] # alias of "ori dev" in the current project
+
+build # alias of "ori build" in the current project
+
+tovite [options] # use vite in the current project
+
+tovue3 [options] # use vue-next in the current project
+
+help [command] # display help for command
+```

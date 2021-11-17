@@ -21,7 +21,7 @@ type InitCliOptions = {
   uninstalled?: boolean
 }
 
-export const defaultOptions: any = {
+const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
@@ -34,6 +34,14 @@ export const defaultOptions: any = {
   federationPluginImported: false,
 }
 
+/**
+ * Recursively copy directories and files.
+ *
+ * @param dirOld - Directory to copy from.
+ * @param dirNew - Directory to copy to.
+ * @param name - Name of directory which will be copied.
+ * @param config - Project configuration.
+ */
 export function cpdir(dirOld: string, dirNew: string, name: string, config: any = defaultOptions) {
   const asyncCopy = new Promise((resolve, reject) => {
     try {
@@ -163,6 +171,15 @@ async function checkOptions() {
     })
 }
 
+/**
+ * Initialize project modules.
+ *
+ * @param name - Project name.
+ * @param config - Project configuration.
+ * @param uninstalled - Not install dependencies after initialization when its value is `true`.
+ * @param projectDir - Project path. Default: `process.cwd()`.
+ * @param sourceDirectory - Template path. Default: `../../oriTemplate`.
+ */
 export async function initializeModules(
   name: any,
   config: any,
@@ -193,10 +210,17 @@ export async function initializeModules(
     })
 }
 
+/**
+ * Initialize a project.
+ *
+ * @param name - Name of project to be initialized. Default: `webProject`.
+ * @param options - Command options.
+ * @returns If it failed to create a project, this function returns `false` asynchronously. Instead it returns `true`.
+ */
 export default async function init(
   name: string | null = 'webProject',
   options?: InitCliOptions,
-) {
+): Promise<boolean> {
   if (!options?.default && options?.allPlugins) {
     console.error(chalk.red('Failed to initialize the template'))
     console.log(`Would you like to use \`ori init -d -a\`?`)
@@ -239,6 +263,7 @@ export default async function init(
 
   try {
     await initializeModules(name, defaultOptions, options?.uninstalled)
+    return true
   } catch (error) {
     console.log(error)
     return false

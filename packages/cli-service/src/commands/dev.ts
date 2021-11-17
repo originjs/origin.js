@@ -9,10 +9,17 @@ type DevCliOptions = {
   autoClose?: string
 }
 
-export default async function dev(
+/**
+ * Read your local configuration to create a vite server and listen to that port for development.
+ *
+ * @param execPath - Directory to build from. Default: `process.cwd()`.
+ * @param options - Command options.
+ * @returns If it failed to create the vite server, this function returns `false` asynchronously. Instead it returns `true`.
+ */
+export default async function (
   execPath?: string,
   options?: DevCliOptions,
-) {
+): Promise<boolean> {
   const rootDir: string | undefined = execPath
     ? execPath
     : await pkgDir(process.cwd())
@@ -36,6 +43,7 @@ export default async function dev(
           server.close()
         }, parseInt(options.autoClose))
       }
+      return true
     } else {
       console.log("Cannot find module 'vite', try running: npm install vite")
       console.log(chalk.red('Server start failed'))

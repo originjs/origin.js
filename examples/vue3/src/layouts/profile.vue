@@ -1,9 +1,7 @@
 <template>
   <div class="header">
     <span class="router-link"><router-link to="/">Home</router-link></span>
-    <span
-      class="router-link"
-    ><router-link to="/login">Sign out</router-link></span>
+    <span class="router-link"><router-link to="/login">Sign out</router-link></span>
   </div>
   <router-view />
 </template>
