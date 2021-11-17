@@ -22,7 +22,7 @@ yarn global add @originjs/cli
 
 ## Features
 
-### Init
+### init
 
 Create a `Vue3 & Vite` project that support : 
 - A Vue framework built with [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
@@ -33,6 +33,10 @@ Create a `Vue3 & Vite` project that support :
 - [Auto-imported Vue components](https://github.com/antfu/unplugin-vue-components)
 - [Vue i18n](https://github.com/intlify/vue-i18n-next) & [Vuex](https://github.com/vuejs/vue-next) intergrated
 - TypeScript support
+
+### setup
+Constuct project for development and production.<br/>
+> Supported by [cli-service](https://github.com/originjs/origin.js/tree/main/packages/cli-service)
 
 ### tovite
 
