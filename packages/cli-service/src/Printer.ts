@@ -46,7 +46,11 @@ class DevPrinter extends Printer {
       mode: MODE,
       command: 'serve',
     }
-    const localConfig = await loadConfigFromFile(configEnv, this.configFile, this.rootDir)
+    const localConfig = await loadConfigFromFile(
+      configEnv,
+      this.configFile,
+      this.rootDir,
+    )
     const _configs: InlineConfig = Object.assign(
       base,
       serverConfig,
@@ -68,7 +72,11 @@ class BuildPrinter extends Printer {
       mode: MODE,
       command: 'build',
     }
-    const localConfig = await loadConfigFromFile(configEnv, this.configFile, this.rootDir)
+    const localConfig = await loadConfigFromFile(
+      configEnv,
+      this.configFile,
+      this.rootDir,
+    )
     const _configs: InlineConfig = Object.assign(
       base,
       buildConfig,

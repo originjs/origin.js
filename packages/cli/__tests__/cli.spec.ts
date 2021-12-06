@@ -38,7 +38,7 @@ test('ori init with failed arguments', async () => {
 }, 10000)
 
 test('ori init with all plugins', async () => {
-  const project = await create('test_all_plugins', false, ['-d','-a','-u'])
+  const project = await create('test_all_plugins', false, ['-d', '-a', '-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -88,7 +88,7 @@ test('ori init with all plugins', async () => {
 }, 10000)
 
 test('ori init without plugins', async () => {
-  const project = await create('test_no_plugins', false, ['-d','-u'])
+  const project = await create('test_no_plugins', false, ['-d', '-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)

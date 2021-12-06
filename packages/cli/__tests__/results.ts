@@ -58,7 +58,7 @@ const defaultLayoutScriptWithoutComponentsPlugin = `components: {
     Sources
   }`
 
-const serverRunning = `dev server running at`
+const serverRunning = `dev server running at:`
 const serverUpdated = `hmr update /src/App.vue`
 
 export default {
