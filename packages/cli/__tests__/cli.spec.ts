@@ -320,6 +320,12 @@ test('ori dev', async () => {
   project.clear()
 }, 50000)
 
+test('ori dev --help', async () => {
+  const { stdout, exitCode } = await run(['dev', '--help'])
+  expect(stdout).toMatchSnapshot('A6')
+  expect(exitCode).toEqual(0)
+}, 10000)
+
 test('ori build', async () => {
   const project = await create('test_build', true)
   await runBuild('test_build')
@@ -327,14 +333,20 @@ test('ori build', async () => {
   project.clear()
 }, 50000)
 
+test('ori build --help', async () => {
+  const { stdout, exitCode } = await run(['build', '--help'])
+  expect(stdout).toMatchSnapshot('A7')
+  expect(exitCode).toEqual(0)
+}, 10000)
+
 test('ori tovue3', async () => {
   const { exitCode, stdout } = await run(['tovue3'])
-  expect(stdout).toMatchSnapshot('A6')
+  expect(stdout).toMatchSnapshot('A8')
   expect(exitCode).toEqual(0)
-}, 30000)
+}, 10000)
 
 test('ori tovite', async () => {
   const { exitCode, stdout } = await run(['tovite'])
-  expect(stdout).toMatchSnapshot('A7')
+  expect(stdout).toMatchSnapshot('A9')
   expect(exitCode).toEqual(0)
-}, 30000)
+}, 10000)

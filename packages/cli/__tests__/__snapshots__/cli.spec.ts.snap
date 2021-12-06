@@ -30,6 +30,26 @@ Commands:
   help [command]             display help for command"
 `;
 
+exports[`ori build --help: A7 1`] = `
+"Usage: ori build [options]
+
+alias of \\"ori build\\" in the current project
+
+Options:
+  -h, --help  display help for command"
+`;
+
+exports[`ori dev --help: A6 1`] = `
+"Usage: ori dev [options]
+
+alias of \\"ori dev\\" in the current project
+
+Options:
+  -n, --no-browser          not open the app in the browser automatically
+  -c, --auto-close [delay]  close server with time delay (default: \\"5000\\")
+  -h, --help                display help for command"
+`;
+
 exports[`ori init --help: A5 1`] = `
 "Usage: ori init [options] <app-name>
 
@@ -414,7 +434,7 @@ export default defineConfig({
 "
 `;
 
-exports[`ori tovite: A7 1`] = `
+exports[`ori tovite: A9 1`] = `
 "Usage: index [options]
 
 Options:
@@ -429,7 +449,7 @@ Options:
   -h, --help               display help for command"
 `;
 
-exports[`ori tovue3: A6 1`] = `
+exports[`ori tovue3: A8 1`] = `
 "Usage: vue-codemod.js [file pattern]
 
 选项：
