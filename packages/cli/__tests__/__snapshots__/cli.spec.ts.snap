@@ -413,3 +413,36 @@ export default defineConfig({
 })
 "
 `;
+
+exports[`ori tovite: A7 1`] = `
+"Usage: index [options]
+
+Options:
+  -v, --version            output the version number
+  -d --rootDir <path>      the directory of project to be transfered
+  -t --projectType <type>  the type of the project, use vue-cli or webpack
+  -e --entry <type>        entrance of the entire build process, webpack or
+                           vite will start from those entry files to build, if
+                           no entry file is specified, src/main.ts or
+                           src/main.js will beused as default
+  -r --reportType <type>   'log' will output a file of log
+  -h, --help               display help for command"
+`;
+
+exports[`ori tovue3: A6 1`] = `
+"Usage: vue-codemod.js [file pattern]
+
+选项：
+  -t, --transformation        Name or path of the transformation module [字符串]
+  -p, --params                Custom params to the transformation
+  -a, --runAllTransformation  run all transformation module               [布尔]
+  -h, --help                  显示帮助信息                                [布尔]
+  -v, --version               显示版本号                                  [布尔]
+
+示例：
+  npx vue-codemod ./src -a                  Run all rules to convert all
+                                            relevant files in the ./src folder
+  npx vue-codemod                           Run slot-attribute rule to convert
+  ./src/components/HelloWorld.vue -t        HelloWorld.vue
+  slot-attribute"
+`;

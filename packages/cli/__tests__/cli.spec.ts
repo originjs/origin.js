@@ -4,7 +4,6 @@ import results from './results'
 import { initializeModules } from '../src/commands/init'
 import run, { DEMO_PATH } from '../../cli-test-utils/execCommands'
 import create from '../../cli-test-utils/createTestProject'
-import createVue2 from '../../cli-test-utils/createTestProjectVue2'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
 import { getConfigs } from '../../cli-test-utils/getPluginConfig'
@@ -328,30 +327,14 @@ test('ori build', async () => {
   project.clear()
 }, 50000)
 
-test.skip('ori tovue3', async () => {
-  const project = await createVue2('test_to_vue3')
-  try {
-    const { exitCode } = await run([
-      'tovue3',
-      '-a',
-      path.join('./packages/cli-test-utils', DEMO_PATH, 'test_to_vue3'),
-    ])
-    expect(exitCode).toEqual(0)
-  } finally {
-    await project.clear()
-  }
-}, 100000)
+test('ori tovue3', async () => {
+  const { exitCode, stdout } = await run(['tovue3'])
+  expect(stdout).toMatchSnapshot('A6')
+  expect(exitCode).toEqual(0)
+}, 30000)
 
-test.skip('ori tovite', async () => {
-  const project = await createVue2('test_to_vite')
-  try {
-    const { exitCode } = await run([
-      'tovite',
-      '-d',
-      path.join('./packages/cli-test-utils', DEMO_PATH, 'test_to_vite'),
-    ])
-    expect(exitCode).toEqual(0)
-  } finally {
-    await project.clear()
-  }
-}, 100000)
+test('ori tovite', async () => {
+  const { exitCode, stdout } = await run(['tovite'])
+  expect(stdout).toMatchSnapshot('A7')
+  expect(exitCode).toEqual(0)
+}, 30000)
