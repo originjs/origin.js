@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@originjs/cli-service": "^1.0.0",
-    "@originjs/vue-codemod": "^1.0.2",
-    "@originjs/webpack-to-vite": "^1.0.0-beta12",
+    "@originjs/vue-codemod": "^1.1.1",
+    "@originjs/webpack-to-vite": "^1.0.2",
     "chalk": "^4.1.1",
     "commander": "^8.0.0",
     "download-git-repo": "^3.0.2",

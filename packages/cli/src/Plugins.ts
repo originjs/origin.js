@@ -1,10 +1,9 @@
 import { spawn } from 'child_process'
 import type { SpawnOptionsWithoutStdio } from 'child_process'
-import Path from 'path'
 export class PluginOri {
   command: string
   constructor(name: string) {
-    this.command = Path.resolve(__dirname, `../../../node_modules/.bin/${name}`)
+    this.command = `npx @originjs/${name}`
   }
 
   exec(args: string[], options?: SpawnOptionsWithoutStdio) {

@@ -435,31 +435,33 @@ export default defineConfig({
 `;
 
 exports[`ori tovite: A9 1`] = `
-"Usage: index [options]
+"Usage: webpack-to-vite [options] [root]
 
 Options:
-  -v, --version            output the version number
-  -d --rootDir <path>      the directory of project to be transfered
+  -v, --version            display version number
+  -d --rootDir <path>      the directory of project to be converted
   -t --projectType <type>  the type of the project, use vue-cli or webpack
+                           (default: vue-cli)
   -e --entry <type>        entrance of the entire build process, webpack or
                            vite will start from those entry files to build, if
                            no entry file is specified, src/main.ts or
-                           src/main.js will beused as default
-  -r --reportType <type>   'log' will output a file of log
+                           src/main.js will be used as default
   -h, --help               display help for command"
 `;
 
 exports[`ori tovue3: A8 1`] = `
-"Usage: vue-codemod.js [file pattern]
+"Usage: vue-codemod [file pattern] <option>
 
-选项：
-  -t, --transformation        Name or path of the transformation module [字符串]
+Options:
+  -t, --transformation        Name or path of the transformation module [string]
   -p, --params                Custom params to the transformation
-  -a, --runAllTransformation  run all transformation module               [布尔]
-  -h, --help                  显示帮助信息                                [布尔]
-  -v, --version               显示版本号                                  [布尔]
+  -a, --runAllTransformation  run all transformation module            [boolean]
+  -f, --reportFormatter       Specify an output report formatter
+                 [string] [choices: \\"table\\", \\"detail\\", \\"log\\"] [default: \\"table\\"]
+  -h, --help                  Show help                                [boolean]
+  -v, --version               Show version number                      [boolean]
 
-示例：
+Examples:
   npx vue-codemod ./src -a                  Run all rules to convert all
                                             relevant files in the ./src folder
   npx vue-codemod                           Run slot-attribute rule to convert
