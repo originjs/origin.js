@@ -33,7 +33,7 @@ function changeFileName(filePath: string, config: any) {
       return
     }
 
-    files.forEach((filename) => {
+    files.forEach(filename => {
       changeNamefromDir(path.join(dir, filename), resolve)
       removeRedundantPrefix(dir, filename, resolve)
     })
@@ -61,37 +61,39 @@ export default async function createPackageTemplate(
   projectDir?: string,
 ) {
   const targetPath = projectDir || process.cwd()
-  await changeFileName(path.join(targetPath, config.name), config).then(rs => {
-    console.log(rs)
-    if (uninstalled) {
-      return
-    }
-
-    const spinner = ora('Install project dependency.......')
-    spinner.start()
-    exec(`cd ${config.name} && git init && npm install`, (err: any) => {
-      if (err) {
-        // When there is an error, print out the error
-        spinner.fail()
-        console.log(
-          chalk.red(
-            'Failed to download dependencies and initialize git repository',
-          ),
-        )
-        console.log(err)
-      } else {
-        spinner.succeed()
-        console.log('  ')
-        console.log(chalk.green('   cd  ' + config.name))
-        console.log(chalk.green('   npm run dev'))
-        console.log('  ')
+  await changeFileName(path.join(targetPath, config.name), config)
+    .then(rs => {
+      console.log(rs)
+      if (uninstalled) {
+        return
       }
-      // exit the operation
-      process.exit()
+
+      const spinner = ora('Install project dependency.......')
+      spinner.start()
+      exec(`cd ${config.name} && git init && npm install`, (err: any) => {
+        if (err) {
+          // When there is an error, print out the error
+          spinner.fail()
+          console.log(
+            chalk.red(
+              'Failed to download dependencies and initialize git repository',
+            ),
+          )
+          console.log(err)
+        } else {
+          spinner.succeed()
+          console.log('  ')
+          console.log(chalk.green('   cd  ' + config.name))
+          console.log(chalk.green('   npm run dev'))
+          console.log('  ')
+        }
+        // exit the operation
+        process.exit()
+      })
     })
-  }).catch (rj => {
-    console.log(chalk.red(rj))
-  })
+    .catch(rj => {
+      console.log(chalk.red(rj))
+    })
 }
 
 function renderFile(filePath: string, config: any) {

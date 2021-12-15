@@ -22,7 +22,7 @@ program
   .description('alias of "ori dev" in the current project')
   .option('-n, --no-browser', 'not open the app in the browser automatically')
   .option('-c, --auto-close [delay]', 'close server with time delay', '5000')
-  .action(async (options) => {
+  .action(async options => {
     await dev(null, options)
   })
 

@@ -88,7 +88,10 @@ describe('globalStyleTest', () => {
     plugin.transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
-    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.scss?used')
+    const id = path.resolve(
+      __dirname,
+      'global_test_repo/src/assets/test.scss?used',
+    )
     // @ts-ignore
     const transformResult = globalStylePlugin().transform('', id).code.trim()
 
@@ -120,7 +123,10 @@ describe('globalStyleTest', () => {
     plugin.transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
-    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.less?used')
+    const id = path.resolve(
+      __dirname,
+      'global_test_repo/src/assets/test.less?used',
+    )
     // @ts-ignore
     const transformResult = plugin.transform('', id).code.trim()
 
@@ -152,7 +158,10 @@ describe('globalStyleTest', () => {
     plugin.transformIndexHtml.transform('', {
       filename: indexHtmlPath,
     })
-    const id = path.resolve(__dirname, 'global_test_repo/src/assets/test.styl?used')
+    const id = path.resolve(
+      __dirname,
+      'global_test_repo/src/assets/test.styl?used',
+    )
     // @ts-ignore
     const transformResult = plugin.transform('', id).code.trim()
 

@@ -63,7 +63,7 @@ describe('get config', () => {
     const path = join(__dirname, './file/withconfig')
     const print = new BuildPrinter(path)
     // The esm module cannot run correctly in jest, use import mock to read operations
-    print.configFile =`${path}/vite.config.ts`
+    print.configFile = `${path}/vite.config.ts`
     const buildConfig: any = {
       build: {},
       configFile: false,
@@ -95,7 +95,7 @@ describe('get config', () => {
     const path = join(__dirname, './file/withconfig')
     const print = new DevPrinter(path)
     // The esm module cannot run correctly in jest, use import mock to read operations
-    print.configFile =`${path}/vite.config.ts`
+    print.configFile = `${path}/vite.config.ts`
     const serveConfig: any = {
       configFile: false,
       server: {

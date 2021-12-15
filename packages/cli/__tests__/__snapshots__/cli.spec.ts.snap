@@ -30,6 +30,26 @@ Commands:
   help [command]             display help for command"
 `;
 
+exports[`ori build --help: A7 1`] = `
+"Usage: ori build [options]
+
+alias of \\"ori build\\" in the current project
+
+Options:
+  -h, --help  display help for command"
+`;
+
+exports[`ori dev --help: A6 1`] = `
+"Usage: ori dev [options]
+
+alias of \\"ori dev\\" in the current project
+
+Options:
+  -n, --no-browser          not open the app in the browser automatically
+  -c, --auto-close [delay]  close server with time delay (default: \\"5000\\")
+  -h, --help                display help for command"
+`;
+
 exports[`ori init --help: A5 1`] = `
 "Usage: ori init [options] <app-name>
 
@@ -412,4 +432,39 @@ export default defineConfig({
   },
 })
 "
+`;
+
+exports[`ori tovite: A9 1`] = `
+"Usage: webpack-to-vite [options] [root]
+
+Options:
+  -v, --version            display version number
+  -d --rootDir <path>      the directory of project to be converted
+  -t --projectType <type>  the type of the project, use vue-cli or webpack
+                           (default: vue-cli)
+  -e --entry <type>        entrance of the entire build process, webpack or
+                           vite will start from those entry files to build, if
+                           no entry file is specified, src/main.ts or
+                           src/main.js will be used as default
+  -h, --help               display help for command"
+`;
+
+exports[`ori tovue3: A8 1`] = `
+"Usage: vue-codemod [file pattern] <option>
+
+Options:
+  -t, --transformation        Name or path of the transformation module [string]
+  -p, --params                Custom params to the transformation
+  -a, --runAllTransformation  run all transformation module            [boolean]
+  -f, --reportFormatter       Specify an output report formatter
+                 [string] [choices: \\"table\\", \\"detail\\", \\"log\\"] [default: \\"table\\"]
+  -h, --help                  Show help                                [boolean]
+  -v, --version               Show version number                      [boolean]
+
+Examples:
+  npx vue-codemod ./src -a                  Run all rules to convert all
+                                            relevant files in the ./src folder
+  npx vue-codemod                           Run slot-attribute rule to convert
+  ./src/components/HelloWorld.vue -t        HelloWorld.vue
+  slot-attribute"
 `;

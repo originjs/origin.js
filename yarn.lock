@@ -2138,24 +2138,26 @@
   dependencies:
     "@octokit/openapi-types" "^10.5.0"
 
-"@originjs/vue-codemod@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@originjs/vue-codemod/-/vue-codemod-1.0.2.tgz#00cb9b1cdedb0f678fe6832ff45f3f5c6dfca65c"
-  integrity sha512-5XfoW3pQLYLHmikxb0r8AUjyuNZUe51J5QKCKrF4vXQU5aGg9YmF03fEnpeAb8sr1lvzlJMUS8rcG7wenDauxA==
+"@originjs/vue-codemod@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/@originjs/vue-codemod/download/@originjs/vue-codemod-1.1.1.tgz#d9d4cc75b73fb42b1cfdb3e5fa7851d1b7a7ef06"
+  integrity sha512-Dnts3MyyQxMlNuiKi9qfgliSwZoX6VHKn3tSvYgIH0hi3YDvzdyDA86m0GsQGKWKWVphzDxcjBSSm4iR9JBiHQ==
   dependencies:
     "@babel/core" "^7.10.3"
     "@babel/preset-env" "^7.10.3"
     "@babel/types" "^7.12.12"
     "@types/jscodeshift" "^0.7.1"
-    "@vue/compiler-core" "^3.0.5"
-    "@vue/compiler-dom" "^3.0.5"
+    "@vue/compiler-core" "~3.0.5"
+    "@vue/compiler-dom" "~3.0.5"
+    cli-progress "^3.9.0"
     debug "^4.1.1"
+    fs-extra "^10.0.0"
     globby "^11.0.2"
     jscodeshift "^0.11.0"
     lru-cache "^6.0.0"
-    prettier "^2.3.1"
     readline-sync "^1.4.10"
     source-map "^0.6.1"
+    table "^6.7.1"
     vue-eslint-parser "^7.6.0"
     yargs "^16.2.0"
 
@@ -2172,10 +2174,10 @@
     source-map "^0.6.1"
     vue-eslint-parser "^7.6.0"
 
-"@originjs/webpack-to-vite@^1.0.0-beta12":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@originjs/webpack-to-vite/-/webpack-to-vite-1.0.0.tgz#6353d6ef10a8678b8d22258b3e82c824137ecaaa"
-  integrity sha512-+aoeeOi6C9gVaWm3ZgYiMhks10wMlIrfUG3o1F1M00FkkrIviy+uYtGvyHDDMYnSFHHPa9R5sbqu2FcHCUUn4w==
+"@originjs/webpack-to-vite@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@originjs/webpack-to-vite/-/webpack-to-vite-1.0.2.tgz#626a685cef3a2b33c1cde8fb9a713a3cfdda8ad7"
+  integrity sha512-kcL6lXV1Wo0kZpWujg0x/eKEWj4Eb8/wLgpLW0wyVju3pMB2CMku1Gl0e29xI7/zCsVhSM7hkaqkC/IFBJk9Iw==
   dependencies:
     "@originjs/vue-sfc-ast-parser" "^1.0.1"
     chalk "^4.1.1"
@@ -2511,6 +2513,17 @@
     "@typescript-eslint/types" "4.31.2"
     eslint-visitor-keys "^2.0.0"
 
+"@vue/compiler-core@3.0.11", "@vue/compiler-core@~3.0.5":
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.0.11.tgz#5ef579e46d7b336b8735228758d1c2c505aae69a"
+  integrity sha1-XvV55G17M2uHNSKHWNHCxQWq5po=
+  dependencies:
+    "@babel/parser" "^7.12.0"
+    "@babel/types" "^7.12.0"
+    "@vue/shared" "3.0.11"
+    estree-walker "^2.0.1"
+    source-map "^0.6.1"
+
 "@vue/compiler-core@3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.1.5.tgz#298f905b6065d6d81ff63756f98c60876b393c87"
@@ -2547,6 +2560,14 @@
   dependencies:
     "@vue/compiler-core" "3.2.16"
     "@vue/shared" "3.2.16"
+
+"@vue/compiler-dom@~3.0.5":
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.0.11.tgz#b15fc1c909371fd671746020ba55b5dab4a730ee"
+  integrity sha1-sV/ByQk3H9ZxdGAgulW12rSnMO4=
+  dependencies:
+    "@vue/compiler-core" "3.0.11"
+    "@vue/shared" "3.0.11"
 
 "@vue/compiler-sfc@^3.2.6":
   version "3.2.16"
@@ -2611,6 +2632,11 @@
     "@vue/runtime-core" "3.1.5"
     "@vue/shared" "3.1.5"
     csstype "^2.6.8"
+
+"@vue/shared@3.0.11":
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.11.tgz#20d22dd0da7d358bb21c17f9bde8628152642c77"
+  integrity sha1-INIt0Np9NYuyHBf5vehigVJkLHc=
 
 "@vue/shared@3.1.5":
   version "3.1.5"
@@ -8141,7 +8167,7 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
-prettier@^2.3.1, prettier@^2.3.2:
+prettier@^2.3.2:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
   integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==

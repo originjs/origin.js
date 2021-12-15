@@ -42,7 +42,12 @@ const defaultOptions: any = {
  * @param name - Name of directory which will be copied.
  * @param config - Project configuration.
  */
-export function cpdir(dirOld: string, dirNew: string, name: string, config: any = defaultOptions) {
+export function cpdir(
+  dirOld: string,
+  dirNew: string,
+  name: string,
+  config: any = defaultOptions,
+) {
   const asyncCopy = new Promise((resolve, reject) => {
     try {
       fs.mkdirSync(path.join(dirNew, name))
@@ -113,7 +118,7 @@ export function cpdir(dirOld: string, dirNew: string, name: string, config: any 
       skipFiles: Array<string>,
     ) {
       const oldList = fs.readdirSync(dirOldAbsolutePath)
-      oldList.forEach((item) => {
+      oldList.forEach(item => {
         const oldAbsolutePath: string = path.join(dirOldAbsolutePath, item)
         const newAbsolutePath: string = path.join(dirNewAbsolutePath, item)
         const relativePath: string = path

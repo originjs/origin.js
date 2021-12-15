@@ -3,7 +3,9 @@ import { Options, command } from 'execa'
 import run, { DEMO_PATH } from './execCommands'
 import { ExecaChildProcess } from 'execa'
 
-export default async function buildTestProject(name: string): Promise<ExecaChildProcess> {
+export default async function buildTestProject(
+  name: string,
+): Promise<ExecaChildProcess> {
   const rootDir: string = path.join(__dirname, DEMO_PATH)
   const projectRoot: string = path.join(rootDir, name)
 

@@ -4,7 +4,6 @@ import results from './results'
 import { initializeModules } from '../src/commands/init'
 import run, { DEMO_PATH } from '../../cli-test-utils/execCommands'
 import create from '../../cli-test-utils/createTestProject'
-import createVue2 from '../../cli-test-utils/createTestProjectVue2'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
 import { getConfigs } from '../../cli-test-utils/getPluginConfig'
@@ -39,7 +38,7 @@ test('ori init with failed arguments', async () => {
 }, 10000)
 
 test('ori init with all plugins', async () => {
-  const project = await create('test_all_plugins', false, ['-d','-a','-u'])
+  const project = await create('test_all_plugins', false, ['-d', '-a', '-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -89,7 +88,7 @@ test('ori init with all plugins', async () => {
 }, 10000)
 
 test('ori init without plugins', async () => {
-  const project = await create('test_no_plugins', false, ['-d','-u'])
+  const project = await create('test_no_plugins', false, ['-d', '-u'])
 
   try {
     expect(project.has('index.html')).toEqual(true)
@@ -321,6 +320,12 @@ test('ori dev', async () => {
   project.clear()
 }, 50000)
 
+test('ori dev --help', async () => {
+  const { stdout, exitCode } = await run(['dev', '--help'])
+  expect(stdout).toMatchSnapshot('A6')
+  expect(exitCode).toEqual(0)
+}, 10000)
+
 test('ori build', async () => {
   const project = await create('test_build', true)
   await runBuild('test_build')
@@ -328,30 +333,20 @@ test('ori build', async () => {
   project.clear()
 }, 50000)
 
-test.skip('ori tovue3', async () => {
-  const project = await createVue2('test_to_vue3')
-  try {
-    const { exitCode } = await run([
-      'tovue3',
-      '-a',
-      path.join('./packages/cli-test-utils', DEMO_PATH, 'test_to_vue3'),
-    ])
-    expect(exitCode).toEqual(0)
-  } finally {
-    await project.clear()
-  }
-}, 100000)
+test('ori build --help', async () => {
+  const { stdout, exitCode } = await run(['build', '--help'])
+  expect(stdout).toMatchSnapshot('A7')
+  expect(exitCode).toEqual(0)
+}, 10000)
 
-test.skip('ori tovite', async () => {
-  const project = await createVue2('test_to_vite')
-  try {
-    const { exitCode } = await run([
-      'tovite',
-      '-d',
-      path.join('./packages/cli-test-utils', DEMO_PATH, 'test_to_vite'),
-    ])
-    expect(exitCode).toEqual(0)
-  } finally {
-    await project.clear()
-  }
-}, 100000)
+test('ori tovue3', async () => {
+  const { exitCode, stdout } = await run(['tovue3', '--help'])
+  expect(stdout).toMatchSnapshot('A8')
+  expect(exitCode).toEqual(0)
+}, 10000)
+
+test('ori tovite', async () => {
+  const { exitCode, stdout } = await run(['tovite', '--help'])
+  expect(stdout).toMatchSnapshot('A9')
+  expect(exitCode).toEqual(0)
+}, 10000)
