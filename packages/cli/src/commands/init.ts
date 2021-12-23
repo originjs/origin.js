@@ -25,6 +25,7 @@ const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
+  test: 'none',
   plugins: [],
   pagesPluginImported: false,
   globalStylePluginImported: false,
@@ -63,6 +64,14 @@ export function cpdir(
     // add files that need to be skipped here
     function getSkipFilesWithRelativePath(): Array<string> {
       const skipFiles = []
+
+      if (config.test !== 'jest') {
+        skipFiles.push('babel.config.js', 'jest.config.js', 'shim.d.ts')
+      }
+      if (config.test === 'none') {
+        skipFiles.push('test')
+      }
+
       if (!config.pagesPluginImported) {
         skipFiles.push(
           'src/pages/users',
@@ -72,14 +81,12 @@ export function cpdir(
           'src/layouts/empty.vue',
         )
       }
-
       if (!config.contentPluginImported) {
         skipFiles.push(
           'src/pages/__content.vue',
           'src/assets/when_you_believe.yaml',
         )
       }
-
       if (
         !config.pagesPluginImported &&
         !config.contentPluginImported &&
@@ -87,21 +94,18 @@ export function cpdir(
       ) {
         skipFiles.push('src/layouts/__profile.vue')
       }
-
       if (!config.markdownPluginImported) {
         skipFiles.push(
           'src/pages/markdown.vue',
           'src/assets/originjs_readme.md',
         )
       }
-
       if (
         !config.federationPluginImported ||
         config.federationType != 'Remote'
       ) {
         skipFiles.push('src/components/HelloWorld.vue')
       }
-
       if (!config.federationPluginImported || config.federationType != 'Host') {
         skipFiles.push(
           'src/components/FederationErrorComponent.vue',

@@ -8,11 +8,12 @@ import {
   PluginChoiceOption,
 } from '../cli/src/config/plugins'
 
-const defaultOptions: any = {
+export const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
   plugins: [],
+  test: 'none',
   // NOTE: the default value of federationType is only used in test
   federationType: 'Host',
   pagesPluginImported: false,

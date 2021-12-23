@@ -58,6 +58,14 @@ const defaultLayoutScriptWithoutComponentsPlugin = `components: {
     Sources
   }`
 
+const packageJsonScriptWithJest = `"test": "jest"`
+const packageJsonScriptWithVitest = `"test": "vitest --coverage"`
+
+const viteConfigWithVitest = `test: {
+  environment: 'jsdom',
+  global: true
+}`
+
 const serverRunning = `dev server running at:`
 const serverUpdated = `hmr update /src/App.vue`
 
@@ -90,6 +98,9 @@ export default {
   appFileWithoutGlobalStylePlugin,
   defaultLayoutImportWithoutComponentsPlugin,
   defaultLayoutScriptWithoutComponentsPlugin,
+  packageJsonScriptWithJest,
+  packageJsonScriptWithVitest,
+  viteConfigWithVitest,
   serverRunning,
   serverUpdated,
 }

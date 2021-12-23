@@ -6,7 +6,10 @@ import run, { DEMO_PATH } from '../../cli-test-utils/execCommands'
 import create from '../../cli-test-utils/createTestProject'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
-import { getConfigs } from '../../cli-test-utils/getPluginConfig'
+import {
+  defaultOptions,
+  getConfigs,
+} from '../../cli-test-utils/getPluginConfig'
 
 test('ori -h', async () => {
   const { stdout, exitCode } = await run(['-h'])
@@ -136,11 +139,70 @@ test('ori init without plugins', async () => {
   }
 }, 10000)
 
+test('ori init with test utils', async () => {
+  const testConfigs = ['none', 'jest', 'vitest']
+  const ProjectPath = path.join(
+    process.cwd(),
+    'packages',
+    'cli-test-utils',
+    DEMO_PATH,
+  )
+  for (const value of testConfigs) {
+    const config = Object.assign({}, defaultOptions, { test: value })
+    await initializeModules(`test_utils_${value}`, config, true, ProjectPath)
+    try {
+      if (value === 'jest') {
+        expect(
+          fs.readFileSync(
+            path.join(ProjectPath, `test_utils_${value}`, 'packages.json'),
+          ),
+        ).toMatch(results.packageJsonScriptWithJest)
+      } else if (value === 'vitest') {
+        expect(
+          fs.readFileSync(
+            path.join(ProjectPath, `test_utils_${value}`, 'packages.json'),
+          ),
+        ).toMatch(results.packageJsonScriptWithVitest)
+        expect(
+          fs.readFileSync(
+            path.join(ProjectPath, `test_utils_${value}`, 'vite.config.ts'),
+          ),
+        ).toMatch(results.viteConfigWithVitest)
+      }
+      // skip files
+      expect(
+        fs.pathExistsSync(
+          path.join(ProjectPath, `test_utils_${value}`, 'babel.config.js'),
+        ),
+      ).toEqual(value === 'jest')
+      expect(
+        fs.pathExistsSync(
+          path.join(ProjectPath, `test_utils_${value}`, 'jest.config.js'),
+        ),
+      ).toEqual(value === 'jest')
+      expect(
+        fs.pathExistsSync(
+          path.join(ProjectPath, `test_utils_${value}`, 'shim.d.ts'),
+        ),
+      ).toEqual(value === 'jest')
+      expect(
+        fs.pathExistsSync(
+          path.join(ProjectPath, `test_utils_${value}`, 'test'),
+        ),
+      ).toEqual(value !== 'none')
+    } finally {
+      fs.remove(path.join(ProjectPath, `test_utils_${value}`))
+    }
+  }
+})
+
 test('ori init with variable plugins', async () => {
   const configs = getConfigs()
-  const ProjectPath = path.resolve(
+  const ProjectPath = path.join(
     process.cwd(),
-    `./packages/cli-test-utils/${DEMO_PATH}`,
+    'packages',
+    'cli-test-utils',
+    DEMO_PATH,
   )
   for (const config of configs) {
     await initializeModules(config.name, config, true, ProjectPath)
