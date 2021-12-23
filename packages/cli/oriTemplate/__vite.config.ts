@@ -53,4 +53,10 @@ export default defineConfig({
     __VUE_I18N_FULL_INSTALL__: true,
     __VUE_I18N_LEGACY_API__: true,
   },
+  <%_ if (test === 'vitest') { _%>
+  test: {
+    environment: 'jsdom',
+    global: true
+  }
+  <%_ } _%>
 })

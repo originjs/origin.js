@@ -4,15 +4,22 @@
   "license": "<%= license %>",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-<%_ if (federationPluginImported && federationType == 'Remote') { _%>
-    "serve": "vite preview --port 3072"
-<%_ } else { _%>
+    <%_ if (federationPluginImported && federationType == 'Remote') { _%>
+    "serve": "vite preview --port 3072",
+    <%_ } else { _%>
     "serve": "vite preview",
-<%_ } _%>
-    "test": "jest"
+    <%_ } _%>
+    <%_ if (test == 'jest') { _%>
+    "test": "jest",
+    <%_ } else if (test === 'vitest') { _%>
+    "test": "vitest --coverage",
+    <%_ } _%>
+    "build": "vite build"
   },
   "dependencies": {
+    <%_ if (test === 'vitest') { _%>
+    "vitest": "^0.0.108",
+    <%_ } _%>
     "vue": "^3.0.5",
     "vue-i18n": "^9.2.0-beta.15",
     "vue-router": "^4.0.11",
@@ -20,21 +27,33 @@
   },
   "devDependencies": {
     <%_ plugins.forEach(function(plugin) { _%>
-    "<%= plugin.package %>":"latest",
+    "<%= plugin.package %>": "<%= plugin.version %>",
     <%_ }) _%>
+    <%_ if (test == 'jest') { _%>
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    <%_ } _%>
     "@intlify/vue-i18n-loader": "^3.0.0",
+    <%_ if (test == 'jest') { _%>
     "@types/jest": "^26.0.24",
-    "@vitejs/plugin-vue": "^1.3.0",
+    <%_ } _%>
+    "@vitejs/plugin-vue": "^2.0.1",
     "@vue/compiler-sfc": "^3.0.5",
+    <%_ if (test !== 'none') { _%>
     "@vue/test-utils": "^2.0.0-rc.16",
+    <%_ } _%>
+    <%_ if (test == 'jest') { _%>
     "babel-jest": "^26.5.6",
     "jest": "^26.5.6",
     "ts-jest": "^26.5.6",
+    <%_ } else if (test === 'vitest') { _%>
+    "c8": "^7.10.0",
+    <%_ } _%>
     "typescript": "^4.3.2",
     "vite": "^2.6.13",
+    <%_ if (test == 'jest') { _%>
     "vue-jest": "^5.0.0-alpha.10",
+    <%_ } _%>
     "vue-tsc": "^0.2.2"
   }
 }

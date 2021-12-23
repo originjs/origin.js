@@ -34,6 +34,15 @@ export const promptList: Array<QuestionCollection> = [
     },
   },
   {
+    type: 'list',
+    message: 'Please choose the test utils you want to use:',
+    name: 'test',
+    choices: ['none', 'jest', 'vitest'],
+    filter: (val: any) => {
+      return val
+    },
+  },
+  {
     // @ts-ignore
     type: 'checkbox',
     message: 'Please select the plugin you need (Use enter to skip):',
