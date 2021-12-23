@@ -154,18 +154,21 @@ test('ori init with test utils', async () => {
       if (value === 'jest') {
         expect(
           fs.readFileSync(
-            path.join(ProjectPath, `test_utils_${value}`, 'packages.json'),
+            path.join(ProjectPath, `test_utils_${value}`, 'package.json'),
+            'utf-8',
           ),
         ).toMatch(results.packageJsonScriptWithJest)
       } else if (value === 'vitest') {
         expect(
           fs.readFileSync(
-            path.join(ProjectPath, `test_utils_${value}`, 'packages.json'),
+            path.join(ProjectPath, `test_utils_${value}`, 'package.json'),
+            'utf-8',
           ),
         ).toMatch(results.packageJsonScriptWithVitest)
         expect(
           fs.readFileSync(
             path.join(ProjectPath, `test_utils_${value}`, 'vite.config.ts'),
+            'utf-8',
           ),
         ).toMatch(results.viteConfigWithVitest)
       }

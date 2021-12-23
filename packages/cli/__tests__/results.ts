@@ -45,11 +45,11 @@ const viteConfigWithComponentsPlugin = `components({
       include: [/\\.vue$/, /\\.vue\\?vue/, /\\.md$/],
     })`
 
-const packageJsonWithPagesPlugin = `@originjs/vite-plugin-pages":"latest"`
-const packageJsonWithContentPlugin = `@originjs/vite-plugin-content":"latest"`
-const packageJsonWithMarkdownPlugin = `vite-plugin-md":"latest"`
-const packageJsonWithGlobalStylePlugin = `@originjs/vite-plugin-global-style":"latest"`
-const packageJsonWithComponentsPlugin = `unplugin-vue-components":"latest"`
+const packageJsonWithPagesPlugin = `@originjs/vite-plugin-pages": "^1.0.1-beta.2"`
+const packageJsonWithContentPlugin = `@originjs/vite-plugin-content": "^1.0.1"`
+const packageJsonWithMarkdownPlugin = `vite-plugin-md": "^0.11.6"`
+const packageJsonWithGlobalStylePlugin = `@originjs/vite-plugin-global-style": "^1.0.2"`
+const packageJsonWithComponentsPlugin = `unplugin-vue-components": "^0.17.9"`
 
 const appFileWithoutGlobalStylePlugin = `<style src="./assets/global-theme.css"></style>`
 
@@ -62,9 +62,9 @@ const packageJsonScriptWithJest = `"test": "jest"`
 const packageJsonScriptWithVitest = `"test": "vitest --coverage"`
 
 const viteConfigWithVitest = `test: {
-  environment: 'jsdom',
-  global: true
-}`
+    environment: 'jsdom',
+    global: true
+  }`
 
 const serverRunning = `dev server running at:`
 const serverUpdated = `hmr update /src/App.vue`
