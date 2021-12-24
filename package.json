@@ -14,7 +14,8 @@
     "lint": "eslint ./packages --ext .vue,.js,.ts",
     "test": "yarn build && jest",
     "fix": "yarn format --write",
-    "format": "prettier --config .prettierrc --ignore-path .prettierignore \"**/*.{ts,js,json,html}\""
+    "format": "prettier --config .prettierrc --ignore-path .prettierignore \"**/*.{ts,js,json,html}\"",
+    "version": "conventional-changelog -p atom -i CHANGELOG.md -s --tagPrefix=cli@ && git add CHANGELOG.md"
   },
   "author": "@originjs",
   "license": "MulanPSL2",
