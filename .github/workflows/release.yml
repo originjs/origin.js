@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  github-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Set node version to node 14
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Versions
+      run: yarn versions
+
+    - name: Install conventional-github-releaser
+      run: yarn global add conventional-github-releaser
+
+    - name: Release
+      run: conventional-github-releaser -p angular
+      env:
+        CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
