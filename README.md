@@ -13,6 +13,7 @@
 ## Features
 - [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
 - [Vue i18n](https://github.com/intlify/vue-i18n-next) & [Vuex](https://github.com/vuejs/vue-next) intergrated
+- [Jest](https://jestjs.io/) or [Vitest](https://vitest.dev/) for Vue component testing
 - Global styles with css, sass, less or stylus
 - Auto-imported Vue components
 - File based routing and layouts
