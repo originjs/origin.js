@@ -2,20 +2,20 @@ import { run } from '../src'
 import { build, createServer } from 'vite'
 import { join } from 'path'
 
-jest.mock('vite', () => {
+vi.mock('vite', () => {
   const server = {
-    listen: jest.fn(),
+    listen: vi.fn(),
   }
   return {
-    build: jest.fn(),
-    createServer: jest.fn().mockReturnValue(server),
-    loadConfigFromFile: jest.fn(),
+    build: vi.fn(),
+    createServer: vi.fn().mockReturnValue(server),
+    loadConfigFromFile: vi.fn(),
   }
 })
 
 describe('cli', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   test('call dev', async () => {

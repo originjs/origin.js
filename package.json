@@ -12,7 +12,7 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "eslint ./packages --ext .vue,.js,.ts",
-    "test": "yarn build && jest",
+    "test": "vitest run",
     "fix": "yarn format --write",
     "format": "prettier --config .prettierrc --ignore-path .prettierignore \"**/*.{ts,js,json,html}\"",
     "version": "conventional-changelog -p atom -i CHANGELOG.md -s --tagPrefix=cli@ && git add CHANGELOG.md"
@@ -24,6 +24,7 @@
     "@types/node": "^16.3.3",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "c8": "^7.10.0",
     "eslint": "^7.31.0",
     "eslint-plugin-vue": "^7.14.0",
     "jest": "^27.0.6",
@@ -33,7 +34,8 @@
     "ts-jest": "^27.0.3",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5",
-    "vite": "^2.5.0",
+    "vite": "^2.7.10",
+    "vitest": "^0.2.8",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
