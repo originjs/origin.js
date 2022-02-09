@@ -4,6 +4,13 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     global: true,
-    exclude: ['examples', 'packages/cli/oriTemplate/*', '**/node_modules/**', '**/dist/**', '**/cypress/**', '**/.{idea,git,cache,output,temp}/**'],
+    exclude: [
+      'examples',
+      'packages/cli/oriTemplate/**',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/cypress/**',
+      '**/.{idea,git,cache,output,temp}/**',
+    ],
   },
 })
