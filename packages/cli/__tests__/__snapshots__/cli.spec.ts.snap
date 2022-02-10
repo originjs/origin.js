@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`ori --help: A2 1`] = `
+exports[`ori --help > A2 1`] = `
 "Usage: ori <command> [options]
 
 Options:
@@ -15,7 +15,7 @@ Commands:
   help [command]             display help for command"
 `;
 
-exports[`ori -h: A1 1`] = `
+exports[`ori -h > A1 1`] = `
 "Usage: ori <command> [options]
 
 Options:
@@ -30,7 +30,7 @@ Commands:
   help [command]             display help for command"
 `;
 
-exports[`ori build --help: A7 1`] = `
+exports[`ori build --help > A7 1`] = `
 "Usage: ori build [options]
 
 alias of \\"ori build\\" in the current project
@@ -39,7 +39,7 @@ Options:
   -h, --help  display help for command"
 `;
 
-exports[`ori dev --help: A6 1`] = `
+exports[`ori dev --help > A6 1`] = `
 "Usage: ori dev [options]
 
 alias of \\"ori dev\\" in the current project
@@ -50,7 +50,7 @@ Options:
   -h, --help                display help for command"
 `;
 
-exports[`ori init --help: A5 1`] = `
+exports[`ori init --help > A5 1`] = `
 "Usage: ori init [options] <app-name>
 
 init a new project
@@ -62,7 +62,7 @@ Options:
   -h, --help         display help for command"
 `;
 
-exports[`ori init with all plugins: A3 1`] = `
+exports[`ori init with all plugins > A3 1`] = `
 "<template>
   <main :class=\\"isLight ? 'light' : 'dark'\\">
     <router-view />
@@ -130,7 +130,7 @@ export default {
 "
 `;
 
-exports[`ori init with all plugins: A3 2`] = `
+exports[`ori init with all plugins > A3 2`] = `
 "import { createApp, defineAsyncComponent } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -167,7 +167,7 @@ app.use(router).use(store).use(i18n).mount('#app')
 "
 `;
 
-exports[`ori init with all plugins: A3 3`] = `
+exports[`ori init with all plugins > A3 3`] = `
 "{
   \\"name\\": \\"test_all_plugins\\",
   \\"version\\": \\"1.0.0\\",
@@ -194,14 +194,14 @@ exports[`ori init with all plugins: A3 3`] = `
     \\"@vitejs/plugin-vue\\": \\"^2.0.1\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
     \\"typescript\\": \\"^4.3.2\\",
-    \\"vite\\": \\"^2.6.13\\",
+    \\"vite\\": \\"^2.7.13\\",
     \\"vue-tsc\\": \\"^0.2.2\\"
   }
 }
 "
 `;
 
-exports[`ori init with all plugins: A3 4`] = `
+exports[`ori init with all plugins > A3 4`] = `
 "import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
@@ -253,7 +253,7 @@ export default defineConfig({
 "
 `;
 
-exports[`ori init without plugins: A4 1`] = `
+exports[`ori init without plugins > A4 1`] = `
 "<template>
   <main :class=\\"isLight ? 'light' : 'dark'\\">
     <router-view />
@@ -322,7 +322,7 @@ export default {
 "
 `;
 
-exports[`ori init without plugins: A4 2`] = `
+exports[`ori init without plugins > A4 2`] = `
 "import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -364,7 +364,7 @@ app.use(router).use(store).use(i18n).mount('#app')
 "
 `;
 
-exports[`ori init without plugins: A4 3`] = `
+exports[`ori init without plugins > A4 3`] = `
 "{
   \\"name\\": \\"test_no_plugins\\",
   \\"version\\": \\"1.0.0\\",
@@ -385,14 +385,14 @@ exports[`ori init without plugins: A4 3`] = `
     \\"@vitejs/plugin-vue\\": \\"^2.0.1\\",
     \\"@vue/compiler-sfc\\": \\"^3.0.5\\",
     \\"typescript\\": \\"^4.3.2\\",
-    \\"vite\\": \\"^2.6.13\\",
+    \\"vite\\": \\"^2.7.13\\",
     \\"vue-tsc\\": \\"^0.2.2\\"
   }
 }
 "
 `;
 
-exports[`ori init without plugins: A4 4`] = `
+exports[`ori init without plugins > A4 4`] = `
 "import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
@@ -416,7 +416,7 @@ export default defineConfig({
 "
 `;
 
-exports[`ori tovite: A9 1`] = `
+exports[`ori tovite > A9 1`] = `
 "Usage: webpack-to-vite [options] [root]
 
 Options:
@@ -431,7 +431,7 @@ Options:
   -h, --help               display help for command"
 `;
 
-exports[`ori tovue3: A8 1`] = `
+exports[`ori tovue3 > A8 1`] = `
 "Usage: vue-codemod [file pattern] <option>
 
 Options:

@@ -1,8 +1,8 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`pages getPages 1`] = `
-Array [
-  Object {
+exports[`pages > getPages 1`] = `
+[
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/",
@@ -11,7 +11,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
     "routePath": "/",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": true,
     "parentRoutePath": "/",
@@ -20,7 +20,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_$dn.vue",
     "routePath": "/:dn",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/",
@@ -29,7 +29,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
     "routePath": "/user",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/user",
@@ -38,7 +38,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue",
     "routePath": "/user/foo",
   },
-  Object {
+  {
     "layout": "bar",
     "nestedRoute": false,
     "parentRoutePath": "/user",
@@ -47,7 +47,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue",
     "routePath": "/user/:id",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": true,
     "parentRoutePath": "/user",
@@ -56,7 +56,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/index.vue",
     "routePath": "/user/nest_user",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/user/nest_user",
@@ -65,7 +65,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/foo.vue",
     "routePath": "/user/nest_user/foo",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": true,
     "parentRoutePath": "/user/nest_user",
@@ -74,7 +74,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/$zoom.vue",
     "routePath": "/user/nest_user/zoom",
   },
-  Object {
+  {
     "layout": "default",
     "nestedRoute": false,
     "parentRoutePath": "/user/nest_user",
@@ -83,7 +83,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/_.vue",
     "routePath": "/user/nest_user/:pathMatch(.*)*",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/user/not_nest_user",
@@ -92,7 +92,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/foo.vue",
     "routePath": "/user/not_nest_user/foo",
   },
-  Object {
+  {
     "layout": "default",
     "nestedRoute": false,
     "parentRoutePath": "/user/not_nest_user",
@@ -101,7 +101,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/_.vue",
     "routePath": "/user/not_nest_user/:pathMatch(.*)*",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": false,
     "parentRoutePath": "/user",
@@ -110,7 +110,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue",
     "routePath": "/user/zoom",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": true,
     "parentRoutePath": "/",
@@ -119,7 +119,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue",
     "routePath": "/zoom",
   },
-  Object {
+  {
     "layout": "default",
     "nestedRoute": false,
     "parentRoutePath": "/",
@@ -131,9 +131,9 @@ Array [
 ]
 `;
 
-exports[`pages getPages 2`] = `
-Array [
-  Object {
+exports[`pages > getPages 2`] = `
+[
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/",
@@ -142,7 +142,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/index.vue",
     "routePath": "/",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": true,
     "parentRoutePath": "/",
@@ -151,7 +151,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/_$dn.vue",
     "routePath": "/:dn",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/",
@@ -160,7 +160,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue",
     "routePath": "/user",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/user",
@@ -169,7 +169,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue",
     "routePath": "/user/foo",
   },
-  Object {
+  {
     "layout": "bar",
     "nestedRoute": false,
     "parentRoutePath": "/user",
@@ -178,7 +178,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue",
     "routePath": "/user/:id",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": true,
     "parentRoutePath": "/user",
@@ -187,7 +187,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/index.vue",
     "routePath": "/user/nest_user",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/user/nest_user",
@@ -196,7 +196,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/foo.vue",
     "routePath": "/user/nest_user/foo",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": true,
     "parentRoutePath": "/user/nest_user",
@@ -205,7 +205,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/$zoom.vue",
     "routePath": "/user/nest_user/zoom",
   },
-  Object {
+  {
     "layout": "default",
     "nestedRoute": false,
     "parentRoutePath": "/user/nest_user",
@@ -214,7 +214,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/_.vue",
     "routePath": "/user/nest_user/:pathMatch(.*)*",
   },
-  Object {
+  {
     "layout": "",
     "nestedRoute": false,
     "parentRoutePath": "/user/not_nest_user",
@@ -223,7 +223,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/foo.vue",
     "routePath": "/user/not_nest_user/foo",
   },
-  Object {
+  {
     "layout": "default",
     "nestedRoute": false,
     "parentRoutePath": "/user/not_nest_user",
@@ -232,7 +232,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/_.vue",
     "routePath": "/user/not_nest_user/:pathMatch(.*)*",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": false,
     "parentRoutePath": "/user",
@@ -241,7 +241,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue",
     "routePath": "/user/zoom",
   },
-  Object {
+  {
     "layout": "content",
     "nestedRoute": true,
     "parentRoutePath": "/",
@@ -250,7 +250,7 @@ Array [
     "pathFromRootDir": "packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue",
     "routePath": "/zoom",
   },
-  Object {
+  {
     "layout": "default",
     "nestedRoute": false,
     "parentRoutePath": "/",
