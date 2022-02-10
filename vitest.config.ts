@@ -9,8 +9,6 @@ export default defineConfig({
       'packages/cli/oriTemplate/**',
       '**/node_modules/**',
       '**/dist/**',
-      '**/cypress/**',
-      '**/.{idea,git,cache,output,temp}/**',
     ],
   },
 })
