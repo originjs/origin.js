@@ -21,6 +21,7 @@ export default defineConfig({
     rollupOptions: {
       external: 'semver/functions/satisfies',
     },
+    target: 'esnext',
   },
 <%_ } _%>
   plugins:[
