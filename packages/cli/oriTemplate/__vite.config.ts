@@ -21,6 +21,7 @@ export default defineConfig({
     rollupOptions: {
       external: 'semver/functions/satisfies',
     },
+    target: 'esnext',
   },
 <%_ } _%>
   plugins:[
@@ -35,7 +36,7 @@ export default defineConfig({
       name: 'host',
       filename: 'remoteEntry.js',
       remotes: {
-        remote: 'http://localhost:3072/remoteEntry.js',
+        remote: 'http://localhost:3072/assets/remoteEntry.js',
       },
       shared: ['vue'],
     }),<%_ } else { _%>
