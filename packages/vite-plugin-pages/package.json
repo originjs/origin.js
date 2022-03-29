@@ -2,7 +2,7 @@
   "name": "@originjs/vite-plugin-pages",
   "version": "1.0.1-beta.0",
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "description": "a vite plugin that automatically generates route config for files in pages and layouts directory",
   "main": "dist/index.js",
   "types": "pluginPages.d.ts",
