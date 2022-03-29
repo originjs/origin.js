@@ -92,7 +92,7 @@ describe('csvTest', () => {
   [ "",
     "",
     "" ],
-  [ "Written and saved in Apache OpenOffice.\\n",
+  [ "Written and saved in Apache OpenOffice.\\r\\n",
     "",
     "" ] ];
 export default data;`)

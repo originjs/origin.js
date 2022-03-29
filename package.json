@@ -10,20 +10,21 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
+    "build": "pnpm run build -r --filter ./",
     "lint": "eslint ./packages --ext .vue,.js,.ts",
-    "test": "yarn build && vitest run --config vitest.config.ts",
-    "fix": "yarn format --write",
+    "test": "vitest run --config vitest.config.ts",
+    "fix": "pnpm format --write",
     "format": "prettier --config .prettierrc --ignore-path .prettierignore \"**/*.{ts,js,json,html}\""
   },
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.3",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "c8": "^7.10.0",
+    "chalk": "^4.1.1",
     "eslint": "^7.31.0",
     "eslint-plugin-vue": "^7.14.0",
     "jest": "^27.0.6",
