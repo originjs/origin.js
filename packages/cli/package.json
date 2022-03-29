@@ -2,7 +2,7 @@
   "name": "@originjs/cli",
   "version": "1.0.2",
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "bin": {
     "ori": "dist/bin/ori.js"
   },

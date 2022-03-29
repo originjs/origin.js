@@ -2,7 +2,7 @@
   "name": "@originjs/vite-plugin-content",
   "version": "1.0.1",
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "description": "A vite plugin that convert xml, yaml, xlsx, csv, toml, ini, properties, plist files to ES6 modules",
   "main": "dist/index.js",
   "files": [

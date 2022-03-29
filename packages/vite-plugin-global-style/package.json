@@ -2,7 +2,7 @@
   "name": "@originjs/vite-plugin-global-style",
   "version": "1.0.2",
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "description": "A vite plugin that help you handle with global styles",
   "main": "dist/index.js",
   "files": [
