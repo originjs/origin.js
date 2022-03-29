@@ -409,10 +409,10 @@ test('ori tovue3', async () => {
   const { exitCode, stdout } = await run(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
   expect(exitCode).toEqual(0)
-}, 10000)
+}, 15000)
 
 test('ori tovite', async () => {
   const { exitCode, stdout } = await run(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
   expect(exitCode).toEqual(0)
-}, 10000)
+}, 15000)

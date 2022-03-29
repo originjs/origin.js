@@ -64,7 +64,7 @@ exports[`csvTest > csv transform > A1 1`] = `
   [ \\"\\",
     \\"\\",
     \\"\\" ],
-  [ \\"Written and saved in Apache OpenOffice.\\\\r\\\\n\\",
+  [ \\"Written and saved in Apache OpenOffice.\\\\n\\",
     \\"\\",
     \\"\\" ] ];
 export default data;"
