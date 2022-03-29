@@ -197,7 +197,7 @@ test.skip('ori init with test utils', async () => {
       fs.remove(path.join(ProjectPath, `test_utils_${value}`))
     }
   }
-})
+}, 30000)
 
 test('ori init with variable plugins', async () => {
   const configs = getConfigs()
@@ -409,10 +409,10 @@ test('ori tovue3', async () => {
   const { exitCode, stdout } = await run(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
   expect(exitCode).toEqual(0)
-}, 15000)
+}, 10000)
 
 test('ori tovite', async () => {
   const { exitCode, stdout } = await run(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
   expect(exitCode).toEqual(0)
-}, 15000)
+}, 10000)
