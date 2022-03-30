@@ -7,7 +7,8 @@
     "url": "git+https://github.com/originjs/origin.js.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/e2e/*"
   ],
   "scripts": {
     "build": "pnpm run build -r --filter ./",
