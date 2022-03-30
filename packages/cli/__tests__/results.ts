@@ -61,10 +61,7 @@ const defaultLayoutScriptWithoutComponentsPlugin = `components: {
 const packageJsonScriptWithJest = `"test": "jest"`
 const packageJsonScriptWithVitest = `"test": "vitest run"`
 
-const viteConfigWithVitest = `test: {
-    environment: 'jsdom',
-    global: true
-  }`
+const viteConfigWithVitest = `test: {\r\n    environment: 'jsdom',\r\n    global: true\r\n  }`
 
 const serverRunning = `dev server running at:`
 const serverUpdated = `hmr update /src/App.vue`

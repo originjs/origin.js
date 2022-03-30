@@ -139,7 +139,7 @@ test('ori init without plugins', async () => {
   }
 }, 10000)
 
-test.skip('ori init with test utils', async () => {
+test('ori init with test utils', async () => {
   const testConfigs = ['none', 'jest', 'vitest']
   const ProjectPath = path.join(
     process.cwd(),
@@ -409,10 +409,10 @@ test('ori tovue3', async () => {
   const { exitCode, stdout } = await run(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
   expect(exitCode).toEqual(0)
-}, 30000)
+}, 50000)
 
 test('ori tovite', async () => {
   const { exitCode, stdout } = await run(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
   expect(exitCode).toEqual(0)
-}, 30000)
+}, 50000)
