@@ -7,12 +7,14 @@
     "url": "git+https://github.com/originjs/origin.js.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/e2e/*"
   ],
   "scripts": {
     "build": "pnpm run build -r --filter ./",
     "lint": "eslint ./packages --ext .vue,.js,.ts",
     "test": "vitest run --config vitest.config.ts",
+    "test:e2e": "pnpm run test:e2e -r",
     "fix": "pnpm format --write",
     "format": "prettier --config .prettierrc --ignore-path .prettierignore \"**/*.{ts,js,json,html}\""
   },

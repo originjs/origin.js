@@ -7,6 +7,7 @@ export default defineConfig({
     exclude: [
       'examples',
       'packages/cli/oriTemplate/**',
+      'packages/e2e/**',
       '**/node_modules/**',
       '**/dist/**',
     ],
