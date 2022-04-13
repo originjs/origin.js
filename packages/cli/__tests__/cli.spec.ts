@@ -2,7 +2,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import results from './results'
 import { initializeModules } from '../src/commands/init'
-import run, { DEMO_PATH } from '../../cli-test-utils/execCommands'
+import { DEMO_PATH, runSync } from '../../cli-test-utils/execCommands'
 import create from '../../cli-test-utils/createTestProject'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
@@ -18,49 +18,49 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
-  await fs.remove(tempDir)
+  await fs.removeSync(tempDir)
 })
 
-test('ori --help', async () => {
-  const { stdout, exitCode } = await run(['--help'])
+test('ori --help', () => {
+  const { stdout, exitCode } = runSync(['--help'])
   expect(stdout).toMatchSnapshot('A2')
   expect(exitCode).toEqual(0)
-}, 60000)
+})
 
-test('ori build --help', async () => {
-  const { stdout, exitCode } = await run(['build', '--help'])
+test('ori build --help', () => {
+  const { stdout, exitCode } = runSync(['build', '--help'])
   expect(stdout).toMatchSnapshot('A7')
   expect(exitCode).toEqual(0)
-}, 10000)
+})
 
-test('ori tovue3', async () => {
-  const { exitCode, stdout } = await run(['tovue3', '--help'])
+test('ori tovue3', () => {
+  const { exitCode, stdout } = runSync(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
   expect(exitCode).toEqual(0)
-}, 120000)
+})
 
-test('ori tovite', async () => {
-  const { exitCode, stdout } = await run(['tovite', '--help'])
+test('ori tovite', () => {
+  const { exitCode, stdout } = runSync(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
   expect(exitCode).toEqual(0)
-}, 120000)
+})
 
-test('ori init without app-name', async () => {
+test('ori init without app-name', () => {
   try {
-    await run(['init'])
+    runSync(['init'])
   } catch (e: any) {
     expect(e.stderr).toContain("error: missing required argument 'app-name'")
   }
-}, 60000)
+})
 
-test('ori init with failed arguments', async () => {
+test('ori init with failed arguments', () => {
   try {
-    const { stdout } = await run(['init', 'testInitFailedArguments', '-a'])
+    const { stdout } = runSync(['init', 'testInitFailedArguments', '-a'])
     expect(stdout).toMatch(`Would you like to use \`ori init -d -a\`?`)
   } catch (e: any) {
     console.log(e)
   }
-}, 10000)
+})
 
 test('ori init with all plugins', async () => {
   const project = await create('test_all_plugins', false, ['-d', '-a', '-u'])
@@ -380,11 +380,11 @@ test('ori init with variable plugins', async () => {
   }
 }, 30000)
 
-test('ori init --help', async () => {
-  const { stdout, exitCode } = await run(['init', '--help'])
+test('ori init --help', () => {
+  const { stdout, exitCode } = runSync(['init', '--help'])
   expect(stdout).toMatchSnapshot('A5')
   expect(exitCode).toEqual(0)
-}, 60000)
+})
 
 // TODO
 test.skip('ori dev', async () => {
@@ -394,11 +394,11 @@ test.skip('ori dev', async () => {
   // TODO: write files and update changes
 }, 50000)
 
-test('ori dev --help', async () => {
-  const { stdout, exitCode } = await run(['dev', '--help'])
+test('ori dev --help', () => {
+  const { stdout, exitCode } = runSync(['dev', '--help'])
   expect(stdout).toMatchSnapshot('A6')
   expect(exitCode).toEqual(0)
-}, 60000)
+})
 
 test('ori build', async () => {
   const project = await create('test_build', true)
