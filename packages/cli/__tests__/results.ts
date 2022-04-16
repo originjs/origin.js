@@ -59,7 +59,7 @@ const defaultLayoutScriptWithoutComponentsPlugin = `components: {
   }`
 
 const packageJsonScriptWithJest = `"test": "jest"`
-const packageJsonScriptWithVitest = `"test": "vitest --coverage"`
+const packageJsonScriptWithVitest = `"test": "vitest run"`
 
 const viteConfigWithVitest = `test: {
     environment: 'jsdom',

@@ -12,13 +12,13 @@
     <%_ if (test == 'jest') { _%>
     "test": "jest",
     <%_ } else if (test === 'vitest') { _%>
-    "test": "vitest --coverage",
+    "test": "vitest run",
     <%_ } _%>
     "build": "vite build"
   },
   "dependencies": {
     <%_ if (test === 'vitest') { _%>
-    "vitest": "^0.0.108",
+    "vitest": "^0.3.1",
     <%_ } _%>
     "vue": "^3.0.5",
     "vue-i18n": "^9.2.0-beta.15",
@@ -50,7 +50,7 @@
     "c8": "^7.10.0",
     <%_ } _%>
     "typescript": "^4.3.2",
-    "vite": "^2.6.13",
+    "vite": "^2.7.13",
     <%_ if (test == 'jest') { _%>
     "vue-jest": "^5.0.0-alpha.10",
     <%_ } _%>

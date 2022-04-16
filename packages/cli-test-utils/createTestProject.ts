@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { Options } from 'execa'
-import run, { DEMO_PATH } from './execCommands'
+import { DEMO_PATH, run } from './execCommands'
 import { cpdir } from '../cli/src/commands/init'
 
 type TestProject = {

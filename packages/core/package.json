@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "dependencies": {
     "@types/node": "^16.4.5",
     "vue": "3.1.5",

@@ -1,16 +1,16 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`generates generateRoutes 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
+exports[`generates > generateRoutes 1`] = `
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
                 "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/_$dn.vue')",
-                "meta": Object {
+                "meta": {
                   "layout": "content",
                 },
                 "path": "/:dn",
@@ -19,11 +19,11 @@ Array [
             "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/content.vue')",
             "path": "/:dn",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/$zoom.vue')",
-                "meta": Object {
+                "meta": {
                   "layout": "content",
                 },
                 "path": "/zoom",
@@ -34,7 +34,7 @@ Array [
           },
         ],
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/index.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "",
         },
         "path": "/",
@@ -43,19 +43,19 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
-                    "children": Array [
-                      Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
                         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/$zoom.vue')",
-                        "meta": Object {
+                        "meta": {
                           "layout": "content",
                         },
                         "path": "/user/nest_user/zoom",
@@ -66,7 +66,7 @@ Array [
                   },
                 ],
                 "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/index.vue')",
-                "meta": Object {
+                "meta": {
                   "layout": "",
                 },
                 "path": "/user/nest_user",
@@ -77,7 +77,7 @@ Array [
           },
         ],
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/index.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "",
         },
         "path": "/user",
@@ -86,11 +86,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/foo.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "",
         },
         "path": "/user/foo",
@@ -99,11 +99,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user/foo",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/_id.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "bar",
         },
         "path": "/user/:id",
@@ -112,11 +112,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/bar.vue')",
     "path": "/user/:id",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/foo.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "",
         },
         "path": "/user/nest_user/foo",
@@ -125,11 +125,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user/nest_user/foo",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/$nest_user/_.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "default",
         },
         "path": "/user/nest_user/:pathMatch(.*)*",
@@ -138,11 +138,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user/nest_user/:pathMatch(.*)*",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/foo.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "",
         },
         "path": "/user/not_nest_user/foo",
@@ -151,11 +151,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user/not_nest_user/foo",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/not_nest_user/_.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "default",
         },
         "path": "/user/not_nest_user/:pathMatch(.*)*",
@@ -164,11 +164,11 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/default.vue')",
     "path": "/user/not_nest_user/:pathMatch(.*)*",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/user/zoom.vue')",
-        "meta": Object {
+        "meta": {
           "layout": "content",
         },
         "path": "/user/zoom",
@@ -177,9 +177,9 @@ Array [
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/layouts/content.vue')",
     "path": "/user/zoom",
   },
-  Object {
+  {
     "component": "() => import('/packages/vite-plugin-pages/__tests__/assets/pages/_.vue')",
-    "meta": Object {
+    "meta": {
       "layout": "default",
     },
     "path": "/:pathMatch(.*)*",

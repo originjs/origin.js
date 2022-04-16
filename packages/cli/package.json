@@ -1,8 +1,8 @@
 {
   "name": "@originjs/cli",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "@originjs",
-  "license": "MulanPSL2",
+  "license": "MulanPSL-2.0",
   "bin": {
     "ori": "dist/bin/ori.js"
   },
@@ -18,7 +18,7 @@
   "dependencies": {
     "@originjs/cli-service": "^1.0.0",
     "@originjs/vue-codemod": "^1.1.1",
-    "@originjs/webpack-to-vite": "^1.0.2",
+    "@originjs/webpack-to-vite": "^1.1.0",
     "chalk": "^4.1.1",
     "commander": "^8.0.0",
     "download-git-repo": "^3.0.2",
@@ -28,10 +28,12 @@
     "ora": "^5.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
     "@types/ejs": "^3.0.7",
     "@types/inquirer": "^7.3.3",
     "cpy-cli": "^3.1.1",
     "del-cli": "^4.0.1",
-    "execa": "5"
+    "execa": "^5.1.1"
   }
 }

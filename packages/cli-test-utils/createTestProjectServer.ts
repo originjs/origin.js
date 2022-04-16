@@ -1,6 +1,6 @@
 import path from 'path'
 import { Options, command } from 'execa'
-import run, { DEMO_PATH } from './execCommands'
+import { DEMO_PATH, run } from './execCommands'
 import { ExecaChildProcess } from 'execa'
 
 export default async function createTestProjectServer(
