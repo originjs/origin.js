@@ -15,12 +15,14 @@ export function run(
   args: readonly string[],
   options: Options<string> = {},
 ): ExecaChildProcess<string> {
-  return command(`npx ts-node ${CLI_PATH} ${args.join(' ')}`, options)
+  const commands = ['npx', 'ts-node', CLI_PATH, ...args]
+  return command(commands.join(' '), options)
 }
 
 export function runSync(
   args: readonly string[],
   options: SyncOptions<string> = {},
 ): ExecaSyncReturnValue<string> {
-  return commandSync(`npx ts-node ${CLI_PATH} ${args.join(' ')}`, options)
+  const commands = ['npx', 'ts-node', CLI_PATH, ...args]
+  return commandSync(commands.join(' '), options)
 }
