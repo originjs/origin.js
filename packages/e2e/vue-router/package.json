@@ -1,0 +1,26 @@
+{
+  "name": "vue-router-e2e",
+  "version": "1.0.0",
+  "main": "runner.js",
+  "scripts": {
+    "dev": "vite --config vite.config.js",
+    "test:e2e": "node runner.js -e chrome-headless --skiptags no-headless",
+    "test:e2e:no-headless": "node runner.js -e chrome"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@vitejs/plugin-vue": "^2.2.4",
+    "chromedriver": "^100.0.0",
+    "connect-history-api-fallback": "^1.6.0",
+    "dotenv": "^16.0.0",
+    "nightwatch": "1.7.11",
+    "nightwatch-helpers": "^1.2.0",
+    "selenium-server": "^3.141.59",
+    "vite": "^2.8.6",
+    "vue": "3.2.31",
+    "vue-router": "4.0.12",
+    "axios": "0.25.0"
+  }
+}
