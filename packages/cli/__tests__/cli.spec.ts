@@ -10,6 +10,7 @@ import {
   defaultOptions,
   getConfigs,
 } from '../../cli-test-utils/getPluginConfig'
+import { formatToLf } from '../src/utils/formatCrlf'
 
 const tempDir = path.resolve(__dirname, '../../temp')
 
@@ -79,7 +80,7 @@ test('ori init with all plugins', async () => {
   expect(project.has('src/assets')).toEqual(true)
 
   const appFile = project.read('src/App.vue')
-  expect(appFile.replace(/\r\n/g, '\n')).toMatchSnapshot('A3')
+  expect(formatToLf(appFile)).toMatchSnapshot('A3')
 
   const mainFile = project.read('src/main.ts')
   expect(mainFile).toMatchSnapshot('A3')
@@ -148,7 +149,7 @@ test('ori init without plugins', async () => {
   expect(project.has('src/assets/originjs_readme.md')).toEqual(false)
 }, 10000)
 
-test.skip('ori init with test utils', async () => {
+test('ori init with test utils', async () => {
   const testConfigs = ['none', 'jest', 'vitest']
   const ProjectPath = path.join(
     process.cwd(),
@@ -156,30 +157,20 @@ test.skip('ori init with test utils', async () => {
     'cli-test-utils',
     DEMO_PATH,
   )
+
   for (const value of testConfigs) {
     const config = Object.assign({}, defaultOptions, { test: value })
     await initializeModules(`test_utils_${value}`, config, true, ProjectPath)
+    const packageJsonContent = fs.readFileSync(
+      path.join(ProjectPath, `test_utils_${value}`, 'package.json'), 'utf-8')
+    const viteConfigContent = formatToLf(fs.readFileSync(
+      path.join(ProjectPath, `test_utils_${value}`, 'vite.config.ts'), 'utf-8'))
     try {
       if (value === 'jest') {
-        expect(
-          fs.readFileSync(
-            path.join(ProjectPath, `test_utils_${value}`, 'package.json'),
-            'utf-8',
-          ),
-        ).toMatch(results.packageJsonScriptWithJest)
+        expect(packageJsonContent).toMatch(results.packageJsonScriptWithJest)
       } else if (value === 'vitest') {
-        expect(
-          fs.readFileSync(
-            path.join(ProjectPath, `test_utils_${value}`, 'package.json'),
-            'utf-8',
-          ),
-        ).toMatch(results.packageJsonScriptWithVitest)
-        expect(
-          fs.readFileSync(
-            path.join(ProjectPath, `test_utils_${value}`, 'vite.config.ts'),
-            'utf-8',
-          ),
-        ).toMatch(results.viteConfigWithVitest)
+        expect(packageJsonContent).toMatch(results.packageJsonScriptWithVitest)
+        expect(formatToLf(viteConfigContent)).toMatch(results.viteConfigWithVitest)
       }
       // skip files
       expect(
@@ -275,10 +266,10 @@ test('ori init with variable plugins', async () => {
           expect(mainFile).toMatch(results.mainWithMarkdownPlugin)
         }
         if (config.contentPluginImported) {
-          expect(mainFile.replace(/\r\n/g, '\n')).toMatch(
+          expect(formatToLf(mainFile)).toMatch(
             results.mainImportContentComponents,
           )
-          expect(mainFile.replace(/\r\n/g, '\n')).toMatch(
+          expect(formatToLf(mainFile)).toMatch(
             results.mainWithContentPlugin,
           )
         }
@@ -288,7 +279,7 @@ test('ori init with variable plugins', async () => {
         expect(indexFile).toMatch(results.indexWithMarkdownPlugin)
         expect(viteConfigFile).toMatch(results.viteConfigImportMarkdownPlugin)
         expect(viteConfigFile).toMatch(results.viteConfigWithMarkdownPlugin)
-        expect(viteConfigFile.replace(/\r\n/g, '\n')).toMatch(
+        expect(formatToLf(viteConfigFile)).toMatch(
           results.viteConfigWithMarkdownPluginVue,
         )
         expect(PackageJsonFile).toMatch(results.packageJsonWithMarkdownPlugin)
@@ -358,7 +349,7 @@ test('ori init with variable plugins', async () => {
 
       if (config.componentsPluginImported) {
         expect(viteConfigFile).toMatch(results.viteConfigImportComponentsPlugin)
-        expect(viteConfigFile.replace(/\r\n/g, '\n')).toMatch(
+        expect(formatToLf(viteConfigFile)).toMatch(
           results.viteConfigWithComponentsPlugin,
         )
         expect(PackageJsonFile).toMatch(results.packageJsonWithComponentsPlugin)
@@ -370,7 +361,7 @@ test('ori init with variable plugins', async () => {
         expect(defaultFile).toMatch(
           results.defaultLayoutImportWithoutComponentsPlugin,
         )
-        expect(defaultFile.replace(/\r\n/g, '\n')).toMatch(
+        expect(formatToLf(defaultFile)).toMatch(
           results.defaultLayoutScriptWithoutComponentsPlugin,
         )
       }
