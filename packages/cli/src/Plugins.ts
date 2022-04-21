@@ -1,5 +1,7 @@
-import crossSpawn from 'cross-spawn'
 import type { SpawnOptionsWithoutStdio } from 'child_process'
+import { spawn } from 'child_process'
+import { SPAWN_OPTION } from '../../cli-test-utils/execCommands'
+
 export class PluginOri {
   command: string
   constructor(name: string) {
@@ -10,10 +12,10 @@ export class PluginOri {
     const _options = Object.assign(
       {
         stdio: 'inherit',
-        shell: true,
+        ...SPAWN_OPTION,
       },
       options,
     )
-    return crossSpawn(this.command, args, _options)
+    return spawn(this.command, args, _options)
   }
 }

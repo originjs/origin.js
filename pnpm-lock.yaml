@@ -4,7 +4,6 @@ importers:
 
   .:
     specifiers:
-      '@types/cross-spawn': ^6.0.2
       '@types/jest': ^26.0.24
       '@types/node': ^16.3.3
       '@typescript-eslint/eslint-plugin': ^4.28.3
@@ -24,7 +23,6 @@ importers:
       vitest: ^0.3.1
       yorkie: ^2.0.0
     devDependencies:
-      '@types/cross-spawn': 6.0.2
       '@types/jest': 26.0.24
       '@types/node': 16.11.26
       '@typescript-eslint/eslint-plugin': 4.33.0_0c49e12669280545a7ea3f36dba6eb0a
@@ -3043,12 +3041,6 @@ packages:
 
   /@types/chai/4.3.0:
     resolution: {integrity: sha512-/ceqdqeRraGolFTcfoXNiqjyQhZzbINDngeoAq9GoHa8PPK1yNzTaxWjA6BFWp5Ua9JpXEMSS4s5i9tS0hOJtw==}
-    dev: true
-
-  /@types/cross-spawn/6.0.2:
-    resolution: {integrity: sha512-KuwNhp3eza+Rhu8IFI5HUXRP0LIhqH5cAjubUvGXXthh4YYBuP2ntwEX+Cz8GJoZUHlKo247wPWOfA9LYEq4cw==}
-    dependencies:
-      '@types/node': 17.0.23
     dev: true
 
   /@types/ejs/3.1.0:
