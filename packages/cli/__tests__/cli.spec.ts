@@ -17,32 +17,32 @@ beforeAll(async () => {
   await fs.mkdirp(tempDir)
 })
 
-afterAll(async () => {
-  await fs.removeSync(tempDir)
+afterAll(() => {
+  fs.removeSync(tempDir)
 })
 
 test('ori --help', () => {
-  const { stdout, exitCode } = runSync(['--help'])
+  const { stdout, status } = runSync(['--help'])
   expect(stdout).toMatchSnapshot('A2')
-  expect(exitCode).toEqual(0)
+  expect(status).toEqual(0)
 })
 
 test('ori build --help', () => {
-  const { stdout, exitCode } = runSync(['build', '--help'])
+  const { stdout, status } = runSync(['build', '--help'])
   expect(stdout).toMatchSnapshot('A7')
-  expect(exitCode).toEqual(0)
+  expect(status).toEqual(0)
 })
 
 test('ori tovue3', () => {
-  const { exitCode, stdout } = runSync(['tovue3', '--help'])
+  const { status, stdout } = runSync(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
-  expect(exitCode).toEqual(0)
+  expect(status).toEqual(0)
 })
 
 test('ori tovite', () => {
-  const { exitCode, stdout } = runSync(['tovite', '--help'])
+  const { status, stdout } = runSync(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
-  expect(exitCode).toEqual(0)
+  expect(status).toEqual(0)
 })
 
 test('ori init without app-name', () => {
@@ -381,27 +381,27 @@ test('ori init with variable plugins', async () => {
 }, 30000)
 
 test('ori init --help', () => {
-  const { stdout, exitCode } = runSync(['init', '--help'])
+  const { stdout, status } = runSync(['init', '--help'])
   expect(stdout).toMatchSnapshot('A5')
-  expect(exitCode).toEqual(0)
+  expect(status).toEqual(0)
 })
 
 // TODO
 test.skip('ori dev', async () => {
-  // const project = await create('test_server', true)
-  const { stdout } = await runServer('test_server')
+  const project = await create('test_server', true)
+  const { stdout } = runServer(project.dir)
   expect(stdout).toMatch(results.serverRunning)
   // TODO: write files and update changes
 }, 50000)
 
 test('ori dev --help', () => {
-  const { stdout, exitCode } = runSync(['dev', '--help'])
+  const { stdout, status } = runSync(['dev', '--help'])
   expect(stdout).toMatchSnapshot('A6')
-  expect(exitCode).toEqual(0)
+  expect(status).toEqual(0)
 })
 
 test('ori build', async () => {
   const project = await create('test_build', true)
-  await runBuild('test_build')
+  runBuild(project.dir)
   expect(project.has('dist')).toEqual(true)
 }, 60000)

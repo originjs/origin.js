@@ -1,17 +1,13 @@
-import path from 'path'
-import { Options, command } from 'execa'
-import { DEMO_PATH, run } from './execCommands'
-import { ExecaChildProcess } from 'execa'
+import { runSync } from './execCommands'
+import crossSpawn from 'cross-spawn'
+import { SpawnSyncOptionsWithStringEncoding, SpawnSyncReturns } from 'child_process'
 
-export default async function buildTestProject(
-  name: string,
-): Promise<ExecaChildProcess> {
-  const rootDir: string = path.join(__dirname, DEMO_PATH)
-  const projectRoot: string = path.join(rootDir, name)
-
+export default function buildTestProject(
+  projectRoot: string,
+): SpawnSyncReturns<string> {
   const args: readonly string[] = ['build']
-  const options: Options<string> = { cwd: projectRoot }
+  const options: SpawnSyncOptionsWithStringEncoding = { cwd: projectRoot, encoding: 'utf-8' }
 
-  await command('npm install', options)
-  return run(args, options)
+  crossSpawn.sync('npm', ['install'], options)
+  return runSync(args, options)
 }

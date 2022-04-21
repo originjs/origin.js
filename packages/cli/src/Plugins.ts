@@ -1,4 +1,4 @@
-import { spawn } from 'child_process'
+import crossSpawn from 'cross-spawn'
 import type { SpawnOptionsWithoutStdio } from 'child_process'
 export class PluginOri {
   command: string
@@ -14,6 +14,6 @@ export class PluginOri {
       },
       options,
     )
-    return spawn(this.command, args, _options)
+    return crossSpawn(this.command, args, _options)
   }
 }

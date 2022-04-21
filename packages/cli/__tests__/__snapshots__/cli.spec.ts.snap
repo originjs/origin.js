@@ -12,7 +12,8 @@ Commands:
   build                      alias of \\"ori build\\" in the current project
   tovite [options]           use vite in the current project
   tovue3 [options]           use vue-next in the current project
-  help [command]             display help for command"
+  help [command]             display help for command
+"
 `;
 
 exports[`ori -h > A1 1`] = `
@@ -27,7 +28,8 @@ Commands:
   build                      alias of \\"ori build\\" in the current project
   tovite [options]           use vite in the current project
   tovue3 [options]           use vue-next in the current project
-  help [command]             display help for command"
+  help [command]             display help for command
+"
 `;
 
 exports[`ori build --help > A7 1`] = `
@@ -36,7 +38,8 @@ exports[`ori build --help > A7 1`] = `
 alias of \\"ori build\\" in the current project
 
 Options:
-  -h, --help  display help for command"
+  -h, --help  display help for command
+"
 `;
 
 exports[`ori dev --help > A6 1`] = `
@@ -47,7 +50,8 @@ alias of \\"ori dev\\" in the current project
 Options:
   -n, --no-browser          not open the app in the browser automatically
   -c, --auto-close [delay]  close server with time delay (default: \\"5000\\")
-  -h, --help                display help for command"
+  -h, --help                display help for command
+"
 `;
 
 exports[`ori init --help > A5 1`] = `
@@ -59,7 +63,8 @@ Options:
   -d, --default      skip init project options
   -a, --all-plugins  create project with all plugins
   -u, --uninstalled  skip install denpendencies
-  -h, --help         display help for command"
+  -h, --help         display help for command
+"
 `;
 
 exports[`ori init with all plugins > A3 1`] = `
@@ -428,7 +433,8 @@ Options:
                            vite will start from those entry files to build, if
                            no entry file is specified, src/main.ts or
                            src/main.js will be used as default
-  -h, --help               display help for command"
+  -h, --help               display help for command
+"
 `;
 
 exports[`ori tovue3 > A8 1`] = `
@@ -448,5 +454,6 @@ Examples:
                                             relevant files in the ./src folder
   npx vue-codemod                           Run slot-attribute rule to convert
   ./src/components/HelloWorld.vue -t        HelloWorld.vue
-  slot-attribute"
+  slot-attribute
+"
 `;
