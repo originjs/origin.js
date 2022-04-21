@@ -1,5 +1,6 @@
-import { spawn } from 'child_process'
 import type { SpawnOptionsWithoutStdio } from 'child_process'
+import { spawn } from 'child_process'
+
 export class PluginOri {
   command: string
   constructor(name: string) {

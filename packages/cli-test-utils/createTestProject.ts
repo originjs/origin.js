@@ -1,8 +1,8 @@
 import fs from 'fs-extra'
 import path from 'path'
-import { Options } from 'execa'
-import { DEMO_PATH, run } from './execCommands'
+import { DEMO_PATH, runSync } from './execCommands'
 import { cpdir } from '../cli/src/commands/init'
+import { SpawnSyncOptionsWithStringEncoding } from 'child_process'
 
 type TestProject = {
   dir: string
@@ -56,14 +56,19 @@ export default async function createTestProject(
   }
 
   const args: readonly string[] = ['init', name, ...commandArgs]
-  const options: Options<string> = { cwd: rootDir, stdio: 'inherit' }
+  const options: SpawnSyncOptionsWithStringEncoding = {
+    cwd: rootDir,
+    stdio: 'inherit',
+    encoding: 'utf-8',
+  }
 
-  return run(args, options).then(() => ({
+  runSync(args, options);
+  return {
     dir: projectRoot,
     has,
     read,
     write,
     rm,
     clear,
-  }))
+  }
 }

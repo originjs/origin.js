@@ -1,28 +1,17 @@
-import {
-  commandSync,
-  command,
-  Options,
-  SyncOptions,
-  ExecaSyncReturnValue,
-  ExecaChildProcess,
-} from 'execa'
+import { spawnSync } from 'child_process'
+import type { SpawnSyncReturns, SpawnSyncOptionsWithStringEncoding } from 'child_process'
 import path from 'path'
 
 export const CLI_PATH: string = path.resolve(__dirname, '../cli/bin/ori')
 export const DEMO_PATH = '../temp'
-
-export function run(
-  args: readonly string[],
-  options: Options<string> = {},
-): ExecaChildProcess<string> {
-  const commands = ['npx', 'ts-node', CLI_PATH, ...args]
-  return command(commands.join(' '), options)
-}
+export const SPAWN_OPTION: SpawnSyncOptionsWithStringEncoding = { encoding: 'utf-8', shell: process.platform === 'win32' }
 
 export function runSync(
   args: readonly string[],
-  options: SyncOptions<string> = {},
-): ExecaSyncReturnValue<string> {
-  const commands = ['npx', 'ts-node', CLI_PATH, ...args]
-  return commandSync(commands.join(' '), options)
+  options: SpawnSyncOptionsWithStringEncoding = SPAWN_OPTION,
+): SpawnSyncReturns<string> {
+  options = { ...options, ...SPAWN_OPTION }
+  const commands = ['ts-node', CLI_PATH, ...args]
+  const result = spawnSync('npx', commands, options)
+  return result
 }

@@ -1,17 +1,14 @@
-import path from 'path'
-import { Options, command } from 'execa'
-import { DEMO_PATH, run } from './execCommands'
-import { ExecaChildProcess } from 'execa'
+import { runSync } from './execCommands'
+import { spawnSync } from 'child_process'
+import type { SpawnSyncOptionsWithStringEncoding, SpawnSyncReturns } from 'child_process'
+import { SPAWN_OPTION } from './execCommands'
 
-export default async function buildTestProject(
-  name: string,
-): Promise<ExecaChildProcess> {
-  const rootDir: string = path.join(__dirname, DEMO_PATH)
-  const projectRoot: string = path.join(rootDir, name)
-
+export default function buildTestProject(
+  projectRoot: string,
+): SpawnSyncReturns<string> {
   const args: readonly string[] = ['build']
-  const options: Options<string> = { cwd: projectRoot }
+  const options: SpawnSyncOptionsWithStringEncoding = { cwd: projectRoot, ...SPAWN_OPTION }
 
-  await command('npm install', options)
-  return run(args, options)
+  spawnSync('npm', ['install'], options)
+  return runSync(args, options)
 }
