@@ -1,6 +1,5 @@
 import type { SpawnOptionsWithoutStdio } from 'child_process'
 import { spawn } from 'child_process'
-import { SPAWN_OPTION } from '../../cli-test-utils/execCommands'
 
 export class PluginOri {
   command: string
@@ -12,7 +11,7 @@ export class PluginOri {
     const _options = Object.assign(
       {
         stdio: 'inherit',
-        ...SPAWN_OPTION,
+        shell: true,
       },
       options,
     )
