@@ -13,6 +13,7 @@ import {
 import { formatToLf } from '../src/utils/formatCrlf'
 
 const tempDir = path.resolve(__dirname, '../../temp')
+const version = require('../package.json').version
 
 beforeAll(async () => {
   await fs.mkdirp(tempDir)
@@ -20,6 +21,12 @@ beforeAll(async () => {
 
 afterAll(() => {
   fs.removeSync(tempDir)
+})
+
+test('ori --version', () => {
+  const { stdout, status } = runSync(['--version'])
+  expect(stdout).toContain(version)
+  expect(status).toEqual(0)
 })
 
 test('ori --help', () => {
