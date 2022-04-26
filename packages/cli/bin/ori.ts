@@ -5,7 +5,12 @@ import { codemod, codemodHelp } from '../src/commands/codmod'
 import { toVite, toViteHelp } from '../src/commands/webpackToVite'
 const { dev, build } = require('@originjs/cli-service')
 const program = new Command()
+const version = require('../package.json').version
 
+program
+  .name('ori')
+  .usage('<command> [options]')
+  .version(version, '-v, --version', 'display version number')
 program.name('ori').usage('<command> [options]')
 program
   .command('init <app-name>')

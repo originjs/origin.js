@@ -4,6 +4,7 @@ exports[`ori --help > A2 1`] = `
 "Usage: ori <command> [options]
 
 Options:
+  -v, --version              display version number
   -h, --help                 display help for command
 
 Commands:
