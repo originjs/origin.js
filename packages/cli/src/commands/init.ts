@@ -21,11 +21,12 @@ type InitCliOptions = {
   uninstalled?: boolean
 }
 
-const defaultOptions: any = {
+export const defaultOptions: any = {
   name: '',
   version: '1.0.0',
   license: 'ISC',
   test: 'none',
+  store: 'pinia',
   plugins: [],
   pagesPluginImported: false,
   globalStylePluginImported: false,
@@ -54,6 +55,7 @@ export function cpdir(
       fs.mkdirSync(path.join(dirNew, name))
       resolve('Successfully created the folder!')
       dirNew = path.join(dirNew, name)
+      // file or directory that will be skipped
       const skipFiles: Array<string> = getSkipFilesWithRelativePath()
       walkDir(dirOld, dirNew, skipFiles)
     } catch (err) {
@@ -65,6 +67,7 @@ export function cpdir(
     function getSkipFilesWithRelativePath(): Array<string> {
       const skipFiles = []
 
+      // test
       if (config.test !== 'jest') {
         skipFiles.push('babel.config.js', 'jest.config.js', 'shim.d.ts')
       }
@@ -72,6 +75,12 @@ export function cpdir(
         skipFiles.push('test')
       }
 
+      // store
+      if (config.store === 'none') {
+        skipFiles.push('src/store')
+      }
+
+      // plugins
       if (!config.pagesPluginImported) {
         skipFiles.push(
           'src/pages/users',

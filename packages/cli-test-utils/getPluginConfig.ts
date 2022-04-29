@@ -7,21 +7,12 @@ import {
   federationOption,
   PluginChoiceOption,
 } from '../cli/src/config/plugins'
+import { defaultOptions } from '../cli/src/commands/init'
 
-export const defaultOptions: any = {
-  name: '',
-  version: '1.0.0',
-  license: 'ISC',
-  plugins: [],
-  test: 'none',
+export const defaultOptionsForTest: any = {
+  ...defaultOptions,
   // NOTE: the default value of federationType is only used in test
   federationType: 'Host',
-  pagesPluginImported: false,
-  globalStylePluginImported: false,
-  componentsPluginImported: false,
-  contentPluginImported: false,
-  markdownPluginImported: false,
-  federationPluginImported: false,
 }
 
 const TO_BE_ADDED_PLUGINS: PluginChoiceOption[] = [
@@ -50,7 +41,7 @@ const pluginCompositions: Array<PluginChoiceOption[]> = getPluginCompositions()
 export function getConfigs(includes?: string[], excludes?: string[]): any[] {
   const resultConfigs: any[] = []
   pluginCompositions.forEach((composition, index) => {
-    const config: any = Object.assign({}, defaultOptions)
+    const config: any = Object.assign({}, defaultOptionsForTest)
     config.name = `test_plugins_${index + 1}`
     config.plugins = composition
     config.plugins.forEach((plugin: PluginChoiceOption) => {
