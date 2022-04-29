@@ -188,7 +188,7 @@ test('ori init with store utils', async () => {
         expect(formatToLf(storeContent)).toMatch(results.storeCreationWithVuex)
       }
     } finally {
-      // fs.remove(path.join(ProjectPath, `store_utils_${value}`))
+      fs.remove(path.join(ProjectPath, `store_utils_${value}`))
     }
   }
 }, 30000)
