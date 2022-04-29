@@ -7,7 +7,7 @@ import create from '../../cli-test-utils/createTestProject'
 import runServer from '../../cli-test-utils/createTestProjectServer'
 import runBuild from '../../cli-test-utils/buildTestProject'
 import {
-  defaultOptions,
+  defaultOptionsForTest,
   getConfigs,
 } from '../../cli-test-utils/getPluginConfig'
 import { formatToLf } from '../src/utils/formatCrlf'
@@ -156,6 +156,43 @@ test('ori init without plugins', async () => {
   expect(project.has('src/assets/originjs_readme.md')).toEqual(false)
 }, 10000)
 
+test('ori init with store utils', async () => {
+  const storeConfigs = ['pinia', 'vuex', 'none']
+  const ProjectPath = path.join(
+    process.cwd(),
+    'packages',
+    'cli-test-utils',
+    DEMO_PATH,
+  )
+
+  for (const value of storeConfigs) {
+    const config = Object.assign({}, defaultOptionsForTest, { store: value })
+    await initializeModules(`store_utils_${value}`, config, true, ProjectPath)
+    try {
+      // skip files
+      expect(
+        fs.pathExistsSync(
+          path.join(ProjectPath, `store_utils_${value}`, 'src/store'),
+        ),
+      ).toEqual(value !== 'none')
+      if (value === 'none') {
+        continue
+      }
+      const storeContent = formatToLf(fs.readFileSync(
+        path.join(ProjectPath, `store_utils_${value}`, 'src/store/index.ts'), 'utf-8'))
+      if (value === 'pinia') {
+        expect(storeContent).toMatch(results.storeCreationImportWithPinia)
+        expect(formatToLf(storeContent)).toMatch(results.storeCreationWithPinia)
+      } else if (value === 'store') {
+        expect(storeContent).toMatch(results.storeCreationImportWithVuex)
+        expect(formatToLf(storeContent)).toMatch(results.storeCreationWithVuex)
+      }
+    } finally {
+      // fs.remove(path.join(ProjectPath, `store_utils_${value}`))
+    }
+  }
+}, 30000)
+
 test('ori init with test utils', async () => {
   const testConfigs = ['none', 'jest', 'vitest']
   const ProjectPath = path.join(
@@ -166,13 +203,13 @@ test('ori init with test utils', async () => {
   )
 
   for (const value of testConfigs) {
-    const config = Object.assign({}, defaultOptions, { test: value })
+    const config = Object.assign({}, defaultOptionsForTest, { test: value })
     await initializeModules(`test_utils_${value}`, config, true, ProjectPath)
-    const packageJsonContent = fs.readFileSync(
-      path.join(ProjectPath, `test_utils_${value}`, 'package.json'), 'utf-8')
-    const viteConfigContent = formatToLf(fs.readFileSync(
-      path.join(ProjectPath, `test_utils_${value}`, 'vite.config.ts'), 'utf-8'))
     try {
+      const packageJsonContent = fs.readFileSync(
+        path.join(ProjectPath, `test_utils_${value}`, 'package.json'), 'utf-8')
+      const viteConfigContent = formatToLf(fs.readFileSync(
+        path.join(ProjectPath, `test_utils_${value}`, 'vite.config.ts'), 'utf-8'))
       if (value === 'jest') {
         expect(packageJsonContent).toMatch(results.packageJsonScriptWithJest)
       } else if (value === 'vitest') {

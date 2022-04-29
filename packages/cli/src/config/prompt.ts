@@ -35,9 +35,9 @@ export const promptList: Array<QuestionCollection> = [
   },
   {
     type: 'list',
-    message: 'Please choose the test utils you want to use:',
-    name: 'test',
-    choices: ['none', 'jest', 'vitest'],
+    message: 'Please choose Vue Store:',
+    name: 'store',
+    choices: ['pinia', 'vuex', 'none'],
     filter: (val: any) => {
       return val
     },
@@ -100,6 +100,15 @@ export const promptList: Array<QuestionCollection> = [
         }
       })
       return federationSelected
+    },
+  },
+  {
+    type: 'list',
+    message: 'Please choose the test utils you want to use:',
+    name: 'test',
+    choices: ['none', 'jest', 'vitest'],
+    filter: (val: any) => {
+      return val
     },
   },
 ]

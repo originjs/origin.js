@@ -66,6 +66,16 @@ const viteConfigWithVitest = `test: {
     global: true
   }`
 
+const storeCreationImportWithVuex = `import { createStore } from 'vuex'`
+const storeCreationImportWithPinia = `import { createPinia } from 'pinia'`
+const storeCreationWithVuex = `export default createStore({
+  state: {},
+  mutations: {},
+  actions: {},
+  modules: {},
+})`
+const storeCreationWithPinia = `export default createPinia()`
+
 const serverRunning = `dev server running at:`
 const serverUpdated = `hmr update /src/App.vue`
 
@@ -101,6 +111,10 @@ export default {
   packageJsonScriptWithJest,
   packageJsonScriptWithVitest,
   viteConfigWithVitest,
+  storeCreationImportWithVuex,
+  storeCreationImportWithPinia,
+  storeCreationWithPinia,
+  storeCreationWithVuex,
   serverRunning,
   serverUpdated,
 }

@@ -17,22 +17,6 @@ Commands:
 "
 `;
 
-exports[`ori -h > A1 1`] = `
-"Usage: ori <command> [options]
-
-Options:
-  -h, --help                 display help for command
-
-Commands:
-  init [options] <app-name>  init a new project
-  dev [options]              alias of \\"ori dev\\" in the current project
-  build                      alias of \\"ori build\\" in the current project
-  tovite [options]           use vite in the current project
-  tovue3 [options]           use vue-next in the current project
-  help [command]             display help for command
-"
-`;
-
 exports[`ori build --help > A7 1`] = `
 "Usage: ori build [options]
 
@@ -187,7 +171,7 @@ exports[`ori init with all plugins > A3 3`] = `
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.15\\",
     \\"vue-router\\": \\"^4.0.11\\",
-    \\"vuex\\": \\"^4.0.2\\"
+    \\"pinia\\": \\"^2.0.13\\"
   },
   \\"devDependencies\\": {
     \\"@originjs/vite-plugin-global-style\\": \\"^1.0.2\\",
@@ -384,7 +368,7 @@ exports[`ori init without plugins > A4 3`] = `
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.15\\",
     \\"vue-router\\": \\"^4.0.11\\",
-    \\"vuex\\": \\"^4.0.2\\"
+    \\"pinia\\": \\"^2.0.13\\"
   },
   \\"devDependencies\\": {
     \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",
