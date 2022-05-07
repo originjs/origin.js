@@ -15,6 +15,7 @@ importers:
       jest: ^27.0.6
       lerna: ^4.0.0
       lint-staged: ^11.0.1
+      module-alias: ^2.2.2
       prettier: ^2.3.2
       ts-jest: ^27.0.3
       ts-node: ^10.1.0
@@ -34,6 +35,7 @@ importers:
       jest: 27.5.1_ts-node@10.7.0
       lerna: 4.0.0
       lint-staged: 11.2.6
+      module-alias: 2.2.2
       prettier: 2.6.1
       ts-jest: 27.1.4_9388cf538a35759e912083e4d830ade3
       ts-node: 10.7.0_ddaac8e123aeb260f586984cee874848
@@ -9585,6 +9587,10 @@ packages:
   /modify-values/1.0.1:
     resolution: {integrity: sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /module-alias/2.2.2:
+    resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
     dev: true
 
   /ms/2.0.0:

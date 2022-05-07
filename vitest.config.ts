@@ -10,6 +10,7 @@ export default defineConfig({
       'packages/e2e/**',
       '**/node_modules/**',
       '**/dist/**',
+      '**/test/**',
     ],
   },
 })
