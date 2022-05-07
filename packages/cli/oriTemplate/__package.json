@@ -25,8 +25,11 @@
     <%_ } _%>
     "vue": "^3.0.5",
     "vue-i18n": "^9.2.0-beta.15",
-    "vue-router": "^4.0.11"<%_ if (store == 'vuex') { _%>,
+    <%_ if (store == 'vuex') { _%>
+    "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
+    <%_ } else { _%>
+    "vue-router": "^4.0.11"
     <%_ } _%>
   },
   "devDependencies": {

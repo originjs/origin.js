@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { DEMO_PATH, runSync } from './execCommands'
+import { cpdir } from '../cli/src/commands/init'
 import { SpawnSyncOptionsWithStringEncoding } from 'child_process'
 
 type TestProject = {
@@ -43,7 +44,7 @@ export async function createTestProject(
   }
 
   if (forSetup) {
-    const sourceDir = path.join(__dirname, '../templates/test_setup')
+    const sourceDir = path.join(__dirname, 'templates/test_setup')
     return cpdir(sourceDir, rootDir, name).then(() => ({
       dir: projectRoot,
       has,
@@ -61,7 +62,7 @@ export async function createTestProject(
     encoding: 'utf-8',
   }
 
-  runSync(args, options);
+  runSync(args, options)
   return {
     dir: projectRoot,
     has,

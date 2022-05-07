@@ -5,9 +5,8 @@ import { initializeModules } from '../src/commands/init'
 import { formatToLf } from '../src/utils/formatCrlf'
 import testUtils from '../../cli-test-utils'
 
-require('module-alias/register')
 const tempDir = path.resolve(__dirname, '../../temp')
-const version = require('~/cli/package.json').version
+const version = require('../package.json').version
 
 beforeAll(async () => {
   await fs.mkdirp(tempDir)

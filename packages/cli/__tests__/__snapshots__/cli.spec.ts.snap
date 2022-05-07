@@ -168,10 +168,10 @@ exports[`ori init with all plugins > A3 3`] = `
     \\"build\\": \\"vite build\\"
   },
   \\"dependencies\\": {
+    \\"pinia\\": \\"^2.0.13\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.15\\",
-    \\"vue-router\\": \\"^4.0.11\\",
-    \\"pinia\\": \\"^2.0.13\\"
+    \\"vue-router\\": \\"^4.0.11\\"
   },
   \\"devDependencies\\": {
     \\"@originjs/vite-plugin-global-style\\": \\"^1.0.2\\",
@@ -365,10 +365,10 @@ exports[`ori init without plugins > A4 3`] = `
     \\"build\\": \\"vite build\\"
   },
   \\"dependencies\\": {
+    \\"pinia\\": \\"^2.0.13\\",
     \\"vue\\": \\"^3.0.5\\",
     \\"vue-i18n\\": \\"^9.2.0-beta.15\\",
-    \\"vue-router\\": \\"^4.0.11\\",
-    \\"pinia\\": \\"^2.0.13\\"
+    \\"vue-router\\": \\"^4.0.11\\"
   },
   \\"devDependencies\\": {
     \\"@intlify/vue-i18n-loader\\": \\"^3.0.0\\",

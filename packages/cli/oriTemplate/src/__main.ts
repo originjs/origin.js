@@ -72,12 +72,12 @@ const i18n = createI18n({
   }
 })
 
-const app = createApp(App);
+const app = createApp(App)
 <%_ if (federationPluginImported && federationType == 'Host') { _%>
 const remoteComponent = defineAsyncComponent({
   loader: () => import('remote/RemoteComponent'),
   errorComponent: FederationErrorComponent,
-});
+})
 app.component("RemoteComponent", remoteComponent)
 <%_ } _%>
 app.use(router).use(store).use(i18n).mount('#app')
