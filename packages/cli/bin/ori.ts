@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-
+import fs from 'fs-extra'
+import path from 'path'
 import { Command } from 'commander'
 import { codemod, codemodHelp } from '../src/commands/codmod'
 import { toVite, toViteHelp } from '../src/commands/webpackToVite'
 const { dev, build } = require('@originjs/cli-service')
 const program = new Command()
-const version = require('../package.json').version
+const packageJsonPath = fs.existsSync(path.resolve(__dirname, '../package.json')) ? path.resolve(__dirname, '../package.json') : path.resolve(__dirname, '../../package.json')
+const version = require(packageJsonPath).version
 
 program
   .name('ori')

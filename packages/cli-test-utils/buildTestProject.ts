@@ -3,7 +3,7 @@ import { spawnSync } from 'child_process'
 import type { SpawnSyncOptionsWithStringEncoding, SpawnSyncReturns } from 'child_process'
 import { SPAWN_OPTION } from './execCommands'
 
-export default function buildTestProject(
+export function buildTestProject(
   projectRoot: string,
 ): SpawnSyncReturns<string> {
   const args: readonly string[] = ['build']

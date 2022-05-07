@@ -13,7 +13,7 @@ type TestProject = {
   clear: () => Promise<void>
 }
 
-export default async function createTestProject(
+export async function createTestProject(
   name: string,
   forSetup = false,
   commandArgs: string[] = [],
@@ -62,7 +62,7 @@ export default async function createTestProject(
     encoding: 'utf-8',
   }
 
-  runSync(args, options);
+  runSync(args, options)
   return {
     dir: projectRoot,
     has,

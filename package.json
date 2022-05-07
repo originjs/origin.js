@@ -11,7 +11,8 @@
     "packages/e2e/*"
   ],
   "scripts": {
-    "build": "pnpm run build -r --filter ./",
+    "build": "pnpm run build -r --filter ./ --filter=!./examples",
+    "build:cli": "pnpm run prebuild -C packages/cli & pnpm run build -C packages/cli & pnpm run postbuild -C packages/cli",
     "lint": "eslint ./packages --ext .vue,.js,.ts",
     "test": "vitest run --config vitest.config.ts",
     "test:e2e": "pnpm run test:e2e -r",
