@@ -2,18 +2,12 @@ import fs from 'fs-extra'
 import path from 'path'
 import results from './results'
 import { initializeModules } from '../src/commands/init'
-import { DEMO_PATH, runSync } from '../../cli-test-utils/execCommands'
-import create from '../../cli-test-utils/createTestProject'
-import runServer from '../../cli-test-utils/createTestProjectServer'
-import runBuild from '../../cli-test-utils/buildTestProject'
-import {
-  defaultOptionsForTest,
-  getConfigs,
-} from '../../cli-test-utils/getPluginConfig'
 import { formatToLf } from '../src/utils/formatCrlf'
+import testUtils from '../../cli-test-utils'
 
+require('module-alias/register')
 const tempDir = path.resolve(__dirname, '../../temp')
-const version = require('../package.json').version
+const version = require('~/cli/package.json').version
 
 beforeAll(async () => {
   await fs.mkdirp(tempDir)
@@ -24,38 +18,38 @@ afterAll(() => {
 })
 
 test('ori --version', () => {
-  const { stdout, status } = runSync(['--version'])
+  const { stdout, status } = testUtils.runSync(['--version'])
   expect(stdout).toContain(version)
   expect(status).toEqual(0)
 })
 
 test('ori --help', () => {
-  const { stdout, status } = runSync(['--help'])
+  const { stdout, status } = testUtils.runSync(['--help'])
   expect(stdout).toMatchSnapshot('A2')
   expect(status).toEqual(0)
 })
 
 test('ori build --help', () => {
-  const { stdout, status } = runSync(['build', '--help'])
+  const { stdout, status } = testUtils.runSync(['build', '--help'])
   expect(stdout).toMatchSnapshot('A7')
   expect(status).toEqual(0)
 })
 
 test('ori tovue3', () => {
-  const { status, stdout } = runSync(['tovue3', '--help'])
+  const { status, stdout } = testUtils.runSync(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
   expect(status).toEqual(0)
 })
 
 test('ori tovite', () => {
-  const { status, stdout } = runSync(['tovite', '--help'])
+  const { status, stdout } = testUtils.runSync(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
   expect(status).toEqual(0)
 })
 
 test('ori init without app-name', () => {
   try {
-    runSync(['init'])
+    testUtils.runSync(['init'])
   } catch (e: any) {
     expect(e.stderr).toContain("error: missing required argument 'app-name'")
   }
@@ -63,7 +57,7 @@ test('ori init without app-name', () => {
 
 test('ori init with failed arguments', () => {
   try {
-    const { stdout } = runSync(['init', 'testInitFailedArguments', '-a'])
+    const { stdout } = testUtils.runSync(['init', 'testInitFailedArguments', '-a'])
     expect(stdout).toMatch(`Would you like to use \`ori init -d -a\`?`)
   } catch (e: any) {
     console.log(e)
@@ -71,7 +65,7 @@ test('ori init with failed arguments', () => {
 })
 
 test('ori init with all plugins', async () => {
-  const project = await create('test_all_plugins', false, ['-d', '-a', '-u'])
+  const project = await testUtils.createTestProject('test_all_plugins', false, ['-d', '-a', '-u'])
 
   expect(project.has('index.html')).toEqual(true)
   const indexContent = project.read('index.html')
@@ -114,7 +108,7 @@ test('ori init with all plugins', async () => {
 }, 10000)
 
 test('ori init without plugins', async () => {
-  const project = await create('test_no_plugins', false, ['-d', '-u'])
+  const project = await testUtils.createTestProject('test_no_plugins', false, ['-d', '-u'])
 
   expect(project.has('index.html')).toEqual(true)
   const indexContent = project.read('index.html')
@@ -162,11 +156,11 @@ test('ori init with store utils', async () => {
     process.cwd(),
     'packages',
     'cli-test-utils',
-    DEMO_PATH,
+    testUtils.DEMO_PATH,
   )
 
   for (const value of storeConfigs) {
-    const config = Object.assign({}, defaultOptionsForTest, { store: value })
+    const config = Object.assign({}, testUtils.defaultOptionsForTest, { store: value })
     await initializeModules(`store_utils_${value}`, config, true, ProjectPath)
     try {
       // skip files
@@ -199,11 +193,11 @@ test('ori init with test utils', async () => {
     process.cwd(),
     'packages',
     'cli-test-utils',
-    DEMO_PATH,
+    testUtils.DEMO_PATH,
   )
 
   for (const value of testConfigs) {
-    const config = Object.assign({}, defaultOptionsForTest, { test: value })
+    const config = Object.assign({}, testUtils.defaultOptionsForTest, { test: value })
     await initializeModules(`test_utils_${value}`, config, true, ProjectPath)
     try {
       const packageJsonContent = fs.readFileSync(
@@ -244,12 +238,12 @@ test('ori init with test utils', async () => {
 }, 30000)
 
 test('ori init with variable plugins', async () => {
-  const configs = getConfigs()
+  const configs = testUtils.getConfigs()
   const ProjectPath = path.join(
     process.cwd(),
     'packages',
     'cli-test-utils',
-    DEMO_PATH,
+    testUtils.DEMO_PATH,
   )
   for (const config of configs) {
     await initializeModules(config.name, config, true, ProjectPath)
@@ -416,27 +410,27 @@ test('ori init with variable plugins', async () => {
 }, 30000)
 
 test('ori init --help', () => {
-  const { stdout, status } = runSync(['init', '--help'])
+  const { stdout, status } = testUtils.runSync(['init', '--help'])
   expect(stdout).toMatchSnapshot('A5')
   expect(status).toEqual(0)
 })
 
 // TODO
 test.skip('ori dev', async () => {
-  const project = await create('test_server', true)
-  const { stdout } = runServer(project.dir)
+  const project = await testUtils.createTestProject('test_server', true)
+  const { stdout } = testUtils.createTestProjectServer(project.dir)
   expect(stdout).toMatch(results.serverRunning)
   // TODO: write files and update changes
 }, 50000)
 
 test('ori dev --help', () => {
-  const { stdout, status } = runSync(['dev', '--help'])
+  const { stdout, status } = testUtils.runSync(['dev', '--help'])
   expect(stdout).toMatchSnapshot('A6')
   expect(status).toEqual(0)
 })
 
 test('ori build', async () => {
-  const project = await create('test_build', true)
-  runBuild(project.dir)
+  const project = await testUtils.createTestProject('test_build', true)
+  testUtils.buildTestProject(project.dir)
   expect(project.has('dist')).toEqual(true)
 }, 60000)
