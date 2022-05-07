@@ -13,5 +13,5 @@ export default {
     runSync,
     CLI_PATH,
     DEMO_PATH,
-    SPAWN_OPTION
+    SPAWN_OPTION,
 }
