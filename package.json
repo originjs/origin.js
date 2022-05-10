@@ -41,6 +41,7 @@
     "@typescript-eslint/parser": "^4.28.3",
     "c8": "^7.10.0",
     "chalk": "^4.1.1",
+    "conventional-changelog": "^3.1.25",
     "eslint": "^7.31.0",
     "eslint-plugin-vue": "^7.14.0",
     "jest": "^27.0.6",
@@ -66,8 +67,5 @@
       "eslint --fix",
       "git add"
     ]
-  },
-  "dependencies": {
-    "conventional-changelog": "^3.1.25"
   }
 }
