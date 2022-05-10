@@ -12,7 +12,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "release": "release-it --npm.skipChecks --no-git.requireCleanWorkingDir"
+  },
+  "release-it": {
+    "git": {
+      "commit": false,
+      "tag": false,
+      "push": false
+    }
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.12",
