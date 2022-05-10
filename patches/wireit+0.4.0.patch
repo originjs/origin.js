@@ -1,0 +1,12 @@
+diff --git a/node_modules/wireit/lib/executor.js b/node_modules/wireit/lib/executor.js
+index a5535fd..2030ae1 100644
+--- a/node_modules/wireit/lib/executor.js
++++ b/node_modules/wireit/lib/executor.js
+@@ -337,6 +337,7 @@ _ScriptExecution_script = new WeakMap(), _ScriptExecution_executor = new WeakMap
+             //   https://nodejs.org/api/child_process.html#default-windows-shell
+             //   https://github.com/npm/run-script/blob/a5b03bdfc3a499bf7587d7414d5ea712888bfe93/lib/make-spawn-args.js#L11
+             shell: true,
++            stdio: ['inherit', 'pipe', 'pipe'],
+             env: augmentProcessEnvSafelyIfOnWindows({
+                 PATH: __classPrivateFieldGet(this, _ScriptExecution_instances, "a", _ScriptExecution_pathEnvironmentVariable_get),
+             }),

@@ -13,7 +13,15 @@
   "scripts": {
     "prebuild": "del-cli dist/",
     "build": "tsc",
-    "postbuild": "cpy \"oriTemplate\" ./dist --parents"
+    "postbuild": "cpy \"oriTemplate\" ./dist --parents",
+    "release": "release-it --npm.skipChecks --no-git.requireCleanWorkingDir"
+  },
+  "release-it": {
+    "git": {
+      "commit": false,
+      "tag": false,
+      "push": false
+    }
   },
   "dependencies": {
     "@originjs/cli-service": "^1.0.0",

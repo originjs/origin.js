@@ -1,0 +1,13 @@
+diff --git a/node_modules/release-it/config/release-it.json b/node_modules/release-it/config/release-it.json
+index 7cb17c9..59f0ace 100644
+--- a/node_modules/release-it/config/release-it.json
++++ b/node_modules/release-it/config/release-it.json
+@@ -1,7 +1,7 @@
+ {
+   "hooks": {},
+   "git": {
+-    "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
++    "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to} -- .",
+     "requireCleanWorkingDir": true,
+     "requireBranch": false,
+     "requireUpstream": true,
