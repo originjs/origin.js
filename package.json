@@ -24,7 +24,7 @@
   },
   "wireit": {
     "release": {
-      "command": "release-it",
+      "command": "release-it --npm.skipChecks --no-git.requireCleanWorkingDir",
       "dependencies": [
         "./packages/cli:release",
         "./packages/cli-test-utils:release"
