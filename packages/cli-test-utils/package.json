@@ -1,6 +1,6 @@
 {
   "name": "@originjs/cli-test-utils",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "@originjs",
   "license": "MulanPSL-2.0",
   "dependencies": {
