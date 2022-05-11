@@ -1,6 +1,7 @@
 {
     "git": {
-        "tagName": "cli@${version}"
+        "tagName": "cli@${version}",
+        "commitMessage": "chore: release cli@${version}"
     },
     "npm": {
         "publish": false
