@@ -21,9 +21,9 @@
 
 
 ## Features
-- Based on [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
-- [Vue i18n](https://github.com/intlify/vue-i18n-next) intergrated
-- [Pinia](https://pinia.vuejs.org/) or [Vuex](https://github.com/vuejs/vue-next) for Vue store
+- Based on [Vue 3](https://vuejs.org) & [Vite2](https://vitejs.dev)
+- [Vue i18n](https://kazupon.github.io/vue-i18n/) intergrated
+- [Pinia](https://pinia.vuejs.org/) or [Vuex](https://vuex.vuejs.org/) for Vue store
 - [Jest](https://jestjs.io/) or [Vitest](https://vitest.dev/) for Vue component testing
 - Global styles with css, sass, less or stylus
 - Auto-imported Vue components
