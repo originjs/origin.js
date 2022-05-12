@@ -30,7 +30,7 @@
 - File based routing and layouts
 - Open `yaml/xml/xlsx/...` as a ES module
 - Markdown support
-- Host or remote project for Module Federation
+- Host or remote project for module federation
 - [Webpack to vite conversion tool](https://github.com/originjs/webpack-to-vite)
 - [A migration tool from Vue 2 to Vue 3](https://github.com/originjs/vue-codemod)
 
@@ -42,7 +42,7 @@ View [Documentation](https://originjs.org/en/) for more information.
 - Components - [`vite-plugin-components`](https://github.com/antfu/vite-plugin-components)
 - Markdown - [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md)
 - Content - [`@originjs/vite-plugin-content`](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content)
-- Module Federation - [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
+- Module Federation - [`@originjs/vite-plugin-federation`](https://github.com/originjs/vite-plugin-federation)
 
 ## Installation
 ```shell
