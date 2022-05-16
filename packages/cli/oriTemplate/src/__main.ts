@@ -8,7 +8,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import en from './locales/en.json'
 import zh from './locales/zh.json'
 import App from './App.vue'
+<%_ if (store !== 'none') { _%>
 import store from './store'
+<%_ } _%>
 <%_ if (federationPluginImported && federationType == 'Host') { _%>
 import FederationErrorComponent from './components/FederationErrorComponent.vue'
 <%_ } _%>
@@ -80,4 +82,4 @@ const remoteComponent = defineAsyncComponent({
 })
 app.component("RemoteComponent", remoteComponent)
 <%_ } _%>
-app.use(router).use(store).use(i18n).mount('#app')
+app.use(router)<%_ if (store !== 'none') { _%>.use(store)<%_ } _%>.use(i18n).mount('#app')
