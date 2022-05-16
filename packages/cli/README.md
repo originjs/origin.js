@@ -26,42 +26,47 @@ yarn global add @originjs/cli
 
 Create a `Vue3 & Vite` project that support : 
 - A Vue framework built with [Vue 3](https://github.com/vuejs/vue-next) & [Vite2](https://github.com/vitejs/vite)
+- [Vue i18n](https://kazupon.github.io/vue-i18n/) intergrated
+- [Pinia](https://pinia.vuejs.org/) or [Vuex](https://vuex.vuejs.org/) for Vue store
+- [Jest](https://jestjs.io/) or [Vitest](https://vitest.dev/) for Vue component testing
 - [File based routing and layouts](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-pages)
 - [Markdown support](https://github.com/antfu/vite-plugin-md)
 - [Global css/sass/less/stylus support](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-global-style)
 - [Open yaml/xml/xlsx/... as a ES module](https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content)
 - [Auto-imported Vue components](https://github.com/antfu/unplugin-vue-components)
-- [Vue i18n](https://github.com/intlify/vue-i18n-next) & [Vuex](https://github.com/vuejs/vue-next) intergrated
+- [Host or remote project for module federation](https://github.com/originjs/vite-plugin-federation)
+- [Webpack to vite conversion tool](https://github.com/originjs/webpack-to-vite)
+- [A migration tool from Vue 2 to Vue 3](https://github.com/originjs/vue-codemod)
 - TypeScript support
 
 ### setup
 Constuct project for development and production.<br/>
-> Supported by [cli-service](https://github.com/originjs/origin.js/tree/main/packages/cli-service)
+> Supported by [@originjs/cli-service](https://github.com/originjs/origin.js/tree/main/packages/cli-service)
 
 ### tovite
 
 Convert a webpack/vue-cli project to a vite project.<br/>
-> Supported by [webpack-to-vite](https://github.com/originjs/webpack-to-vite).
+> Supported by [@originjs/webpack-to-vite](https://github.com/originjs/webpack-to-vite).
 
 ### tovue3
 
 Upgrade a Vue 2 project to Vue 3.<br/>
-> Supported by [vue-codemod](https://github.com/originjs/vue-codemod).
+> Supported by [@originjs/vue-codemod](https://github.com/originjs/vue-codemod).
 
 ## Usage
 
 ```shell
-ori --help  # show help
+Usage: ori <command> [options]
 
-init [options] <app-name> # init a new project
+Options:
+  -v, --version              display version number
+  -h, --help                 display help for command
 
-dev [options] # alias of "ori dev" in the current project
-
-build # alias of "ori build" in the current project
-
-tovite [options] # use vite in the current project
-
-tovue3 [options] # use vue-next in the current project
-
-help [command] # display help for command
+Commands:
+  init [options] <app-name>  init a new project
+  dev [options]              alias of "ori dev" in the current project
+  build                      alias of "ori build" in the current project
+  tovite [options]           use vite in the current project
+  tovue3 [options]           use vue-next in the current project
+  help [command]             display help for command
 ```
