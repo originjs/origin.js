@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "origin.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/originjs/origin.js.git"
@@ -26,8 +26,7 @@
     "release": {
       "command": "release-it --npm.skipChecks --no-git.requireCleanWorkingDir",
       "dependencies": [
-        "./packages/cli:release",
-        "./packages/cli-test-utils:release"
+        "./packages/cli:release"
       ]
     }
   },
