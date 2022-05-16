@@ -11,9 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "del-cli dist/",
-    "build": "tsc",
-    "postbuild": "cpy \"oriTemplate\" ./dist --parents",
+    "build": "del-cli dist/ & tsc & cpy \"oriTemplate\" ./dist --parents",
     "release": "release-it --npm.skipChecks --no-git.requireCleanWorkingDir"
   },
   "release-it": {
