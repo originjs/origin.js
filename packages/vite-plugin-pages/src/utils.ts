@@ -1,7 +1,7 @@
 import { PLUGIN_NAME } from './constants'
 
 export function replaceWithSlash(pathStr: string) {
-  return pathStr.replace(/\\/g, '/')
+  return pathStr.replace(/\\(\\)?/g, '/')
 }
 
 export function log(message: string): void {

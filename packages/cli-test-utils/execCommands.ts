@@ -4,7 +4,7 @@ import path from 'path'
 
 export const CLI_PATH: string = path.resolve(__dirname, '../cli/bin/ori')
 export const DEMO_PATH = '../temp'
-export const SPAWN_OPTION: SpawnSyncOptionsWithStringEncoding = { encoding: 'utf-8', shell: process.platform === 'win32' }
+export const SPAWN_OPTION: SpawnSyncOptionsWithStringEncoding = { encoding: 'utf-8', shell: true }
 
 export function runSync(
   args: readonly string[],

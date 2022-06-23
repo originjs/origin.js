@@ -123,7 +123,7 @@ export default (options: PluginOptions = {}): Plugin => {
           CSSFilePaths.forEach(filePath => {
             filePath = filePath
               .replace(assetsPath, '/' + opts.sourcePath!)
-              .replace(/\\/g, '/')
+              .replace(/\\(\\)?/g, '/')
             HtmlTagDescriptors.push({
               tag: 'link',
               attrs: {
@@ -156,7 +156,7 @@ export default (options: PluginOptions = {}): Plugin => {
             .map(filePath => {
               filePath = path
                 .relative(path.join(id, '..'), filePath)
-                .replace(/\\/g, '/')
+                .replace(/\\(\\)?/g, '/')
               return `@import "${filePath}";`
             })
             .join(' ')

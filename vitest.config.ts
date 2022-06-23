@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   test: {
     environment: 'jsdom',
-    global: true,
+    globals: true,
     exclude: [
       'examples',
       'packages/cli/oriTemplate/**',

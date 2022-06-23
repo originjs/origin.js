@@ -136,7 +136,7 @@ export function cpdir(
         const newAbsolutePath: string = path.join(dirNewAbsolutePath, item)
         const relativePath: string = path
           .relative(dirOld, oldAbsolutePath)
-          .replace(/\\/g, '/')
+          .replace(/\\(\\)?/g, '/')
         if (skipFiles.indexOf(relativePath) >= 0) {
           return
         }
