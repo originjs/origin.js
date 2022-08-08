@@ -11,7 +11,7 @@ export class PluginOri {
     const _options = Object.assign(
       {
         stdio: 'inherit',
-        shell: true,
+        shell: process.platform === 'win32',
       },
       options,
     )

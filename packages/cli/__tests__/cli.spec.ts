@@ -34,13 +34,13 @@ test('ori build --help', () => {
   expect(status).toEqual(0)
 })
 
-test('ori tovue3', () => {
+test.skip('ori tovue3', () => {
   const { status, stdout } = testUtils.runSync(['tovue3', '--help'])
   expect(stdout).toMatchSnapshot('A8')
   expect(status).toEqual(0)
 })
 
-test('ori tovite', () => {
+test.skip('ori tovite', () => {
   const { status, stdout } = testUtils.runSync(['tovite', '--help'])
   expect(stdout).toMatchSnapshot('A9')
   expect(status).toEqual(0)
