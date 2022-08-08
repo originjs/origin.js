@@ -57,7 +57,7 @@ export default defineConfig({
   <%_ if (test === 'vitest') { _%>
   test: {
     environment: 'jsdom',
-    global: true
+    globals: true
   }
   <%_ } _%>
 })
