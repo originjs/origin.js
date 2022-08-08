@@ -63,7 +63,7 @@ const packageJsonScriptWithVitest = `"test": "vitest run"`
 
 const viteConfigWithVitest = `test: {
     environment: 'jsdom',
-    global: true
+    globals: true
   }`
 
 const storeCreationImportWithVuex = `import { createStore } from 'vuex'`
