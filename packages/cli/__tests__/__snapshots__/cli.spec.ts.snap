@@ -202,7 +202,7 @@ import pages from '@originjs/vite-plugin-pages'
 import markdown from 'vite-plugin-md'
 import federation from '@originjs/vite-plugin-federation'
 
-// https://vitejs.dev/config/
+// https://v2.vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: [{
@@ -387,7 +387,7 @@ exports[`ori init without plugins > A4 4`] = `
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
+// https://v2.vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: [{

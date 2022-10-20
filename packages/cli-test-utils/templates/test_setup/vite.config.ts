@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
+// https://v2.vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: [

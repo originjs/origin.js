@@ -21,7 +21,7 @@
 
 
 ## Features
-- Based on [Vue 3](https://vuejs.org) & [Vite2](https://vitejs.dev)
+- Based on [Vue 3](https://vuejs.org) & [Vite2](https://v2.vitejs.dev/)
 - [Vue i18n](https://kazupon.github.io/vue-i18n/) intergrated
 - [Pinia](https://pinia.vuejs.org/) or [Vuex](https://vuex.vuejs.org/) for Vue store
 - [Jest](https://jestjs.io/) or [Vitest](https://vitest.dev/) for Vue component testing
