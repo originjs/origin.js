@@ -14,7 +14,7 @@ fs.readdirSync(__dirname).forEach(dir => {
   }
 })
 
-// https://vitejs.dev/config/
+// https://v2.vitejs.dev/config/
 const config = (env = {}) => {
   return defineConfig({
     root: resolve(__dirname),

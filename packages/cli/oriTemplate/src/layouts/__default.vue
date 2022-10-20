@@ -32,7 +32,7 @@ export default {
       },
       {
         title: 'docs',
-        link: 'https://originjs.github.io/en/guide/'
+        link: 'https://originjs.org/'
       }
     ])
 

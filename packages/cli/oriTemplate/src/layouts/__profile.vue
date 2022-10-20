@@ -27,7 +27,7 @@ export default {
       },
       {
         title: 'docs',
-        link: 'https://originjs.github.io/docs/',
+        link: 'https://originjs.org/',
       },
     ])
 
