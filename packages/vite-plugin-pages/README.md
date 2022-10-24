@@ -32,12 +32,32 @@ import pages from '@originjs/vite-plugin-pages'
 
 export default {
     plugins: [
-        pages(
-            /* options */
-        )
+        pages({
+            /* options */   
+        })
     ]
 }
 ```
+### options
+##### root
+
+- **Type:** `string | (string | PluginOptions)[]`
+- **Default:** `replaceWithSlash(process.cwd())`
+
+##### pagesDir
+
+- **Type:** `string | (string | PluginOptions)[]`
+- **Default:** `'src/pages'`
+
+##### layoutsDir
+
+- **Type:** `string | (string | PluginOptions)[]`
+- **Default:** `'src/layouts'`
+
+##### root
+
+- **Type:** `array | (array | PluginOptions)[]`
+- **Default:** `['vue']`
 
 Then import the `routes` generated from vite-plugin-pages, and create `router` instance with the `routes`:
 
