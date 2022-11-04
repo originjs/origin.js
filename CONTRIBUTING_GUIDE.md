@@ -1,3 +1,5 @@
+[简体中文](https://github.com/originjs/origin.js/blob/main/CONTRIBUTING_GUIDE_ZH.md) | English
+
 # Contributing Guide
 
 Origin.js is an open source project deployed on GitHub, and this document help you contribute to the community. If you found bugs from this tool, or intend to add some new features, you can create [issue or discussion](#issue-or-discussion). If you are interested in coding, and would like to solve other users' problems, you can also submit pull requests to make [code contribution](#code-contribution). As with other projects in community, users who are more active will receive community seats, which means that they will have more privileges on management.

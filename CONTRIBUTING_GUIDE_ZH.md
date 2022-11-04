@@ -1,3 +1,5 @@
+简体中文 | [English](https://github.com/originjs/origin.js/blob/main/CONTRIBUTING_GUIDE.md)
+
 # 贡献指南
 
 Origin.js 是一个托管在 github 上的开源项目，本文档将对如何参与开源社区贡献进行说明。如果您在使用过程中发现程序 bug，或者想要添加实用的新功能，欢迎在社区中提出[issue和讨论](#issue和讨论)。如果您对该项目源码感兴趣，想要帮助社区中的用户解决问题，也可以提交 PR 参与[代码贡献](#代码贡献)。和其他社区项目一样，活跃的用户将获得该项目的社区席位，拥有更多社区管理权限。
