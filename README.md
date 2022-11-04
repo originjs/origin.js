@@ -62,3 +62,7 @@ ori init <app-name>
 ## Examples
 - [Vue 3 project using origin.js plugins](https://github.com/originjs/origin.js/tree/main/examples/vue3)
 - [Origin.js templates](https://github.com/konpeki622/origin-demo)
+
+## To be contributor
+
+Read [contributing guide](https://github.com/originjs/origin.js/blob/main/CONTRIBUTING_GUIDE.md).
