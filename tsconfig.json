@@ -14,6 +14,7 @@
     "removeComments": false,
     "lib": ["es2015"],
     "types": ["jest", "node"],
-    "rootDir": "."
+    "rootDir": ".",
+    "declaration": true
   }
 }

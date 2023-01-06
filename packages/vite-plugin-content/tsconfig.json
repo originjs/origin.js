@@ -3,6 +3,8 @@
   "include": ["src", "bin"],
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "declaration": true,
+    "skipLibCheck": true
   }
 }
