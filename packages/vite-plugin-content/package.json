@@ -4,7 +4,14 @@
   "author": "@originjs",
   "license": "MulanPSL-2.0",
   "description": "A vite plugin that convert xml, yaml, xlsx, csv, toml, ini, properties, plist files to ES6 modules",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "files": [
     "src",
     "dist"
@@ -18,7 +25,7 @@
   },
   "homepage": "https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "rm -rf dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ../../fixup"
   },
   "devDependencies": {
     "@types/estree": "^0.0.50",
