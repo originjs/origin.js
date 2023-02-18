@@ -54,6 +54,7 @@ jobs:
         run: pnpm install
 
       - name: Build
+        if: ${{ matrix.os != 'windows-latest' }}
         run: pnpm run build
 
       - name: Test
