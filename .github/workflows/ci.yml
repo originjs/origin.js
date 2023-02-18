@@ -59,7 +59,7 @@ jobs:
 
       - name: Build cli on windows
         if: ${{ matrix.os == 'windows-latest' }}
-        run: pnpm run build:cli
+        run: pnpm run build:cli && pnpm run build:cli-service
 
       - name: Test
         run: pnpm run test
