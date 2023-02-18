@@ -97,27 +97,3 @@ console.log(properties)
 
 - `xlsx.xlsxOptions`
   Options of `sheetjs`. See [here](https://github.com/SheetJS/sheetjs#parsing-options) for more details.
-
-## FAQ
-
-1. `content is not a function` error:
-
-```shell
-error when starting dev server:
-TypeError: content is not a function
-```
-
-This is caused by `type: "module"` in your `package.json`(see [#164](https://github.com/originjs/origin.js/issues/164) for details). 
-
-To fix this, you can remove `type: "module"` in your `package.json`, or you can use this wordaround:
-
-```javascript
-// vite.config.js
-import content from '@originjs/vite-plugin-content'
-
-export default {
-    plugins: [
-        (content as any).default()
-    ]
-}
-```
