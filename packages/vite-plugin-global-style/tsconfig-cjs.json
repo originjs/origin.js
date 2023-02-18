@@ -2,9 +2,9 @@
   "extends": "../../tsconfig.json",
   "include": ["src", "bin"],
   "compilerOptions": {
-    "module": "esnext",
-    "outDir": "dist/mjs",
-    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "dist/cjs",
+    "target": "es2015",
     "rootDir": "./src",
   }
 }
