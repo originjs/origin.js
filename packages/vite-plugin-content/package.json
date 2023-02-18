@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/originjs/origin.js/tree/main/packages/vite-plugin-content",
   "scripts": {
-    "build": "rimraf dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ../../fixup"
+    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ../../fixup"
   },
   "devDependencies": {
     "@types/estree": "^0.0.50",
