@@ -57,6 +57,10 @@ jobs:
         if: ${{ matrix.os != 'windows-latest' }}
         run: pnpm run build
 
+      - name: Build cli on windows
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: pnpm run build:cli
+
       - name: Test
         run: pnpm run test
 
