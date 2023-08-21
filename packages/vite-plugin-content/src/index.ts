@@ -1,4 +1,3 @@
-import { Plugin } from 'vite'
 import { FilterPattern } from '@rollup/pluginutils'
 import { ParserOptions } from 'xml2js'
 import { Options as CSVOptions } from 'csv-parse'
@@ -88,84 +87,71 @@ const TOML_EXTENSION = /\.toml$/
 const PLIST_EXTENSION = /\.plist$/
 const XLSX_EXTENSION = /\.xlsx?$/
 
-export default (options: PluginOptions = {}): Plugin => {
+const supportedTransforms = new Set([
+  'xml',
+  'yaml',
+  'csv',
+  'ini',
+  'properties',
+  'toml',
+  'plist',
+  'xlsx',
+])
+
+export default (options: PluginOptions = {}) => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
 
   const transforms: {
     [key: string]: any
   } = {}
-
-  const loadTransform = function (key: string) {
-    if (!!transforms[key]) {
-      return transforms[key].default
-    }
-
-    switch (key) {
-      case 'xml':
-        transforms[key] = require('./xmlTransformation')
-        break
-      case 'yaml':
-        transforms[key] = require('./yamlTransformation')
-        break
-      case 'csv':
-        transforms[key] = require('./csvTransformation')
-        break
-      case 'ini':
-        transforms[key] = require('./iniTransformation')
-        break
-      case 'properties':
-        transforms[key] = require('./propertiesTransformation')
-        break
-      case 'toml':
-        transforms[key] = require('./tomlTransformation')
-        break
-      case 'plist':
-        transforms[key] = require('./plistTransformation')
-        break
-      case 'xlsx':
-        transforms[key] = require('./xlsxTransformation')
-        break
-      default:
-    }
-
-    return transforms[key].default
+  async function loadTransform(type: string) {
+    if (!supportedTransforms.has(type))
+      throw new Error(`${type} is not a support transform type`)
+    transforms[type] = (await import(`./${type}Transformation.js`)).default
   }
 
   return {
     name: 'vite:content',
     async transform(code: string, id: string) {
+      let transformType: string | undefined
       if (opts.xml!.enabled && XML_EXTENSION.test(id)) {
-        return loadTransform('xml')(opts, code, id)
+        transformType = 'xml'
       }
 
       if (opts.yaml!.enabled && YAML_EXTENSION.test(id)) {
-        return loadTransform('yaml')(opts, code, id)
+        transformType = 'yaml'
       }
 
       if (opts.csv!.enabled && CSV_EXTENSION.test(id)) {
-        return loadTransform('csv')(opts, code, id)
+        transformType = 'csv'
       }
 
       if (opts.ini!.enabled && INI_EXTENSION.test(id)) {
-        return loadTransform('ini')(opts, code, id)
+        transformType = 'ini'
       }
 
       if (opts.properties!.enabled && PROPERTIES_EXTENSION.test(id)) {
-        return loadTransform('properties')(opts, code, id)
+        transformType = 'properties'
       }
 
       if (opts.toml!.enabled && TOML_EXTENSION.test(id)) {
-        return loadTransform('toml')(opts, code, id)
+        transformType = 'toml'
       }
 
       if (opts.toml!.enabled && PLIST_EXTENSION.test(id)) {
-        return loadTransform('plist')(opts, code, id)
+        transformType = 'plist'
       }
 
       if (opts.xlsx!.enabled && XLSX_EXTENSION.test(id)) {
-        return loadTransform('xlsx')(opts, code, id)
+        transformType = 'xlsx'
       }
-      return null
+      if (typeof transformType === 'undefined') {
+        return null
+      }
+      if (typeof transforms[transformType] === 'undefined') {
+        await loadTransform(transformType)
+      }
+      return transforms[transformType](opts, code, id)
     },
   }
 }
