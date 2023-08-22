@@ -87,67 +87,50 @@ const TOML_EXTENSION = /\.toml$/
 const PLIST_EXTENSION = /\.plist$/
 const XLSX_EXTENSION = /\.xlsx?$/
 
-const supportedTransforms = new Set([
-  'xml',
-  'yaml',
-  'csv',
-  'ini',
-  'properties',
-  'toml',
-  'plist',
-  'xlsx',
-])
+type SupportedTransforms =
+  | 'xml'
+  | 'yaml'
+  | 'csv'
+  | 'ini'
+  | 'properties'
+  | 'toml'
+  | 'plist'
+  | 'xlsx'
 
 export default (options: PluginOptions = {}) => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
 
   const transforms: {
-    [key: string]: any
+    [key in SupportedTransforms]?: any
   } = {}
-  async function loadTransform(type: string) {
-    if (!supportedTransforms.has(type))
-      throw new Error(`${type} is not a support transform type`)
+  async function loadTransform(type: SupportedTransforms) {
     transforms[type] = (await import(`./${type}Transformation.js`)).default
   }
 
   return {
     name: 'vite:content',
     async transform(code: string, id: string) {
-      let transformType: string | undefined
+      let transformType: SupportedTransforms
       if (opts.xml!.enabled && XML_EXTENSION.test(id)) {
         transformType = 'xml'
-      }
-
-      if (opts.yaml!.enabled && YAML_EXTENSION.test(id)) {
+      } else if (opts.yaml!.enabled && YAML_EXTENSION.test(id)) {
         transformType = 'yaml'
-      }
-
-      if (opts.csv!.enabled && CSV_EXTENSION.test(id)) {
+      } else if (opts.csv!.enabled && CSV_EXTENSION.test(id)) {
         transformType = 'csv'
-      }
-
-      if (opts.ini!.enabled && INI_EXTENSION.test(id)) {
+      } else if (opts.ini!.enabled && INI_EXTENSION.test(id)) {
         transformType = 'ini'
-      }
-
-      if (opts.properties!.enabled && PROPERTIES_EXTENSION.test(id)) {
+      } else if (opts.properties!.enabled && PROPERTIES_EXTENSION.test(id)) {
         transformType = 'properties'
-      }
-
-      if (opts.toml!.enabled && TOML_EXTENSION.test(id)) {
+      } else if (opts.toml!.enabled && TOML_EXTENSION.test(id)) {
         transformType = 'toml'
-      }
-
-      if (opts.toml!.enabled && PLIST_EXTENSION.test(id)) {
+      } else if (opts.toml!.enabled && PLIST_EXTENSION.test(id)) {
         transformType = 'plist'
-      }
-
-      if (opts.xlsx!.enabled && XLSX_EXTENSION.test(id)) {
+      } else if (opts.xlsx!.enabled && XLSX_EXTENSION.test(id)) {
         transformType = 'xlsx'
-      }
-      if (typeof transformType === 'undefined') {
+      } else {
         return null
       }
+
       if (typeof transforms[transformType] === 'undefined') {
         await loadTransform(transformType)
       }
