@@ -3,12 +3,13 @@ import fs from 'fs'
 import { Plugin, HtmlTagDescriptor, HmrContext } from 'vite'
 
 export type PluginOptions = {
-  sourcePath?: string
-  cssEnabled?: boolean
-  sassEnabled?: boolean
-  lessEnabled?: boolean
-  stylusEnabled?: boolean
-  recursive?: boolean
+  sourcePath: string
+  cssEnabled: boolean
+  sassEnabled: boolean
+  lessEnabled: boolean
+  stylusEnabled: boolean
+  recursive: boolean
+  debug: boolean
 }
 
 const DEFAULT_OPTIONS: PluginOptions = {
@@ -18,6 +19,7 @@ const DEFAULT_OPTIONS: PluginOptions = {
   lessEnabled: true,
   stylusEnabled: true,
   recursive: true,
+  debug: false,
 }
 
 type StyleData = {
@@ -91,7 +93,7 @@ function searchGlobalStyle(
   return globalStylePaths
 }
 
-export default (options: PluginOptions = {}): Plugin => {
+export default (options: Partial<PluginOptions> = {}): Plugin => {
   const opts: PluginOptions = Object.assign({}, DEFAULT_OPTIONS, options)
   let assetsPath: string
 
@@ -104,13 +106,21 @@ export default (options: PluginOptions = {}): Plugin => {
         _,
         { filename }: { filename: string },
       ): Array<HtmlTagDescriptor> {
+        opts.debug && console.info(`[global style] filename: ${filename}`)
         const HtmlTagDescriptors: Array<HtmlTagDescriptor> = []
         if (!assetsPath) {
-          assetsPath = path.resolve(filename, '..', opts.sourcePath!)
+          assetsPath = path.resolve(filename, '..', opts.sourcePath)
+          opts.debug && console.info(`[global style] root dir: ${assetsPath}`)
         }
 
         GLOBAL_STYLES_DATA.forEach(data => {
           data.globalStylePaths = searchGlobalStyle(assetsPath, opts, data)
+          opts.debug &&
+            console.info(
+              `[global style] ${
+                data.name
+              } search result: \n${data.globalStylePaths.join('\n')}`,
+            )
         })
 
         if (opts.cssEnabled) {
@@ -122,7 +132,7 @@ export default (options: PluginOptions = {}): Plugin => {
 
           CSSFilePaths.forEach(filePath => {
             filePath = filePath
-              .replace(assetsPath, '/' + opts.sourcePath!)
+              .replace(assetsPath, '/' + opts.sourcePath)
               .replace(/\\(\\)?/g, '/')
             HtmlTagDescriptors.push({
               tag: 'link',
