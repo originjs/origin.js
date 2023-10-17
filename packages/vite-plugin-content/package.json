@@ -44,6 +44,6 @@
     "properties-parser": "^0.3.1",
     "tosource": "^2.0.0-alpha.3",
     "xlsx": "^0.17.1",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.6.2"
   }
 }
