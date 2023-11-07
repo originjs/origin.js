@@ -35,15 +35,15 @@
     "@types/xml2js": "^0.4.9"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.1.1",
     "@iarna/toml": "^2.2.5",
+    "@rollup/pluginutils": "^4.1.1",
     "csv-parse": "^4.16.0",
     "ini": "^2.0.0",
     "js-yaml": "^4.1.0",
     "plist": "^3.0.4",
     "properties-parser": "^0.3.1",
     "tosource": "^2.0.0-alpha.3",
-    "xlsx": "^0.17.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz",
     "xml2js": "^0.6.2"
   }
 }
