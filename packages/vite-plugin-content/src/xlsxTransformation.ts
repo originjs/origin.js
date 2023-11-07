@@ -1,6 +1,5 @@
 import { PluginOptions } from './index'
 import { createFilter } from '@rollup/pluginutils'
-import xlsx from 'xlsx'
 import toSource from 'tosource'
 
 export default function xlsxTransform(
@@ -8,6 +7,7 @@ export default function xlsxTransform(
   code: string,
   id: string,
 ) {
+  const xlsx = require('xlsx');
   const filter = createFilter(options.xlsx!.include, options.xlsx!.exclude)
   if (!filter(id)) {
     return null
